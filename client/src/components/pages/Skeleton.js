@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
+import NavBar from "../modules/NavBar"
+import LoginForm from "../modules/LoginForm"
+
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -21,6 +24,7 @@ class Skeleton extends Component {
   render() {
     return (
       <>
+      <LoginForm/>
         {this.props.userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}

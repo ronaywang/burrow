@@ -49,7 +49,7 @@ class App extends Component {
       <>
         <Router>
           <Skeleton
-            path="/"
+            path="/skel"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}

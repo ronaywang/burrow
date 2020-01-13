@@ -14,6 +14,7 @@ const User = require("./models/user");
 
 // import authentication library
 const auth = require("./auth");
+const loginstuff = require("./loginstuff");
 
 // api endpoints: all these paths will be prefixed with "/api/"
 const router = express.Router();
@@ -31,6 +32,8 @@ router.get("/whoami", (req, res) => {
 
   res.send(req.user);
 });
+
+router.post("/makeuser", loginstuff.createUser);
 
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in

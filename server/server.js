@@ -20,6 +20,8 @@ validator.checkSetup();
 
 //import libraries needed for the webserver to work!
 const http = require("http");
+const https = require("https");
+const fs = require("fs");
 const express = require("express"); // backend framework for our node server.
 const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
@@ -32,10 +34,18 @@ const auth = require("./auth");
 const socket = require("./server-socket");
 
 // Server configuration below
+
+//ssl
+const keycert = {
+  key: fs.readFileSync('server/key.pem'),
+  cert: fs.readFileSync('server/cert.pem')
+}
+
+
 // TODO change connection URL after setting up your team database
-const mongoConnectionURL = "FILL ME IN";
+const mongoConnectionURL = "mongodb+srv://admin:j06gkl5BLZPl2ECk@cl1-ztlxc.gcp.mongodb.net/test?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
-const databaseName = "FILL ME IN";
+const databaseName = "cl1";
 
 // connect to mongodb
 mongoose
@@ -96,9 +106,11 @@ app.use((err, req, res, next) => {
 
 // hardcode port to 3000 for now
 const port = 3000;
+
 const server = http.Server(app);
 socket.init(server);
 
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
+//https.createServer(keycert, app).listen(port);
