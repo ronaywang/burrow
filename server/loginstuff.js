@@ -1,5 +1,5 @@
 const User = require("./models/user");
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 const saltRounds = 12;
 
 
@@ -13,7 +13,7 @@ function createUser_async (uname, pass) {
       console.error("Duplicate usernames.");
       console.error(person.username);
     } else {
-        bcrypt.hash(pass, saltRounds, (err, hash) => {
+        bcryptjs.hash(pass, saltRounds, (err, hash) => {
           console.log(typeof(hash));
         const newUser = new User({
           username: uname, 
@@ -28,7 +28,7 @@ function createUser_async (uname, pass) {
 const authenticate = (logindata) => {
   User.findOne({username: logindata.username}, (err, person) => {
     if (person.passwordhash) {
-      if (bcrypt.compareSync(password, correctHash)) {
+      if (bcryptjs.compareSync(password, correctHash)) {
         return true;
       } else {
         return false;
