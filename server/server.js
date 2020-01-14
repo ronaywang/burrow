@@ -23,7 +23,6 @@ const http = require("http");
 const https = require("https");
 const fs = require("fs");
 const express = require("express"); // backend framework for our node server.
-const passport = require("passport");
 const session = require("express-session"); // library that stores info about each connected user
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const path = require("path"); // provide utilities for working with file and directory paths
@@ -90,10 +89,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(reactPath, "index.html"));
 });
 
-
- app.use(cookieParser());
- app.use(passport.initialize());
- app.use(passport.session());
 
 
 // any server errors cause this function to run
