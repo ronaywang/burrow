@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import "../../utilities.css"
 import "./LoginForm.css"
+import { post } from "../../utilities";
 
 
 class LoginForm extends Component {
@@ -22,9 +23,13 @@ p_handleChange = (event) => {
   this.setState({password: event.target.value});
 };
 
-handleSubmit = () => {
-console.log(this.state.username);
-console.log(this.state.password);
+handleSubmit = (event) => {
+  event.preventDefault();
+  console.log(this.state);
+  post("/api/passportlogin", this.state).then(() => {
+    console.log(this.state.username);
+    console.log(this.state.password);
+  });
 };
 
   componentDidMount() {

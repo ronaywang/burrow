@@ -3,49 +3,45 @@ const bcrypt = require("bcrypt");
 const saltRounds = 12;
 
 
-const createUser = (uname, pass) => {
-  createUser_async(uname, pass);
+const createUser = (newuser) => {
+  createUser_async(newuser.username, newuser.password);
 };
 
-async function createUser_async (uname, pass) {
-  const userscursor = User.find({username: uname});
-  let users = [];
-  for (let doc = await userscursor.next(); doc != null; doc = await userscursor.next()) {
-    users.push(doc);
-  }
-  if (users.length > 0) {
-    console.error("Duplicate usernames.");
-  }
-  bcrypt.hash(pass, saltRounds, (err, hash) => {
-    const newUser = new User({
-      username: uname,
-      passhash: hash
+function createUser_async (uname, pass) {
+  User.findOne({username: uname}, (err, person) => {
+    if (person != null) {
+      console.error("Duplicate usernames.");
+      console.error(person.username);
+    } else {
+        bcrypt.hash(pass, saltRounds, (err, hash) => {
+          console.log(typeof(hash));
+        const newUser = new User({
+          username: uname, 
+          passwordhash: hash
+        });
+        newUser.save();
+        });
+      }
     });
-    newUser.save();
+  }
+
+const authenticate = (logindata) => {
+  User.findOne({username: logindata.username}, (err, person) => {
+    if (person.passwordhash) {
+      if (bcrypt.compareSync(password, correctHash)) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   });
-}
-
-async function getUserHash(uname) {
-  const users = await User.find({username: uname});
-  if (users.length === 1) {
-    return users[0].passhash;
-  }
-  else {
-    console.error("Duplicate usernames.");
-  }
-}
-
-const authenticate = (uname, password) => {
-  const correctHash = getUserHash(uname);
-  if (bcrypt.compareSync(password, correctHash)) {
-    return true;
-  } else {
-    return false;
-  }
 };
 
 
 module.exports = {
   createUser,
+  authenticate,
 };
 
