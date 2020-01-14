@@ -27,8 +27,7 @@ handleSubmit = (event) => {
   event.preventDefault();
   console.log(this.state);
   post("/api/passportlogin", this.state).then(() => {
-    console.log(this.state.username);
-    console.log(this.state.password);
+    console.log("hi");
   });
 };
 

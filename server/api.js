@@ -10,7 +10,7 @@
 const express = require("express");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const bcrypt = require("bcrypt");
+const bcryptjs = require("bcryptjs");
 
 // import models so we can interact with the database
 const User = require("./models/user");
@@ -50,7 +50,7 @@ passport.use(new LocalStrategy(
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      if (!bcrypt.compareSync(password, user.passwordhash)) { return done(null, false); }
+      if (!bcryptjs.compareSync(password, user.passwordhash)) { return done(null, false); }
       return done(null, user);
     });
   }
