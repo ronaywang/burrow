@@ -25,15 +25,19 @@ function createUser_async (uname, pass) {
     });
   }
 
-const authenticate = (logindata) => {
-  User.findOne({username: logindata.username}, (err, person) => {
-    if (person.passwordhash) {
-      if (bcryptjs.compareSync(password, correctHash)) {
+const signin = (req, res) => {
+  User.findOne({username: req.body.username}, (err, person) => {
+    if (person && person.passwordhash) {
+      if (bcryptjs.compareSync(req.body.password, person.passwordhash)) {
+        console.log("Authenticated successfully.");
+        req.session.user = req.body.username;
         return true;
       } else {
+        console.log("Authentication failed.");
         return false;
       }
     } else {
+      console.log("Authentication failed.");
       return false;
     }
   });
@@ -42,6 +46,6 @@ const authenticate = (logindata) => {
 
 module.exports = {
   createUser,
-  authenticate,
+  signin,
 };
 

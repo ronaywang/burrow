@@ -26,7 +26,7 @@ p_handleChange = (event) => {
 handleSubmit = (event) => {
   event.preventDefault();
   console.log(this.state);
-  post("/api/passportlogin", this.state).then(() => {
+  post("/api/passlogin", this.state).then(() => {
     console.log("hi");
   });
 };

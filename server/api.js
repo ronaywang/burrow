@@ -39,7 +39,7 @@ router.post("/makeuser", (req, res) => {
 });
 
 router.post("/passlogin", (req, res) => {
-  loginstuff.authenticate(req.body);
+  loginstuff.signin(req, res);
 });
 
 
