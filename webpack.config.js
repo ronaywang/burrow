@@ -56,6 +56,14 @@ module.exports = {
           },
         ],
       },
+      { 
+        test: /\.(otf|ttf)$/, 
+        use: [
+          { 
+            loader: 'url-loader?limit=100000', 
+          },
+        ],
+      }
     ],
   },
   resolve: {

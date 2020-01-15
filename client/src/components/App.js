@@ -54,6 +54,10 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          <Feed
+            path="/"/>
+          <Profile path="/profile" />
+          <Chat path="/messages" />
           <NotFound default />
         </Router>
       </>

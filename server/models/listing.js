@@ -13,5 +13,7 @@ const ListingSchema = new mongoose.Schema({
         long: Number,
     }
 });
+// A listing determines a search area. If two listings' search areas overlap, then
+// they show up on each others' feeds.
 
 module.exports = mongoose.model("listing", listingSchema);

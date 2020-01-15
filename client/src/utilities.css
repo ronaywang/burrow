@@ -14,7 +14,18 @@
 * much after initial creation.
 */
 
-/* TODO: REPLACE WITH YOUR OWN FONT! */
+/* FONTS */
+@font-face {
+  font-family: "Rabbid Highway Sign IV";
+  src: url("./fonts/RabbidHighwaySignIVObl.otf");
+}
+
+@font-face {
+  font-family: "Rabbid Highway Sign IV";
+  src: url("./fonts/RabbidHighwaySignIVBd.otf");
+  font-weight: bold;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
@@ -34,7 +45,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Rabbid Highway Sign IV";
   font-weight: 300;
 }
 

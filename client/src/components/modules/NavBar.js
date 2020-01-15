@@ -13,7 +13,24 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>NavBar</div>
+      <nav>
+        <div>
+          {/* TODO: LOGO */}
+          <Search />
+        </div>
+        <div>
+          <Link to="/messages">
+            messages
+          </Link>
+          <Link to="/profile">
+            profile
+          </Link>
+          <Link to="/">
+            home
+          </Link>
+          {/* TODO: ADD LOGIC FOR LOGIN/LOGOUT */}
+        </div>
+      </nav>
     );
   }
 
