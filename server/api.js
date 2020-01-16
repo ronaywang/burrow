@@ -34,15 +34,6 @@ router.get("/whoami", (req, res) => {
   res.send(req.user);
 });
 
-router.post("/makeuser", (req, res) => {
-  loginstuff.createUser(req.body);
-});
-
-router.post("/passlogin", (req, res) => {
-  loginstuff.signin(req, res);
-});
-
-
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user) socket.addUser(req.user, socket.getSocketFromSocketID(req.body.socketid));
@@ -52,6 +43,15 @@ router.post("/initsocket", (req, res) => {
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|
+
+router.post("/makeuser", (req, res) => {
+  loginstuff.createUser(req.body);
+});
+
+router.post("/passlogin", (req, res) => {
+  loginstuff.signin(req, res);
+});
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

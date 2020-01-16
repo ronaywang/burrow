@@ -10,7 +10,8 @@ class LoginForm extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      buttontext: 'log in'
     }
   }
 
@@ -32,6 +33,9 @@ handleSubmit = (event) => {
 };
 
   componentDidMount() {
+    if (this.props.buttonText) {
+      this.setState({buttontext: this.props.buttonText});
+    }
   }
 
   render() {
@@ -58,7 +62,7 @@ handleSubmit = (event) => {
           </label>
           <input
             type="submit"
-            value="Submit"/>
+            value={this.state.buttontext}/>
         </form>
       </div>
     );

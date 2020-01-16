@@ -30,7 +30,12 @@ const signin = (req, res) => {
     if (person && person.passwordhash) {
       if (bcryptjs.compareSync(req.body.password, person.passwordhash)) {
         console.log("Authenticated successfully.");
-        req.session.user = req.body.username;
+        req.session.user = {
+          _id: person._id,
+          username: person.username,
+          googleid: person.googleid
+        };
+        res.send({username: person.username, loggedin: true});
         return true;
       } else {
         console.log("Authentication failed.");

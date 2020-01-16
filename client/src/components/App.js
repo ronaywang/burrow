@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import SplashPage from "./pages/SplashPage.js";
 
 import "../utilities.css";
 
@@ -26,6 +26,7 @@ class App extends Component {
       if (user._id) {
         // they are registed in the database, and currently logged in.
         this.setState({ userId: user._id });
+        console.log("you are logged in as " + user._id);
       }
     });
   }
@@ -48,7 +49,7 @@ class App extends Component {
     return (
       <>
         <Router>
-          <Skeleton
+          <SplashPage
             path="/skel"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
