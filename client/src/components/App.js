@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
+import Feed from "./pages/Feed";
+import Chat from "./pages/Chat";
+import Profile from "./pages/Profile";
 
 import "../utilities.css";
 
@@ -55,7 +58,7 @@ class App extends Component {
             userId={this.state.userId}
           />
           <Feed
-            path="/"/>
+            path="/feed"/>
           <Profile path="/profile" />
           <Chat path="/messages" />
           <NotFound default />
