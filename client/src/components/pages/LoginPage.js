@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import "../../utilities.css"
 import { post } from "../../utilities";
+//import "./LoginRegistration.css";
 
 
 class LoginPage extends Component {

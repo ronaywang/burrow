@@ -1,0 +1,30 @@
+.title {
+    margin: 0.5em auto;
+}
+
+.field {
+    display: block;
+    position: relative;
+    left: -1em;
+}
+
+.error{
+    color: red;
+}
+
+input{
+    border: none;
+    width: 200px;
+    padding: 1em;
+    border-radius: 0.5em;
+    margin: 0.75em auto;
+    font-size: 1em;
+    box-shadow: 0 4px 0 0 gray;
+  }
+
+.submit{
+        background-color: yellow;
+        box-shadow: 0 4px 0 0 #FFBB2B;
+        cursor: pointer;
+        transition: transform 0.1s, box-shadow 0.1s;
+        }

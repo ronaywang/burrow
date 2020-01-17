@@ -27,6 +27,8 @@ const mongoose = require("mongoose"); // library to connect to MongoDB
 const session = require("express-session"); // library that stores info about each connected user
 const MongoStore = require('connect-mongo')(session);
 
+require("dotenv").config();
+
 const path = require("path"); // provide utilities for working with file and directory paths
 
 const api = require("./api");
@@ -46,7 +48,8 @@ const keycert = {
 
 
 // TODO change connection URL after setting up your team database
-const mongoConnectionURL = "mongodb+srv://admin:j06gkl5BLZPl2ECk@cl1-ztlxc.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const mongoConnectionURL = process.env.ATLAS_SRV;
+//const mongoConnectionURL = "mongodb+srv://admin:j06gkl5BLZPl2ECk@cl1-ztlxc.gcp.mongodb.net/test?retryWrites=true&w=majority";
 // TODO change database name to the name you chose
 const databaseName = "cl1";
 
@@ -71,7 +74,8 @@ app.use(express.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    secret: "my session secret",
+    //secret: "my session secret",
+    secret: process.env.SESSION_SECRET,
     store: new MongoStore({ mongooseConnection: mongoose.connection, collection: 'sessions' }),
     resave: false,
     saveUninitialized: false,
