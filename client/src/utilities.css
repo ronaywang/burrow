@@ -36,8 +36,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: monotype-grotesque, sans-serif;
-  font-weight: 400;
+  font-family: skolar-sans-latin, sans-serif;
+  font-weight: 300;
+  line-height: 110%;
 }
 
 form {
@@ -67,6 +68,11 @@ form {
 
 .u-bold {
   font-weight: 700;
+  line-height: 140%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 100%;
 }
 
 .u-textCenter {
