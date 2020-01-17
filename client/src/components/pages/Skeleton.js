@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-
+import LoginForm from "../modules/LoginForm";
 
 import "../../utilities.css";
 import "./Skeleton.css";
+import { post } from '../../utilities';
 
 const responseFacebook = (response) => {
   console.log(response);
@@ -27,12 +28,14 @@ class Skeleton extends Component {
   render() {
     return (
       <>
+        <LoginForm userId={this.props.userId}/>
+
         {this.props.userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
             buttonText="Logout"
             onLogoutSuccess={this.props.handleLogout}
-            onFailure={(err) => console.log(err)}
+            onFailure={(err) => {console.log(err); post("/api/logout");}}
           />
         ) : (
           <GoogleLogin

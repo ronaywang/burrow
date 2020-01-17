@@ -11,6 +11,9 @@ import "../utilities.css";
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
+import LoginPage from "./pages/LoginPage";
+import RegistrationPage from "./pages/RegistrationPage";
+
 
 /**
  * Define the "App" component as a class.
@@ -21,6 +24,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      username: undefined,
     };
   }
 
@@ -28,8 +32,8 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id });
-        console.log("you are logged in as " + user._id);
+        this.setState({ userId: user._id, username: user.username, });
+        console.log("you are logged in as " + user.username);
       }
     });
   }
@@ -43,7 +47,7 @@ class App extends Component {
     });
   };
 
-  handleLogout = () => {
+  handleLogout= () => {
     this.setState({ userId: undefined });
     post("/api/logout");
   };
@@ -52,7 +56,9 @@ class App extends Component {
     return (
       <>
         <Router>
-          <SplashPage
+          <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
+          <RegistrationPage path="/register"/>
+          <Skeleton
             path="/skel"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}

@@ -48,7 +48,9 @@ function login(req, res) {
 
 function logout(req, res) {
   req.session.user = null;
+  req.user = null;
   res.send({});
+  console.log("logout");
 }
 
 function populateCurrentUser(req, res, next) {

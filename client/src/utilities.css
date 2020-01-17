@@ -16,7 +16,8 @@
 
 /* FONTS */
 
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+/** @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap"); */
+@import url("https://use.typekit.net/chp7dgz.css");
 
 :root {
   --primary: #396dff;
@@ -35,8 +36,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
-  font-weight: 300;
+  font-family: monotype-grotesque, sans-serif;
+  font-weight: 400;
 }
 
 form {
@@ -65,7 +66,7 @@ form {
 }
 
 .u-bold {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .u-textCenter {
