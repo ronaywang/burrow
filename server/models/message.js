@@ -9,7 +9,5 @@ const MessageSchema = new mongoose.Schema({
     parentThread_ID: mongoose.ObjectId,
     timestamp: Date,
 });
-// A listing determines a search area. If two listings' search areas overlap, then
-// they show up on each others' feeds.
 
 module.exports = mongoose.model("message", MessageSchema);
