@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-import LoginForm from "../modules/LoginForm";
 
 import "../../utilities.css";
 import "./Skeleton.css";
@@ -28,7 +27,6 @@ class Skeleton extends Component {
   render() {
     return (
       <>
-        <LoginForm userId={this.props.userId}/>
 
         {this.props.userId ? (
           <GoogleLogout

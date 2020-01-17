@@ -48,7 +48,7 @@ class App extends Component {
   };
 
   handleLogout= () => {
-    this.setState({ userId: undefined });
+    this.setState({ userId: undefined, username: undefined});
     post("/api/logout");
   };
 
@@ -57,9 +57,9 @@ class App extends Component {
       <>
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
-          <RegistrationPage path="/register"/>
+          <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
           <Skeleton
-            path="/skel"
+            path="/"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}

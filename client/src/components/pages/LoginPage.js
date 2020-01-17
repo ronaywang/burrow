@@ -48,6 +48,7 @@ handleSubmit = (event) => {
       return (
         <div>
           You have logged in successfully.
+          <meta http-equiv = "refresh" content = "1; url = /" />
         </div>
       );
     } else if (this.props.userId) {
