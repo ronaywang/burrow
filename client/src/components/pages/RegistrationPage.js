@@ -83,7 +83,7 @@ handleSubmit = (event) => {
            <label>
               Email
               <input
-                type="email"
+                type="text"
                 name="email"
                 value={this.state.email}
                 onChange={this.e_handleChange}
