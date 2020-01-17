@@ -47,10 +47,7 @@ const keycert = {
 }
 
 
-// TODO change connection URL after setting up your team database
 const mongoConnectionURL = process.env.ATLAS_SRV;
-//const mongoConnectionURL = "mongodb+srv://admin:j06gkl5BLZPl2ECk@cl1-ztlxc.gcp.mongodb.net/test?retryWrites=true&w=majority";
-// TODO change database name to the name you chose
 const databaseName = "cl1";
 
 // connect to mongodb
@@ -74,7 +71,6 @@ app.use(express.json());
 // set up a session, which will persist login data across requests
 app.use(
   session({
-    //secret: "my session secret",
     secret: process.env.SESSION_SECRET,
     store: new MongoStore({ mongooseConnection: mongoose.connection, collection: 'sessions' }),
     resave: false,
