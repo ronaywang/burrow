@@ -27,7 +27,7 @@ class SearchBar extends Component {
   render(){
     const {
       props: {
-        style, defaultText
+        defaultText
       },
       handleChange, handleSubmit,
       state: {

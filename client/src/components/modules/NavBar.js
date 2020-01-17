@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import "./NavBar.css";
+import "./NavBar."
 import "../../utilities.css";
 
 class NavBar extends Component {
@@ -10,7 +10,8 @@ class NavBar extends Component {
   
   render(){
     return (
-      <></>
+      <div className="NavBar-container">
+      </div>
     );
   }
 }
