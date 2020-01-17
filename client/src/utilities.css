@@ -62,6 +62,14 @@ form {
   align-items: center;
 }
 
+.u-flex-alignEnd {
+  align-items: flex-end;
+}
+
+.u-flex-spaceEvenly {
+  justify-content: space-evenly;
+}
+
 .u-inlineBlock {
   display: inline-block;
 }
