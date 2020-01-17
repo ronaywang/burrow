@@ -10,6 +10,7 @@ import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import SplashPage from "./pages/SplashPage";
 
 
 /**
@@ -62,6 +63,7 @@ class App extends Component {
             userId={this.state.userId}
           />
           <NotFound default />
+          <SplashPage path="/splash" />
         </Router>
       </>
     );
