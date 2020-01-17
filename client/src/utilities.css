@@ -15,16 +15,6 @@
 */
 
 /* FONTS */
-@font-face {
-  font-family: "Rabbid Highway Sign IV";
-  src: url("./fonts/RabbidHighwaySignIVObl.otf");
-}
-
-@font-face {
-  font-family: "Rabbid Highway Sign IV";
-  src: url("./fonts/RabbidHighwaySignIVBd.otf");
-  font-weight: bold;
-}
 
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
@@ -45,7 +35,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Rabbid Highway Sign IV";
+  font-family: "Roboto";
   font-weight: 300;
 }
 

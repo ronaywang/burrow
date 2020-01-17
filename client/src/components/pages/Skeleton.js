@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-import NavBar from "../modules/NavBar"
-import LoginForm from "../modules/LoginForm"
 
 
 import "../../utilities.css";
 import "./Skeleton.css";
+
+const responseFacebook = (response) => {
+  console.log(response);
+}
 
 //TODO: REPLACE WITH YOUR OWN CLIENT_ID
 const GOOGLE_CLIENT_ID = "121479668229-t5j82jrbi9oejh7c8avada226s75bopn.apps.googleusercontent.com";
@@ -24,7 +27,6 @@ class Skeleton extends Component {
   render() {
     return (
       <>
-      <LoginForm/>
         {this.props.userId ? (
           <GoogleLogout
             clientId={GOOGLE_CLIENT_ID}
