@@ -10,6 +10,7 @@ import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import MapTestComponent from "./pages/MapTest";
 
 
 /**
@@ -61,6 +62,8 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          <MapTestComponent
+            path="/map"/>
           <NotFound default />
         </Router>
       </>
