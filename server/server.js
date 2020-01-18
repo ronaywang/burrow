@@ -37,6 +37,7 @@ const auth = require("./auth");
 
 // socket stuff
 const socket = require("./server-socket");
+const gbucket = require("./server-gbucket");
 
 // Server configuration below
 
