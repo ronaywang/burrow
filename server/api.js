@@ -21,6 +21,7 @@ const router = express.Router();
 
 //initialize socket
 const socket = require("./server-socket");
+const gcloudstorage = require("./server-gbucket");
 
 router.post('/login', function(req, res, next) {
     if (req.body.username && req.body.password) {
@@ -90,6 +91,9 @@ router.post("/passlogin", (req, res) => {
   //loginstuff.signin(req, res);
 });
 
+router.get("/uploadfile", async (req, res) => {
+  await gcloudstorage.uploadFile("/home/chillenb/weblab/ronaywang-chillenb-chrisxu3/client/src/public/assets/account.png");
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
