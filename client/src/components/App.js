@@ -11,7 +11,8 @@ import { get, post } from "../utilities";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import SplashPage from "./pages/SplashPage";
-import NavBar from "./modules/NavBar";
+import TryCard from "./modules/TryCard";
+//import NavBar from "./modules/NavBar";
 
 
 /**
@@ -54,7 +55,6 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar />
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
@@ -66,6 +66,7 @@ class App extends Component {
           />
           <NotFound default />
           <SplashPage path="/splash" />
+          <TryCard path="/cardsample"/>
         </Router>
       </>
     );
