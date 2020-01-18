@@ -4,8 +4,12 @@ import "../../utilities.css";
 
 class SearchBar extends Component {
   static PropTypes = {
-    defaultText: PropTypes.string.isRequired
-  };
+    defaultText: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    styleName: PropTypes.string.isRequired,
+    submitButtonExists: PropTypes.bool.isRequired,
+    submitButtonStyleName: PropTypes.string.isRequired
+  };  
 
   constructor(props) {
     super(props);
@@ -27,7 +31,7 @@ class SearchBar extends Component {
   render(){
     const {
       props: {
-        defaultText
+        defaultText, styleName, submitButtonExists
       },
       handleChange, handleSubmit,
       state: {
@@ -39,17 +43,16 @@ class SearchBar extends Component {
       <div>
         <input
           type="text"
+          className={`${styleName}`}
           placeholder={defaultText}
           onChange={handleChange}
           value={value}
         />
-        <button
+        {submitButtonExists ? <button
           type="submit"
           value="Submit"
           onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        /> : ""}
       </div> 
     );
   }
