@@ -13,6 +13,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 import MapTestComponent from "./pages/MapTest";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
+import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
 //import NavBar from "./modules/NavBar";
 
 
@@ -70,6 +71,7 @@ class App extends Component {
           <NotFound default />
           <SplashPage path="/splash" />
           <TryCard path="/cardsample"/>
+          <PhotoUploadPrototype path="/photouploadprototype"/>
         </Router>
       </>
     );
