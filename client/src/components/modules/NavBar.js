@@ -15,7 +15,7 @@ class NavBar extends Component {
         {/* <div className="NavBar-link"></div> TODO: INSERT LINKS HERE */}
       </div>
     ) : (
-      <div className="NavBar-linkContainer-loggedIn">
+      <div className="NavBar-linkContainer-loggedOut">
         {/* <div className="NavBar-link"></div> TODO: INSERT LINKS HERE */}
       </div>
     )
@@ -24,7 +24,7 @@ class NavBar extends Component {
         <div className="NavBar-logoSearchContainer">
           <div className="NavBar-logo">
           </div>
-          {/* <LocationSearchBar /> */}
+          {/* <LocationSearchBar /> className="NavBar-search" */}
         </div>
         {linkContainer}
       </div>

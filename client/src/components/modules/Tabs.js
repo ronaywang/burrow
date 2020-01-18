@@ -8,6 +8,7 @@ class Tab extends Component {
     activeTab: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
+    styleName: PropTypes.string.isRequired
   };
 
   onClick = () => {
@@ -21,13 +22,14 @@ class Tab extends Component {
       props: {
         activeTab,
         label,
+        styleName
       },
     } = this;
 
-    let className = 'tab-list-item';
+    let className = `${styleName}-tabListItem`;
 
     if (activeTab === label) {
-      className += ' tab-list-active';
+      className += ` ${styleName}-tabListActive`;
     }
 
     return (
@@ -44,7 +46,8 @@ class Tab extends Component {
 class Tabs extends Component {
   static propTypes = {
     children: PropTypes.instanceOf(Array).isRequired,
-  }
+    styleName: PropTypes.string.isRequired,
+  };
 
   constructor(props) {
     super(props);
@@ -63,6 +66,7 @@ class Tabs extends Component {
       onClickTabItem,
       props: {
         children,
+        styleName
       },
       state: {
         activeTab,
@@ -70,8 +74,8 @@ class Tabs extends Component {
     } = this;
 
     return (
-      <div className="tabs">
-        <ol className="tab-list">
+      <div className={`${styleName}-tabs`}>
+        <ol className={`${styleName}-tabList`}>
           {children.map((child) => {
             const { label } = child.props;
 
@@ -81,11 +85,12 @@ class Tabs extends Component {
                 key={label}
                 label={label}
                 onClick={onClickTabItem}
+                styleName={styleName}
               />
             );
           })}
         </ol>
-        <div className="tab-content">
+        <div className={`${styleName}-tabContent`}>
           {children.map((child) => {
             if (child.props.label !== activeTab) return undefined;
             return child.props.children;
