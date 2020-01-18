@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {Tabs} from "../modules/Tabs.js";
 import "./SplashPage.css";
 import "../../utilities.css";
-import {LocationSearchBar} from "../modules/SearchBar.js";
+import SearchBar from "../modules/SearchBar.js";
 
 class SplashTab extends Component{
   render(){
@@ -35,6 +35,20 @@ class SplashPage extends Component {
           </div>
           <SplashTab />
         </div>
+        <SearchBar 
+          defaultText="Search here..."
+          styleName=""
+          searchStringAutocomplete={(currSearchString) => {
+            let allResults = ["apple","asian","ape","appian","ase"];
+            return allResults.filter((s) => {
+              let l = currSearchString.length;
+              return s.length >= l && currSearchString.toLowerCase() === s.substring(0,l);
+            });
+          }
+            }
+          handleSubmit={()=>null}
+          submitButtonExists={false}
+        />
       </div>
     );
   }
