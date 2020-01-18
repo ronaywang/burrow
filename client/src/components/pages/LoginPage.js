@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "../../utilities.css"
 import { post } from "../../utilities";
-//import "./LoginRegistration.css";
+import "./LoginRegistration.css";
 
 
 class LoginPage extends Component {
@@ -63,19 +63,20 @@ handleSubmit = (event) => {
     } else {
       return (
         <div>
+          <h1 className="u-textCenter">Log in</h1>
           { this.state.failed ? "Login failed": null}
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Username
-              <input
+          <form className="u-flexColumn u-flex-alignCenter" onSubmit={this.handleSubmit}>
+            <label className="u-flex u-flex-alignCenter u-flex-justifyCenter ">
+              <span className="fieldname">Username</span>
+              <input 
                 type="text"
                 name="username"
                 value={this.state.username}
                 onChange={this.u_handleChange}
               />
             </label>
-            <label>
-              Password
+            <label className="u-flex u-flex-alignCenter u-flex-justifyCenter ">
+              <span className="fieldname">Password</span>
               <input
                 type="text"
                 name="password"
@@ -84,6 +85,7 @@ handleSubmit = (event) => {
               />
             </label>
             <input
+              className="u-flex-alignCenter"
               type="submit"
               value={this.state.buttontext}/>
           </form>

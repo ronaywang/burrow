@@ -11,6 +11,9 @@ import { get, post } from "../utilities";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import MapTestComponent from "./pages/MapTest";
+import SplashPage from "./pages/SplashPage";
+import TryCard from "./modules/TryCard";
+//import NavBar from "./modules/NavBar";
 
 
 /**
@@ -65,6 +68,8 @@ class App extends Component {
           <MapTestComponent
             path="/map"/>
           <NotFound default />
+          <SplashPage path="/splash" />
+          <TryCard path="/cardsample"/>
         </Router>
       </>
     );

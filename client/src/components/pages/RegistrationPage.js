@@ -76,12 +76,15 @@ handleSubmit = (event) => {
       );
     } else {
       return (
-        <div>
-          { this.state.mustfillfields && "You must fill all fields"}
+        <div className="u-flexColumn u-flex-alignCenter u-flex-spaceEvenly">
+          { this.state.mustfillfields && (
+            <span className="warning">You must fill all fields!</span>
+            )}
           { this.state.failed ? "Registration failed. Username already taken": null}
-          <form>
+          <h1 className="u-textCenter">Registration</h1>
+          <form className="u-flexColumn u-flex-alignEnd">
            <label>
-              Email
+              <span className="fieldname">Email</span>
               <input
                 type="text"
                 name="email"
@@ -90,7 +93,7 @@ handleSubmit = (event) => {
               />
             </label>
             <label>
-              Username
+              <span className="fieldname">Username</span>
               <input
                 type="text"
                 name="username"
@@ -99,7 +102,7 @@ handleSubmit = (event) => {
               />
             </label>
             <label>
-              Password
+              <span className="fieldname">Password</span>
               <input
                 type="password"
                 name="password"
@@ -108,7 +111,7 @@ handleSubmit = (event) => {
               />
             </label>
             <label>
-              Verify password
+              <span className="fieldname">Verify password</span>
               <input
                 type="password"
                 name="verifypassword"
@@ -119,16 +122,16 @@ handleSubmit = (event) => {
             <button
               onClick={this.handleSubmit}>
               {this.state.buttontext}</button>
+            <div>
+              {
+                this.state.password && ((this.state.password === this.state.verifypassword) ? (
+                  <div className="bkgreen">Passwords match</div>
+                ) : (
+                  <div className="bkred">Passwords do not match</div>
+                ))
+              }
+            </div>
           </form>
-          <div>
-            {
-              (this.state.password === this.state.verifypassword) ? (
-                <div className="bkgreen">Passwords match</div>
-              ) : (
-                <div className="bkred">Passwords do not match</div>
-              )
-            }
-          </div>
         </div>
       );
     }
