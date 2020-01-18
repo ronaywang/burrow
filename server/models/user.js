@@ -3,13 +3,17 @@ const bcryptjs = require("bcryptjs");
 const saltLength = 12;
 
 const UserSchema = new mongoose.Schema({
+  email: String,
   username: String,
   password: String,
   firstName: String,
   lastName: String,
-  email: String,
-  googleid: String,
-  birth: Date
+  birthdate: Date,
+  gender: String,
+  fbProfileLink: String,
+  profilePicture_ID: mongoose.ObjectId,
+  bookmarkedListings: [mongoose.ObjectId],
+  composedListings: [mongoose.ObjectId]
 });
 
 // authentication
