@@ -6,8 +6,6 @@
   flex-direction: column;
 }
 
-
-
 .Card-pink {
   color: rgb(255, 59, 124);
 }
@@ -19,8 +17,6 @@
 .Card-purple {
   color: rgb(95, 0, 107);
 }
-
-
 
 .Card-profilePic {
   margin: 10px;
