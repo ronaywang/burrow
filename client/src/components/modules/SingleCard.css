@@ -125,8 +125,16 @@ hr {
 }
 
 th {
+  font-weight: 300;
   padding: 0 15px;
 }
 tr {
   padding: 1px;
+}
+
+.ldp-left {
+  font-weight: 700;
+}
+.ldp-right {
+  font-size: 120%;
 }

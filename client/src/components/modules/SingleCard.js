@@ -20,15 +20,15 @@ class SingleCard extends Component {
           <div className="Card-locationDatePrice">
             <table>
               <tr>
-                <th>location</th>
-                <th>Flagstaff, AZ</th>
+                <th className="ldp-left">location</th>
+                <th className="ldp-right">Flagstaff, AZ</th>
               </tr>
               <tr>
-                <th>date</th>
-                <th>Jan 2020–June 2020</th>
+                <th className="ldp-left">date</th>
+                <th className="ldp-right">Jan 2020–June 2020</th>
               </tr>
-              <th>price</th>
-              <th>$2020</th>
+              <th className="ldp-left">price</th>
+              <th className="ldp-right">$2020</th>
             </table>
           </div>
           <div className="Card-topRight">top right</div>
