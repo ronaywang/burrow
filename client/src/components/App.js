@@ -11,6 +11,7 @@ import { get, post } from "../utilities";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import SplashPage from "./pages/SplashPage";
+import TryCard from "./modules/TryCard";
 
 
 /**
@@ -64,6 +65,7 @@ class App extends Component {
           />
           <NotFound default />
           <SplashPage path="/splash" />
+          <TryCard path="/cardsample"/>
         </Router>
       </>
     );

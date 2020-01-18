@@ -1,0 +1,102 @@
+.card {
+  border: 1px solid black;
+  border-radius: 0.5em;
+  min-height: 16em;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.card-pink {
+  color: rgb(255, 59, 124);
+}
+
+.card-blue {
+  color: rgb(0, 75, 146);
+}
+
+.card-purple {
+  color: rgb(95, 0, 107);
+}
+
+
+
+.card-profilepic {
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 10em;
+  max-height: 5em;
+  aspect-ratio: 1;
+}
+
+.card-name {
+  font-size: 200%;
+  font-weight: 700;
+  margin: 5px;
+  padding-top: 0.2em;
+}
+
+.card-flags {
+  height: 15%;
+}
+
+.card-top {
+  height: 40%;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-topmiddle {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.card-basicinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-topright {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-end;
+}
+
+.card-toprightmenu {
+  padding: 0 1em 0 0; 
+  display: flex;
+  align-items: flex-start;
+}
+
+.card-bottom {
+  height: 45%;
+}
+
+.card-introtextbox {
+  margin: 1em;
+  font-size: 120%;
+  text-align: justify;
+  line-height: 110%;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
