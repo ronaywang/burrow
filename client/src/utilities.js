@@ -8,6 +8,8 @@
  * e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
  */
 
+export const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
+
 // ex: formatParams({ some_key: "some_value", a: "b"}) => "some_key=some_value&a=b"
 function formatParams(params) {
   // iterate of all the keys of params as an array,

@@ -4,7 +4,7 @@ import "./Tabs.css";
 import "../../utilities.css";
 
 class Tab extends Component {
-  static propTypes = {
+  static PropTypes = {
     activeTab: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
@@ -44,7 +44,7 @@ class Tab extends Component {
 }
 
 class Tabs extends Component {
-  static propTypes = {
+  static PropTypes = {
     children: PropTypes.instanceOf(Array).isRequired,
     styleName: PropTypes.string.isRequired,
   };

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import "../../utilities.css";
+import { get } from "../../utilities";
 
 class SearchBar extends Component {
   static PropTypes = {
@@ -33,7 +34,6 @@ class SearchBar extends Component {
       },
       mod
     } = this;
-    console.log("handleKeyPress");
     if (suggestionsList.length > 0){
       if (event.key === 'Enter'
           && submitButtonExists){
@@ -70,12 +70,14 @@ class SearchBar extends Component {
   handleChange = (event) => {
     const {searchStringAutocomplete} = this.props;
     let currSearchString = event.target.value;
-    let suggestions = currSearchString.length > 0 ? searchStringAutocomplete(currSearchString) : [];
-    this.setState({
-      currSearchString: currSearchString,
-      suggestionsList: suggestions,
-      suggestionPos: suggestions.length > 0 ? 0 : -1,
-      showSuggestionsList: true
+    searchStringAutocomplete(currSearchString).then((suggestions) => {
+      suggestions = currSearchString.length > 0 ? suggestions : [];
+      this.setState({
+        currSearchString: currSearchString,
+        suggestionsList: suggestions,
+        suggestionPos: suggestions.length > 0 ? 0 : -1,
+        showSuggestionsList: true
+      });
     });
   };
 
@@ -111,7 +113,6 @@ class SearchBar extends Component {
         currSearchString, suggestionsList, suggestionPos, showSuggestionsList
       }
     } = this;
-    console.log(suggestionPos);
     return (
       <div className={`${styleName}-searchBarContainer`} onKeyDown={handleKeyPress}>
         <div className={`${styleName}-searchBar`}>
@@ -148,4 +149,32 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+class LocationSearchBar extends Component{
+  static PropTypes = {
+    defaultText: PropTypes.string.isRequired,
+    styleName: PropTypes.string.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    submitButtonExists: PropTypes.bool.isRequired,
+    radius: PropTypes.number.isRequired
+  };  
+
+  render(){
+    return (<SearchBar 
+      defaultText={this.props.defaultText}
+      styleName={this.props.styleName}
+      searchStringAutocomplete={(searchString) => {
+        return get("/api/locationsuggestions", {
+          input: searchString,
+          radius: this.props.radius
+        }).then((json) => {
+          return json.predictions.map(prediction => prediction.description);
+        })
+      }}
+      handleSubmit={this.props.handleSubmit}
+      submitButtonExists={this.props.submitButtonExists}
+    />);
+  }
+}
+
+
+export { LocationSearchBar };

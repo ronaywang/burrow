@@ -14,10 +14,15 @@ import MapTestComponent from "./pages/MapTest";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
 import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
-import DatePicker from "./modules/DatePicker";
 //import NavBar from "./modules/NavBar";
 import ProfilePicUploader from "./modules/ProfilePicUploader";
 
+import DatePicker from "./modules/DatePicker.js";
+import NavBar from "./modules/NavBar.js";
+import NewListing from "./modules/NewListing.js";
+import MainPage from "./pages/MainPage.js";
+import ProfilePage from "./pages/MainPage.js";
+import InboxPage from "./pages/MainPage.js";
 
 /**
  * Define the "App" component as a class.
@@ -29,6 +34,20 @@ class App extends Component {
     this.state = {
       userId: undefined,
       username: undefined,
+      searchPrefs: { // NOTE: (a) searchPrefs always override userPrefs (b) if undefined on both then show all
+        location: undefined,
+        lookingForRoom: undefined,
+        price: undefined,
+        startDate: undefined,
+        endDate: undefined,
+        smoking: undefined,
+        pets: undefined,
+      },
+      userPrefs: {
+        price: undefined,
+        smoking: undefined,
+        pets: undefined
+      }
     };
   }
 
@@ -59,6 +78,7 @@ class App extends Component {
   render() {
     return (
       <>
+        <NavBar username={this.state.username} userId={this.state.userId}/>
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
@@ -71,11 +91,22 @@ class App extends Component {
           <MapTestComponent
             path="/map"/>
           <NotFound default />
-          <SplashPage path="/splash" />
+          <SplashPage path="/splash" passDateLocationToGlobal={(startDate, endDate, location, lookingForRoom) =>
+            this.setState({
+              startDate: startDate,
+              endDate: endDate,
+              location: location,
+              lookingForRoom: lookingForRoom
+            })
+          }/>
           <TryCard path="/cardsample"/>
           <PhotoUploadPrototype path="/photouploadprototype"/>
           <ProfilePicUploader path="/profilepicuploader"/>
-          <DatePicker path="/datepicker"/>
+          <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
+          <NewListing path="/newlistingprototype/" lookingForRoom={true}/>
+          <MainPage path="/main" />
+          <ProfilePage path="/profile/:userId" />
+          <InboxPage path="/inbox" />
         </Router>
       </>
     );

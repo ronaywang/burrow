@@ -84,7 +84,8 @@ handleSubmit = (event) => {
           <h1 className="u-textCenter">Registration</h1>
           <form className="u-flexColumn u-flex-alignEnd">
            <label>
-              <span className="fieldname">Email</span>
+           {/*<i class="mail-icon"></i> icon stuff, will edit after Milestone 2*/}
+           <span className="fieldname">Email</span>
               <input
                 type="text"
                 name="email"

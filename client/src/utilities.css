@@ -18,7 +18,7 @@
 
 /** @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap"); */
 @import url("https://use.typekit.net/chp7dgz.css");
-
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
 :root {
   --primary: #396dff;
   --primary--dim: #6987db;
@@ -27,10 +27,15 @@
   --grey: #f7f7f7;
   --white: #fff;
 
+  --xxs: 2px;
   --xs: 4px;
   --s: 8px;
   --m: 16px;
   --l: 24px;
+  --xl: 48px;
+
+  --borders: 2px solid #e0e0e0;
+  --borderradius: 0.5em;
 }
 
 body {

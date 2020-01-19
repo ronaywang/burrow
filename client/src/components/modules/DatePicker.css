@@ -41,7 +41,7 @@
   opacity: 0;
 }
 .DateRangePickerInput__withBorder {
-  border: 1px solid black;
+  border: var(--borders);
 }
 
 .DateRangePickerInput {
@@ -59,8 +59,7 @@
   padding: var(--s);
   width: 5em;
   color: black;
-  border: 1px solid black;
-  box-shadow: 0 0 0 0;
+  border: var(--borders);
 }
 
 .DayPicker_weekHeader {

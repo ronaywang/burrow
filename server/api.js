@@ -12,10 +12,12 @@ const bcryptjs = require("bcryptjs");
 const multer = require("multer");
 const upload = require("./upload");
 const mime = require("mime-types");
+const axios = require("axios");
 
 // import models so we can interact with the database
 const User = require("./models/user");
 const Photo = require("./models/photo");
+const Listing = require("./models/listing");
 
 // import authentication library
 const auth = require("./auth");
@@ -27,8 +29,24 @@ const router = express.Router();
 const socket = require("./server-socket");
 const gcloudstorage = require("./server-gbucket");
 
+// for GoogleMaps Autocomplete
+const googleMapEndpoint = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
+const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
+
+
+// formatParams = (params) => {
+//   return Object.keys(params)
+//     .map((key) => key + "=" + encodeURIComponent(params[key]))
+//     .join("&");
+// };
+// fullPath = (endpoint, params) => {
+//   return endpoint + "?" + formatParams(params);
+// };
+
 router.post('/login', function(req, res, next) {
+    console.log("Hi, I'm Login-chan!");
     if (req.body.username && req.body.password) {
+        console.log("It looks like you've passed the signin stage...");
         User.authenticate(req.body.username, req.body.password, function(err, user) {
             if (err || !user) {
                 var error = new Error('Wrong username or password');
@@ -51,6 +69,16 @@ router.post('/login', function(req, res, next) {
     }
 });
 
+// Gets all the info for a user, given "userId"
+router.get("/user", (req, res) => {
+  User.findOne({_id: req.query.userId})
+    .then((info) => res.send(info));
+})
+// Gets all the info for a listing, given "listingId"
+router.get("/listing", (req, res) => {
+  Listing.findOne({_id: req.query.listingId})
+    .then((info) => res.send(info));
+})
 
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
@@ -77,6 +105,7 @@ router.post("/makeuser", async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
+  console.log(newUser);
   userClash = await User.findOne({username: req.body.username});
   if (userClash === null) {
   newUser.save();
@@ -138,6 +167,19 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
     h: req.body,
   });
 });
+
+// router.get("/locationsuggestions", (req, res) => {
+//   /* params: input (string), radius (number) [meters] 
+//      For more info, go
+//      https://developers.google.com/places/web-service/autocomplete */
+//   axios.get(fullPath(googleMapEndpoint, {
+//     input: req.query.input,
+//     key: g_apikey,
+//     radius: req.query.radius
+//   })).then((json) => {
+//     res.send(json.data);
+//   });
+// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

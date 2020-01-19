@@ -1,15 +1,43 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../../utilities.css";
 import "../../utilities";
 import "./SingleCard.css";
+import { get } from "../../utilities";
 
 class SingleCard extends Component {
+  static PropTypes = {
+    listingId: PropTypes.string.isRequired,
+  };
+
+  static genderColorDict = {
+    'm': 'Card-blue',
+    'f': 'Card-pink',
+    'nb': 'Card-purple'
+  }
+
   constructor(props) {
     super(props);
+    this.state = {
+      expanded: false,
+      name: "",
+      age: undefined,
+      gender: undefined,
+      location: undefined,
+      startDate: undefined,
+      endDate: undefined,
+      price: undefined,
+      smoking: undefined,
+      pets: undefined,
+      additionalText: ""
+    };
   }
 
   componentDidMount() {
-
+    get("/api/listing", {listingId: this.props.listingId})
+      .then((info) => {
+        console.log(info);
+      });
   }
 
   render(){
@@ -20,15 +48,15 @@ class SingleCard extends Component {
           <div className="Card-locationDatePrice">
             <table>
               <tr>
-                <th className="ldp-left">location</th>
+                <th className="ldp-left">is moving to . . .</th>
                 <th className="ldp-right">Flagstaff, AZ</th>
               </tr>
               <tr>
-                <th className="ldp-left">date</th>
-                <th className="ldp-right">Jan 2020–June 2020</th>
+                <th className="ldp-left">during . . .</th>
+                <th className="ldp-right">Jan 1 – June 1</th>
               </tr>
-              <th className="ldp-left">price</th>
-              <th className="ldp-right">$2020</th>
+              <th className="ldp-left">with a budget of . . .</th>
+              <th className="ldp-right">$2020/month</th>
             </table>
           </div>
           <div className="Card-topRight">top right</div>
