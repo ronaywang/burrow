@@ -22,6 +22,7 @@
     "@google-cloud/storage": "^4.2.0",
     "@reach/router": "^1.2.1",
     "@react-google-maps/api": "^1.8.2",
+    "axios": "^0.19.1",
     "bcryptjs": "^2.4.3",
     "connect-ensure-login": "^0.1.1",
     "connect-mongo": "^3.2.0",

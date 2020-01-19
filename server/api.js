@@ -9,6 +9,7 @@
 
 const express = require("express");
 const bcryptjs = require("bcryptjs");
+const axios = require("axios");
 
 // import models so we can interact with the database
 const User = require("./models/user");
@@ -23,6 +24,20 @@ const router = express.Router();
 //initialize socket
 const socket = require("./server-socket");
 const gcloudstorage = require("./server-gbucket");
+
+// for GoogleMaps Autocomplete
+const googleMapEndpoint = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
+const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
+
+
+formatParams = (params) => {
+  return Object.keys(params)
+    .map((key) => key + "=" + encodeURIComponent(params[key]))
+    .join("&");
+};
+fullPath = (endpoint, params) => {
+  return endpoint + "?" + formatParams(params);
+};
 
 router.post('/login', function(req, res, next) {
     if (req.body.username && req.body.password) {
@@ -103,6 +118,19 @@ router.get("/newphoto", (req, res) => {
   });
   newPhoto.save();
   res.status(200).send({});
+});
+
+router.get("/locationsuggestions", (req, res) => {
+  /* params: input (string), radius (number) [meters] 
+     For more info, go
+     https://developers.google.com/places/web-service/autocomplete */
+  axios.get(fullPath(googleMapEndpoint, {
+    input: req.query.input,
+    key: g_apikey,
+    radius: req.query.radius
+  })).then((json) => {
+    res.send(json.data);
+  });
 });
 
 // anything else falls to this "not found" case
