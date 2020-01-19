@@ -46,7 +46,7 @@ class SplashPage extends Component {
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>
               </div>
-              <button className="SplashPage-go" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true)}/>
+              <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true)}/>
             </div>
 
             <div label="Roommate">
@@ -55,7 +55,7 @@ class SplashPage extends Component {
                 <DatePicker startDate={roommateStart} endDate={roommateEnd}
                 handleDateChange={(startDate, endDate) => this.setState({roommateStart: startDate, roommateEnd: endDate})}/>
               </div>
-              <button className="SplashPage-go" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false)}/>
+              <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false)}/>
             </div>
           </Tabs>
         </div>

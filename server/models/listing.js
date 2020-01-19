@@ -12,6 +12,8 @@ const ListingSchema = new mongoose.Schema({
     },
     location_radius: Number,
     price: Number,
+    startDate: Date,
+    endDate: Date,
     smokingFriendly: Boolean,
     petFriendly: Boolean,
     additionalPrefText: String,

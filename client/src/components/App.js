@@ -42,11 +42,6 @@ class App extends Component {
         endDate: undefined,
         smoking: undefined,
         pets: undefined,
-      },
-      userPrefs: {
-        price: undefined,
-        smoking: undefined,
-        pets: undefined
       }
     };
   }
@@ -103,7 +98,7 @@ class App extends Component {
           <PhotoUploadPrototype path="/photouploadprototype"/>
           <ProfilePicUploader path="/profilepicuploader"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
-          <NewListing path="/newlistingprototype/" lookingForRoom={true}/>
+          <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
           <MainPage path="/main" />
           <ProfilePage path="/profile/:userId" />
           <InboxPage path="/inbox" />
