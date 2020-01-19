@@ -12,7 +12,10 @@ const PhotoSchema = new mongoose.Schema({
     owner: mongoose.ObjectId, // user who owns this file
 });
 
-PhotoSchema.methods.deleteFromBucket = () => {
+// it is very important that the following function (and in general mongodb instance methods)
+// not be declared using arrows =>, but with function
+
+PhotoSchema.methods.deleteFromBucket = function() {
     gcloudstorage.deleteFile(this._id + "." + this.extension);
 };
 

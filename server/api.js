@@ -149,6 +149,11 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
     if (req.user._id) {
       console.log(req.user);
       currentUser = await User.findById(req.user._id);
+      if (currentUser.profilePicture_ID) {
+        currentPhoto = await Photo.findById(currentUser.profilePicture_ID);
+        currentPhoto.deleteFromBucket();
+        Photo.deleteOne({_id: currentPhoto._id}).then(()=>{});
+      }
       currentUser.profilePicture_ID = userNewPhoto._id;
       currentUser.profilePictureURL = googleURL;
       await currentUser.save();
