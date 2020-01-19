@@ -12,6 +12,7 @@ const bcryptjs = require("bcryptjs");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Photo = require("./models/photo");
 
 // import authentication library
 const auth = require("./auth");
@@ -21,6 +22,7 @@ const router = express.Router();
 
 //initialize socket
 const socket = require("./server-socket");
+const gcloudstorage = require("./server-gbucket");
 
 router.post('/login', function(req, res, next) {
     if (req.body.username && req.body.password) {
@@ -90,6 +92,18 @@ router.post("/passlogin", (req, res) => {
   //loginstuff.signin(req, res);
 });
 
+router.get("/uploadfile", async (req, res) => {
+  await gcloudstorage.uploadFile("/home/chillenb/weblab/ronaywang-chillenb-chrisxu3/client/src/public/assets/account.png");
+});
+
+router.get("/newphoto", (req, res) => {
+  const newPhoto = new Photo({
+    original_filename: 'account.png',
+    extension: 'png',
+  });
+  newPhoto.save();
+  res.status(200).send({});
+});
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

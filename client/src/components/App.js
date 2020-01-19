@@ -10,8 +10,10 @@ import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
+import MapTestComponent from "./pages/MapTest";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
+import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
 //import NavBar from "./modules/NavBar";
 
 
@@ -64,9 +66,12 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
+          <MapTestComponent
+            path="/map"/>
           <NotFound default />
           <SplashPage path="/splash" />
           <TryCard path="/cardsample"/>
+          <PhotoUploadPrototype path="/photouploadprototype"/>
         </Router>
       </>
     );

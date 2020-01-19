@@ -15,6 +15,36 @@ class SingleCard extends Component {
   render(){
     return (
       <div className="Card-container">
+          <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
+          <div className="Card-nameAgeGender"><span className="Card-blue">Name</span>  Age Gender</div>
+          <div className="Card-locationDatePrice">
+            <table>
+              <tr>
+                <th className="ldp-left">location</th>
+                <th className="ldp-right">Flagstaff, AZ</th>
+              </tr>
+              <tr>
+                <th className="ldp-left">date</th>
+                <th className="ldp-right">Jan 2020–June 2020</th>
+              </tr>
+              <th className="ldp-left">price</th>
+              <th className="ldp-right">$2020</th>
+            </table>
+          </div>
+          <div className="Card-topRight">top right</div>
+          <div className="Card-horizontalLine"></div>
+          <div className="Card-flags">Flags</div>
+          <div className="Card-textBox">Text Box</div>
+      </div>
+    );
+  }
+}
+
+export default SingleCard;
+
+const oldreturn = () => {
+    return (
+      <div className="Card-container">
         <div className="Card-top">
           <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
           <div className="Card-topMiddle">
@@ -48,7 +78,4 @@ class SingleCard extends Component {
         </div>
       </div>
     );
-  }
 }
-
-export default SingleCard;
