@@ -3,9 +3,9 @@
 }
 
 .field {
-    display: block;
-    position: relative;
-    left: -1em;
+  display: block;
+  position: relative;
+  left: -1em;
 }
 
 .error{
@@ -28,7 +28,6 @@ input, button{
 
 .submit{
         cursor: pointer;
-        transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .fieldname {
@@ -42,3 +41,41 @@ input, button{
   margin: 10px;
   border: var(--borders);
 }
+
+/* NOT ADDING ICONS FOR NOW
+.mail-icon {
+  color: #000;
+  position: absolute;
+  margin-left: 2px;
+  margin-top: 4px;
+  width: 15px;
+  height: 10px;
+  border-radius: 1px;
+  border: solid 1px currentColor;
+}
+.mail-icon:before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: -4px;
+  width: 1px;
+  height: 10px;
+  background-color: currentColor;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transform: rotate(-54deg);
+          transform: rotate(-54deg);
+}
+.mail-icon:after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: -4px;
+  width: 1px;
+  height: 10px;
+  background-color: currentColor;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-transform: rotate(54deg);
+          transform: rotate(54deg);
+}*/

@@ -52,7 +52,7 @@ class NewListing extends Component {
             <div className="NewListing-priceDescription">
               {this.props.lookingForRoom ? "With maximum budget..." : "With the following price:"}
             </div>
-            $<input type="number" onChange={(e) => {this.setState({price: e.target.value})}} 
+            $<input type="number" min="0" onChange={(e) => {this.setState({price: e.target.value})}} 
               className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "Budget..." : "Price..."} />/month
           </div>
           <div className="NewListing-prefsContainer">
@@ -69,8 +69,6 @@ class NewListing extends Component {
             <div className="NewListing-textBoxDescription">Tell us about yourself!</div>
             <input type="text" onChange={(e) => {this.setState({textBox: e.target.value})}} className="NewListing-textBox" />
           </div>
-        </div>
-        <div className="NewListing-right">
           <input
             className="NewListing-submit"
             type="submit"
@@ -78,6 +76,8 @@ class NewListing extends Component {
             onClick={() => {console.log(this.state)}}
           />
         </div>
+
+          
       </div>
     );
   }

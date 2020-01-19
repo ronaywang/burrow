@@ -85,7 +85,7 @@ handleSubmit = (event) => {
               />
             </label>
             <input
-              className="u-flex u-flex-alignCenter u-flex-justifyCenter"
+              className="u-flex u-flex-alignEnd u-flex-justifyCenter"
               type="submit"
               value={this.state.buttontext}/>
           </form>

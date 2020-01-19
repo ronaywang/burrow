@@ -1,6 +1,6 @@
 .Card-container {
   border: var(--border);
-  border-radius: 0.5em;
+  border-radius: var(--borderradius);
   height: auto;
   display: grid;
   grid-template-columns: 25% 60% 15%;
