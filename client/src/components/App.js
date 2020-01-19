@@ -28,6 +28,17 @@ class App extends Component {
     this.state = {
       userId: undefined,
       username: undefined,
+      searchPrefs: { // NOTE: (a) searchPrefs always override userPrefs (b) if undefined on both then show all
+        location: undefined,
+        price: undefined,
+        smoking: undefined,
+        pets: undefined,
+      },
+      userPrefs: {
+        price: undefined,
+        smoking: undefined,
+        pets: undefined
+      }
     };
   }
 
