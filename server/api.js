@@ -41,7 +41,9 @@ const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
 // };
 
 router.post('/login', function(req, res, next) {
+    console.log("Hi, I'm Login-chan!");
     if (req.body.username && req.body.password) {
+        console.log("It looks like you've passed the signin stage...");
         User.authenticate(req.body.username, req.body.password, function(err, user) {
             if (err || !user) {
                 var error = new Error('Wrong username or password');
@@ -100,6 +102,7 @@ router.post("/makeuser", async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
+  console.log(newUser);
   userClash = await User.findOne({username: req.body.username});
   if (userClash === null) {
   newUser.save();

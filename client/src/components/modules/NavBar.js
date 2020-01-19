@@ -5,6 +5,7 @@ import "../../utilities.css";
 import Popup from "reactjs-popup";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
+import { Link } from "@reach/router";
 
 class NavBar extends Component {
   static PropTypes = {
@@ -16,9 +17,9 @@ class NavBar extends Component {
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn">
-        <div className="NavBar-link">Home</div> 
-        <div className="NavBar-link">Profile</div> 
-        <div className="NavBar-link">Inbox</div> 
+        <Link to="/main" className="NavBar-link">Home</Link>
+        <Link to={`/profile/${this.props.userId}`} className="NavBar-link">Profile</Link> 
+        <Link to="/inbox" className="NavBar-link">Inbox</Link> 
         <div className="NavBar-link">Logout</div> 
       </div>
     ) : (

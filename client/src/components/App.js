@@ -17,7 +17,9 @@ import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
 import DatePicker from "./modules/DatePicker.js";
 import NavBar from "./modules/NavBar.js";
 import NewListing from "./modules/NewListing.js";
-
+import MainPage from "./pages/MainPage.js";
+import ProfilePage from "./pages/MainPage.js";
+import InboxPage from "./pages/MainPage.js";
 
 /**
  * Define the "App" component as a class.
@@ -98,6 +100,9 @@ class App extends Component {
           <PhotoUploadPrototype path="/photouploadprototype"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
           <NewListing path="/newlistingprototype/" lookingForRoom={true}/>
+          <MainPage path="/main" />
+          <ProfilePage path="/profile/:userId" />
+          <InboxPage path="/inbox" />
         </Router>
       </>
     );
