@@ -34,8 +34,8 @@
   --l: 24px;
   --xl: 48px;
 
-  --borders: 2px solid #e0e0e0;
-  --borderradius: 0.5em;
+  --borders: 1px solid black;
+  --borderradius: 0.5rem;
 }
 
 body {
@@ -111,10 +111,40 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+
+
+
 .bkgreen {
   background-color: lightgreen;
 }
 
 .bkred {
   background-color: lightcoral;
+}
+
+
+input {
+    border: var(--borders);
+    width: 200px;
+    padding: 0.7rem;
+    border-radius: var(--borderradius);
+    margin: 0.75rem;
+    font-size: 110%;
+    font-family: skolar-sans-latin, sans-serif;
+    line-height: 100%;
+}
+
+button, .u-button{
+    border: var(--borders);
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    margin: 0.5rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100%;
+    width: 200px;
+    border-radius: var(--borderradius);
+    margin: 0.75rem;
+    font-weight: 700;
+    font-size: 160%;
+    font-family: skolar-sans-latin, sans-serif;
 }

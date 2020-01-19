@@ -12,19 +12,6 @@
     color: red;
 }
 
-input, button{
-    border: var(--borders);
-    width: 200px;
-    padding: 1em;
-    border-radius: 0.5em;
-    margin: 0.75em;
-    font-size: 1em;
-  }
-
-  button {
-    font-weight: 700;
-    font-size: 110%;
-  }
 
 .submit{
         cursor: pointer;
