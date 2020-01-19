@@ -39,6 +39,7 @@
     "passport-local": "^1.0.0",
     "react": "^16.7.0",
     "react-compose": "^2.0.0",
+    "react-dates": "^21.7.0",
     "react-dom": "^16.7.0",
     "react-dropzone": "^10.2.1",
     "react-google-login": "^5.0.7",

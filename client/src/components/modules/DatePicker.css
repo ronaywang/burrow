@@ -1,0 +1,95 @@
+/* NOTE: the order of these styles DO matter */
+ 
+/* Will edit everything selected including everything between a range of dates */
+@import url("https://use.typekit.net/chp7dgz.css");
+
+.DateInput_input {
+  font-family: skolar-sans-latin-condensed;
+  font-weight: 300;
+}
+ 
+/* Will edit selected date or the endpoints of a range of dates */
+.CalendarDay__selected {
+  background: rgb(82, 85, 255);
+  color: white;
+}
+
+
+.CalendarDay {
+  border-color: gray;
+}
+
+.CalendarDay__selected_span {
+  color: white;
+  background: rgb(118, 143, 255);
+  border-color: rgb(56, 65, 189);
+}
+.CalendarDay__selected_end {
+  background: rgb(61, 58, 231);
+}
+ 
+/* Will edit when hovered over. _span style also has this property */
+.CalendarDay__selected:hover {
+  background: orange;
+  color: white;
+}
+ 
+/* Will edit when the second date (end date) in a range of dates */
+/* is not yet selected. Edits the dates between your mouse and said date */
+
+.DayPickerKeyboardShortcuts_show {
+  opacity: 0;
+}
+.DateRangePickerInput__withBorder {
+  border: 1px solid black;
+}
+
+.DateRangePickerInput {
+  width: 100%;
+}
+
+.DateRangePicker, .DateRangePicker_1 {
+  width: auto;
+  display: flex;
+}
+
+.DateInput_input {
+  text-align: center;
+  vertical-align: center;
+  padding: var(--s);
+  width: 5em;
+  color: black;
+  border: 1px solid black;
+  box-shadow: 0 0 0 0;
+}
+
+.DayPicker_weekHeader {
+  padding: var(--xs) var(--xs) var(--xs) var(--xs);
+}
+
+.DateInput {
+  width: auto;
+}
+
+.DateRangePickerInput_arrow_svg, .DayPickerNavigation_svg__horizontal {
+  fill: black;
+}
+
+.CalendarMonth_caption {
+  padding-bottom: 47px;
+}
+
+.DayPicker_weekHeader_li {
+  color: black;
+}
+
+.DayPickerNavigation_button {
+  border: 1px solid black;
+  border-radius: 0;
+}
+
+small {
+  font-size: 100%;
+  font-family: skolar-sans-latin-compressed;
+  font-weight: 500;
+}

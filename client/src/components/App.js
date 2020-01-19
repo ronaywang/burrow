@@ -14,6 +14,7 @@ import MapTestComponent from "./pages/MapTest";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
 import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
+import DatePicker from "./modules/DatePicker";
 //import NavBar from "./modules/NavBar";
 
 
@@ -72,6 +73,7 @@ class App extends Component {
           <SplashPage path="/splash" />
           <TryCard path="/cardsample"/>
           <PhotoUploadPrototype path="/photouploadprototype"/>
+          <DatePicker path="/datepicker"/>
         </Router>
       </>
     );
