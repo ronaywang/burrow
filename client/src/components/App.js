@@ -14,8 +14,8 @@ import MapTestComponent from "./pages/MapTest";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
 import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
-import DatePicker from "./modules/DatePicker";
-//import NavBar from "./modules/NavBar";
+import DatePicker from "./modules/DatePicker.js";
+import NavBar from "./modules/NavBar.js";
 
 
 /**
@@ -28,6 +28,17 @@ class App extends Component {
     this.state = {
       userId: undefined,
       username: undefined,
+      searchPrefs: { // NOTE: (a) searchPrefs always override userPrefs (b) if undefined on both then show all
+        location: undefined,
+        price: undefined,
+        smoking: undefined,
+        pets: undefined,
+      },
+      userPrefs: {
+        price: undefined,
+        smoking: undefined,
+        pets: undefined
+      }
     };
   }
 
@@ -58,6 +69,7 @@ class App extends Component {
   render() {
     return (
       <>
+        <NavBar />
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
