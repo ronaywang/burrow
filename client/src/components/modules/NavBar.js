@@ -1,7 +1,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import "./NavBar."
+import "./NavBar.css";
 import "../../utilities.css";
+import Popup from "reactjs-popup";
+import LoginPage from "../pages/LoginPage";
+import RegistrationPage from "../pages/RegistrationPage";
 
 class NavBar extends Component {
   static PropTypes = {
@@ -16,9 +19,24 @@ class NavBar extends Component {
       </div>
     ) : (
       <div className="NavBar-linkContainer-loggedOut">
-        {/* <div className="NavBar-link"></div> TODO: INSERT LINKS HERE */}
+        <Popup modal trigger={
+          <div className="NavBar-link">
+            Signup
+          </div>
+        }>
+          <RegistrationPage />;
+        </Popup>
+        
+        <Popup modal trigger={
+        <div className="NavBar-link">
+          Login
+        </div>
+        }>
+          <LoginPage />
+        </Popup>
+        
       </div>
-    )
+    );
     return (
       <div className="NavBar-container">
         <div className="NavBar-logoSearchContainer">

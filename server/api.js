@@ -30,14 +30,14 @@ const googleMapEndpoint = "https://maps.googleapis.com/maps/api/place/autocomple
 const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
 
 
-formatParams = (params) => {
-  return Object.keys(params)
-    .map((key) => key + "=" + encodeURIComponent(params[key]))
-    .join("&");
-};
-fullPath = (endpoint, params) => {
-  return endpoint + "?" + formatParams(params);
-};
+// formatParams = (params) => {
+//   return Object.keys(params)
+//     .map((key) => key + "=" + encodeURIComponent(params[key]))
+//     .join("&");
+// };
+// fullPath = (endpoint, params) => {
+//   return endpoint + "?" + formatParams(params);
+// };
 
 router.post('/login', function(req, res, next) {
     if (req.body.username && req.body.password) {
@@ -120,18 +120,18 @@ router.get("/newphoto", (req, res) => {
   res.status(200).send({});
 });
 
-router.get("/locationsuggestions", (req, res) => {
-  /* params: input (string), radius (number) [meters] 
-     For more info, go
-     https://developers.google.com/places/web-service/autocomplete */
-  axios.get(fullPath(googleMapEndpoint, {
-    input: req.query.input,
-    key: g_apikey,
-    radius: req.query.radius
-  })).then((json) => {
-    res.send(json.data);
-  });
-});
+// router.get("/locationsuggestions", (req, res) => {
+//   /* params: input (string), radius (number) [meters] 
+//      For more info, go
+//      https://developers.google.com/places/web-service/autocomplete */
+//   axios.get(fullPath(googleMapEndpoint, {
+//     input: req.query.input,
+//     key: g_apikey,
+//     radius: req.query.radius
+//   })).then((json) => {
+//     res.send(json.data);
+//   });
+// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
