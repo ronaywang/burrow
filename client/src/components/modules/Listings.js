@@ -7,7 +7,8 @@ import SingleCard from "./SingleCard.js";
 
 class Listings extends Component {
   static PropTypes = {
-    generateListings: PropTypes.func.isRequired // e.g. the matching function!
+    // TODO (post-mvp): make this into some sort of "generator" so you don't have to load every fucking thing, lol
+    generateListings: PropTypes.func.isRequired // e.g. the matching function! or your bookmarked listings!
   };
 
   constructor(props){
@@ -18,11 +19,10 @@ class Listings extends Component {
   }
 
   componentDidMount(){
-    this.setState((prevState) => {
-
-    });
+    this.setState({displayedListings: generateListings()});
   }
 
   render(){
+    
   }
 }
