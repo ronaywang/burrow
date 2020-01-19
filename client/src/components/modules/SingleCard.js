@@ -1,15 +1,43 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../../utilities.css";
 import "../../utilities";
 import "./SingleCard.css";
+import { get } from "../../utilities";
 
 class SingleCard extends Component {
+  static PropTypes = {
+    listingId: PropTypes.string.isRequired,
+  };
+
+  static genderColorDict = {
+    'm': 'Card-blue',
+    'f': 'Card-pink',
+    'nb': 'Card-purple'
+  }
+
   constructor(props) {
     super(props);
+    this.state = {
+      expanded: false,
+      name: "",
+      age: undefined,
+      gender: undefined,
+      location: undefined,
+      startDate: undefined,
+      endDate: undefined,
+      price: undefined,
+      smoking: undefined,
+      pets: undefined,
+      additionalText: ""
+    };
   }
 
   componentDidMount() {
-
+    get("/api/listing", {listingId: this.props.listingId})
+      .then((info) => {
+        console.log(info);
+      });
   }
 
   render(){

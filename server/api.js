@@ -14,6 +14,7 @@ const axios = require("axios");
 // import models so we can interact with the database
 const User = require("./models/user");
 const Photo = require("./models/photo");
+const Listing = require("./models/listing");
 
 // import authentication library
 const auth = require("./auth");
@@ -63,6 +64,16 @@ router.post('/login', function(req, res, next) {
     }
 });
 
+// Gets all the info for a user, given "userId"
+router.get("/user", (req, res) => {
+  User.findOne({_id: req.query.userId})
+    .then((info) => res.send(info));
+})
+// Gets all the info for a listing, given "listingId"
+router.get("/listing", (req, res) => {
+  Listing.findOne({_id: req.query.listingId})
+    .then((info) => res.send(info));
+})
 
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {

@@ -16,6 +16,7 @@ import TryCard from "./modules/TryCard";
 import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
 import DatePicker from "./modules/DatePicker.js";
 import NavBar from "./modules/NavBar.js";
+import NewListing from "./modules/NewListing.js";
 
 
 /**
@@ -96,6 +97,7 @@ class App extends Component {
           <TryCard path="/cardsample"/>
           <PhotoUploadPrototype path="/photouploadprototype"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
+          <NewListing path="/newlistingprototype/" lookingForRoom={true}/>
         </Router>
       </>
     );
