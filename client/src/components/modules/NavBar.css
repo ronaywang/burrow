@@ -1,0 +1,24 @@
+.NavBar-container{
+    display: flex;
+    height: 5%;
+    background: #CCFF99;
+    align-items: flex-end;
+    justify-content: space-between;
+    
+}
+
+.NavBar-logo {
+    font-family: 'Indie Flower';
+    font-size: 300%;
+    margin: 10px;
+
+}
+
+.NavBar-linkContainer-loggedOut {
+    display: flex;
+    justify-content: space-between;
+    margin: var(--xs);
+}
+.NavBar-link {
+    margin: 10px;
+}

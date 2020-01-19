@@ -41,6 +41,7 @@ class NavBar extends Component {
       <div className="NavBar-container">
         <div className="NavBar-logoSearchContainer">
           <div className="NavBar-logo">
+            burrow
           </div>
           {/* <LocationSearchBar /> className="NavBar-search" */}
         </div>
