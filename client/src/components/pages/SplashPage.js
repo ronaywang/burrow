@@ -16,10 +16,10 @@ class SplashPage extends Component {
     this.state = {
       roomStartDate: undefined,
       roomEndDate: undefined,
+      roomLocation: undefined,
       roommateStart: undefined,
       roommateEnd: undefined,
-      location: undefined,
-      lookingForRoom: true
+      roommateLocation: undefined
     };
   }
   componentDidMount(){
@@ -40,22 +40,22 @@ class SplashPage extends Component {
             <div className="SplashPage-tagline">i'm looking for a...</div>
           </div>
           <Tabs styleName="SplashPage">
-            <div label="Room" onClick={() => this.setState({lookingForRoom: true})}>
+            <div label="Room">
               {/* TODO <LocationSearchBar defaultText="Enter a city, state, etc." styleName="SplashPage" /> SplashPage-search */}
               <div className="SplashPage-date">
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>
               </div>
-              <button className="SplashPage-go" value="Go!"/>
+              <button className="SplashPage-go" value="Go!" onClick={this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true)}/>
             </div>
 
-            <div label="Roommate" onClick={() => this.setState({lookingForRoom: false})}>
+            <div label="Roommate">
               {/* TODO <LocationSearchBar defaultText="Enter an address" styleName="SplashPage" /> SplashPage-search */}
               <div className="SplashPage-date">
                 <DatePicker startDate={roommateStart} endDate={roommateEnd}
                 handleDateChange={(startDate, endDate) => this.setState({roommateStart: startDate, roommateEnd: endDate})}/>
               </div>
-              <button className="SplashPage-go" value="Go!"></button>
+              <button className="SplashPage-go" value="Go!" onClick={this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false)}/>
             </div>
           </Tabs>
         </div>
