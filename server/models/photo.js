@@ -1,12 +1,21 @@
 const mongoose = require("mongoose");
+const gcloudstorage = require("../server-gbucket");
+
 
 
 const PhotoSchema = new mongoose.Schema({
-    original_filename: String,
+    originalname: String,
+    mimetype: String,
     extension: String,   // file extension. filename is _id + '.' + extension
     width: Number,
     height: Number,
     owner: mongoose.ObjectId, // user who owns this file
 });
 
-module.exports = mongoose.model("photo", PhotoSchema);
+PhotoSchema.methods.deleteFromBucket = () => {
+    gcloudstorage.deleteFile(this._id + "." + this.extension);
+};
+
+
+var Photo = mongoose.model("photo", PhotoSchema);
+module.exports = Photo;

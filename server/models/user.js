@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
   gender: String,
   fbProfileLink: String,
   profilePicture_ID: mongoose.ObjectId,
+  profilePictureURL: String,
   bookmarkedListings: [mongoose.ObjectId],
   composedListings: [mongoose.ObjectId]
 });

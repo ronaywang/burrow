@@ -26,6 +26,7 @@ const express = require("express"); // backend framework for our node server.
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const session = require("express-session"); // library that stores info about each connected user
 const MongoStore = require('connect-mongo')(session);
+const multer = require("multer");
 
 require("dotenv").config();
 

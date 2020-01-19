@@ -1,14 +1,14 @@
-let gbucket;
+let gstorage;
 // Imports the Google Cloud client library
 const {Storage} = require('@google-cloud/storage');
 const bucketName = "burrow-bucket";
 
 // Creates a client
-gbucket = new Storage({keyFilename: "server/googlecreds.json"});
+gstorage = new Storage({keyFilename: "server/googlecreds.json"});
 
 const uploadFile = async (filename) => {
   // Uploads a local file to the bucket
-  await gbucket.bucket(bucketName).upload(filename, {
+  await gstorage.bucket(bucketName).upload(filename, {
     // Support for HTTP requests made with `Accept-Encoding: gzip`
     gzip: true,
     // By setting the option `destination`, you can change the name of the
@@ -24,7 +24,35 @@ const uploadFile = async (filename) => {
   console.log(`${filename} uploaded to ${bucketName}.`);
 };
 
+
+const uploadBuffer = async(filename, buffer) => {
+  const bucket = gstorage.bucket(bucketName);
+  const file = bucket.file(filename);
+  file.save(buffer).then((err)=>{
+    if (!err) {
+      console.log("Successful upload.");
+    } else {
+      console.log(err);
+    }
+  });
+};
+
+const deleteFile = async(filename) => {
+  const bucket = gstorage.bucket(bucketName);
+  const file = bucket.file(filename);
+  await file.delete();
+};
+
+
+const gobjURL = (filename) => {
+  return "https://storage.cloud.google.com/" + bucketName + "/" + filename;
+};
+
 module.exports = {
-  client: gbucket,
+  client: gstorage,
   uploadFile: uploadFile,
+  uploadBuffer: uploadBuffer,
+  bucketName: bucketName,
+  gobjURL: gobjURL,
+  deleteFile: deleteFile,
 }; 

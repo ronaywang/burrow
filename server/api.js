@@ -9,6 +9,9 @@
 
 const express = require("express");
 const bcryptjs = require("bcryptjs");
+const multer = require("multer");
+const upload = require("./upload");
+const mime = require("mime-types");
 
 // import models so we can interact with the database
 const User = require("./models/user");
@@ -96,13 +99,44 @@ router.get("/uploadfile", async (req, res) => {
   await gcloudstorage.uploadFile("/home/chillenb/weblab/ronaywang-chillenb-chrisxu3/client/src/public/assets/account.png");
 });
 
-router.get("/newphoto", (req, res) => {
-  const newPhoto = new Photo({
-    original_filename: 'account.png',
-    extension: 'png',
+
+
+router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
+  if (req.file) {
+    console.log("got file");
+    console.log(req.file);
+    userNewPhoto = new Photo({
+      originalname: req.file.originalname,
+      mimetype: req.file.mimetype,
+      extension: mime.extension(req.file.mimetype),
+    });
+    gcloudstorage.uploadBuffer(userNewPhoto._id + '.' + userNewPhoto.extension, req.file.buffer);
+    userNewPhoto.save();
+    const googleURL = gcloudstorage.gobjURL(userNewPhoto._id + "." + userNewPhoto.extension);
+    res.status(200).send({
+      message: "thanks",
+      url: googleURL,
+    });
+    if (req.user._id) {
+      console.log(req.user);
+      currentUser = await User.findById(req.user._id);
+      currentUser.profilePicture_ID = userNewPhoto._id;
+      currentUser.profilePictureURL = googleURL;
+      await currentUser.save();
+      console.log(currentUser);
+    }
+    return;
+  } else {
+    console.log("no file");
+  }
+  if (req.files) {
+    console.log("got files");
+    console.log(req.files);
+  }
+  res.status(200).send({
+    message: "thanks",
+    h: req.body,
   });
-  newPhoto.save();
-  res.status(200).send({});
 });
 
 // anything else falls to this "not found" case
