@@ -30,7 +30,10 @@ class App extends Component {
       username: undefined,
       searchPrefs: { // NOTE: (a) searchPrefs always override userPrefs (b) if undefined on both then show all
         location: undefined,
+        lookingForRoom: undefined,
         price: undefined,
+        startDate: undefined,
+        endDate: undefined,
         smoking: undefined,
         pets: undefined,
       },
@@ -69,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar />
+        <NavBar username={this.state.username} userId={this.state.userId}/>
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
@@ -82,10 +85,17 @@ class App extends Component {
           <MapTestComponent
             path="/map"/>
           <NotFound default />
-          <SplashPage path="/splash" />
+          <SplashPage path="/splash" passDateLocationToGlobal={(startDate, endDate, location, lookingForRoom) =>
+            this.setState({
+              startDate: startDate,
+              endDate: endDate,
+              location: location,
+              lookingForRoom: lookingForRoom
+            })
+          }/>
           <TryCard path="/cardsample"/>
           <PhotoUploadPrototype path="/photouploadprototype"/>
-          <DatePicker path="/datepicker"/>
+          <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
         </Router>
       </>
     );

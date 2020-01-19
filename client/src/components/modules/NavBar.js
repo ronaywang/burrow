@@ -8,7 +8,8 @@ import RegistrationPage from "../pages/RegistrationPage";
 
 class NavBar extends Component {
   static PropTypes = {
-    loggedIn: PropTypes.bool.isRequired,
+    userId: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired
   };
   
   render(){
@@ -24,7 +25,7 @@ class NavBar extends Component {
             Signup
           </div>
         }>
-          <RegistrationPage />;
+          <RegistrationPage />
         </Popup>
         
         <Popup modal trigger={
