@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
+import DatePicker from "./modules/DatePicker";
 //import NavBar from "./modules/NavBar";
 
 
@@ -67,6 +68,7 @@ class App extends Component {
           <NotFound default />
           <SplashPage path="/splash" />
           <TryCard path="/cardsample"/>
+          <DatePicker path="/datepicker"/>
         </Router>
       </>
     );
