@@ -16,6 +16,7 @@ import TryCard from "./modules/TryCard";
 import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
 import DatePicker from "./modules/DatePicker";
 //import NavBar from "./modules/NavBar";
+import ProfilePicUploader from "./modules/ProfilePicUploader";
 
 
 /**
@@ -73,6 +74,7 @@ class App extends Component {
           <SplashPage path="/splash" />
           <TryCard path="/cardsample"/>
           <PhotoUploadPrototype path="/photouploadprototype"/>
+          <ProfilePicUploader path="/profilepicuploader"/>
           <DatePicker path="/datepicker"/>
         </Router>
       </>
