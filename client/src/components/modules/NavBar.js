@@ -13,10 +13,13 @@ class NavBar extends Component {
   };
   
   render(){
-    const {loggedIn} = this.props;
-    let linkContainer = loggedIn ? (
+    const {userId} = this.props;
+    let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn">
-        {/* <div className="NavBar-link"></div> TODO: INSERT LINKS HERE */}
+        <div className="NavBar-link">Home</div> 
+        <div className="NavBar-link">Profile</div> 
+        <div className="NavBar-link">Inbox</div> 
+        <div className="NavBar-link">Logout</div> 
       </div>
     ) : (
       <div className="NavBar-linkContainer-loggedOut">
