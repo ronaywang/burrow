@@ -13,13 +13,12 @@
 }
 
 input, button{
-    border: 1px solid black;
+    border: var(--borders);
     width: 200px;
     padding: 1em;
     border-radius: 0.5em;
     margin: 0.75em;
     font-size: 1em;
-    box-shadow: 1px 1px 1px 1px gray;
   }
 
   button {
@@ -28,11 +27,9 @@ input, button{
   }
 
 .submit{
-        background-color: yellow;
-        box-shadow: 0 4px 0 0 #FFBB2B;
         cursor: pointer;
         transition: transform 0.1s, box-shadow 0.1s;
-        }
+}
 
 .fieldname {
   font-size: 120%;
@@ -43,5 +40,5 @@ input, button{
   font-weight: 700;
   padding: 10px;
   margin: 10px;
-  border: 1px solid black;
+  border: var(--borders);
 }
