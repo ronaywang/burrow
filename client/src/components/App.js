@@ -13,11 +13,8 @@ import RegistrationPage from "./pages/RegistrationPage";
 import MapTestComponent from "./pages/MapTest";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
-<<<<<<< HEAD
 import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
-=======
 import DatePicker from "./modules/DatePicker";
->>>>>>> ui-dev
 //import NavBar from "./modules/NavBar";
 
 
