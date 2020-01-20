@@ -19,6 +19,7 @@
 
 .fieldname {
   font-size: 120%;
+  margin: 5px;
 }
 
 .warning {
@@ -28,6 +29,12 @@
   margin: 10px;
   border: var(--borders);
 }
+
+.Login-input, .Reg-input {
+  margin: 5px;
+}
+
+
 
 /* NOT ADDING ICONS FOR NOW
 .mail-icon {

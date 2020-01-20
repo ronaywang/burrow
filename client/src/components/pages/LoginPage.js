@@ -65,8 +65,8 @@ handleSubmit = (event) => {
         <div>
           <h1 className="u-textCenter">Log in</h1>
           { this.state.failed ? "Login failed": null}
-          <form className="u-flexColumn u-flex-alignCenter" onSubmit={this.handleSubmit}>
-            <label className="u-flex u-flex-alignCenter u-flex-justifyCenter ">
+          <form className="u-flexColumn u-flex-alignEnd" onSubmit={this.handleSubmit}>
+            <label className="Login-input">
               <span className="fieldname">Username</span>
               <input 
                 type="text"
@@ -75,7 +75,7 @@ handleSubmit = (event) => {
                 onChange={this.u_handleChange}
               />
             </label>
-            <label className="u-flex u-flex-alignCenter u-flex-justifyCenter ">
+            <label className="Login-input">
               <span className="fieldname">Password</span>
               <input
                 type="text"

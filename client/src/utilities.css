@@ -134,10 +134,10 @@ h1, h2, h3, h4, h5, h6 {
 input {
     border: var(--borders);
     width: 200px;
-    padding: 0.7rem;
+    padding: 0.4rem;
     border-radius: var(--borderradius);
     /*margin: var(--margins); commented this out because it was messing with alignment*/
-    font-size: 110%;
+    font-size: 90%;
     font-family: "skolar-sans-latin", sans-serif;
     line-height: 100%;
 }
@@ -148,7 +148,7 @@ button, .u-button{
     text-align: center;
     vertical-align: middle;
     line-height: 100%;
-    width: 200px;
+    width: auto;
     border-radius: var(--borderradius);
     margin: var(--margins);
     font-weight: 700;

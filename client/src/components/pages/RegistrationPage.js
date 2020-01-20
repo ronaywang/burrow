@@ -83,7 +83,7 @@ handleSubmit = (event) => {
           { this.state.failed ? "Registration failed. Username already taken": null}
           <h1 className="u-textCenter">Registration</h1>
           <form className="u-flexColumn u-flex-alignEnd">
-           <label>
+           <label className = "Reg-input">
            {/*<i class="mail-icon"></i> icon stuff, will edit after Milestone 2*/}
            <span className="fieldname">Email</span>
               <input
@@ -93,7 +93,7 @@ handleSubmit = (event) => {
                 onChange={this.e_handleChange}
               />
             </label>
-            <label>
+            <label className = "Reg-input">
               <span className="fieldname">Username</span>
               <input
                 type="text"
@@ -102,7 +102,7 @@ handleSubmit = (event) => {
                 onChange={this.u_handleChange}
               />
             </label>
-            <label>
+            <label className = "Reg-input">
               <span className="fieldname">Password</span>
               <input
                 type="password"
@@ -111,7 +111,7 @@ handleSubmit = (event) => {
                 onChange={this.p_handleChange}
               />
             </label>
-            <label>
+            <label className = "Reg-input">
               <span className="fieldname">Verify password</span>
               <input
                 type="password"
