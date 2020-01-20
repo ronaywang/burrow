@@ -5,15 +5,7 @@ import "./PreferenceBar.css";
 import DatePicker from "./DatePicker";
 
 class PreferenceBar extends Component {
-  static PropTypes = {
-    price: PropTypes.number.isRequired,
-    smoking: PropTypes.bool.isRequired,
-    pets: PropTypes.bool.isRequired,
-    startDate: PropTypes.instanceOf(Date).isRequired,
-    endDate: PropTypes.instanceOf(Date).isRequired,
-    lookingForRoom: PropTypes.bool.isRequired,
-    updatePrefs: PropTypes.func.isRequired,
-  };
+
 
   constructor(props){
     super(props);
@@ -39,7 +31,7 @@ class PreferenceBar extends Component {
         <div className="PreferenceBar-price">
           <input type="number" min="0" onChange={(e) => {
               this.setState({price: e.target.value}, () => {
-                updatePrefs(price, smoking, pets, startDate, endDate);
+                updatePrefs(price, smoking, pets, this.state.startDate, this.state.endDate);
               })
             }} 
             className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} />/month
@@ -69,4 +61,14 @@ class PreferenceBar extends Component {
     ) 
   }
 }
+PreferenceBar.propTypes = {
+  price: PropTypes.number.isRequired,
+  smoking: PropTypes.bool.isRequired,
+  pets: PropTypes.bool.isRequired,
+  startDate: PropTypes.instanceOf(Date).isRequired,
+  endDate: PropTypes.instanceOf(Date).isRequired,
+  lookingForRoom: PropTypes.bool.isRequired,
+  updatePrefs: PropTypes.func.isRequired,
+};
+
 export default PreferenceBar;

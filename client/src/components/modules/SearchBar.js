@@ -6,13 +6,7 @@ import { get, g_places_api_url } from "../../utilities";
 import Script from "react-load-script";
 
 class SearchBar extends Component {
-  static PropTypes = {
-    defaultText: PropTypes.string.isRequired,
-    styleName: PropTypes.string.isRequired,
-    searchStringAutocomplete: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    submitButtonExists: PropTypes.bool.isRequired,
-  };  
+
 
   constructor(props) {
     super(props);
@@ -151,11 +145,16 @@ class SearchBar extends Component {
   }
 }
 
+SearchBar.propTypes = {
+  defaultText: PropTypes.string.isRequired,
+  styleName: PropTypes.string.isRequired,
+  searchStringAutocomplete: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitButtonExists: PropTypes.bool.isRequired,
+};  
+
 class GoogleSearchBar extends Component {
-  static PropTypes = {
-    styleName: PropTypes.string.isRequired,
-    placeIsCity: PropTypes.bool.isRequired,
-  };
+
   // Define Constructor
   constructor(props) {
     super(props);
@@ -230,5 +229,9 @@ class GoogleSearchBar extends Component {
     );
   }
 }
+GoogleSearchBar.propTypes = {
+styleName: PropTypes.string.isRequired,
+placeIsCity: PropTypes.bool.isRequired,
+};
 
 export { GoogleSearchBar };

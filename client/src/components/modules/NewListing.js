@@ -7,12 +7,6 @@ import {LocationSearchBar} from "./SearchBar.js";
 import DatePicker from "./DatePicker.js";
 
 class NewListing extends Component {
-  static PropTypes = {
-    // close: PropTypes.func.isRequired, // NewListing will be a popup. That's why.
-    userId: PropTypes.string.isRequired,
-    lookingForRoom: PropTypes.bool.isRequired,
-    addNewListing: PropTypes.func.isRequired,
-  };
 
   constructor(props){
     super(props);
@@ -107,5 +101,12 @@ class NewListing extends Component {
     );
   }
 }
+
+NewListing.propTypes = {
+  // close: PropTypes.func.isRequired, // NewListing will be a popup. That's why.
+  userId: PropTypes.string.isRequired,
+  lookingForRoom: PropTypes.bool.isRequired,
+  addNewListing: PropTypes.func.isRequired,
+};
 
 export default NewListing;

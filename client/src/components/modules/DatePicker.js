@@ -2,14 +2,11 @@ import React, {Component} from "react";
 import "../../utilities.css";
 import {PropTypes} from "prop-types";
 import 'react-dates/initialize';
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import './DatePicker.css';
 
 class DatePicker extends Component {
-  static PropTypes = {
-    handleDateChange: PropTypes.func.isRequired,
-  };
 
   constructor(props) {
     super(props);
@@ -44,5 +41,11 @@ class DatePicker extends Component {
     );
   }
 }
+
+DatePicker.propTypes = {
+  handleDateChange: PropTypes.func.isRequired,
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date)
+};
 
 export default DatePicker;

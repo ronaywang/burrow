@@ -4,13 +4,6 @@ import "./Tabs.css";
 import "../../utilities.css";
 
 class Tab extends Component {
-  static PropTypes = {
-    activeTab: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    styleName: PropTypes.string.isRequired
-  };
-
   onClick = () => {
     const { label, onClick } = this.props;
     onClick(label);
@@ -100,5 +93,13 @@ class Tabs extends Component {
     );
   }
 }
+
+Tabs.propTypes = {
+  activeTab: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  styleName: PropTypes.string.isRequired
+};
+
 
 export {Tabs};

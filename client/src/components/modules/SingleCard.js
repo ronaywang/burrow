@@ -6,15 +6,11 @@ import "./SingleCard.css";
 import { formatDate, calculateAge, get } from "../../utilities";
 
 class SingleCard extends Component {
-  static PropTypes = {
-    listingId: PropTypes.string.isRequired,
-  };
-
   static genderColorDict = {
     'm': 'Card-blue',
     'f': 'Card-pink',
     'nb': 'Card-purple'
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -95,6 +91,11 @@ class SingleCard extends Component {
     );
   }
 }
+
+SingleCard.propTypes = {
+  listingId: PropTypes.string.isRequired,
+};
+
 
 export default SingleCard;
 
