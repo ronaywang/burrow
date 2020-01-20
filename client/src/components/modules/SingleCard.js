@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "../../utilities.css";
 import "../../utilities";
 import "./SingleCard.css";
-import { get } from "../../utilities";
+import { formatDate, calculateAge, get } from "../../utilities";
 
 class SingleCard extends Component {
   static PropTypes = {
@@ -21,14 +21,15 @@ class SingleCard extends Component {
     this.state = {
       expanded: false,
       name: "",
-      age: undefined,
-      gender: undefined,
-      location: undefined,
-      startDate: undefined,
-      endDate: undefined,
-      price: undefined,
-      smoking: undefined,
-      pets: undefined,
+      age: 0,
+      gender: "m",
+      lookingForRoom: false,
+      location: "",
+      startDate: new Date(),
+      endDate: new Date(),
+      price: 0,
+      smoking: false,
+      pets: false,
       additionalText: ""
     };
   }
@@ -36,39 +37,91 @@ class SingleCard extends Component {
   componentDidMount() {
     get("/api/listing", {listingId: this.props.listingId})
       .then((info) => {
-        console.log(info);
+        this.setState({
+          location: info.location_ID,
+          startDate: info.startDate,
+          endDate: info.endDate,
+          price: info.price,
+          smoking: info.smokerFriendly,
+          pets: info.petFriendly,
+          lookingForRoom: info.lookingForRoom,
+          additionalText: info.additionalPrefText // TODO: implement photo uploading
+        })
+        return info.creator_ID;
+      }).then((userId) => {
+        return get("/api/user", {userId: userId});
+      }).then((user) => {
+        this.setState({
+          name: user.firstName + " " + user.lastName, // TODO: firstName and lastName instead.
+          age: calculateAge(new Date(user.birthdate)),
+          gender: user.gender
+        })
       });
   }
 
   render(){
+    const {expanded, name, age, gender, location, startDate, endDate, price,
+      smoking, pets, additionalText, lookingForRoom} = this.state;
     return (
       <div className="Card-container">
           <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
-          <div className="Card-nameAgeGender"><span className="Card-blue">Name</span>  Age Gender</div>
+          <div className="Card-nameAgeGender">
+            <span className={SingleCard.genderColorDict[gender]}>{name},</span>{age}
+          </div>
           <div className="Card-locationDatePrice">
             <table>
               <tr>
-                <th className="ldp-left">is moving to . . .</th>
-                <th className="ldp-right">Flagstaff, AZ</th>
+                <th className="ldp-left">{lookingForRoom ? "is moving to . . ." : "is located in . . ."}</th>
+                <th className="ldp-right">{location}</th>
               </tr>
               <tr>
                 <th className="ldp-left">during . . .</th>
-                <th className="ldp-right">Jan 1 – June 1</th>
+                <th className="ldp-right">{formatDate(startDate)} – {formatDate(endDate)}</th>
               </tr>
               <th className="ldp-left">with a budget of . . .</th>
-              <th className="ldp-right">$2020/month</th>
+              <th className="ldp-right">${price}/month</th>
             </table>
           </div>
           <div className="Card-topRight">top right</div>
           <div className="Card-horizontalLine"></div>
-          <div className="Card-flags">Flags</div>
-          <div className="Card-textBox">Text Box</div>
+          <div className="Card-flags">
+            <span className="Card-flag">{smoking ? "" : "NOT "}smoker-friendly </span>
+            <span className="Card-flag">{pets ? "" : "NOT "}pet-friendly </span>
+          </div>
+          <div className="Card-textBox">{additionalText}</div>
       </div>
     );
   }
 }
 
 export default SingleCard;
+
+const oldreturn2 = () => {
+  return (
+    <div className="Card-container">
+        <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
+        <div className="Card-nameAgeGender"><span className={SingleCard}>Name</span>  Age Gender</div>
+        <div className="Card-locationDatePrice">
+          <table>
+            <tr>
+              <th className="ldp-left">is moving to . . .</th>
+              <th className="ldp-right">Flagstaff, AZ</th>
+            </tr>
+            <tr>
+              <th className="ldp-left">during . . .</th>
+              <th className="ldp-right">Jan 1 – June 1</th>
+            </tr>
+            <th className="ldp-left">with a budget of . . .</th>
+            <th className="ldp-right">$2020/month</th>
+          </table>
+        </div>
+        <div className="Card-topRight">top right</div>
+        <div className="Card-horizontalLine"></div>
+        <div className="Card-flags">Flags</div>
+        <div className="Card-textBox">Text Box</div>
+    </div>
+  );
+}
 
 const oldreturn = () => {
     return (

@@ -32,7 +32,8 @@ class NewListing extends Component {
       return {
         creator_ID: this.props.userId,
         photoList: [],
-        type: (this.props.lookingForRoom ? "roommate" : "room"),
+        type: this.props.lookingForRoom,
+        location_ID: this.state.location,
         price: this.state.price,
         startDate: this.state.startDate._d,
         endDate: this.state.endDate._d,

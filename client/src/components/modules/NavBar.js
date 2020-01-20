@@ -10,7 +10,6 @@ import { Link } from "@reach/router";
 class NavBar extends Component {
   static PropTypes = {
     userId: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired
   };
   
   render(){
