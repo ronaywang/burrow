@@ -21,7 +21,7 @@ import DatePicker from "./modules/DatePicker.js";
 import NavBar from "./modules/NavBar.js";
 import NewListing from "./modules/NewListing.js";
 import MainPage from "./pages/MainPage.js";
-import ProfilePage from "./pages/MainPage.js";
+import ProfilePage from "./pages/ProfilePage";
 import InboxPage from "./pages/MainPage.js";
 
 /**
