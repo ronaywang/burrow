@@ -88,10 +88,14 @@ class App extends Component {
           <NotFound default />
           <SplashPage path="/splash" passDateLocationToGlobal={(startDate, endDate, location, lookingForRoom) =>
             this.setState({
-              startDate: startDate,
-              endDate: endDate,
-              location: location,
-              lookingForRoom: lookingForRoom
+              searchPrefs: {
+                startDate: startDate,
+                endDate: endDate,
+                location: location,
+                lookingForRoom: lookingForRoom,
+                pets: true,
+                smoking: true,
+              }
             })
           }/>
           <TryCard path="/cardsample"/>

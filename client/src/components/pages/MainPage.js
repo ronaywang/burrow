@@ -5,6 +5,7 @@ import "../../utilities.css";
 import "./MainPage.css";
 import PreferenceBar from "../modules/PreferenceBar";
 import Listings from "../modules/Listings";
+import { get } from "../../utilities";
 
 class MainPage extends Component{
   static PropTypes = {
@@ -35,11 +36,10 @@ class MainPage extends Component{
   }
 
   generateListings(){
-    if (this.state.pets)
-      this.setState({listingsToDisplay: ["5e24e72d0c9734134de5b65e"]});
-    else{
-      this.setState({listingsToDisplay: ["5e24e81abb1d53136fa4b6b8"]});
-    }
+    get("/api/matchinglistings").then((listings) => {
+      console.log(listings);
+      this.setState({listingsToDisplay: listings});
+    });
   }
 
   render(){
@@ -50,11 +50,10 @@ class MainPage extends Component{
         updatePrefs={(price, smoking, pets) => this.setState({price, smoking, pets}, () => this.generateListings())}/>
         <div className="MainPage-feedMapContainer">
           <Listings displayedListings={this.state.listingsToDisplay} styleName="MainPage" />
-          {/*<Map 
+          {/* <Map 
             center={}
             zoom={}
-            markers={}/> {/* Center's gonna be the location search. Zoom's gonna make sure to contain all listings.
-                            All listings will appear as markers on the map. */}
+            markers={}/>  */}
         </div>
       </div>
     )

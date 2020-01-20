@@ -7,7 +7,7 @@
  * These functions return promises, which means you should use ".then" on them.
  * e.g. get('/api/foo', { bar: 0 }).then(res => console.log(res))
  */
-const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
+export const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
 export const g_places_api_url = "https://maps.googleapis.com/maps/api/js?key=" + g_apikey + "&libraries=places";
 
 // ex: formatParams({ some_key: "some_value", a: "b"}) => "some_key=some_value&a=b"

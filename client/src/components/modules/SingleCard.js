@@ -30,7 +30,8 @@ class SingleCard extends Component {
       price: 0,
       smoking: false,
       pets: false,
-      additionalText: ""
+      additionalText: "",
+      profilePicURL: ""
     };
   }
 
@@ -54,19 +55,20 @@ class SingleCard extends Component {
         this.setState({
           name: user.firstName + " " + user.lastName, // TODO: firstName and lastName instead.
           age: calculateAge(new Date(user.birthdate)),
-          gender: user.gender
-        })
+          gender: user.gender,
+          profilePicURL: user.profilePictureURL,
+        });
       });
   }
 
   render(){
     const {expanded, name, age, gender, location, startDate, endDate, price,
-      smoking, pets, additionalText, lookingForRoom} = this.state;
+      smoking, pets, additionalText, lookingForRoom, profilePicURL} = this.state;
     return (
       <div className="Card-container" key={this.props.listingId}>
-          <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
+          <img src={profilePicURL} className="Card-profilePic"/>
           <div className="Card-nameAgeGender">
-            <span className={SingleCard.genderColorDict[gender]}>{name},</span>{age}
+            <span className={SingleCard.genderColorDict[gender]}>{name}</span>{`, ${age}`}
           </div>
           <div className="Card-locationDatePrice">
             <table>

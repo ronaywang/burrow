@@ -79,10 +79,14 @@ router.get("/listing", (req, res) => {
   Listing.findOne({_id: req.query.listingId})
     .then((info) => res.send(info));
 })
-
+// Sends a listing to the schema.
 router.post("/listing", (req, res) => {
   new Listing(req.body).save().then((listing) => res.send(listing));
 });
+// Gets all the listings for now (TODO: make into a matching algorithm)
+router.get("/matchinglistings", (req, res) => {
+  Listing.find().then((listings) => res.send(listings.map((l) => l._id)));
+})
 
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
