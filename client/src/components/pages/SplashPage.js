@@ -5,6 +5,7 @@ import DatePicker from "../modules/DatePicker.js";
 import "./SplashPage.css";
 import "../../utilities.css";
 import PropTypes from "prop-types";
+import { Link } from "@reach/router";
 
 class SplashPage extends Component {
   static PropTypes = {
@@ -22,14 +23,12 @@ class SplashPage extends Component {
       roommateLocation: undefined
     };
   }
-  componentDidMount(){
-
-  }
+  
   render(){
     const {
       state: {
         roomStartDate, roomEndDate, roommateStart,
-        roommateEnd, location, lookingForRoom
+        roommateEnd, roomLocation, roommateLocation
       }
     } = this;
     return (
@@ -46,7 +45,9 @@ class SplashPage extends Component {
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>
               </div>
-              <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true)}/>
+              <Link to="/main">
+                <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true)}/>
+              </Link>
             </div>
 
             <div label="Roommate">
@@ -55,7 +56,9 @@ class SplashPage extends Component {
                 <DatePicker startDate={roommateStart} endDate={roommateEnd}
                 handleDateChange={(startDate, endDate) => this.setState({roommateStart: startDate, roommateEnd: endDate})}/>
               </div>
-              <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false)}/>
+              <Link to="/main">
+                <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false)}/>
+              </Link>
             </div>
           </Tabs>
         </div>

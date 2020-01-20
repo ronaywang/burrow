@@ -99,7 +99,8 @@ class App extends Component {
           <ProfilePicUploader path="/profilepicuploader"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
           <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
-          <MainPage path="/main" />
+          <MainPage path="/main" userId={this.state.userId}
+          searchPrefs={this.state.searchPrefs}/>
           <ProfilePage path="/profile/:userId" 
           userId={this.state.userId}
           />
