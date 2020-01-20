@@ -73,7 +73,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar username={this.state.username} userId={this.state.userId}/>
+        <NavBar username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
