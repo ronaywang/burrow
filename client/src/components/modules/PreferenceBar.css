@@ -1,0 +1,20 @@
+.PreferenceBar-container{
+    display: flex;
+    border: var(--borders);
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.PreferenceBar-container > *{
+    margin: 5px;
+}
+
+.PreferenceBar-pets, .PreferenceBar-smoking {
+    padding: 0px;
+    width: auto;
+}
+
+.PreferenceBar-checkbox {
+    margin: 0em 0.2em;
+    width: auto;
+}
