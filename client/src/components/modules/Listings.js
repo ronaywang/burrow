@@ -17,7 +17,7 @@ class Listings extends Component {
     return (
       <div className={`${this.props.styleName}-listingsContainer`}>
         {this.props.displayedListings.map((listingId) => {return (
-          <SingleCard listingId={listingId} />
+          <SingleCard key={listingId} listingId={listingId} />
         );})}
       </div>
     );

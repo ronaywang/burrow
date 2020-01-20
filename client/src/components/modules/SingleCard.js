@@ -35,7 +35,6 @@ class SingleCard extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.listingId);
     get("/api/listing", {listingId: this.props.listingId})
       .then((info) => {
         this.setState({
