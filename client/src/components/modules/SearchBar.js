@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import "../../utilities.css";
-import { get } from "../../utilities";
+import { get, g_places_api_url } from "../../utilities";
+import Script from "react-load-script";
 
 class SearchBar extends Component {
   static PropTypes = {
@@ -149,32 +150,79 @@ class SearchBar extends Component {
   }
 }
 
-class LocationSearchBar extends Component{
+class GoogleSearchBar extends Component {
   static PropTypes = {
-    defaultText: PropTypes.string.isRequired,
     styleName: PropTypes.string.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    submitButtonExists: PropTypes.bool.isRequired,
-    radius: PropTypes.number.isRequired
-  };  
+    placeIsCity: PropTypes.bool.isRequired,
+  };
+  // Define Constructor
+  constructor(props) {
+    super(props);
 
-  render(){
-    return (<SearchBar 
-      defaultText={this.props.defaultText}
-      styleName={this.props.styleName}
-      searchStringAutocomplete={(searchString) => {
-        return get("/api/locationsuggestions", {
-          input: searchString,
-          radius: this.props.radius
-        }).then((json) => {
-          return json.predictions.map(prediction => prediction.description);
-        })
-      }}
-      handleSubmit={this.props.handleSubmit}
-      submitButtonExists={this.props.submitButtonExists}
-    />);
+    // Declare State
+    this.state = {
+      place: '',
+      query: ''
+    };
+
+  }
+
+  handleScriptLoad = () => {
+    // Declare Options For Autocomplete
+    const options = {
+      types: [(this.props.placeIsCity ? '(cities)' : 'address')],
+    };
+
+    // Initialize Google Autocomplete
+    /*global google*/ // To disable any eslint 'google not defined' errors
+    this.autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      options,
+    );
+
+    // Avoid paying for data that you don't need by restricting the set of
+    // place fields that are returned to just the address components and formatted
+    // address.
+    this.autocomplete.setFields(['address_components', 'formatted_address']);
+
+    // Fire Event when a suggested name is selected
+    this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
+  }
+  
+  handlePlaceSelect = () => {
+
+    // Extract City From Address Object
+    const addressObject = this.autocomplete.getPlace();
+    const address = addressObject.address_components;
+
+    // Check if address is valid
+    if (address) {
+      // Set State
+      this.setState(
+        {
+          place: address[0].long_name,
+          query: addressObject.formatted_address,
+        }
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Script
+          url={g_places_api_url}
+          onLoad={this.handleScriptLoad}
+        />
+        <input id="autocomplete" 
+          placeholder={this.props.placeIsCity ? "Enter city..." : "Enter address..."} 
+          onChange={(e) => this.setState({query: e.target.value})}
+          value={this.state.query}
+          className={`${this.props.styleName}-search`}
+        />
+      </div>
+    );
   }
 }
 
-
-export { LocationSearchBar };
+export { GoogleSearchBar };

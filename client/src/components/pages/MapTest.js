@@ -1,7 +1,7 @@
 import React from "react";
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
-const g_places_api_url = "https://maps.googleapis.com/maps/api/js?key=" + g_apikey + "&libraries=places";
+import { g_places_api_url } from "../../utilities";
+
 //const g_places_api = require(g_places_api_url);
 const mycenter = {lat: 42.360495, lng: -71.093779 };
 

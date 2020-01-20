@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Tabs} from "../modules/Tabs.js";
-import {LocationSearchBar} from "../modules/SearchBar.js";
+import {GoogleSearchBar} from "../modules/SearchBar.js";
 import DatePicker from "../modules/DatePicker.js";
 import "./SplashPage.css";
 import "../../utilities.css";
@@ -41,7 +41,7 @@ class SplashPage extends Component {
           </div>
           <Tabs styleName="SplashPage">
             <div label="Room">
-              {/* TODO <LocationSearchBar defaultText="Enter a city, state, etc." styleName="SplashPage" /> SplashPage-search */}
+              <GoogleSearchBar styleName="SplashPage" placeIsCity={true}/>
               <div className="SplashPage-date">
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>
@@ -50,7 +50,7 @@ class SplashPage extends Component {
             </div>
 
             <div label="Roommate">
-              {/* TODO <LocationSearchBar defaultText="Enter an address" styleName="SplashPage" /> SplashPage-search */}
+              <GoogleSearchBar styleName="SplashPage" placeIsCity={false}/>
               <div className="SplashPage-date">
                 <DatePicker startDate={roommateStart} endDate={roommateEnd}
                 handleDateChange={(startDate, endDate) => this.setState({roommateStart: startDate, roommateEnd: endDate})}/>
