@@ -4,14 +4,12 @@
     background: #A1CD22;
     align-items: center;
     justify-content: space-between;
-    
-    
 }
 
 .NavBar-logo {
     font-family: 'Indie Flower';
     font-size: 300%;
-    margin: 10px;
+    margin: 10px 20px;
     color: white;
 
 }
