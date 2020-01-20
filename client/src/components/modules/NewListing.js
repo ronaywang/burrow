@@ -74,8 +74,8 @@ class NewListing extends Component {
             <div className="NewListing-priceDescription">
               {this.props.lookingForRoom ? "With maximum budget..." : "With the following price:"}
             </div>
-            $<input type="number" min="0" onChange={(e) => {this.setState({price: e.target.value})}} 
-              className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "Budget..." : "Price..."} />/month
+            <input type="number" min="0" onChange={(e) => {this.setState({price: e.target.value})}} 
+              className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "$ USD" : "$ USD"} />/month
           </div>
           <div className="NewListing-prefsContainer">
             <div className="NewListing-pets">

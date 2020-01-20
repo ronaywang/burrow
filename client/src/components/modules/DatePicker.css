@@ -6,6 +6,7 @@
 .DateInput_input {
   font-family: skolar-sans-latin-condensed;
   font-weight: 300;
+  margin: var(--margins);
 }
  
 /* Will edit selected date or the endpoints of a range of dates */
@@ -83,7 +84,7 @@
 }
 
 .DayPickerNavigation_button {
-  border: 1px solid black;
+  border: var(--borders);
   border-radius: 0;
 }
 
