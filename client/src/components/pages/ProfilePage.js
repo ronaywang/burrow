@@ -1,25 +1,35 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "../../utilities";
+import { get, post } from "../../utilities";
+import ProfilePicUploader from "../modules/ProfilePicUploader";
 import "../../utilities.css";
 import "./ProfilePage.css";
 
-class ProfilePage extends Component{
+class ProfilePage extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      profilePicURL: "",
+    };
   }
 
-  componentDidMount() {
-    console.log("mounted");
-    myres = get("/api/getProfilePic", {userId : this.props.userId});
-    console.log(myres);
+  async componentDidUpdate() {
+    if (!this.state.profilePicURL) {
+      const myres = await  post("/api/getProfilePic", {userId: this.props.userId});
+      this.setState({profilePicURL: myres.photoURL});
+    }
   }
 
   render() {
     return (
+      <>
       <div>
-        hi
+        {this.state.profilePicURL && (
+        <img className = "avatar" src={this.state.profilePicURL}/>
+        )}
       </div>
+      <ProfilePicUploader/>
+      </>
     );
   }
 }
