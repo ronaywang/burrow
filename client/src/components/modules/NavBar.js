@@ -43,9 +43,9 @@ class NavBar extends Component {
       </div>
     );
     return (
-      <div className="NavBar-container">
-        <div className="NavBar-logoSearchContainer">
-          <div className="NavBar-logo">
+      <div className="NavBar-container ">
+        <div className="NavBar-logoSearchContainer NavBar-style">
+          <div className="NavBar-logo ">
             burrow
           </div>
           <GoogleSearchBar styleName="NavBar" placeIsCity={true} />
