@@ -68,7 +68,7 @@ class MapComponent extends Component {
 }
 
 MapComponent.propTypes = {
-  markers: PropTypes.array,
+  markers: PropTypes.instanceOf(Array),
   initialCenter: PropTypes.object.isRequired,
   initialZoom: PropTypes.number.isRequired,
   newCenter: PropTypes.object,
