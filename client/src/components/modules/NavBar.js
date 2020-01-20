@@ -6,6 +6,7 @@ import Popup from "reactjs-popup";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import { Link } from "@reach/router";
+import { GoogleSearchBar } from "./SearchBar";
 
 class NavBar extends Component {
   static PropTypes = {
@@ -47,7 +48,7 @@ class NavBar extends Component {
           <div className="NavBar-logo">
             burrow
           </div>
-          {/* <LocationSearchBar /> className="NavBar-search" */}
+          <GoogleSearchBar styleName="NavBar" placeIsCity={true} />
         </div>
         {linkContainer}
       </div>
