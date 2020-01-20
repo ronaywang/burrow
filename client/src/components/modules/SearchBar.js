@@ -184,7 +184,7 @@ class GoogleSearchBar extends Component {
     // Avoid paying for data that you don't need by restricting the set of
     // place fields that are returned to just the address components and formatted
     // address.
-    this.autocomplete.setFields(['address_components', 'formatted_address']);
+    this.autocomplete.setFields(['address_components', 'formatted_address', 'geometry']);
 
     // Fire Event when a suggested name is selected
     this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
@@ -203,8 +203,13 @@ class GoogleSearchBar extends Component {
         {
           place: address[0].long_name,
           query: addressObject.formatted_address,
+          center: {
+            lat: addressObject.geometry.location.lat(),
+            lng: addressObject.geometry.location.lng()
+          },
         }
       );
+      this.props.setSelectedCenter(this.state.center);
     }
   }
 

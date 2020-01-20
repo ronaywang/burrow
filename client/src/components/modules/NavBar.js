@@ -48,7 +48,7 @@ class NavBar extends Component {
           <div className="NavBar-logo">
             burrow
           </div>
-          <GoogleSearchBar styleName="NavBar" placeIsCity={true} />
+          <GoogleSearchBar styleName="NavBar" placeIsCity={true} setSelectedCenter={this.props.setSelectedCenter}/>
         </div>
         {linkContainer}
       </div>
