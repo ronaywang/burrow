@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import "../../utilities.css";
+import "./SearchBar.css";
 import { get, g_places_api_url } from "../../utilities";
 import Script from "react-load-script";
 

@@ -136,7 +136,7 @@ input {
     width: 200px;
     padding: 0.7rem;
     border-radius: var(--borderradius);
-    margin: var(--margins);
+    /*margin: var(--margins); commented this out because it was messing with alignment*/
     font-size: 110%;
     font-family: "skolar-sans-latin", sans-serif;
     line-height: 100%;

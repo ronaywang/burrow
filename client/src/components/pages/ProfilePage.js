@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { get, post } from "../../utilities";
+import { post } from "../../utilities";
 import ProfilePicUploader from "../modules/ProfilePicUploader";
 import "../../utilities.css";
 import "./ProfilePage.css";
