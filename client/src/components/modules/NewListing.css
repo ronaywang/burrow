@@ -1,5 +1,4 @@
 .NewListing-container{
-    border: var(--borders);
     border-radius: var(--borderradius);
     display: grid;
     grid-template-columns: 35% auto;
