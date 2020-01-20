@@ -22,6 +22,7 @@ class ProfilePicUploader extends React.Component {
 
     const uploadRes = await axios.post("/api/newProfilePic", formData);
     console.log(JSON.stringify(uploadRes));
+    window.location.reload();
 
   };
 
