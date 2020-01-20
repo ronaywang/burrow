@@ -128,7 +128,8 @@ router.get("/uploadfile", async (req, res) => {
   await gcloudstorage.uploadFile("/home/chillenb/weblab/ronaywang-chillenb-chrisxu3/client/src/public/assets/account.png");
 });
 
-router.get("/getProfilePic", async (req, res) => {
+router.post("/getProfilePic", async (req, res) => {
+  console.log(req.body);
   userIWant = await User.findById(req.body.userId);
   if (userIWant.profilePictureURL) {
     const replyWithURL = {

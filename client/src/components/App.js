@@ -23,6 +23,7 @@ import NewListing from "./modules/NewListing.js";
 import MainPage from "./pages/MainPage.js";
 import ProfilePage from "./pages/MainPage.js";
 import InboxPage from "./pages/MainPage.js";
+import ProfilePrototype from "./pages/ProfilePrototype";
 
 /**
  * Define the "App" component as a class.
@@ -108,7 +109,7 @@ class App extends Component {
           <ProfilePage path="/profile/:userId" 
           userId={this.state.userId}
           />
-          <ProfilePage path="/pro"
+          <ProfilePrototype path="/pro"
           userId={this.state.userId}/>
           <InboxPage path="/inbox" />
         </Router>
