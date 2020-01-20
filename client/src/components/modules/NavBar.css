@@ -16,13 +16,20 @@
 
 }
 
-.NavBar-linkContainer-loggedOut {
+.NavBar-style {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: var(--xs);
 }
 .NavBar-link {
     margin: 10px;
     color: white;
+    padding: 5px;
     cursor: pointer;
+
+}
+
+.NavBar-link:hover{
+ background: #668215;
 }

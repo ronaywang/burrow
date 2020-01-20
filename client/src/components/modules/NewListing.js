@@ -1,6 +1,6 @@
 import "./NewListing.css";
 import "../../utilities.css"
-import { post } from "../../utilities";
+import { get, post } from "../../utilities";
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {LocationSearchBar} from "./SearchBar.js";
@@ -8,7 +8,10 @@ import DatePicker from "./DatePicker.js";
 
 class NewListing extends Component {
   static PropTypes = {
+    // close: PropTypes.func.isRequired, // NewListing will be a popup. That's why.
+    userId: PropTypes.string.isRequired,
     lookingForRoom: PropTypes.bool.isRequired,
+    addNewListing: PropTypes.func.isRequired,
   };
 
   constructor(props){
@@ -17,14 +20,33 @@ class NewListing extends Component {
       location: "",
       startDate: undefined,
       endDate: undefined,
+      price: 0,
       pets: false,
       smoking: false,
       textBox: ""
     };
   }
-  handleSubmit(){
 
+  handleSubmit(){
+    get("/api/user", {userId: this.props.userId}).then((userInfo) =>{
+      return {
+        creator_ID: this.props.userId,
+        photoList: [],
+        type: this.props.lookingForRoom,
+        location_ID: this.state.location,
+        price: this.state.price,
+        startDate: this.state.startDate._d,
+        endDate: this.state.endDate._d,
+        smokingFriendly: this.state.smoking,
+        petFriendly: this.state.pets,
+        additionalPrefText: this.state.textBox,
+      };
+    }).then((listingInfo) => {
+      post("/api/listing", listingInfo);
+      this.props.addNewListing(listingInfo);
+    });
   }
+
   render(){
     return (
       <div className="NewListing-container">
@@ -73,7 +95,10 @@ class NewListing extends Component {
             className="NewListing-submit"
             type="submit"
             value="Submit"
-            onClick={() => {console.log(this.state)}}
+            onClick={() => {
+              this.handleSubmit();
+              // this.props.close();
+            }}
           />
         </div>
 

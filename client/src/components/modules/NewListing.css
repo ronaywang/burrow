@@ -1,24 +1,31 @@
 .NewListing-container{
-    border: var(--border);
     border-radius: var(--borderradius);
     display: grid;
     grid-template-columns: 35% auto;
     /*grid-template-rows: 45px 100px 10px auto auto;*/
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
     max-width: 870px;
+    
 }
 
 .NewListing-left{
     grid-column:1 / 2;
+    background: pink;
+    margin: 2em;
 
 
 }
 
 .NewListing-center{
+    margin: 10%;
     grid-column: 2/3;
+    background: pink;
     align-items: center;
     justify-content: center;
-    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
 
 }
 

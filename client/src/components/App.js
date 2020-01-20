@@ -35,7 +35,7 @@ class App extends Component {
     this.state = {
       userId: undefined,
       username: undefined,
-      searchPrefs: { // NOTE: (a) searchPrefs always override userPrefs (b) if undefined on both then show all
+      searchPrefs: { 
         location: undefined,
         lookingForRoom: undefined,
         price: undefined,
@@ -43,11 +43,6 @@ class App extends Component {
         endDate: undefined,
         smoking: undefined,
         pets: undefined,
-      },
-      userPrefs: {
-        price: undefined,
-        smoking: undefined,
-        pets: undefined
       }
     };
   }
@@ -104,7 +99,7 @@ class App extends Component {
           <PhotoUploadPrototype path="/photouploadprototype"/>
           <ProfilePicUploader path="/profilepicuploader"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
-          <NewListing path="/newlistingprototype/" lookingForRoom={true}/>
+          <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
           <MainPage path="/main" />
           <ProfilePage path="/profile/:userId" 
           userId={this.state.userId}

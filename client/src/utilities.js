@@ -63,3 +63,15 @@ export function post(endpoint, params = {}) {
       throw `POST request to ${endpoint} failed with error:\n${error}`;
     });
 }
+
+export function calculateAge(birthday) { // birthday is a date
+  var ageDifMs = Date.now() - birthday;
+  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
+export function formatDate(date) {
+  return new Date(date).toLocaleDateString("en-US", { 
+    year: 'numeric', month: 'short', day: 'numeric' 
+  });
+}

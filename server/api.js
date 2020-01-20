@@ -80,6 +80,10 @@ router.get("/listing", (req, res) => {
     .then((info) => res.send(info));
 })
 
+router.post("/listing", (req, res) => {
+  new Listing(req.body).save().then((listing) => res.send(listing));
+});
+
 router.post("/logout", auth.logout);
 router.get("/whoami", (req, res) => {
   if (!req.user) {

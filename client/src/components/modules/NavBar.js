@@ -10,20 +10,19 @@ import { Link } from "@reach/router";
 class NavBar extends Component {
   static PropTypes = {
     userId: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired
   };
   
   render(){
     const {userId} = this.props;
     let linkContainer = userId ? (
-      <div className="NavBar-linkContainer-loggedIn">
+      <div className="NavBar-linkContainer-loggedIn NavBar-style">
         <Link to="/main" className="NavBar-link">Home</Link>
         <Link to={`/profile/${this.props.userId}`} className="NavBar-link">Profile</Link> 
         <Link to="/inbox" className="NavBar-link">Inbox</Link> 
         <div className="NavBar-link">Logout</div> 
       </div>
     ) : (
-      <div className="NavBar-linkContainer-loggedOut">
+      <div className="NavBar-linkContainer-loggedOut NavBar-style">
         <Popup modal trigger={
           <div className="NavBar-link">
             Signup
