@@ -51,6 +51,13 @@ form {
   flex-grow: 1;
 }
 
+a {
+  text-decoration: none; 
+  cursor: pointer;
+
+}
+
+
 .u-flex {
   display: flex;
 }

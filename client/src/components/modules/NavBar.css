@@ -25,5 +25,10 @@
 .NavBar-link {
     margin: 10px;
     color: white;
-    cursor: pointer;
+    padding: 2px;
+
+}
+
+.NavBar-link:hover{
+ background: #668215;
 }
