@@ -5,8 +5,22 @@ import "../../utilities.css";
 import "./ProfilePage.css";
 
 class ProfilePage extends Component{
-  render(){
-    return (<div></div>);
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    console.log("mounted");
+    myres = get("/api/getProfilePic", {userId : this.props.userId});
+    console.log(myres);
+  }
+
+  render() {
+    return (
+      <div>
+        hi
+      </div>
+    );
   }
 }
 

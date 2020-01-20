@@ -105,7 +105,11 @@ class App extends Component {
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
           <NewListing path="/newlistingprototype/" lookingForRoom={true}/>
           <MainPage path="/main" />
-          <ProfilePage path="/profile/:userId" />
+          <ProfilePage path="/profile/:userId" 
+          userId={this.state.userId}
+          />
+          <ProfilePage path="/pro"
+          userId={this.state.userId}/>
           <InboxPage path="/inbox" />
         </Router>
       </>
