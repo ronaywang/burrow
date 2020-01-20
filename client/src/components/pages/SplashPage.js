@@ -8,9 +8,6 @@ import PropTypes from "prop-types";
 import { Link } from "@reach/router";
 
 class SplashPage extends Component {
-  static PropTypes = {
-    passDateLocationToGlobal: PropTypes.func.isRequired
-  };
 
   constructor(props){
     super(props);
@@ -36,7 +33,7 @@ class SplashPage extends Component {
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
             <div className="SplashPage-logo">burrow</div>
-            <div className="SplashPage-tagline">i'm looking for a...</div>
+            <div className="SplashPage-tagline">i&apos;m looking for a...</div>
           </div>
           <Tabs styleName="SplashPage">
             <div label="Room">
@@ -73,5 +70,9 @@ class SplashPage extends Component {
     );
   }
 }
+
+SplashPage.propTypes = {
+  passDateLocationToGlobal: PropTypes.func.isRequired
+};
 
 export default SplashPage;

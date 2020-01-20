@@ -66,7 +66,7 @@ class App extends Component {
     });
   };
 
-  handleLogout= () => {
+  handleLogout = () => {
     this.setState({ userId: undefined, username: undefined});
     post("/api/logout");
   };

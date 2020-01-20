@@ -8,19 +8,6 @@ import Listings from "../modules/Listings";
 import { get } from "../../utilities";
 
 class MainPage extends Component{
-  static PropTypes = {
-    userId: PropTypes.string.isRequired,
-    searchPrefs: PropTypes.shape({
-      location: PropTypes.string.isRequired,
-      lookingForRoom: PropTypes.bool.isRequired,
-      price: PropTypes.number.isRequired,
-      startDate: PropTypes.instanceOf(Date).isRequired,
-      endDate: PropTypes.instanceOf(Date).isRequired,
-      smoking: PropTypes.bool.isRequired,
-      pets: PropTypes.bool.isRequired,
-    })
-  }
-
   constructor(props){
     super(props);
     this.state = {
@@ -59,5 +46,18 @@ class MainPage extends Component{
     )
   }
 }
+MainPage.propTypes = {
+  userId: PropTypes.string.isRequired,
+  searchPrefs: PropTypes.shape({
+    location: PropTypes.string.isRequired,
+    lookingForRoom: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    startDate: PropTypes.instanceOf(Date).isRequired,
+    endDate: PropTypes.instanceOf(Date).isRequired,
+    smoking: PropTypes.bool.isRequired,
+    pets: PropTypes.bool.isRequired,
+  })
+};
+
 
 export default MainPage;

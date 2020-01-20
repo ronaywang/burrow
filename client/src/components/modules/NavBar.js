@@ -9,9 +9,6 @@ import { Link } from "@reach/router";
 import { GoogleSearchBar } from "./SearchBar";
 
 class NavBar extends Component {
-  static PropTypes = {
-    userId: PropTypes.string.isRequired,
-  };
   
   render(){
     const {userId} = this.props;
@@ -55,5 +52,9 @@ class NavBar extends Component {
     );
   }
 }
+
+NavBar.propTypes = {
+  userId: PropTypes.string.isRequired,
+};
 
 export default NavBar;
