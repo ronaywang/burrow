@@ -41,23 +41,23 @@ class SplashPage extends Component {
           <Tabs styleName="SplashPage">
             <div label="Room">
               <GoogleSearchBar styleName="SplashPage" placeIsCity={true}/>
-              <div className="SplashPage-date">
+              <div className="SplashPage-date SplashPage-input">
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>
               </div>
               <Link to="/main">
-                <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true)}/>
+                <input className="SplashPage-go SplashPage-input" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true)}/>
               </Link>
             </div>
 
             <div label="Roommate">
               <GoogleSearchBar styleName="SplashPage" placeIsCity={false}/>
-              <div className="SplashPage-date">
+              <div className="SplashPage-date SplashPage-input">
                 <DatePicker startDate={roommateStart} endDate={roommateEnd}
                 handleDateChange={(startDate, endDate) => this.setState({roommateStart: startDate, roommateEnd: endDate})}/>
               </div>
               <Link to="/main">
-                <input className="SplashPage-go" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false)}/>
+                <input className="SplashPage-go SplashPage-input" type="submit" value="Go!" onClick={() => this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false)}/>
               </Link>
             </div>
           </Tabs>

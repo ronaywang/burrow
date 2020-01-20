@@ -1,0 +1,24 @@
+.SplashPage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+    margin: 10%;
+}
+
+.SplashPage-logo {
+    display: flex;
+    font-family: "Indie Flower";
+    font-size: 200%;
+    justify-content: center;
+    width: auto;
+    margin: 5%;
+}
+.SplashPage-go{
+    font-size: 160%;
+    font-weight: 700;
+}
+.SplashPage-input {
+    margin: var(--inputmargins);
+}
