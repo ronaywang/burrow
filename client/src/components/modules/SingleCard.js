@@ -35,6 +35,7 @@ class SingleCard extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.listingId);
     get("/api/listing", {listingId: this.props.listingId})
       .then((info) => {
         this.setState({
@@ -63,7 +64,7 @@ class SingleCard extends Component {
     const {expanded, name, age, gender, location, startDate, endDate, price,
       smoking, pets, additionalText, lookingForRoom} = this.state;
     return (
-      <div className="Card-container">
+      <div className="Card-container" key={this.props.listingId}>
           <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
           <div className="Card-nameAgeGender">
             <span className={SingleCard.genderColorDict[gender]}>{name},</span>{age}
