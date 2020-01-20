@@ -29,15 +29,12 @@ class PreferenceBar extends Component {
     return (
       <div className="PreferenceBar-container">
         <div className="PreferenceBar-price">
-          <div className="PreferenceBar-priceDescription">
-            {lookingForRoom ? "Budget?" : "Price?"}
-          </div>
-          $<input type="number" min="0" onChange={(e) => {
+          <input type="number" min="0" onChange={(e) => {
               this.setState({price: e.target.value}, () => {
                 updatePrefs(price, smoking, pets, this.state.startDate, this.state.endDate);
               })
             }} 
-            className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget..." : "Enter price..."} />/month
+            className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} />/month
         </div>
         <div className="PreferenceBar-dateContainer">
           <DatePicker handleDateChange={(startDate, endDate) => {

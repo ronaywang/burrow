@@ -57,7 +57,7 @@
 .DateInput_input {
   text-align: center;
   vertical-align: center;
-  padding: var(--s);
+  padding: var(--xs);
   width: 5em;
   color: black;
   border: var(--borders);
