@@ -10,7 +10,7 @@ import { socket } from "../client-socket.js";
 import { get, post } from "../utilities";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
-import MapTestComponent from "./pages/MapTest";
+import MapComponent from "./modules/Map";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
 import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
@@ -42,7 +42,8 @@ class App extends Component {
         endDate: undefined,
         smoking: undefined,
         pets: undefined,
-      }
+      },
+      mapCenter: undefined,
     };
   }
 
@@ -70,10 +71,14 @@ class App extends Component {
     post("/api/logout");
   };
 
+  setSelectedCenter = (center) => {
+    this.setState({ mapCenter: center});
+  };
+
   render() {
     return (
       <>
-        <NavBar username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
+        <NavBar username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout} setSelectedCenter={this.setSelectedCenter}/>
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
@@ -83,8 +88,12 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
-          <MapTestComponent
-            path="/map"/>
+          <MapComponent
+            path="/map"
+            initialCenter={{lat: 42.360495, lng: -71.093779 }}
+            newCenter = {this.state.mapCenter}
+            initialZoom={14}
+            />
           <NotFound default />
           <SplashPage path="/splash" passDateLocationToGlobal={(startDate, endDate, location, lookingForRoom) =>
             this.setState({
