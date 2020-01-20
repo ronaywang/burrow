@@ -13,26 +13,19 @@ class MapComponent extends Component {
       mapIsLoaded: false,
       map: undefined,
       marker: undefined,
+      markersLoaded: false,
+      markerObjArray: [],
     };
   }
 
   componentDidUpdate() {
-    if (!this.state.mapIsLoaded) {
-      if (google) {
+  }
+
+  componentDidMount() {
+  if (!this.state.mapIsLoaded) {
+      if (typeof google !== 'undefined') {
         this.handleScriptLoad();
         this.state.mapIsLoaded = true;
-      }
-    } else {
-      if (this.props.newCenter) {
-        this.state.map.setCenter(this.props.newCenter);
-        let newmarker = new google.maps.Marker({
-          position: this.props.newCenter,
-        });
-        if (this.state.marker) {
-          this.state.marker.setMap(null);
-        }
-        newmarker.setMap(this.state.map);
-        this.state.marker = newmarker;
       }
     }
   }
@@ -44,6 +37,29 @@ class MapComponent extends Component {
   };
 
   render() {
+    if (!this.state.mapIsLoaded) {
+      if (typeof google !== 'undefined') {
+        this.handleScriptLoad();
+        this.setState({mapIsLoaded: true});
+      }
+    } else {
+      if (this.props.newCenter) {
+        this.state.map.setCenter(this.props.newCenter);
+        let newmarker = new google.maps.Marker({
+          position: this.props.newCenter,
+        });
+        if (this.state.marker) {
+          this.state.marker.setMap(null);
+        }
+        newmarker.setMap(this.state.map);
+        this.setState({marker: newmarker});
+      }
+      if (!this.state.markersLoaded && this.props.markers) {
+        this.props.markers.forEach((markerloc)=> {
+          this.state.markerObjArray.push(new google.maps.Marker({position: markerloc, map: this.state.map}));
+        })
+      }
+    }
     return (
       <div id="map" className="u-flex">
       </div>
@@ -52,9 +68,10 @@ class MapComponent extends Component {
 }
 
 MapComponent.propTypes = {
-  markers: PropTypes.array,
+  markers: PropTypes.instanceOf(Array),
   initialCenter: PropTypes.object.isRequired,
   initialZoom: PropTypes.number.isRequired,
+  newCenter: PropTypes.object,
 };
 
 export default MapComponent;
