@@ -39,8 +39,8 @@ class App extends Component {
         location: "",
         lookingForRoom: true,
         price: 0,
-        startDate: new Date(),
-        endDate: new Date(),
+        startDate: moment(),
+        endDate: moment().add(1, 'days'),
         smoking: true,
         pets: true,
       },
@@ -71,8 +71,8 @@ class App extends Component {
       price: this.state.searchPrefs.price,
       smoking: this.state.searchPrefs.smoking,
       pets: this.state.searchPrefs.pets,
-      startDate: this.state.searchPrefs.startDate,
-      endDate: this.state.searchPrefs.endDate,
+      startDate: this.state.searchPrefs.startDate.toDate(),
+      endDate: this.state.searchPrefs.endDate.toDate(),
     };
     console.log(query);
     get("/api/matchinglistings", query).then((listings) => {
