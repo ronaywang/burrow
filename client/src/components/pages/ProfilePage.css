@@ -50,3 +50,35 @@
 #savebutton {
   align-self: center;
 }
+
+.UserSettings-genderbutton {
+  font-size: 120%;
+  font-weight: 700;
+  margin: 0;
+  padding: 0.3rem;
+  border: 1px solid white;
+  color: white;
+  border-radius: 0;
+  --pink: rgb(255, 59, 124);
+  --blue: rgb(0, 75, 146);
+  --purple: rgb(95, 0, 107);
+}
+
+.UserSettings-genderbuttonM {
+  background-color: var(--blue);
+}
+.UserSettings-genderbuttonF {
+  background-color: var(--pink);
+}
+.UserSettings-genderbuttonNB {
+  background-color: var(--purple);
+}
+
+.UserSettings-genderbutton:hover {
+  background-color: #EEEEEE;
+  cursor: pointer;
+}
+
+.UserSettings-genderbuttonActive {
+  color: var(--accentcolor);
+}

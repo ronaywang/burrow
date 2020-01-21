@@ -17,6 +17,10 @@ class UserSettings extends Component {
       fbProfileLink: '',
       datefocused: false,
       textBox: '',
+      gender: '',
+      maleButtonActive: false,
+      femaleButtonActive: false,
+      nbButtonActive: false,
     };
   }
 
@@ -28,7 +32,8 @@ class UserSettings extends Component {
         lastName: userObj.lastName,
         email: userObj.email,
         birthdate: userObj.birthdate,
-        fbProfileLink: userObj.fbProfileLink
+        fbProfileLink: userObj.fbProfileLink,
+        gender: userObj.gender,
       });
     });
   }
@@ -38,6 +43,19 @@ class UserSettings extends Component {
   };
 
   render() {
+    let mbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonM";
+    let fbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonF";
+    let nbbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonNB";
+    if (this.state.maleButtonActive) {
+      mbuttonclass += " UserSettings-genderbuttonActive";
+    }
+    if (this.state.femaleButtonActive) {
+      fbuttonclass += " UserSettings-genderbuttonActive";
+    }
+    if (this.state.nbButtonActive) {
+      nbbuttonclass += " UserSettings-genderbuttonActive";
+    }
+
     return (
       <div className="UserSettings-container">
         <div>
@@ -66,6 +84,15 @@ class UserSettings extends Component {
           isOutsideRange={(date)=>{return false;}}
           initialVisibleMonth={() => moment().subtract(25, "Y")}
           displayFormat="MMM DD, YYYY"/>
+        </div>
+        <div>
+          <span className="fieldname">Which flavor are you</span>
+          <button
+          className={mbuttonclass}
+          onClick={()=>{this.setState({maleButtonActive: !this.state.maleButtonActive})}}
+          >Male</button>
+          <button className={fbuttonclass}>Female</button>
+          <button className={nbbuttonclass}>Non-binary</button>
         </div>
         <div>
           <span className="fieldname">Link your FB profile</span>
