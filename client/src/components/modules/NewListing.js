@@ -42,6 +42,19 @@ class NewListing extends Component {
   }
 
   render(){
+    let petsclassName = "NewListing-boolbutton";
+    let smokclassName = "NewListing-boolbutton";
+    if (this.state.pets) {
+      petsclassName += " NewListing-boolbutton-true";
+    } else {
+      petsclassName += " NewListing-boolbutton-false";
+    }
+    if (this.state.smoking) {
+      smokclassName += " NewListing-boolbutton-true";
+    } else {
+      smokclassName += " NewListing-boolbutton-false";
+    }
+
     return (
       <div className="NewListing-container">
         <div className="NewListing-left">
@@ -72,14 +85,8 @@ class NewListing extends Component {
               className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "$ USD" : "$ USD"} />/month
           </div>
           <div className="NewListing-prefsContainer">
-            <div className="NewListing-pets">
-              Pet friendly? 
-              <input onClick={() => {this.setState((prev) => {return {pets: !prev.pets};})}} type="checkbox" className="NewListing-checkbox"/>
-            </div>
-            <div className="NewListing-smoking">
-              Smoker friendly? 
-              <input onClick={() => {this.setState((prev) => {return {smoking: !prev.smoking};})}} type="checkbox" className="NewListing-checkbox"/>
-            </div>
+              <button className={petsclassName} onClick={()=>{this.setState({pets: !this.state.pets});}}>Pet friendly?</button>
+              <button className={smokclassName} onClick={()=>{this.setState({smoking: !this.state.smoking});}}>Smoking friendly?</button>
           </div>
           <div className="NewListing-textBoxContainer">
             <div className="NewListing-textBoxDescription">Tell us about yourself!</div>
@@ -95,8 +102,6 @@ class NewListing extends Component {
             }}
           />
         </div>
-
-          
       </div>
     );
   }
