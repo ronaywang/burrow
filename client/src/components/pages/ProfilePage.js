@@ -55,10 +55,12 @@ class ProfilePage extends Component {
       </div>
       <div className = "ProfileBar-middle">
         <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 0})}}>User settings</span>
-        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 1})}}>Your listings</span>
         <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 2})}}>Saved listings</span>
+        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 1})}}>Your listings</span>
       </div>
-      <TabToDisplay/>
+      <div className="TabToDisplay-container">
+        <TabToDisplay/>
+      </div>
       </>
     )
   }

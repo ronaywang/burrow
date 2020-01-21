@@ -17,10 +17,6 @@
     cursor: pointer;
 }
 
-.fieldname {
-  font-size: 120%;
-  margin: var(--inputmargins);
-}
 
 .warning {
   color: red;

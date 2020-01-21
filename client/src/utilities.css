@@ -156,3 +156,8 @@ button, .u-button{
     font-size: 160%;
     font-family: "skolar-sans-latin", sans-serif;
 }
+
+.fieldname {
+  font-size: 120%;
+  margin: var(--inputmargins);
+}
