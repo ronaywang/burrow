@@ -32,7 +32,9 @@
     margin: 5px 0;
 }
 
-.NewListing-textBox {
+textarea {
     border: var(--borders);
+    resize: none;
+    height: 5em;
 }
 
