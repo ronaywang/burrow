@@ -56,7 +56,7 @@ class UserSettings extends Component {
           onChange={(event)=>{this.setState({lastName: event.target.value})}}/>
         </div>
         <div>
-          <span className="fieldname">Birthday</span>
+          <span className="fieldname">when were ya born, boomer</span>
           <SingleDatePicker
           date={this.state.birthdate}
           onDateChange={date => this.setState({birthdate: date})}

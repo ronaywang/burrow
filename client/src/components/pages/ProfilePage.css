@@ -15,19 +15,22 @@
 .ProfileBar-middle {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  margin: 1rem;
 }
 
 .ProfileBar-tab {
   font-size: 140%;
-  color: #555555;
-  text-decoration: underline;
-  margin: 1rem;
-  padding: 0.2rem;
+  color: white;
+  margin: 0;
+  padding: 0.3rem;
+  background: var(--accentcolor);
+  border: 1px solid white;
 }
 
 .ProfileBar-tab:hover {
   background-color: #EEEEEE;
+  cursor: pointer;
 }
 
 .TabToDisplay-container {
