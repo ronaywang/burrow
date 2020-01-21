@@ -32,11 +32,13 @@ class UserSettings extends Component {
           <input
           type="text"
           name="firstname"
+          placeholder = "First name"
           value={this.state.firstName}
           onChange={(event)=>{this.setState({firstName: event.target.value})}}/>
           <input
           type="text"
           name="lastname"
+          placeholder = "Last name"
           value={this.state.lastName}
           onChange={(event)=>{this.setState({lastName: event.target.value})}}/>
         </div>
