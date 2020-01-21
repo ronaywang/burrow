@@ -188,9 +188,7 @@ router.post("/makeuser", async (req, res) => {
 });
 
 router.post("/saveusersettings", async (req, res) => {
-  console.log(req.body);
   let myUser = await User.findById(req.user._id);
-  console.log(myUser);
   if (req.body.firstName) {
     myUser.firstName = req.body.firstName;
   }

@@ -5,7 +5,7 @@ const ListingSchema = new mongoose.Schema({
     creator_ID: mongoose.ObjectId,
     photoList: [mongoose.ObjectId],
     lookingForRoom: Boolean,
-    location_ID: mongoose.ObjectId,
+    location: String,
     coordinates: { // usual GPS COORDINATES
         lat: Number,
         lng: Number,

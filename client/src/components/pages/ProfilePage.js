@@ -63,7 +63,7 @@ class ProfilePage extends Component {
         <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 1})}}>Your listings</span>
       </div>
       <div className="TabToDisplay-container">
-        <TabToDisplay/>
+        <TabToDisplay userId={this.props.userId}/>
       </div>
       </>
     )

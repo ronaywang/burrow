@@ -16,13 +16,8 @@ class NewListing extends Component {
       location: "",
       locationquery: '',
       locationcenter: '',
-<<<<<<< HEAD
-      startDate: new moment(),
-      endDate: new moment().add(1, 'd'),
-=======
       startDate: moment(),
       endDate: moment().add(1, 'days'),
->>>>>>> 5b9f7f374d85d826e1bd08deb8a0a7d113ad0c02
       price: 0,
       pets: false,
       smoking: false,
@@ -31,12 +26,14 @@ class NewListing extends Component {
   }
 
   handleSubmit(){
+    console.log(`USER ID IS ${this.props.userId}`);
     get("/api/user", {userId: this.props.userId}).then((userInfo) =>{
       return {
         creator_ID: this.props.userId,
         photoList: [],
         type: this.props.lookingForRoom,
-        location_ID: this.state.location,
+        coordinates: this.state.locationcenter,
+        location: this.state.locationquery,
         price: this.state.price,
         startDate: this.state.startDate.toDate(),
         endDate: this.state.endDate.toDate(),
@@ -45,8 +42,8 @@ class NewListing extends Component {
         additionalPrefText: this.state.textBox,
       };
     }).then((listingInfo) => {
+      console.log("added new listing");
       post("/api/listing", listingInfo);
-      this.props.addNewListing(listingInfo);
     });
   }
 
@@ -83,7 +80,7 @@ class NewListing extends Component {
               {this.props.lookingForRoom ? "Looking for a room in..." : "Looking for a roommate for the following address..."}
             </div>
             <GoogleSearchBar styleName="NavBar"
-            placeIsCity={true}
+            placeIsCity={this.props.lookingForRoom}
             setSelectedCenter={(center)=>{this.setState({locationcenter: center})}}
             searchBarId="newListingSearch"
             updateQuery={(newquery)=>{this.setState({locationquery: newquery});}}/>
@@ -107,8 +104,8 @@ class NewListing extends Component {
             <div className="NewListing-priceDescription">
               {this.props.lookingForRoom ? "With maximum budget..." : "With the following price:"}
             </div>
-            <input type="number" min="0" onChange={(e) => {this.setState({price: e.target.value})}} 
-              className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "$ USD" : "$ USD"} />/month
+            $<input type="number" min="0" onChange={(e) => {this.setState({price: e.target.value})}} 
+              className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "" : ""} />/month
           </div>
           <div className="NewListing-prefsContainer">
               <button className={petsclassName} onClick={()=>{this.setState({pets: !this.state.pets});}}>{petText}</button>

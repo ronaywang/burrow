@@ -15,9 +15,17 @@ class SplashPage extends Component {
       roomStartDate: undefined,
       roomEndDate: undefined,
       roomLocation: "",
+      roomLocationCenter: {
+        lat: 0,
+        long: 0,
+      },
       roommateStart: undefined,
       roommateEnd: undefined,
-      roommateLocation: ""
+      roommateLocation: "",
+      roommateLocationCenter: {
+        lat: 0,
+        long: 0,
+      }
     };
   }
   
@@ -37,7 +45,11 @@ class SplashPage extends Component {
           </div>
           <Tabs styleName="SplashPage">
             <div label="Room">
-              <GoogleSearchBar setSelectedCenter={() => null} styleName="SplashPage" placeIsCity={true} searchBarId="splashPageSearchRoom" updateQuery={(roomLocation) => this.setState({ roomLocation })}/>
+              <GoogleSearchBar setSelectedCenter={() => null} 
+                styleName="SplashPage" placeIsCity={true} searchBarId="splashPageSearchRoom" 
+                updateQuery={(roomLocation) => {
+                  this.setState({ roomLocation })
+                }}/>
               <div className="SplashPage-date SplashPage-input">
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>

@@ -20,7 +20,7 @@ class YourListings extends Component {
       <div>
         {!this.state.newListingActive && <button onClick={()=>{this.setState({newListingActive: true});}}>Add new listing</button>}
         {this.state.newListingActive && (
-          <NewListing/>
+          <NewListing userId={this.props.userId} lookingForRoom={false}/>
         )}
       </div>
     );
