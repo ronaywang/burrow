@@ -33,9 +33,6 @@
 }
 
 .NewListing-textBox {
-    height: 100px;
-    resize: none;
-    overflow: hidden;
     border: var(--borders);
 }
 
