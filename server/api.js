@@ -172,6 +172,9 @@ router.post("/saveusersettings", async (req, res) => {
   if (req.body.gender !== "") {
     myUser.gender = req.body.gender;
   }
+  if (req.body.birthdate) {
+    myUser.birthdate = req.body.birthdate;
+  }
   await myUser.save();
   res.status(200).send({});
 });
