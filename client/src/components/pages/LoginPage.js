@@ -78,7 +78,7 @@ handleSubmit = (event) => {
             <label className="Login-input">
               <span className="fieldname">Password</span>
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={this.state.password}
                 onChange={this.p_handleChange}
