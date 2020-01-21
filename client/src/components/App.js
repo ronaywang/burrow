@@ -115,7 +115,7 @@ class App extends Component {
           <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
           <MainPage path="/main" userId={this.state.userId}
           searchPrefs={this.state.searchPrefs}/>
-          <ProfilePage path="/profile/:userId" 
+          <ProfilePage path="/profile"
           userId={this.state.userId}
           />
           <InboxPage path="/inbox" />

@@ -15,7 +15,7 @@ class NavBar extends Component {
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
         <Link to="/main" className="NavBar-link">Home</Link>
-        <Link to={`/profile/${this.props.userId}`} className="NavBar-link">Profile</Link> 
+        <Link to={"/profile"} className="NavBar-link">Profile</Link> 
         <Link to="/inbox" className="NavBar-link">Inbox</Link> 
         <div className="NavBar-link" onClick={this.props.handleLogout}>Logout</div> 
       </div>

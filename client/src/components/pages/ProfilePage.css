@@ -12,3 +12,20 @@
   height: var(--avatarSize);
 }
 
+.ProfileBar-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ProfileBar-tab {
+  font-size: 140%;
+  color: #555555;
+  text-decoration: underline;
+  margin: 1rem;
+  padding: 0.2rem;
+}
+
+.ProfileBar-tab:hover {
+  background-color: #EEEEEE;
+}
