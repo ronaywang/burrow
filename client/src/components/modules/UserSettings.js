@@ -5,7 +5,7 @@ import "../pages/ProfilePage.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import { get, post } from "../../utilities";
-import genders from "./enums";
+import { genders} from "./enums";
 
 class UserSettings extends Component {
   constructor(props) {
@@ -46,17 +46,12 @@ class UserSettings extends Component {
     });
   }
 
-  saveSettings = () => {
-    if (this.state.maleButtonActive || this.state.femaleButtonActive || this.state.nbButtonActive) {
-      if (this.state.maleButtonActive) {
-        this.setState({gender: genders.M});
-      } else if (this.state.femaleButtonActive) {
-        this.setState({gender: genders.F});
-      } else {
-        this.setState({gender: genders.NB});
-      }
-    }
-    post("/api/saveusersettings", this.state);
+  saveSettings = async () => {
+    post("/api/saveusersettings", this.state).then((result)=>{
+      console.log(result);
+    }).catch((err)=> {
+      console.log(err);
+    });
   };
 
   render() {
@@ -106,13 +101,13 @@ class UserSettings extends Component {
           <span className="fieldname">Which flavor are you</span>
           <button
           className={mbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: true, femaleButtonActive: false, nbButtonActive: false})}}
+          onClick={()=>{this.setState({maleButtonActive: true, femaleButtonActive: false, nbButtonActive: false, gender: genders.M})}}
           >Male</button>
           <button className={fbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: true, nbButtonActive: false})}}
+          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: true, nbButtonActive: false, gender: genders.F})}}
           >Female</button>
           <button className={nbbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: false, nbButtonActive: true})}}
+          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: false, nbButtonActive: true, gender: gender.NB})}}
           >Non-binary</button>
         </div>
         <div>
