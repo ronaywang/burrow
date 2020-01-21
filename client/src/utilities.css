@@ -58,6 +58,13 @@ a {
 
 }
 
+textarea {
+  border: var(--borders);
+  resize: none;
+  height: 5em;
+}
+
+
 
 .u-flex {
   display: flex;
@@ -160,4 +167,12 @@ button, .u-button{
 .fieldname {
   font-size: 120%;
   margin: var(--inputmargins);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
 }

@@ -62,7 +62,7 @@ handleSubmit = (event) => {
       );
     } else {
       return (
-        <div>
+        <div className="u-flexColumn u-flex-alignCenter u-flex-spaceEvenly">
           <h1 className="u-textCenter">Log in</h1>
           { this.state.failed ? "Login failed": null}
           <form className="u-flexColumn u-flex-alignEnd" onSubmit={this.handleSubmit}>
