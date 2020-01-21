@@ -10,19 +10,6 @@ import { get } from "../../utilities";
 class MainPage extends Component{
   constructor(props){
     super(props);
-    this.state = {
-      listingsToDisplay: [],
-    };
-  }
-
-  componentDidMount(){
-    this.generateListings();
-  }
-
-  generateListings(){
-    get("/api/matchinglistings").then((listings) => {
-      this.setState({listingsToDisplay: listings});
-    });
   }
 
   render(){
@@ -32,7 +19,8 @@ class MainPage extends Component{
         <PreferenceBar price={price} smoking={smoking} pets={pets} lookingForRoom={lookingForRoom} startDate={startDate} endDate={endDate}
         updatePrefs={updatePrefs}/>
         <div className="MainPage-feedMapContainer">
-          <Listings displayedListings={this.state.listingsToDisplay} styleName="MainPage" />
+          <div className="MainPage-queryContainer">{`Results for ${location}:`}</div>
+          <Listings displayedListings={this.props.listingsToDisplay} styleName="MainPage" />
           {/* <Map 
             center={}
             zoom={}

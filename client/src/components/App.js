@@ -39,8 +39,8 @@ class App extends Component {
         location: "",
         lookingForRoom: true,
         price: 0,
-        startDate: moment(),
-        endDate: moment(),
+        startDate: new Date(),
+        endDate: new Date(),
         smoking: true,
         pets: true,
       },
@@ -48,6 +48,7 @@ class App extends Component {
         lat: 0,
         lng: 0
       },
+      listingsToDisplay: []
     };
   }
 
@@ -55,9 +56,27 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in.
-        this.setState({ userId: user._id, username: user.username, });
         console.log("you are logged in as " + user.username);
+        this.setState({ userId: user._id, username: user.username, });
       }
+    }).then(() => this.generateListings());
+  }
+
+  generateListings = () => {
+    console.log(this.state.userId);
+    let query = {
+      userId: this.state.userId, 
+      location: this.state.searchPrefs.location,
+      lookingForRoom: this.state.searchPrefs.lookingForRoom,
+      price: this.state.searchPrefs.price,
+      smoking: this.state.searchPrefs.smoking,
+      pets: this.state.searchPrefs.pets,
+      startDate: this.state.searchPrefs.startDate,
+      endDate: this.state.searchPrefs.endDate,
+    };
+    console.log(query);
+    get("/api/matchinglistings", query).then((listings) => {
+      this.setState({listingsToDisplay: listings});
     });
   }
 
@@ -88,7 +107,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log("hi");
     return (
       <>
         <NavBar location={this.state.searchPrefs.location} username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout} setSelectedCenter={this.setSelectedCenter}/>
@@ -115,6 +134,7 @@ class App extends Component {
                 endDate: endDate,
                 location: location,
                 lookingForRoom: lookingForRoom,
+                price: lookingForRoom ? 99999 : 0,
                 pets: true,
                 smoking: true,
               }
@@ -129,6 +149,7 @@ class App extends Component {
           <MainPage path="/main" userId={this.state.userId}
           searchPrefs={this.state.searchPrefs}
           updatePrefs={this.updateSearchPrefs}
+          listingsToDisplay={this.state.listingsToDisplay}
           />
           <ProfilePage path={`/profile/${this.state.userId}`}
           userId={this.state.userId}

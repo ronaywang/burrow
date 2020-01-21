@@ -85,7 +85,38 @@ router.post("/listing", (req, res) => {
 });
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.get("/matchinglistings", (req, res) => {
-  Listing.find().then((listings) => res.send(listings.map((l) => l._id)));
+  var prefs = req.query;
+  Listing.find({$expr: {
+    creatorID: {$not: prefs.userId},
+    lookingForRoom: {$not: prefs.lookingForRoom},
+    price: {
+      $cond: {
+        if: (prefs.lookingForRoom == true),
+        then: { $lte: ["$price", prefs.price] },
+        else: { $gte: ["$price", prefs.price] },
+      }
+    },
+    startDate: {
+      $cond: {
+        if: (prefs.lookingForRoom == true),
+        then: { $lte: ["$startDate", prefs.startDate] },
+        else: { $gte: ["$startDate", prefs.startDate] },
+      }
+    },
+    endDate: {
+      $cond: {
+        if: (prefs.lookingForRoom === true),
+        then: { $gte: ["$endDate", prefs.endDate] },
+        else: { $lte: ["$endDate", prefs.endDate] },
+      }
+    },
+    smokingFriendly: {
+      $cond: [(prefs.smoking === false), false, [true, false]]
+    },
+    petFriendly: {
+      $cond: [{$eq: [prefs.pets, true]}, false, [true, false]]
+    }
+  }}).then((listings) => res.send(listings.map((l) => l._id)));
 })
 
 router.post("/logout", auth.logout);

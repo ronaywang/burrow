@@ -37,7 +37,7 @@ class SplashPage extends Component {
           </div>
           <Tabs styleName="SplashPage">
             <div label="Room">
-              <GoogleSearchBar setSelectedCenter={() => null} styleName="SplashPage" placeIsCity={true} searchBarId="splashPageSearch" updateQuery={(roomLocation) => this.setState({ roomLocation })}/>
+              <GoogleSearchBar setSelectedCenter={() => null} styleName="SplashPage" placeIsCity={true} searchBarId="splashPageSearchRoom" updateQuery={(roomLocation) => this.setState({ roomLocation })}/>
               <div className="SplashPage-date SplashPage-input">
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>
@@ -48,7 +48,7 @@ class SplashPage extends Component {
             </div>
 
             <div label="Roommate">
-              <GoogleSearchBar setSelectedCenter={() => null} styleName="SplashPage" placeIsCity={false} updateQuery={(roommateLocation) => this.setState({ roommateLocation })}/>
+              <GoogleSearchBar setSelectedCenter={() => null} styleName="SplashPage" placeIsCity={false} searchBarId="splashPageSearchRoommate" updateQuery={(roommateLocation) => this.setState({ roommateLocation })}/>
               <div className="SplashPage-date SplashPage-input">
                 <DatePicker startDate={roommateStart} endDate={roommateEnd}
                 handleDateChange={(startDate, endDate) => this.setState({roommateStart: startDate, roommateEnd: endDate})}/>

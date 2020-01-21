@@ -5,7 +5,7 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import './DatePicker.css';
-import { moment, isMoment } from "../../../../node_modules/moment";
+import * as moment from "moment";
 
 class DatePicker extends Component {
 
@@ -25,12 +25,12 @@ class DatePicker extends Component {
   render () {
     return (
       <DateRangePicker
-        startDate={this.props.startDate} // momentPropTypes.momentObj or null,
+        startDate={moment(this.props.startDate)} // momentPropTypes.momentObj or null,
         startDateId={this.state.startDateId} // PropTypes.string.isRequired,
-        endDate={this.props.endDate} // momentPropTypes.momentObj or null,
+        endDate={moment(this.props.endDate)} // momentPropTypes.momentObj or null,
         endDateId={this.state.endDateId} // PropTypes.string.isRequired,
         onDatesChange={({ startDate, endDate }) => {
-          this.props.handleDateChange(startDate, endDate);
+          this.props.handleDateChange(startDate._d, endDate._d);
         }}
         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
