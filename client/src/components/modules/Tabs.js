@@ -68,7 +68,7 @@ class Tabs extends Component {
 
     return (
       <div className={`${styleName}-tabs`}>
-        <ol className={`${styleName}-tabList`}>
+        <ul className={`${styleName}-tabList`}>
           {children.map((child) => {
             const { label } = child.props;
 
@@ -82,7 +82,7 @@ class Tabs extends Component {
               />
             );
           })}
-        </ol>
+        </ul>
         <div className={`${styleName}-tabContent`}>
           {children.map((child) => {
             if (child.props.label !== activeTab) return undefined;

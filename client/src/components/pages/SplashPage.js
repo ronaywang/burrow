@@ -32,12 +32,12 @@ class SplashPage extends Component {
       <div className="SplashPage-container">
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
-            <div className="SplashPage-logo">Find your burrow</div>
-            <div className="SplashPage-tagline">i&apos;m looking for a...</div>
+            <div className="SplashPage-logo">burrow</div>
+            <div className="SplashPage-tagline">I&apos;m looking for a...</div>
           </div>
           <Tabs styleName="SplashPage">
             <div label="Room">
-              <GoogleSearchBar styleName="SplashPage" placeIsCity={true}/>
+              <GoogleSearchBar styleName="SplashPage" placeIsCity={true} searchBarId="splashPageSearch"/>
               <div className="SplashPage-date SplashPage-input">
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>
