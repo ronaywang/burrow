@@ -83,7 +83,7 @@ class App extends Component {
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
           <Skeleton
-            path="/"
+            path="/skeleton"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
@@ -95,7 +95,7 @@ class App extends Component {
             initialZoom={14}
             />
           <NotFound default />
-          <SplashPage path="/splash" passDateLocationToGlobal={(startDate, endDate, location, lookingForRoom) =>
+          <SplashPage path="/" passDateLocationToGlobal={(startDate, endDate, location, lookingForRoom) =>
             this.setState({
               searchPrefs: {
                 startDate: startDate,

@@ -33,7 +33,7 @@ class SplashPage extends Component {
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
             <div className="SplashPage-logo">burrow</div>
-            <div className="SplashPage-tagline">i&apos;m looking for a...</div>
+            <div className="SplashPage-tagline">I&apos;m looking for a...</div>
           </div>
           <Tabs styleName="SplashPage">
             <div label="Room">
