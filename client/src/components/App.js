@@ -61,7 +61,7 @@ class App extends Component {
     });
   }
 
-  updateSearchPrefs(price, smoking, pets, startDate, endDate){
+  updateSearchPrefs = (price, smoking, pets, startDate, endDate) => {
     this.setState({searchPrefs: {
       price: price, smoking: smoking, pets: pets, startDate: startDate, endDate: endDate 
     }});

@@ -32,16 +32,13 @@ class PreferenceBar extends Component {
         <div className="PreferenceBar-pets">  
           Pet friendly? 
           <input onClick={() => {
-            this.setState((prev) => {return {pets: !prev.pets};}, () => {
-              updatePrefs(price, smoking, pets, startDate, endDate);
-            })
+              updatePrefs(price, smoking, !pets, startDate, endDate)
           }} type="checkbox" className="PreferenceBar-checkbox" checked={pets}/>
         </div>
         <div className="PreferenceBar-smoking">
           Smoker friendly? 
-          <input onClick={() => {this.setState((prev) => {return {smoking: !prev.smoking};}, () => {
-            updatePrefs(price, smoking, pets, this.props.startDate, this.props.endDate);
-          })}} type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
+          <input onClick={() => updatePrefs(price, !smoking, pets, this.props.startDate, this.props.endDate)} 
+            type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
         </div>
       </div>
     ) 
