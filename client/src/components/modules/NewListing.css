@@ -47,3 +47,10 @@
 .NewListing-boolbutton-true {
     background-color: #11FF11;
 }
+
+
+.NewListing-supercontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

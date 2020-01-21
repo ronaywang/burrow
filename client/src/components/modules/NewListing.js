@@ -3,8 +3,9 @@ import "../../utilities.css"
 import { get, post } from "../../utilities";
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {LocationSearchBar} from "./SearchBar.js";
+import {GoogleSearchBar} from "./SearchBar.js";
 import DatePicker from "./DatePicker.js";
+import MapComponent from "./Map";
 
 class NewListing extends Component {
 
@@ -12,6 +13,8 @@ class NewListing extends Component {
     super(props);
     this.state = {
       location: "",
+      locationquery: '',
+      locationcenter: '',
       startDate: new Date(),
       endDate: new Date(),
       price: 0,
@@ -62,6 +65,7 @@ class NewListing extends Component {
     }
 
     return (
+      <div className="NewListing-supercontainer">
       <div className="NewListing-container">
         <div className="NewListing-left">
           <div className="NewListing-profilePicContainer">
@@ -72,7 +76,11 @@ class NewListing extends Component {
             <div className="NewListing-locationDescription">
               {this.props.lookingForRoom ? "Looking for a room in..." : "Looking for a roommate for the following address..."}
             </div>
-            <input type="text" onChange={(e) => this.setState({location: e.target.value})} className="NewListing-locationInput" /> 
+            <GoogleSearchBar styleName="NavBar"
+            placeIsCity={true}
+            setSelectedCenter={(center)=>{this.setState({locationcenter: center})}}
+            searchBarId="newListingSearch"
+            updateQuery={(newquery)=>{this.setState({locationquery: newquery});}}/>
             {/* <LocationSearchBar styleName="NewListing" /> */}
           </div>
           <div className="NewListing-dateContainer">
@@ -108,6 +116,17 @@ class NewListing extends Component {
             }}
           />
         </div>
+      </div>
+      {this.state.locationcenter && (
+      <MapComponent
+      path="/map"
+      initialCenter={{lat: 42.360495, lng: -71.093779 }}
+      newCenter = {this.state.locationcenter}
+      initialZoom={14}
+      width={300}
+      height={640}
+      />
+      )}
       </div>
     );
   }
