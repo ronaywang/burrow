@@ -44,15 +44,21 @@ class NewListing extends Component {
   render(){
     let petsclassName = "NewListing-boolbutton";
     let smokclassName = "NewListing-boolbutton";
+    let petText;
+    let smokText;
     if (this.state.pets) {
       petsclassName += " NewListing-boolbutton-true";
+      petText = "Pet friendly ✓";
     } else {
       petsclassName += " NewListing-boolbutton-false";
+      petText = "Pet friendly ✗";
     }
     if (this.state.smoking) {
       smokclassName += " NewListing-boolbutton-true";
+      smokText = "Smoker friendly ✓";
     } else {
       smokclassName += " NewListing-boolbutton-false";
+      smokText = "Smoker friendly ✗";
     }
 
     return (
@@ -85,8 +91,8 @@ class NewListing extends Component {
               className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "$ USD" : "$ USD"} />/month
           </div>
           <div className="NewListing-prefsContainer">
-              <button className={petsclassName} onClick={()=>{this.setState({pets: !this.state.pets});}}>Pet friendly?</button>
-              <button className={smokclassName} onClick={()=>{this.setState({smoking: !this.state.smoking});}}>Smoking friendly?</button>
+              <button className={petsclassName} onClick={()=>{this.setState({pets: !this.state.pets});}}>{petText}</button>
+              <button className={smokclassName} onClick={()=>{this.setState({smoking: !this.state.smoking});}}>{smokText}</button>
           </div>
           <div className="NewListing-textBoxContainer">
             <div className="NewListing-textBoxDescription">Tell us about yourself!</div>
