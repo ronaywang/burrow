@@ -29,7 +29,7 @@ class DatePicker extends Component {
         endDate={moment(this.props.endDate)} // momentPropTypes.momentObj or null,
         endDateId={this.state.endDateId} // PropTypes.string.isRequired,
         onDatesChange={({ startDate, endDate }) => {
-          this.props.handleDateChange(startDate._d, endDate._d);
+          this.props.handleDateChange(startDate, endDate);
         }}
         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,

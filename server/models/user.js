@@ -13,6 +13,7 @@ const UserSchema = new mongoose.Schema({
   fbProfileLink: String,
   profilePicture_ID: mongoose.ObjectId,
   profilePictureURL: String,
+  aboutMe: String,
   bookmarkedListings: [mongoose.ObjectId],
   composedListings: [mongoose.ObjectId]
 });
