@@ -32,9 +32,4 @@
     margin: 5px 0;
 }
 
-textarea {
-    border: var(--borders);
-    resize: none;
-    height: 5em;
-}
 

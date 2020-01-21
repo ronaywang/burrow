@@ -52,6 +52,10 @@ class UserSettings extends Component {
           initialVisibleMonth={() => moment().subtract(25, "Y")}
           displayFormat="MMM DD, YYYY"/>
         </div>
+        <div>
+          <div className="fieldname">Tell us about yourself!</div>
+            <textarea rows="10" cols="30" onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+        </div>
 
         <button id="savebutton"
         name="Save"
