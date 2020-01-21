@@ -11,9 +11,6 @@ class MainPage extends Component{
   constructor(props){
     super(props);
     this.state = {
-      price: this.props.price || 0,
-      smoking: this.props.smoking || true,
-      pets: this.props.pets || true,
       listingsToDisplay: [],
     };
   }
@@ -24,17 +21,16 @@ class MainPage extends Component{
 
   generateListings(){
     get("/api/matchinglistings").then((listings) => {
-      console.log(listings);
       this.setState({listingsToDisplay: listings});
     });
   }
 
   render(){
-    const {searchPrefs: {location, lookingForRoom, price, startDate, endDate, smoking, pets}} = this.props;
+    const {updatePrefs, searchPrefs: {location, lookingForRoom, price, startDate, endDate, smoking, pets}} = this.props;
     return (
       <div className="MainPage-container">
-        <PreferenceBar price={price} smoking={smoking} pets={pets} lookingForRoom={lookingForRoom}
-        updatePrefs={(price, smoking, pets) => this.setState({price, smoking, pets}, () => this.generateListings())}/>
+        <PreferenceBar price={price} smoking={smoking} pets={pets} lookingForRoom={lookingForRoom} startDate={startDate} endDate={endDate}
+        updatePrefs={updatePrefs}/>
         <div className="MainPage-feedMapContainer">
           <Listings displayedListings={this.state.listingsToDisplay} styleName="MainPage" />
           {/* <Map 
@@ -48,6 +44,7 @@ class MainPage extends Component{
 }
 MainPage.propTypes = {
   userId: PropTypes.string.isRequired,
+  updatePrefs: PropTypes.func.isRequired,
   searchPrefs: PropTypes.shape({
     location: PropTypes.string.isRequired,
     lookingForRoom: PropTypes.bool.isRequired,

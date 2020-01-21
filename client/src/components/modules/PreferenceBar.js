@@ -7,23 +7,11 @@ import DatePicker from "./DatePicker";
 class PreferenceBar extends Component {
 
 
-  constructor(props){
-    super(props);
-    this.state = {
-      price: this.props.price,
-      smoking: this.props.smoking,
-      pets: this.props.pets,
-      startDate: this.props.startDate,
-      endDate: this.props.endDate
-    };
-  }
+  
   render(){
     const {
       props: {
-        lookingForRoom, updatePrefs
-      },
-      state: {
-        price, smoking, pets
+        lookingForRoom, updatePrefs, price, smoking, pets, startDate, endDate
       }
     } = this;
     return (
@@ -31,32 +19,29 @@ class PreferenceBar extends Component {
         <div className="PreferenceBar-price">
           <span className="PreferenceBar-dollarsign">$</span>
           <input type="number" min="0" onChange={(e) => {
-              this.setState({price: e.target.value}, () => {
-                updatePrefs(price, smoking, pets, this.state.startDate, this.state.endDate);
-              })
+              updatePrefs(e.target.value, smoking, pets, startDate, endDate);
             }} 
             className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} />/month
         </div>
         <div className="PreferenceBar-dateContainer">
-          <DatePicker handleDateChange={(startDate, endDate) => {
-            this.setState({startDate: startDate._d, endDate: endDate._d}, () => {
-              updatePrefs(price, smoking, pets, this.state.startDate, this.state.endDate);
-            })
-          }} />
+          <DatePicker startDate={startDate} endDate={endDate} handleDateChange={(startDate, endDate) => {
+              updatePrefs(price, smoking, pets, startDate, endDate);
+            }
+          } />
         </div>
         <div className="PreferenceBar-pets">  
           Pet friendly? 
           <input onClick={() => {
             this.setState((prev) => {return {pets: !prev.pets};}, () => {
-              updatePrefs(price, smoking, pets, this.props.startDate, this.props.endDate);
+              updatePrefs(price, smoking, pets, startDate, endDate);
             })
-          }} type="checkbox" className="PreferenceBar-checkbox"/>
+          }} type="checkbox" className="PreferenceBar-checkbox" checked={pets}/>
         </div>
         <div className="PreferenceBar-smoking">
           Smoker friendly? 
           <input onClick={() => {this.setState((prev) => {return {smoking: !prev.smoking};}, () => {
             updatePrefs(price, smoking, pets, this.props.startDate, this.props.endDate);
-          })}} type="checkbox" className="PreferenceBar-checkbox"/>
+          })}} type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
         </div>
       </div>
     ) 

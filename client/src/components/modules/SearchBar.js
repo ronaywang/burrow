@@ -162,9 +162,8 @@ class GoogleSearchBar extends Component {
     // Declare State
     this.state = {
       place: '',
-      query: ''
+      query: this.props.text || ''
     };
-
   }
 
   handleScriptLoad = () => {
@@ -207,8 +206,10 @@ class GoogleSearchBar extends Component {
             lng: addressObject.geometry.location.lng()
           },
         }
-      );
-      this.props.setSelectedCenter(this.state.center);
+      , () => {
+        this.props.setSelectedCenter(this.state.center);
+        this.props.updateQuery(this.state.query);
+      });
     }
   }
 
@@ -221,7 +222,9 @@ class GoogleSearchBar extends Component {
         />
         <input id={this.props.searchBarId}
           placeholder={this.props.placeIsCity ? "Enter city..." : "Enter address..."} 
-          onChange={(e) => this.setState({query: e.target.value})}
+          onChange={(e) => {
+            this.setState({query: e.target.value})
+          }}
           value={this.state.query}
           className={`${this.props.styleName}-search`}
         />
@@ -230,10 +233,12 @@ class GoogleSearchBar extends Component {
   }
 }
 GoogleSearchBar.propTypes = {
-styleName: PropTypes.string.isRequired,
-placeIsCity: PropTypes.bool.isRequired,
-searchBarId: PropTypes.string.isRequired,
-setSelectedCenter: PropTypes.func.isRequired,
+  styleName: PropTypes.string.isRequired,
+  placeIsCity: PropTypes.bool.isRequired,
+  searchBarId: PropTypes.string.isRequired,
+  setSelectedCenter: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
+  updateQuery: PropTypes.func.isRequired
 };
 
 export { GoogleSearchBar };
