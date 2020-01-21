@@ -1,8 +1,8 @@
 .PreferenceBar-container{
     display: flex;
-    border: var(--borders);
     justify-content: flex-start;
     align-items: center;
+    background: #e7ffa1;
 }
 
 .PreferenceBar-container > *{
