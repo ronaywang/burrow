@@ -124,6 +124,15 @@ router.post("/makeuser", async (req, res) => {
   const newUser = new User ({
     username: req.body.username,
     password: req.body.password,
+    email: req.body.email,
+    firstName: "",
+    lastName: "",
+    birthdate: "",
+    gender: "",
+    fbProfileLink: "",
+    profilePictureURL: "",
+    bookmarkedListings: [],
+    composedListings: [],
   });
   console.log(newUser);
   userClash = await User.findOne({username: req.body.username});

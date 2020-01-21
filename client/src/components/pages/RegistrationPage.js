@@ -42,15 +42,23 @@ handleSubmit = (event) => {
     this.setState({mustfillfields: true});
     return;
   }
-  console.log(this.state);
   post("/api/makeuser", this.state).then((res) => {
     this.setState({succeeded: true});
-    console.log(res);
-    console.log(this.state);
+    window.location.pathname="/profile";
   }).catch((err) => {
     this.setState({failed: true});
+    console.log("error");
     console.log(err);
   });
+  
+  // then(() => {
+  //   return post("/api/login", this.state);
+  // }).then((res) => {
+  //   this.setState({succeeded: true});
+  //   console.log("user has registered and loggged in");
+  //   console.log(res);
+  //   window.location.pathname="/profile";
+  // })
 };
 
   componentDidMount() {

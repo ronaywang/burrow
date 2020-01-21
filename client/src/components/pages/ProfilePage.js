@@ -27,6 +27,8 @@ class ProfilePage extends Component {
   }
 
   render() {
+    if (this.props.userId === undefined)
+      return (<div>Log in to access this feature</div>);
     let TabToDisplay;
     switch(this.state.tabIndex) {
       case 0:

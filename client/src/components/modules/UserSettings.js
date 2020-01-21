@@ -13,6 +13,7 @@ class UserSettings extends Component {
       firstName: '',
       lastName: '',
       birthdate: '',
+      email: '',
       fbProfileLink: '',
       datefocused: false,
       textBox: '',
@@ -25,16 +26,15 @@ class UserSettings extends Component {
       this.setState({
         firstName: userObj.firstName,
         lastName: userObj.lastName,
+        email: userObj.email,
         birthdate: userObj.birthdate,
-        fbProfileLink: userObj.fbProfileLink,
+        fbProfileLink: userObj.fbProfileLink
       });
     });
   }
 
   saveSettings = () => {
-    post("/api/saveusersettings", this.state).then((response) => {
-
-    });
+    post("/api/saveusersettings", this.state);
   };
 
   render() {
