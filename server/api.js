@@ -89,13 +89,25 @@ router.get("/matchinglistings", (req, res) => {
 })
 
 router.post("/logout", auth.logout);
+router.get("/getthisuserinfo", async (req, res) => {
+  if (!req.user) {
+    // not logged in
+    return res.send({});
+  }
+  const thisUser = await User.findById(req.user._id);
+  let clonedusr = Object.assign({}, thisUser);
+  clonedusr.password = '';
+  res.send(clonedusr);
+});
+
 router.get("/whoami", (req, res) => {
   if (!req.user) {
     // not logged in
     return res.send({});
   }
-
-  res.send(req.user);
+  let clonedusr = Object.assign({}, req.user);
+  clonedusr.password = '';
+  res.send(clonedusr);
 });
 
 router.post("/initsocket", (req, res) => {
@@ -128,8 +140,21 @@ router.post("/makeuser", async (req, res) => {
   //loginstuff.createUser(req.body);
 });
 
-router.post("/passlogin", (req, res) => {
-  //loginstuff.signin(req, res);
+router.post("/saveusersettings", async (req, res) => {
+  console.log(req.body);
+  let myUser = await User.findById(req.user._id);
+  console.log(myUser);
+  if (req.body.firstName) {
+    myUser.firstName = req.body.firstName;
+  }
+  if (req.body.lastName) {
+    myUser.lastName = req.body.lastName;
+  }
+  if (req.body.fbProfileLink) {
+    myUser.fbProfileLink = req.body.fbProfileLink;
+  }
+  await myUser.save();
+  res.status(200).send();
 });
 
 router.get("/uploadfile", async (req, res) => {

@@ -4,6 +4,7 @@ import "../../utilities.css";
 import "../pages/ProfilePage.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
+import { get, post } from "../../utilities";
 
 class UserSettings extends Component {
   constructor(props) {
@@ -14,15 +15,26 @@ class UserSettings extends Component {
       birthdate: '',
       fbProfileLink: '',
       datefocused: false,
+      textBox: '',
     };
   }
 
   componentDidMount() {
-
+    get("/api/getthisuserinfo").then((userObj) => {
+      console.log(userObj);
+      this.setState({
+        firstName: userObj.firstName,
+        lastName: userObj.lastName,
+        birthdate: userObj.birthdate,
+        fbProfileLink: userObj.fbProfileLink,
+      });
+    });
   }
 
   saveSettings = () => {
+    post("/api/saveusersettings", this.state).then((response) => {
 
+    });
   };
 
   render() {
@@ -61,7 +73,7 @@ class UserSettings extends Component {
           type="text"
           name="fblink"
           value={this.state.fbProfileLink}
-          onChange={(event)=>{this.setState({firstName: event.target.value})}}/>
+          onChange={(event)=>{this.setState({fbProfileLink: event.target.value})}}/>
         </div>
         <div>
           <div className="fieldname">Tell us about yourself!</div>
