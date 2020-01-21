@@ -5,6 +5,7 @@ import "../pages/ProfilePage.css";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import { get, post } from "../../utilities";
+import { genders} from "./enums";
 
 class UserSettings extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class UserSettings extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      birthdate: '',
+      birthdate: undefined,
       email: '',
       fbProfileLink: '',
       datefocused: false,
@@ -35,11 +36,23 @@ class UserSettings extends Component {
         fbProfileLink: userObj.fbProfileLink,
         gender: userObj.gender,
       });
+        if (this.state.gender === genders.M) {
+          this.setState({maleButtonActive: true});
+        } else if (this.state.gender === genders.F) {
+          this.setState({femaleButtonActive: true});
+        } else if (this.state.gender === genders.NB) {
+          this.setState({nbButtonActive: true});
+        }
     });
   }
 
-  saveSettings = () => {
-    post("/api/saveusersettings", this.state);
+  saveSettings = async () => {
+    post("/api/saveusersettings", this.state).then((result)=>{
+      console.log(result);
+    }).catch((err)=> {
+      console.log(err);
+    });
+    console.log(this.state.birthdate);
   };
 
   render() {
@@ -56,6 +69,12 @@ class UserSettings extends Component {
       nbbuttonclass += " UserSettings-genderbuttonActive";
     }
 
+    let dispdate;
+    if (this.state.birthdate) {
+      dispdate = moment(this.state.birthdate);
+    } else {
+      dispdate = '';
+    }
     return (
       <div className="UserSettings-container">
         <div>
@@ -76,23 +95,29 @@ class UserSettings extends Component {
         <div>
           <span className="fieldname">when were ya born, boomer</span>
           <SingleDatePicker
-          date={this.state.birthdate}
-          onDateChange={date => this.setState({birthdate: date})}
+          date={dispdate}
+          onDateChange={date => this.setState({birthdate: date.toDate()})}
           id="profile-date-picker"
           focused={this.state.datefocused}
           onFocusChange={({ focused }) => this.setState({ datefocused: focused })}
           isOutsideRange={(date)=>{return false;}}
           initialVisibleMonth={() => moment().subtract(25, "Y")}
+          numberOfMonths={2}
+          transitionDuration={0}
           displayFormat="MMM DD, YYYY"/>
         </div>
         <div>
           <span className="fieldname">Which flavor are you</span>
           <button
           className={mbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: !this.state.maleButtonActive})}}
+          onClick={()=>{this.setState({maleButtonActive: true, femaleButtonActive: false, nbButtonActive: false, gender: genders.M})}}
           >Male</button>
-          <button className={fbuttonclass}>Female</button>
-          <button className={nbbuttonclass}>Non-binary</button>
+          <button className={fbuttonclass}
+          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: true, nbButtonActive: false, gender: genders.F})}}
+          >Female</button>
+          <button className={nbbuttonclass}
+          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: false, nbButtonActive: true, gender: genders.NB})}}
+          >Non-binary</button>
         </div>
         <div>
           <span className="fieldname">Link your FB profile</span>

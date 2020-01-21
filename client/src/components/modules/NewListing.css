@@ -1,7 +1,7 @@
 .NewListing-container{
     border-radius: var(--borderradius);
     display: grid;
-    grid-template-columns: 35% auto;
+    grid-template-columns: 0% 30rem;
     /*grid-template-rows: 45px 100px 10px auto auto;*/
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
     padding: 3em;
@@ -29,3 +29,28 @@
 }
 
 
+.NewListing-boolbutton {
+  font-size: 120%;
+  font-weight: 700;
+  margin: 0;
+  padding: 0.3rem;
+  border: 1px solid white;
+  color: white;
+  border-radius: 0;
+  width: 11rem;
+}
+
+.NewListing-boolbutton-false {
+    background-color: #FF1111;
+}
+
+.NewListing-boolbutton-true {
+    background-color: #11FF11;
+}
+
+
+.NewListing-supercontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

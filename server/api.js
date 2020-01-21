@@ -126,7 +126,7 @@ router.get("/getthisuserinfo", async (req, res) => {
     return res.send({});
   }
   const thisUser = await User.findById(req.user._id);
-  let clonedusr = Object.assign({}, thisUser);
+  let clonedusr = Object.assign({}, thisUser._doc);
   clonedusr.password = '';
   res.send(clonedusr);
 });
@@ -200,8 +200,14 @@ router.post("/saveusersettings", async (req, res) => {
   if (req.body.fbProfileLink) {
     myUser.fbProfileLink = req.body.fbProfileLink;
   }
+  if (req.body.gender !== "") {
+    myUser.gender = req.body.gender;
+  }
+  if (req.body.birthdate) {
+    myUser.birthdate = req.body.birthdate;
+  }
   await myUser.save();
-  res.status(200).send();
+  res.status(200).send({});
 });
 
 router.get("/uploadfile", async (req, res) => {

@@ -12,8 +12,6 @@ class DatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDateId: "startdateid",
-      endDateId: "enddateid",
       focusedInput: null,
     };
   }
@@ -42,8 +40,10 @@ class DatePicker extends Component {
 
 DatePicker.propTypes = {
   handleDateChange: PropTypes.func.isRequired,
-  startDate: PropTypes.instanceOf(Date),
-  endDate: PropTypes.instanceOf(Date)
+  startDate: PropTypes.instanceOf(momentPropTypes.momentObj),
+  endDate: PropTypes.instanceOf(momentPropTypes.momentObj),
+  startDateId: PropTypes.string.isRequired,
+  endDateId: PropTypes.string.isRequired,
 };
 
 export default DatePicker;

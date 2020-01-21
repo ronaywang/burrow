@@ -60,8 +60,19 @@ class MapComponent extends Component {
   }
 
   render() {
+    let width, height;
+    if (this.props.height) {
+      height = this.props.height;
+    } else {
+      height = 480;
+    }
+    if (this.props.width) {
+      width = this.props.width;
+    } else {
+      width = 640;
+    }
     return (
-      <div id="map" className="u-flex">
+      <div id="map" className="u-flex" style={{width : width, height : height}}>
       </div>
     );
   }
@@ -72,6 +83,8 @@ MapComponent.propTypes = {
   initialCenter: PropTypes.object.isRequired,
   initialZoom: PropTypes.number.isRequired,
   newCenter: PropTypes.object,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
 
 export default MapComponent;
