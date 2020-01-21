@@ -37,7 +37,7 @@ class SplashPage extends Component {
           </div>
           <Tabs styleName="SplashPage">
             <div label="Room">
-              <GoogleSearchBar styleName="SplashPage" placeIsCity={true}/>
+              <GoogleSearchBar styleName="SplashPage" placeIsCity={true} searchBarId="splashPageSearch"/>
               <div className="SplashPage-date SplashPage-input">
                 <DatePicker startDate={roomStartDate} endDate={roomEndDate}
                 handleDateChange={(startDate, endDate) => this.setState({roomStartDate: startDate, roomEndDate: endDate})}/>

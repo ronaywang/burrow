@@ -176,7 +176,7 @@ class GoogleSearchBar extends Component {
     // Initialize Google Autocomplete
     /*global google*/ // To disable any eslint 'google not defined' errors
     this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById('autocomplete'),
+      document.getElementById(this.props.searchBarId),
       options,
     );
 
@@ -219,7 +219,7 @@ class GoogleSearchBar extends Component {
           url={g_places_api_url}
           onLoad={this.handleScriptLoad}
         />
-        <input id="autocomplete" 
+        <input id={this.props.searchBarId}
           placeholder={this.props.placeIsCity ? "Enter city..." : "Enter address..."} 
           onChange={(e) => this.setState({query: e.target.value})}
           value={this.state.query}
@@ -232,6 +232,8 @@ class GoogleSearchBar extends Component {
 GoogleSearchBar.propTypes = {
 styleName: PropTypes.string.isRequired,
 placeIsCity: PropTypes.bool.isRequired,
+searchBarId: PropTypes.string.isRequired,
+setSelectedCenter: PropTypes.func.isRequired,
 };
 
 export { GoogleSearchBar };
