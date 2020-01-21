@@ -19,7 +19,7 @@
 
 .fieldname {
   font-size: 120%;
-  margin: 5px;
+  margin: var(--inputmargins);
 }
 
 .warning {
@@ -31,7 +31,7 @@
 }
 
 .Login-input, .Reg-input {
-  margin: 5px;
+  margin: var(--inputmargins);
 }
 
 
