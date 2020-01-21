@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import {GoogleSearchBar} from "./SearchBar.js";
 import DatePicker from "./DatePicker.js";
 import MapComponent from "./Map";
+import moment from "moment";
 
 class NewListing extends Component {
 
@@ -15,8 +16,8 @@ class NewListing extends Component {
       location: "",
       locationquery: '',
       locationcenter: '',
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: new moment(),
+      endDate: new moment(),
       price: 0,
       pets: false,
       smoking: false,
@@ -32,8 +33,8 @@ class NewListing extends Component {
         type: this.props.lookingForRoom,
         location_ID: this.state.location,
         price: this.state.price,
-        startDate: this.state.startDate._d,
-        endDate: this.state.endDate._d,
+        startDate: this.state.startDate.toDate(),
+        endDate: this.state.endDate.toDate(),
         smokingFriendly: this.state.smoking,
         petFriendly: this.state.pets,
         additionalPrefText: this.state.textBox,
@@ -88,7 +89,13 @@ class NewListing extends Component {
               During...
             </div>
             <div className="NewListing-locationInput">
-              <DatePicker handleDateChange={(startDate, endDate) => this.setState({startDate, endDate})} />
+              <DatePicker
+              handleDateChange={(startDate, endDate) => this.setState({startDate: startDate, endDate: endDate})}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              startDateId="newl-startdateid"
+              endDateId="newl-enddateid"
+              />
             </div>
           </div>
           <div className="NewListing-priceContainer">

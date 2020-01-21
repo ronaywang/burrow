@@ -5,15 +5,13 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import './DatePicker.css';
-import { moment, isMoment } from "../../../../node_modules/moment";
+import momentPropTypes from "moment";
 
 class DatePicker extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      startDateId: "startdateid",
-      endDateId: "enddateid",
       focusedInput: null,
     };
   }
@@ -26,9 +24,9 @@ class DatePicker extends Component {
     return (
       <DateRangePicker
         startDate={this.props.startDate} // momentPropTypes.momentObj or null,
-        startDateId={this.state.startDateId} // PropTypes.string.isRequired,
+        startDateId={this.props.startDateId} // PropTypes.string.isRequired,
         endDate={this.props.endDate} // momentPropTypes.momentObj or null,
-        endDateId={this.state.endDateId} // PropTypes.string.isRequired,
+        endDateId={this.props.endDateId} // PropTypes.string.isRequired,
         onDatesChange={({ startDate, endDate }) => {
           this.props.handleDateChange(startDate, endDate);
         }}
@@ -42,8 +40,10 @@ class DatePicker extends Component {
 
 DatePicker.propTypes = {
   handleDateChange: PropTypes.func.isRequired,
-  startDate: PropTypes.instanceOf(Date),
-  endDate: PropTypes.instanceOf(Date)
+  startDate: PropTypes.instanceOf(momentPropTypes.momentObj),
+  endDate: PropTypes.instanceOf(momentPropTypes.momentObj),
+  startDateId: PropTypes.string.isRequired,
+  endDateId: PropTypes.string.isRequired,
 };
 
 export default DatePicker;
