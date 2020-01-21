@@ -6,6 +6,7 @@ import "./MainPage.css";
 import PreferenceBar from "../modules/PreferenceBar";
 import Listings from "../modules/Listings";
 import { get } from "../../utilities";
+const momentPropTypes = require("react-moment-proptypes");
 
 class MainPage extends Component{
   constructor(props){
@@ -37,8 +38,8 @@ MainPage.propTypes = {
     location: PropTypes.string.isRequired,
     lookingForRoom: PropTypes.bool.isRequired,
     price: PropTypes.number.isRequired,
-    startDate: PropTypes.instanceOf(Date).isRequired,
-    endDate: PropTypes.instanceOf(Date).isRequired,
+    startDate: momentPropTypes.momentObj.isRequired,
+    endDate: momentPropTypes.momentObj.isRequired,
     smoking: PropTypes.bool.isRequired,
     pets: PropTypes.bool.isRequired,
   })

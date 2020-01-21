@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "../../utilities.css";
 import "./PreferenceBar.css";
 import DatePicker from "./DatePicker";
+const momentPropTypes = require("react-moment-proptypes");
 
 class PreferenceBar extends Component {
 
@@ -49,8 +50,8 @@ PreferenceBar.propTypes = {
   price: PropTypes.number.isRequired,
   smoking: PropTypes.bool.isRequired,
   pets: PropTypes.bool.isRequired,
-  startDate: PropTypes.instanceOf(Date).isRequired,
-  endDate: PropTypes.instanceOf(Date).isRequired,
+  startDate: momentPropTypes.momentObj.isRequired,
+  endDate: momentPropTypes.momentObj.isRequired,
   lookingForRoom: PropTypes.bool.isRequired,
   updatePrefs: PropTypes.func.isRequired,
 };

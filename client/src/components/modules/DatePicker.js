@@ -6,7 +6,8 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import './DatePicker.css';
 import * as moment from "moment";
-import momentPropTypes from "moment";
+const momentPropTypes = require("react-moment-proptypes");
+
 
 class DatePicker extends Component {
 
@@ -41,8 +42,8 @@ class DatePicker extends Component {
 
 DatePicker.propTypes = {
   handleDateChange: PropTypes.func.isRequired,
-  startDate: PropTypes.instanceOf(momentPropTypes.momentObj),
-  endDate: PropTypes.instanceOf(momentPropTypes.momentObj),
+  startDate: momentPropTypes.momentObj,
+  endDate: momentPropTypes.momentObj,
   startDateId: PropTypes.string.isRequired,
   endDateId: PropTypes.string.isRequired,
 };
