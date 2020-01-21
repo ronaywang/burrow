@@ -22,14 +22,18 @@ class ProfilePage extends Component {
   render() {
     return (
       <>
+      <div className = "ProfileBar-container">
       <div>
         {this.state.profilePicURL && (
-        <img className = "avatar" src={this.state.profilePicURL}/>
+        <img className = "ProfileBar-photo" src={this.state.profilePicURL}/>
         )}
       </div>
       <ProfilePicUploader/>
+      
+      </div>
+      <div className = "ProfileBar-middle"></div>
       </>
-    );
+    )
   }
 }
 

@@ -1,7 +1,14 @@
-.avatar {
+.ProfileBar-container {
+  display: flex;
+  height: var(--avatarSize);
+  background: pink;
+}
+
+.ProfileBar-photo {
   --avatarSize: 150px;
   object-fit: cover;
   border-radius: 50%;
   width: var(--avatarSize);
   height: var(--avatarSize);
 }
+
