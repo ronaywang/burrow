@@ -10,12 +10,15 @@ import { GoogleSearchBar } from "./SearchBar";
 
 class NavBar extends Component {
   
+  componentWillUnmount(){
+    console.log("unmounting navbar...");
+  }
   render(){
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
         <Link to="/main" className="NavBar-link">Home</Link>
-        <Link to={"/profile"} className="NavBar-link">Profile</Link> 
+        <Link to={`/profile/${userId}`} className="NavBar-link">Profile</Link> 
         {/*<Link to="/inbox" className="NavBar-link">Inbox</Link> hidden for now for MVP submission*/}
         <div className="NavBar-link" onClick={this.props.handleLogout}>Logout</div> 
       </div>
@@ -45,7 +48,7 @@ class NavBar extends Component {
           <div className="NavBar-logo">
             <Link to="/" className="NavBar-logo-link">burrow</Link>
           </div>
-          <GoogleSearchBar styleName="NavBar" placeIsCity={true} setSelectedCenter={this.props.setSelectedCenter} searchBarId="navBarSearch"/>
+          <GoogleSearchBar styleName="NavBar" text={this.props.location} placeIsCity={true} setSelectedCenter={this.props.setSelectedCenter} searchBarId="navBarSearch"/>
         </div>
         {linkContainer}
       </div>

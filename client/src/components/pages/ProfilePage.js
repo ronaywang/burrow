@@ -19,16 +19,18 @@ class ProfilePage extends Component {
     };
   }
 
-  async componentDidMount() {
-    if (!this.state.profilePicURL) {
-      const myres = await post("/api/getProfilePic", {userId: this.props.userId});
-      this.setState({profilePicURL: myres.photoURL});
+  componentDidMount() {
+    if (this.state.profilePicURL.length == 0) {
+      post("/api/getProfilePic", {userId: this.props.userId}).then((myres) => {
+        this.setState({profilePicURL: myres.photoURL});
+      });
     }
   }
 
   render() {
-    if (this.props.userId === undefined)
+    if (this.props.userId === "")
       return (<div>Log in to access this feature</div>);
+    console.log(this.state.profilePicURL);
     let TabToDisplay;
     switch(this.state.tabIndex) {
       case 0:

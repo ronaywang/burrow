@@ -137,9 +137,16 @@ router.post("/makeuser", async (req, res) => {
   console.log(newUser);
   userClash = await User.findOne({username: req.body.username});
   if (userClash === null) {
-  newUser.save();
-  res.status(200);
-  res.send({});
+    newUser.save(function(err, result){
+      if(err) {
+        response = { error: true, message: "Error adding data" };
+      } else {
+        response = { error: false, message: "Data added", _id: result._id };
+        res.status(200);
+      }
+      res.send(response);
+    });
+  
   } else {
     console.log("conflict");
     err = new Error("A user with that username already exists");

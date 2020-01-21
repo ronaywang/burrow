@@ -12,8 +12,8 @@ class NewListing extends Component {
     super(props);
     this.state = {
       location: "",
-      startDate: undefined,
-      endDate: undefined,
+      startDate: new Date(),
+      endDate: new Date(),
       price: 0,
       pets: false,
       smoking: false,

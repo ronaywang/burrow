@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router } from "@reach/router";
+import { Router, Redirect } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 
@@ -23,6 +23,7 @@ import NewListing from "./modules/NewListing.js";
 import MainPage from "./pages/MainPage.js";
 import ProfilePage from "./pages/ProfilePage";
 import InboxPage from "./pages/MainPage.js";
+import * as moment from "moment";
 
 /**
  * Define the "App" component as a class.
@@ -32,18 +33,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: undefined,
-      username: undefined,
+      userId: "",
+      username: "",
       searchPrefs: { 
-        location: undefined,
-        lookingForRoom: undefined,
-        price: undefined,
-        startDate: undefined,
-        endDate: undefined,
-        smoking: undefined,
-        pets: undefined,
+        location: "",
+        lookingForRoom: true,
+        price: 0,
+        startDate: moment(),
+        endDate: moment(),
+        smoking: true,
+        pets: true,
       },
-      mapCenter: undefined,
+      mapCenter: {
+        lat: 0,
+        lng: 0
+      },
     };
   }
 
@@ -57,6 +61,12 @@ class App extends Component {
     });
   }
 
+  updateSearchPrefs(price, smoking, pets, startDate, endDate){
+    this.setState({searchPrefs: {
+      price: price, smoking: smoking, pets: pets, startDate: startDate, endDate: endDate 
+    }});
+  }
+
   handleLogin = (res) => {
     console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
@@ -67,9 +77,9 @@ class App extends Component {
   };
 
   handleLogout = () => {
-    this.setState({ userId: undefined, username: undefined});
     post("/api/logout").then(() => {
       window.location.pathname="/";
+      this.setState({ userId: "", username: ""});
     })
   };
 
@@ -78,9 +88,10 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <>
-        <NavBar username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout} setSelectedCenter={this.setSelectedCenter}/>
+        <NavBar location={this.state.searchPrefs.location} username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout} setSelectedCenter={this.setSelectedCenter}/>
         <Router>
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
@@ -116,8 +127,10 @@ class App extends Component {
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
           <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
           <MainPage path="/main" userId={this.state.userId}
-          searchPrefs={this.state.searchPrefs}/>
-          <ProfilePage path="/profile/"
+          searchPrefs={this.state.searchPrefs}
+          updatePrefs={this.updateSearchPrefs}
+          />
+          <ProfilePage path={`/profile/${this.state.userId}`}
           userId={this.state.userId}
           />
           <InboxPage path="/inbox" />

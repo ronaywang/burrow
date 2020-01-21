@@ -44,7 +44,7 @@ handleSubmit = (event) => {
   }
   post("/api/makeuser", this.state).then((res) => {
     this.setState({succeeded: true});
-    window.location.pathname="/profile";
+    window.location.pathname="/profile/" + res._id;
   }).catch((err) => {
     this.setState({failed: true});
     console.log("error");
