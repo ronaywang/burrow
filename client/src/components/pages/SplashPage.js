@@ -72,7 +72,8 @@ class SplashPage extends Component {
 }
 
 SplashPage.propTypes = {
-  passDateLocationToGlobal: PropTypes.func.isRequired
+  passDateLocationToGlobal: PropTypes.func.isRequired,
+  setSelectedCenter: PropTypes.func,
 };
 
 export default SplashPage;

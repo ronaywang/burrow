@@ -72,7 +72,7 @@ class App extends Component {
   };
 
   setSelectedCenter = (center) => {
-    this.setState({ mapCenter: center});
+    this.setState({ mapCenter: center });
   };
 
   render() {
@@ -106,7 +106,9 @@ class App extends Component {
                 smoking: true,
               }
             })
-          }/>
+          }
+          setSelectedCenter={this.setSelectedCenter}          
+          />
           <TryCard path="/cardsample"/>
           <PhotoUploadPrototype path="/photouploadprototype"/>
           <ProfilePicUploader path="/profilepicuploader"/>

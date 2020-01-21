@@ -12,7 +12,7 @@ class ProfilePage extends Component {
     };
   }
 
-  async componentDidUpdate() {
+  async componentDidMount() {
     if (!this.state.profilePicURL) {
       const myres = await  post("/api/getProfilePic", {userId: this.props.userId});
       this.setState({profilePicURL: myres.photoURL});
