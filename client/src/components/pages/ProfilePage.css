@@ -1,7 +1,8 @@
 .ProfileBar-container {
   display: flex;
   height: var(--avatarSize);
-  background: pink;
+  align-items: center;
+  justify-content: center;
 }
 
 .ProfileBar-photo {
