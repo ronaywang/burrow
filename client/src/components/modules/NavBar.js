@@ -16,7 +16,7 @@ class NavBar extends Component {
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
         <Link to="/main" className="NavBar-link">Home</Link>
         <Link to={"/profile"} className="NavBar-link">Profile</Link> 
-        <Link to="/inbox" className="NavBar-link">Inbox</Link> 
+        {/*<Link to="/inbox" className="NavBar-link">Inbox</Link> hidden for now for MVP submission*/}
         <div className="NavBar-link" onClick={this.props.handleLogout}>Logout</div> 
       </div>
     ) : (
