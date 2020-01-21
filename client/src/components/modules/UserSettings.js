@@ -116,7 +116,7 @@ class UserSettings extends Component {
           onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: true, nbButtonActive: false, gender: genders.F})}}
           >Female</button>
           <button className={nbbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: false, nbButtonActive: true, gender: gender.NB})}}
+          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: false, nbButtonActive: true, gender: genders.NB})}}
           >Non-binary</button>
         </div>
         <div>
