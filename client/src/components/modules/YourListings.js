@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import "../../utilities.css";
 import "../pages/ProfilePage.css";
 import NewListing from "../modules/NewListing";

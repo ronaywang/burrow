@@ -1,7 +1,7 @@
 .NavBar-container{
     display: flex;
     height: 5%;
-    background: #A1CD22;
+    background: var(--accentcolor);
     align-items: center;
     justify-content: space-between;
 }

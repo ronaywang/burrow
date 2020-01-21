@@ -12,6 +12,7 @@ class UserSettings extends Component {
       firstName: '',
       lastName: '',
       birthdate: '',
+      fbProfileLink: '',
       datefocused: false,
     };
   }
@@ -53,6 +54,14 @@ class UserSettings extends Component {
           isOutsideRange={(date)=>{return false;}}
           initialVisibleMonth={() => moment().subtract(25, "Y")}
           displayFormat="MMM DD, YYYY"/>
+        </div>
+        <div>
+          <span className="fieldname">Link your FB profile</span>
+          <input
+          type="text"
+          name="fblink"
+          value={this.state.fbProfileLink}
+          onChange={(event)=>{this.setState({firstName: event.target.value})}}/>
         </div>
         <div>
           <div className="fieldname">Tell us about yourself!</div>

@@ -20,14 +20,15 @@
 
 .ProfileBar-tab {
   font-size: 140%;
-  color: #555555;
-  text-decoration: underline;
+  color: white;
   margin: 1rem;
-  padding: 0.2rem;
+  padding: 0.3rem;
+  background: var(--accentcolor);
 }
 
 .ProfileBar-tab:hover {
   background-color: #EEEEEE;
+  cursor: pointer;
 }
 
 .TabToDisplay-container {

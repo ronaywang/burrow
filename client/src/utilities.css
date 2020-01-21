@@ -38,6 +38,8 @@
   --borderradius: 0.5rem;
   --margins: 0.75rem;
   --inputmargins: 5px;
+
+  --accentcolor:#A1CD22;
 }
 
 body {
