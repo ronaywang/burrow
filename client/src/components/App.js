@@ -13,7 +13,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 import MapComponent from "./modules/Map";
 import SplashPage from "./pages/SplashPage";
 import TryCard from "./modules/TryCard";
-import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
+//import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
 //import NavBar from "./modules/NavBar";
 import ProfilePicUploader from "./modules/ProfilePicUploader";
 
@@ -110,7 +110,6 @@ class App extends Component {
           setSelectedCenter={this.setSelectedCenter}          
           />
           <TryCard path="/cardsample"/>
-          <PhotoUploadPrototype path="/photouploadprototype"/>
           <ProfilePicUploader path="/profilepicuploader"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
           <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>

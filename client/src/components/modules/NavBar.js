@@ -55,6 +55,8 @@ class NavBar extends Component {
 
 NavBar.propTypes = {
   userId: PropTypes.string.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  setSelectedCenter: PropTypes.func.isRequired,
 };
 
 export default NavBar;
