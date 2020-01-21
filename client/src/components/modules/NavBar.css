@@ -31,3 +31,7 @@
 .NavBar-link:hover{
  background: #668215;
 }
+
+.NavBar-logo-link {
+    color: white;
+}
