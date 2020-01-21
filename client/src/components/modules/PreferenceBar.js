@@ -29,6 +29,7 @@ class PreferenceBar extends Component {
     return (
       <div className="PreferenceBar-container">
         <div className="PreferenceBar-price">
+          <span className="PreferenceBar-dollarsign">$</span>
           <input type="number" min="0" onChange={(e) => {
               this.setState({price: e.target.value}, () => {
                 updatePrefs(price, smoking, pets, this.state.startDate, this.state.endDate);

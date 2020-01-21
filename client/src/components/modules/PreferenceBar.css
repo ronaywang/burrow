@@ -18,3 +18,15 @@
     margin: 0em 0.2em;
     width: auto;
 }
+
+.PreferenceBar-priceInput {
+    font-size: 140%;
+    font-family: skolar-sans-latin-condensed;
+    font-weight: 300;
+}
+
+.PreferenceBar-dollarsign {
+    font-size: 160%;
+    font-family: skolar-sans-latin-condensed;
+    font-weight: 300
+}
