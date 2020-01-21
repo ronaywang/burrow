@@ -83,7 +83,7 @@ class NewListing extends Component {
           </div>
           <div className="NewListing-textBoxContainer">
             <div className="NewListing-textBoxDescription">Tell us about yourself!</div>
-            <input type="text" onChange={(e) => {this.setState({textBox: e.target.value})}} className="NewListing-textBox" />
+            <textarea rows="10" cols="30" onChange={(e) => {this.setState({textBox: e.target.value})}} className="NewListing-textBox" />
           </div>
           <input
             className="NewListing-submit"

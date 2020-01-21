@@ -32,3 +32,10 @@
     margin: 5px 0;
 }
 
+.NewListing-textBox {
+    height: 100px;
+    resize: none;
+    overflow: hidden;
+    border: var(--borders);
+}
+
