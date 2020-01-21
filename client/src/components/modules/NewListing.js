@@ -17,7 +17,7 @@ class NewListing extends Component {
       locationquery: '',
       locationcenter: '',
       startDate: new moment(),
-      endDate: new moment(),
+      endDate: new moment().add(1, 'd'),
       price: 0,
       pets: false,
       smoking: false,

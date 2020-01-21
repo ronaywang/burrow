@@ -35,6 +35,7 @@ class UserSettings extends Component {
         birthdate: userObj.birthdate,
         fbProfileLink: userObj.fbProfileLink,
         gender: userObj.gender,
+        textBox: userObj.aboutMe
       });
         if (this.state.gender === genders.M) {
           this.setState({maleButtonActive: true});
@@ -47,6 +48,7 @@ class UserSettings extends Component {
   }
 
   saveSettings = async () => {
+    console.log(this.state);
     post("/api/saveusersettings", this.state).then((result)=>{
       console.log(result);
     }).catch((err)=> {
@@ -129,7 +131,7 @@ class UserSettings extends Component {
         </div>
         <div>
           <div className="fieldname">Tell us about yourself!</div>
-            <textarea rows="10" cols="30" onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+            <textarea rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
         </div>
 
         <button id="savebutton"
