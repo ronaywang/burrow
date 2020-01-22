@@ -13,6 +13,7 @@ const multer = require("multer");
 const upload = require("./upload");
 const mime = require("mime-types");
 const axios = require("axios");
+const _ = require("lodash");
 
 // import models so we can interact with the database
 const User = require("./models/user");
@@ -111,6 +112,21 @@ router.get("/getthisuserinfo", async (req, res) => {
   clonedusr.password = '';
   res.send(clonedusr);
 });
+
+// Gets the composed listings of a user given their id.
+// If you send sendself=true, you get back the current user's listings.
+router.get("/composedlistings", (req, res) => {
+  console.log(req.query);
+  Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id}).then((info) => res.send(info));
+});
+
+// Gets the composed listings of a user given their id.
+// If you send sendself=true, you get back the current user's listings.
+router.get("/composedlistings-ids-only", (req, res) => {
+  console.log(req.query);
+  Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id}, '_id').distinct('_id').then((info) => res.send(info));
+});
+
 
 router.get("/whoami", (req, res) => {
   if (!req.user) {

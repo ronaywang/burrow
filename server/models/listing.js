@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 
 const ListingSchema = new mongoose.Schema({
-    creator_ID: mongoose.ObjectId,
-    photoList: [mongoose.ObjectId],
+    creator_ID: {type: Schema.Types.ObjectId, ref: 'user' },
+    photoList: [{type: Schema.Types.ObjectId, ref: 'photo' }],
     lookingForRoom: Boolean,
     location: String,
     coordinates: { // usual GPS COORDINATES

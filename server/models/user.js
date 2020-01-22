@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
 const saltLength = 12;
+const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
   email: String,
@@ -11,11 +12,11 @@ const UserSchema = new mongoose.Schema({
   birthdate: Date,
   gender: String,
   fbProfileLink: String,
-  profilePicture_ID: mongoose.ObjectId,
+  profilePicture_ID: { type: Schema.Types.ObjectId, ref: 'photo' },
   profilePictureURL: String,
   aboutMe: String,
-  bookmarkedListings: [mongoose.ObjectId],
-  composedListings: [mongoose.ObjectId]
+  bookmarkedListings: [{ type: Schema.Types.ObjectId, ref: 'listing' }],
+  composedListings: [{ type: Schema.Types.ObjectId, ref: 'listing' }],
 });
 
 // authentication

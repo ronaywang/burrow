@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const gcloudstorage = require("../server-gbucket");
-
+const Schema = mongoose.Schema;
 
 
 const PhotoSchema = new mongoose.Schema({
@@ -9,7 +9,7 @@ const PhotoSchema = new mongoose.Schema({
     extension: String,   // file extension. filename is _id + '.' + extension
     width: Number,
     height: Number,
-    owner: mongoose.ObjectId, // user who owns this file
+    owner: { type: Schema.Types.ObjectId, ref: 'user' }, // user who owns this file
 });
 
 // it is very important that the following function (and in general mongodb instance methods)
