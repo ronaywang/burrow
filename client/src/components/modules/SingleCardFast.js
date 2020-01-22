@@ -71,7 +71,7 @@ class SingleCardFast extends Component {
                 </tr>
                 <tr>
                   <th className="ldp-left">during</th>
-                  <th className="ldp-right">{formatDate(startDate)} – {formatDate(endDate)}</th>
+                  <th className="ldp-right">{formatDate(startDate)}–{formatDate(endDate)}</th>
                 </tr>
                 <tr>
                 <th className="ldp-left">{lookingForRoom ? "with a budget of" : "with a price of"}</th>
