@@ -6,8 +6,6 @@ import DatePicker from "./DatePicker";
 const momentPropTypes = require("react-moment-proptypes");
 
 class PreferenceBar extends Component {
-
-
   
   render(){
     const {

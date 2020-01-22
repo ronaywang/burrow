@@ -55,8 +55,7 @@ class App extends Component {
   componentDidMount() {
     get("/api/whoami").then((user) => {
       if (user._id) {
-        // they are registed in the database, and currently logged in.
-        console.log("you are logged in as " + user.username);
+        // they are registed in the database, and currently logged in
         this.setState({ userId: user._id, username: user.username, });
       }
     }).then(() => this.generateListings());
@@ -86,7 +85,6 @@ class App extends Component {
   }
 
   handleLogin = (res) => {
-    console.log(`Logged in as ${res.profileObj.name}`);
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
