@@ -82,7 +82,11 @@ class SplashPage extends Component {
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
             <div className="SplashPage-logo">burrow</div>
-            <div className="SplashPage-tagline">I&apos;m looking for a...</div>
+            {roomTrue ? (
+            <div className="SplashPage-tagline">I&apos;m looking for a</div>
+            ) : (
+            <div className="SplashPage-tagline">I&apos;ve GOT a room and am looking for a</div>
+            )}
           </div>
 
           <div>
@@ -95,24 +99,36 @@ class SplashPage extends Component {
           </div>
 
 
-          <div>
-            <input type="number" step="100" className="SplashPage-rentinput"
-            max={roomTrue ? this.state.roomRentUpper : this.state.roommateRentUpper}
-            value={roomTrue ? this.state.roomRentLower : this.state.roommateRentLower}
-            onChange={(event)=>{
-              roomTrue ? this.setState({roomRentLower: event.target.value}) : 
-                this.setState({roommateRentLower: event.target.value});
-              }}/> 
-            <span className="fieldname">≤ Rent ≤</span>
-            <input type="number" step="100" className="SplashPage-rentinput"
-            min={roomTrue ? this.state.roomRentLower : this.state.roommateRentLower}
-            value={roomTrue ? this.state.roomRentUpper : this.state.roommateRentUpper}
-            onChange={(event)=>{
-              roomTrue ? this.setState({roomRentUpper: event.target.value}) : 
-                this.setState({roommateRentUpper: event.target.value});
-              }}/> 
-            <span className="fieldname">(USD / mo.)</span>
-          </div>
+          {roomTrue ? (
+            <div>
+              <input type="number" step="100" className="SplashPage-rentinput"
+              max={roomTrue ? this.state.roomRentUpper : this.state.roommateRentUpper}
+              value={roomTrue ? this.state.roomRentLower : this.state.roommateRentLower}
+              onChange={(event)=>{
+                roomTrue ? this.setState({roomRentLower: event.target.value}) : 
+                  this.setState({roommateRentLower: event.target.value});
+                }}/> 
+              <span className="fieldname">≤ Rent ≤</span>
+              <input type="number" step="100" className="SplashPage-rentinput"
+              min={roomTrue ? this.state.roomRentLower : this.state.roommateRentLower}
+              value={roomTrue ? this.state.roomRentUpper : this.state.roommateRentUpper}
+              onChange={(event)=>{
+                roomTrue ? this.setState({roomRentUpper: event.target.value}) : 
+                  this.setState({roommateRentUpper: event.target.value});
+                }}/> 
+              <span className="fieldname">(USD / mo.)</span>
+            </div>
+          ) : (
+            <div>
+              <span className="fieldname">Rent =</span>
+              <input type="number" step="100" className="SplashPage-rentinput"
+              value={this.state.roommateRentUpper}
+              onChange={(event)=>{
+                  this.setState({roommateRentUpper: event.target.value});
+                }}/> 
+              <span className="fieldname">(USD / mo.)</span>
+            </div>
+          )}
 
             {roomTrue ? roomSearchBar : roommateSearchBar}
 
