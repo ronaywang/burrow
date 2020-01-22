@@ -80,7 +80,9 @@ router.get("/listing", (req, res) => {
 })
 // Sends a listing to the schema.
 router.post("/listing", (req, res) => {
-  new Listing(req.body).save().then((listing) => res.send(listing));
+  let newListing = new Listing(req.body);
+  newListing.creator_ID = req.user._id;
+  newListing.save().then((listing) => res.send(listing));
 });
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.get("/matchinglistings", (req, res) => {

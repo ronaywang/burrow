@@ -26,23 +26,19 @@ class NewListing extends Component {
   }
 
   handleSubmit(){
-    get("/api/myuid").then((response) =>{
-      return {
-        creator_ID: response.userId,
-        photoList: [],
-        lookingForRoom: this.props.lookingForRoom,
-        coordinates: this.state.locationcenter,
-        location: this.state.locationquery,
-        price: this.state.price,
-        startDate: this.state.startDate.toDate(),
-        endDate: this.state.endDate.toDate(),
-        smokingFriendly: this.state.smoking,
-        petFriendly: this.state.pets,
-        additionalPrefText: this.state.textBox,
-      };
-    }).then((listingInfo) => {
-      post("/api/listing", listingInfo);
-    });
+   const listingInfo = { 
+      photoList: [],
+      lookingForRoom: this.props.lookingForRoom,
+      coordinates: this.state.locationcenter,
+      location: this.state.locationquery,
+      price: this.state.price,
+      startDate: this.state.startDate.toDate(),
+      endDate: this.state.endDate.toDate(),
+      smokingFriendly: this.state.smoking,
+      petFriendly: this.state.pets,
+      additionalPrefText: this.state.textBox,
+   };
+  post("/api/listing", listingInfo);
   }
 
   render(){
