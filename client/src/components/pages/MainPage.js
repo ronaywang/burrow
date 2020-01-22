@@ -33,6 +33,7 @@ class MainPage extends Component{
 }
 MainPage.propTypes = {
   userId: PropTypes.string.isRequired,
+  triggerSearch: PropTypes.func.isRequired,
   updatePrefs: PropTypes.func.isRequired,
   searchPrefs: PropTypes.shape({
     location: PropTypes.string.isRequired,
