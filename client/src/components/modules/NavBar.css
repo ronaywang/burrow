@@ -1,16 +1,18 @@
 .NavBar-container{
     display: flex;
     height: 5%;
-    background: var(--accentcolor);
+    background: white;
     align-items: center;
     justify-content: space-between;
+    margin: 0% 4%;
+    border-bottom: 1px solid var(--neutral6);
 }
 
 .NavBar-logo {
     font-family: 'Indie Flower';
     font-size: 300%;
     margin: 10px 20px;
-    color: white;
+    color: var(--primary3);
 
 }
 
@@ -22,16 +24,20 @@
 }
 .NavBar-link {
     margin: 10px;
-    color: white;
-    padding: 5px;
+    color: var(--primary2);
+    padding: 1rem 2px;
     cursor: pointer;
+    font-size: 120%;
+
 
 }
 
 .NavBar-link:hover{
- background: #668215;
+    color: var(--primary4);
+    border-bottom: 2px solid var(--primary5);
 }
 
 .NavBar-logo-link {
-    color: white;
+    color: var(--primary3);
+    
 }

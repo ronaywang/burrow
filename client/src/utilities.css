@@ -20,13 +20,6 @@
 @import url("https://use.typekit.net/chp7dgz.css");
 @import url("https://fonts.googleapis.com/css?family=Indie+Flower&display=swap");
 :root {
-  --primary: #396dff;
-  --primary--dim: #6987db;
-  --darkgrey: #d4d4d4;
-  --medgrey: #e0e0e0;
-  --grey: #f7f7f7;
-  --white: #fff;
-
   --xxs: 2px;
   --xs: 4px;
   --s: 8px;
@@ -34,12 +27,27 @@
   --l: 24px;
   --xl: 48px;
 
-  --borders: 1px solid #c5c5c5;
+  --borders: 1px solid #E1E7EC;
   --borderradius: 0.5rem;
   --margins: 0.75rem;
   --inputmargins: 5px;
 
-  --accentcolor:#A1CD22;
+  --primary1: #003D4D;
+  --primary2: #00566B;
+  --primary3: #008EAD;
+  --primary4: #00B7E0;
+  --primary5: #59E0FF;
+  --primary6: #9EEDFF;
+  --primary7: #E5FAFF;
+
+  --neutral1: #212934;
+  --neutral2: #5F6B7A;
+  --neutral3: #8894A7;
+  --neutral4: #B8C4CE;
+  --neutral5: #CFD6DE;
+  --neutral6: #E1E7EC;
+  --neutral7: #F8F9FA;
+
 }
 
 body {
@@ -119,13 +127,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .u-link {
-  color: var(--primary);
   text-decoration: none;
   cursor: pointer;
 }
 
 .u-link:hover {
-  color: var(--primary--dim);
+  color: var(--primary4);
 }
 
 

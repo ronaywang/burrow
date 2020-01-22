@@ -2,7 +2,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background: #e7ffa1;
+    background: var(--neutral7);
 }
 
 .PreferenceBar-container > *{
@@ -21,31 +21,30 @@
 
 .PreferenceBar-priceInput {
     font-size: 140%;
-    font-family: skolar-sans-latin-condensed;
+    font-family: "skolar-sans-latin-condensed";
     font-weight: 300;
 }
 
 .PreferenceBar-dollarsign {
     font-size: 160%;
-    font-family: skolar-sans-latin-condensed;
+    font-family: "skolar-sans-latin-condensed";
     font-weight: 300
 }
 
 .PreferenceBar-gobutton{
   font-size: 140%;
-  font-weight: 700;
   margin: 0;
   padding: 0.3rem;
   border: 1px solid white;
   color: white;
-  border-radius: 0;
+  border-radius: 2px;
   border: none;
-  background-color: var(--accentcolor);
+  background-color: var(--primary4);
 }
 
 .PreferenceBar-gobutton:hover {
-  background-color: #668215;
+  background-color: var(--primary5);
 }
 .PreferenceBar-gobutton:active {
-  background-color: #475716;
+  background-color: var(--primary6);
 }
