@@ -129,6 +129,15 @@ router.get("/composedlistings-ids-only", (req, res) => {
   Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id}, '_id').distinct('_id').then((info) => res.send(info));
 });
 
+router.get("/myuid", (req, res) => {
+  if (_.has(req.user, '_id')) {
+    res.send({userId: req.user._id});
+  } else {
+    const err = new Error("You are not logged in");
+    res.status(401);
+    res.send(err);
+  }
+})
 
 router.get("/whoami", (req, res) => {
   if (!req.user) {
@@ -177,7 +186,7 @@ router.post("/makeuser", async (req, res) => {
     });
   
   } else {
-    err = new Error("A user with that username already exists");
+    const err = new Error("A user with that username already exists");
     res.status(409);
     res.send(err);
   }

@@ -26,9 +26,9 @@ class NewListing extends Component {
   }
 
   handleSubmit(){
-    get("/api/user", {userId: this.props.userId}).then((userInfo) =>{
+    get("/api/myuid").then((response) =>{
       return {
-        creator_ID: this.props.userId,
+        creator_ID: response.userId,
         photoList: [],
         lookingForRoom: this.props.lookingForRoom,
         coordinates: this.state.locationcenter,
@@ -141,7 +141,6 @@ class NewListing extends Component {
 
 NewListing.propTypes = {
   // close: PropTypes.func.isRequired, // NewListing will be a popup. That's why.
-  userId: PropTypes.string.isRequired,
   lookingForRoom: PropTypes.bool.isRequired,
   addNewListing: PropTypes.func.isRequired,
 };

@@ -20,10 +20,10 @@ class YourListings extends Component {
 
   render() {
     return (
-      <div>
+      <div className="YourListings-container">
         {!this.state.newListingActive && <button onClick={()=>{this.setState({newListingActive: true});}}>Add new listing</button>}
         {this.state.newListingActive && (
-          <NewListing userId={this.props.userId} lookingForRoom={false}/>
+          <NewListing lookingForRoom={false}/>
         )}
         <ListingsFast displayedListings={this.state.usersListings}/>
       </div>

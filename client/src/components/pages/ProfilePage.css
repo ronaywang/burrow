@@ -82,3 +82,11 @@
 .UserSettings-genderbuttonActive {
   color: var(--accentcolor);
 }
+
+
+.YourListings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
