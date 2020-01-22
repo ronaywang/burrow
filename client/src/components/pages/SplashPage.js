@@ -120,11 +120,11 @@ class SplashPage extends Component {
             </div>
           ) : (
             <div>
-              <span className="fieldname">Rent =</span>
+              <span className="fieldname">Rent is</span>
               <input type="number" step="100" className="SplashPage-rentinput"
-              value={this.state.roommateRentUpper}
+              value={this.state.roommateRentLower}
               onChange={(event)=>{
-                  this.setState({roommateRentUpper: event.target.value});
+                  this.setState({roommateRentLower: event.target.value});
                 }}/> 
               <span className="fieldname">(USD / mo.)</span>
             </div>
@@ -148,18 +148,11 @@ class SplashPage extends Component {
               type="submit"
               value="Go!"
               onClick={() => {
-                roomTrue ? this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, true) : 
-                  this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, false);
+                roomTrue ? this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, this.state.roomRentLower, this.state.roomRentUpper, roomTrue) : 
+                  this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, this.state.roommateRentLower, this.state.roommateRentUpper, roomTrue);
               }}>Go!</button>
           </Link>
         </div>
-        {/* <LocationSearchBar 
-          defaultText="Search here..."
-          styleName=""
-          radius={40000}
-          handleSubmit={()=>null}
-          submitButtonExists={false}
-        /> */}
       </div>
     );
   }

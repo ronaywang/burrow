@@ -39,6 +39,8 @@ class App extends Component {
         location: "",
         lookingForRoom: true,
         price: 0,
+        priceLower: 0,
+        priceUpper: 0,
         startDate: moment(),
         endDate: moment().add(1, 'days'),
         smoking: true,
@@ -125,14 +127,16 @@ class App extends Component {
             initialZoom={14}
             />
           <NotFound default />
-          <SplashPage path="/" passDateLocationToGlobal={(startDate, endDate, location, lookingForRoom) =>
+          <SplashPage path="/" passDateLocationToGlobal={(startDate, endDate, location, priceLower, priceUpper, lookingForRoom) =>
             this.setState({
               searchPrefs: {
                 startDate: startDate,
                 endDate: endDate,
                 location: location,
                 lookingForRoom: lookingForRoom,
-                price: lookingForRoom ? 99999 : 0,
+                priceLower: priceLower,
+                priceUpper: priceUpper,
+                price: lookingForRoom ? priceUpper : priceLower,
                 pets: this.state.searchPrefs.pets,
                 smoking: this.state.searchPrefs.smoking,
               }
