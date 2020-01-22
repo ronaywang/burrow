@@ -1,4 +1,4 @@
-import * as moment from "moment";
+const moment = require("moment");
 
 function populateSession(req, res, next){
   if (!req.globals){
