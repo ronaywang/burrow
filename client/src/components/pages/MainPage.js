@@ -5,6 +5,7 @@ import "../../utilities.css";
 import "./MainPage.css";
 import PreferenceBar from "../modules/PreferenceBar";
 import Listings from "../modules/Listings";
+import MapComponent from "../modules/Map";
 import { get } from "../../utilities";
 const momentPropTypes = require("react-moment-proptypes");
 
@@ -22,10 +23,9 @@ class MainPage extends Component{
         <div className="MainPage-feedMapContainer">
           <div className="MainPage-queryContainer">{`Results for ${location}:`}</div>
           <Listings displayedListings={this.props.listingsToDisplay} styleName="MainPage" />
-          {/* <Map 
-            center={}
-            zoom={}
-            markers={}/>  */}
+          <div className="MainPage-mapContainer">
+            <MapComponent />
+          </div>
         </div>
       </div>
     )
