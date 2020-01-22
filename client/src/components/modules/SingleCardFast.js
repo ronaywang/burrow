@@ -41,18 +41,13 @@ class SingleCardFast extends Component {
       smoking: this.props.listing.smokerFriendly,
       pets: this.props.listing.petFriendly,
       lookingForRoom: this.props.listing.lookingForRoom,
-      additionalText: this.props.listing.additionalPrefText // TODO: implement photo uploading
+      additionalText: this.props.listing.additionalPrefText, // TODO: implement photo uploading
+      name: this.props.listing.creator_ID.firstName + " " + this.props.listing.creator_ID.lastName, // TODO: firstName and lastName instead.
+      age: calculateAge(new Date(this.props.listing.creator_ID.birthdate)),
+      gender: this.props.listing.creator_ID.gender,
+      profilePicURL: this.props.listing.creator_ID.profilePictureURL,
+      doRender: true
     });
-    get("/api/user", {userId: this.props.listing.creator_ID})
-      .then((user) => {
-        this.setState({
-          name: user.firstName + " " + user.lastName, // TODO: firstName and lastName instead.
-          age: calculateAge(new Date(user.birthdate)),
-          gender: user.gender,
-          profilePicURL: user.profilePictureURL,
-          doRender: true
-        });
-      });
   }
 
   render() {

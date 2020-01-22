@@ -117,7 +117,8 @@ router.get("/getthisuserinfo", async (req, res) => {
 // If you send sendself=true, you get back the current user's listings.
 router.get("/composedlistings", (req, res) => {
   console.log(req.query);
-  Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id}).then((info) => res.send(info));
+  Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id})
+  .populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' }).then((info) => res.send(info));
 });
 
 // Gets the composed listings of a user given their id.
