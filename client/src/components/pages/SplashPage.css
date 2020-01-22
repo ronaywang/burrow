@@ -7,6 +7,12 @@
     margin: 10%;
 }
 
+.SplashPage-infocontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .SplashPage-logo {
     display: flex;
     font-family: "Indie Flower";
@@ -21,4 +27,37 @@
 }
 .SplashPage-input {
     margin: var(--inputmargins);
+}
+
+.SplashPage-tagline {
+    font-size: 120%;
+}
+
+.SplashPage-search {
+    font-size: 110%;
+}
+
+.SplashPage-rentinput {
+    font-size: 110%;
+    max-width: 4rem;
+}
+
+.SplashPage-listingtypebutton {
+  font-size: 120%;
+  font-weight: 700;
+  margin: 0;
+  padding: 0.3rem;
+  border: 1px solid white;
+  color: white;
+  border-radius: var(--s);
+  margin: 0.5rem;
+  background-color: var(--accentcolor);
+}
+
+.SplashPage-listingtypebutton:hover {
+  background-color: #668215;
+}
+
+.SplashPage-listingtypebuttonactive {
+  background-color: #475716;
 }

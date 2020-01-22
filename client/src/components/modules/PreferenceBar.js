@@ -24,8 +24,8 @@ class PreferenceBar extends Component {
             className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} />/month
         </div>
         <div className="PreferenceBar-dateContainer">
-          <DatePicker startDate={startDate} endDate={endDate} handleDateChange={(startDate, endDate) => {
-              updatePrefs(price, smoking, pets, startDate, endDate);
+          <DatePicker startDate={startDate} endDate={endDate} handleDateChange={(newstartDate, newendDate) => {
+              updatePrefs(price, smoking, pets, newstartDate, newendDate);
             }
           } />
         </div>
@@ -40,6 +40,9 @@ class PreferenceBar extends Component {
           <input onClick={() => updatePrefs(price, !smoking, pets, this.props.startDate, this.props.endDate)} 
             type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
         </div>
+        <div>
+          <button onClick={this.props.triggerSearch}>Go!</button>
+        </div>
       </div>
     ) 
   }
@@ -52,6 +55,7 @@ PreferenceBar.propTypes = {
   endDate: momentPropTypes.momentObj.isRequired,
   lookingForRoom: PropTypes.bool.isRequired,
   updatePrefs: PropTypes.func.isRequired,
+  triggerSearch: PropTypes.func.isRequired,
 };
 
 export default PreferenceBar;
