@@ -119,7 +119,7 @@ router.get("/getthisuserinfo", async (req, res) => {
 router.get("/composedlistings", (req, res) => {
   console.log(req.query);
   Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id})
-  .populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' }).then((info) => res.send(info));
+  .populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' }).then((info) => res.send(info.reverse()));
 });
 
 // Gets the composed listings of a user given their id. Listing IDs only.

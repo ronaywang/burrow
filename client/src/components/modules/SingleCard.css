@@ -3,7 +3,7 @@
   border-radius: var(--borderradius);
   height: auto;
   display: grid;
-  grid-template-columns: 8rem 25rem 5rem;
+  grid-template-columns: 8rem 27rem 5rem;
   grid-template-rows: 3rem 10rem 2rem auto auto;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
   max-width: 870px;
@@ -152,6 +152,7 @@ tr {
   font-weight: 500;
   font-size: 110%;
   font-family: skolar-sans-latin-compressed;
+  min-width: 6rem;
 }
 .ldp-right {
   font-size: 110%;

@@ -66,15 +66,15 @@ class SingleCardFast extends Component {
             <div className="Card-locationDatePrice">
               <table style={{'text-align':'left'}}>
                 <tr>
-                  <th className="ldp-left">{lookingForRoom ? "is moving to . . ." : "is located in . . ."}</th>
+                  <th className="ldp-left">{lookingForRoom ? "is moving to" : "is located in"}</th>
                   <th className="ldp-right">{location}</th>
                 </tr>
                 <tr>
-                  <th className="ldp-left">during . . .</th>
+                  <th className="ldp-left">during</th>
                   <th className="ldp-right">{formatDate(startDate)} – {formatDate(endDate)}</th>
                 </tr>
                 <tr>
-                <th className="ldp-left">{lookingForRoom ? "with a budget of . . ." : "with a price of . . ."}</th>
+                <th className="ldp-left">{lookingForRoom ? "with a budget of" : "with a price of"}</th>
                 <th className="ldp-right">${price}/month</th>
                 </tr>
               </table>
