@@ -34,7 +34,7 @@ const path = require("path"); // provide utilities for working with file and dir
 
 const api = require("./api");
 const auth = require("./auth");
-//const loginstuff = require("./loginstuff");
+const storage = require("./storage");
 
 // socket stuff
 const socket = require("./server-socket");
@@ -83,6 +83,9 @@ app.use(
 
 // this checks if the user is logged in, and populates "req.user"
 app.use(auth.populateCurrentUser);
+
+// this populates "req.globals" with important variables that should persist throughout session
+app.use(storage.populateSession);
 
 // connect user-defined routes
 app.use("/api", api);
