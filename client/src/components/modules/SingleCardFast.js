@@ -32,7 +32,7 @@ class SingleCardFast extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({
       location: this.props.listing.location,
       startDate: this.props.listing.startDate,
@@ -57,29 +57,33 @@ class SingleCardFast extends Component {
       return null;
     return (
       <div className="Card-container" key={this.props.listingId}>
+          <div className="Card-profilePicContainer">
           <img src={profilePicURL} className="Card-profilePic"/>
+          </div>
           <div className="Card-nameAgeGender">
             <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
           </div>
-          <div className="Card-locationDatePrice">
-            <table>
-              <tr>
-                <th className="ldp-left">{lookingForRoom ? "is moving to . . ." : "is located in . . ."}</th>
-                <th className="ldp-right">{location}</th>
-              </tr>
-              <tr>
-                <th className="ldp-left">during . . .</th>
-                <th className="ldp-right">{formatDate(startDate)} – {formatDate(endDate)}</th>
-              </tr>
-              <th className="ldp-left">{lookingForRoom ? "with a budget of . . ." : "with a price of . . ."}</th>
-              <th className="ldp-right">${price}/month</th>
-            </table>
-          </div>
+            <div className="Card-locationDatePrice">
+              <table style={{'text-align':'left'}}>
+                <tr>
+                  <th className="ldp-left">{lookingForRoom ? "is moving to . . ." : "is located in . . ."}</th>
+                  <th className="ldp-right">{location}</th>
+                </tr>
+                <tr>
+                  <th className="ldp-left">during . . .</th>
+                  <th className="ldp-right">{formatDate(startDate)} – {formatDate(endDate)}</th>
+                </tr>
+                <tr>
+                <th className="ldp-left">{lookingForRoom ? "with a budget of . . ." : "with a price of . . ."}</th>
+                <th className="ldp-right">${price}/month</th>
+                </tr>
+              </table>
+            </div>
           <div className="Card-topRight">top right</div>
           <div className="Card-horizontalLine"></div>
           <div className="Card-flags">
-            <span className="Card-flag">{smoking ? "" : "NOT "}smoker-friendly </span>
-            <span className="Card-flag">{pets ? "" : "NOT "}pet-friendly </span>
+            <span className="Card-flag">{smoking ? "IS " : "NOT "}smoker-friendly </span>
+            <span className="Card-flag">{pets ? "IS " : "NOT "}pet-friendly </span>
           </div>
           <div className="Card-textBox">{additionalText}</div>
       </div>
