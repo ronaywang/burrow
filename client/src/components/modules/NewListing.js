@@ -26,12 +26,11 @@ class NewListing extends Component {
   }
 
   handleSubmit(){
-    console.log(`USER ID IS ${this.props.userId}`);
     get("/api/user", {userId: this.props.userId}).then((userInfo) =>{
       return {
         creator_ID: this.props.userId,
         photoList: [],
-        type: this.props.lookingForRoom,
+        lookingForRoom: this.props.lookingForRoom,
         coordinates: this.state.locationcenter,
         location: this.state.locationquery,
         price: this.state.price,
@@ -42,7 +41,6 @@ class NewListing extends Component {
         additionalPrefText: this.state.textBox,
       };
     }).then((listingInfo) => {
-      console.log("added new listing");
       post("/api/listing", listingInfo);
     });
   }

@@ -63,7 +63,6 @@ class App extends Component {
   }
 
   generateListings = () => {
-    console.log(this.state.userId);
     let query = {
       userId: this.state.userId, 
       location: this.state.searchPrefs.location,
@@ -74,16 +73,16 @@ class App extends Component {
       startDate: this.state.searchPrefs.startDate.toDate(),
       endDate: this.state.searchPrefs.endDate.toDate(),
     };
-    console.log(query);
-    get("/api/matchinglistings", query).then((listings) => {
-      this.setState({listingsToDisplay: listings});
+    get("/api/matchinglistings", query).then((listingIds) => {
+      this.setState({listingsToDisplay: listingIds});
     });
   }
 
   updateSearchPrefs = (price, smoking, pets, startDate, endDate) => {
     this.setState({searchPrefs: {
-      price: price, smoking: smoking, pets: pets, startDate: startDate, endDate: endDate 
-    }});
+      price: price, smoking: smoking, pets: pets, startDate: startDate, endDate: endDate,
+      location: this.state.searchPrefs.location, lookingForRoom: this.state.searchPrefs.lookingForRoom 
+    }}, () => this.generateListings());
   }
 
   handleLogin = (res) => {
@@ -107,7 +106,6 @@ class App extends Component {
   };
 
   render() {
-    console.log("hi");
     return (
       <>
         <NavBar location={this.state.searchPrefs.location} username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout} setSelectedCenter={this.setSelectedCenter}/>
@@ -135,10 +133,10 @@ class App extends Component {
                 location: location,
                 lookingForRoom: lookingForRoom,
                 price: lookingForRoom ? 99999 : 0,
-                pets: true,
-                smoking: true,
+                pets: this.state.searchPrefs.pets,
+                smoking: this.state.searchPrefs.smoking,
               }
-            })
+            }, () => this.generateListings())
           }
           setSelectedCenter={this.setSelectedCenter}          
           />

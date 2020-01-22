@@ -27,7 +27,8 @@ class SingleCard extends Component {
       smoking: false,
       pets: false,
       additionalText: "",
-      profilePicURL: ""
+      profilePicURL: "",
+      doRender: false,
     };
   }
 
@@ -35,7 +36,7 @@ class SingleCard extends Component {
     get("/api/listing", {listingId: this.props.listingId})
       .then((info) => {
         this.setState({
-          location: info.location_ID,
+          location: info.location,
           startDate: info.startDate,
           endDate: info.endDate,
           price: info.price,
@@ -53,6 +54,7 @@ class SingleCard extends Component {
           age: calculateAge(new Date(user.birthdate)),
           gender: user.gender,
           profilePicURL: user.profilePictureURL,
+          doRender: true
         });
       });
   }
@@ -60,6 +62,8 @@ class SingleCard extends Component {
   render(){
     const {expanded, name, age, gender, location, startDate, endDate, price,
       smoking, pets, additionalText, lookingForRoom, profilePicURL} = this.state;
+    if (!this.state.doRender)
+      return null;
     return (
       <div className="Card-container" key={this.props.listingId}>
           <img src={profilePicURL} className="Card-profilePic"/>
@@ -76,7 +80,7 @@ class SingleCard extends Component {
                 <th className="ldp-left">during . . .</th>
                 <th className="ldp-right">{formatDate(startDate)} – {formatDate(endDate)}</th>
               </tr>
-              <th className="ldp-left">with a budget of . . .</th>
+              <th className="ldp-left">{lookingForRoom ? "with a budget of . . ." : "with a price of . . ."}</th>
               <th className="ldp-right">${price}/month</th>
             </table>
           </div>

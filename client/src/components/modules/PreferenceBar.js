@@ -21,7 +21,7 @@ class PreferenceBar extends Component {
           {lookingForRoom ? "Budget: " : "Price: "}
           <span className="PreferenceBar-dollarsign">$</span>
           <input type="number" min="0" value={this.props.price} onChange={(e) => {
-              updatePrefs(e.target.value, smoking, pets, startDate, endDate);
+              updatePrefs(parseInt(e.target.value), smoking, pets, startDate, endDate);
             }} 
             className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} />/month
         </div>

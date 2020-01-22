@@ -44,9 +44,7 @@ const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
 // };
 
 router.post('/login', function(req, res, next) {
-    console.log("Hi, I'm Login-chan!");
     if (req.body.username && req.body.password) {
-        console.log("It looks like you've passed the signin stage...");
         User.authenticate(req.body.username, req.body.password, function(err, user) {
             if (err || !user) {
                 var error = new Error('Wrong username or password');
@@ -86,37 +84,20 @@ router.post("/listing", (req, res) => {
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.get("/matchinglistings", (req, res) => {
   var prefs = req.query;
-  Listing.find({$expr: {
-    creatorID: {$not: prefs.userId},
-    lookingForRoom: {$not: prefs.lookingForRoom},
-    price: {
-      $cond: {
-        if: (prefs.lookingForRoom == true),
-        then: { $lte: ["$price", prefs.price] },
-        else: { $gte: ["$price", prefs.price] },
-      }
-    },
-    startDate: {
-      $cond: {
-        if: (prefs.lookingForRoom == true),
-        then: { $lte: ["$startDate", prefs.startDate] },
-        else: { $gte: ["$startDate", prefs.startDate] },
-      }
-    },
-    endDate: {
-      $cond: {
-        if: (prefs.lookingForRoom === true),
-        then: { $gte: ["$endDate", prefs.endDate] },
-        else: { $lte: ["$endDate", prefs.endDate] },
-      }
-    },
-    smokingFriendly: {
-      $cond: [(prefs.smoking === false), false, [true, false]]
-    },
-    petFriendly: {
-      $cond: [{$eq: [prefs.pets, true]}, false, [true, false]]
-    }
-  }}).then((listings) => res.send(listings.map((l) => l._id)));
+  let userQuery = { $ne: prefs.userId };
+  let priceQuery = prefs.lookingForRoom == 'true' ? {$lte: prefs.price} : {$gte: prefs.price};
+  let startDateQuery = prefs.lookingForRoom == 'true' ? {$lte: prefs.startDate} : {$gte: prefs.startDate};
+  let endDateQuery = prefs.lookingForRoom == 'true' ? {$gte: prefs.endDate} : {$lte: prefs.endDate};
+  let smokingQuery = prefs.smoking == 'true' ? {$in: [true, false]} : false;
+  let petQuery = prefs.pets == 'true' ? {$in: [true, false]} : false;
+  Listing.find({
+    price: priceQuery,
+    startDate: startDateQuery,
+    endDate: endDateQuery,
+    smokingFriendly: smokingQuery,
+    petFriendly: petQuery,
+    lookingForRoom: !prefs.lookingForRoom,
+  }).then((listings) => {res.send(listings.map((l) => l._id))});
 })
 
 router.post("/logout", auth.logout);
@@ -165,7 +146,6 @@ router.post("/makeuser", async (req, res) => {
     bookmarkedListings: [],
     composedListings: [],
   });
-  console.log(newUser);
   userClash = await User.findOne({username: req.body.username});
   if (userClash === null) {
     newUser.save(function(err, result){
@@ -179,7 +159,6 @@ router.post("/makeuser", async (req, res) => {
     });
   
   } else {
-    console.log("conflict");
     err = new Error("A user with that username already exists");
     res.status(409);
     res.send(err);
@@ -216,7 +195,6 @@ router.get("/uploadfile", async (req, res) => {
 });
 
 router.post("/getProfilePic", async (req, res) => {
-  console.log(req.body);
   userIWant = await User.findById(req.body.userId);
   if (userIWant.profilePictureURL) {
     const replyWithURL = {
@@ -230,8 +208,6 @@ router.post("/getProfilePic", async (req, res) => {
 
 router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
   if (req.file) {
-    console.log("got file");
-    console.log(req.file);
     userNewPhoto = new Photo({
       originalname: req.file.originalname,
       mimetype: req.file.mimetype,
@@ -245,7 +221,6 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
       url: googleURL,
     });
     if (req.user._id) {
-      console.log(req.user);
       currentUser = await User.findById(req.user._id);
       if (currentUser.profilePicture_ID) {
         currentPhoto = await Photo.findById(currentUser.profilePicture_ID);
@@ -255,15 +230,11 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
       currentUser.profilePicture_ID = userNewPhoto._id;
       currentUser.profilePictureURL = googleURL;
       await currentUser.save();
-      console.log(currentUser);
     }
     return;
   } else {
-    console.log("no file");
   }
   if (req.files) {
-    console.log("got files");
-    console.log(req.files);
   }
   res.status(200).send({
     message: "thanks",
@@ -286,7 +257,6 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
-  console.log(`API route not found: ${req.method} ${req.url}`);
   res.status(404).send({ msg: "API route not found" });
 });
 
