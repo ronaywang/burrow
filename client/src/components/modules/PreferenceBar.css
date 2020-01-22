@@ -30,3 +30,22 @@
     font-family: skolar-sans-latin-condensed;
     font-weight: 300
 }
+
+.PreferenceBar-gobutton{
+  font-size: 140%;
+  font-weight: 700;
+  margin: 0;
+  padding: 0.3rem;
+  border: 1px solid white;
+  color: white;
+  border-radius: 0;
+  border: none;
+  background-color: var(--accentcolor);
+}
+
+.PreferenceBar-gobutton:hover {
+  background-color: #668215;
+}
+.PreferenceBar-gobutton:active {
+  background-color: #475716;
+}

@@ -41,7 +41,7 @@ class PreferenceBar extends Component {
             type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
         </div>
         <div>
-          <button onClick={this.props.triggerSearch}>Go!</button>
+          <button className="PreferenceBar-gobutton" onClick={this.props.triggerSearch}>Go!</button>
         </div>
       </div>
     ) 
