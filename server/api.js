@@ -34,6 +34,7 @@ const gcloudstorage = require("./server-gbucket");
 const googleMapEndpoint = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
 const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
 
+const searchutilities = require("./searchutilities");
 
 // formatParams = (params) => {
 //   return Object.keys(params)
@@ -88,11 +89,14 @@ router.post("/listing", (req, res) => {
 router.get("/matchinglistings", (req, res) => {
   var prefs = req.query;
   let userQuery = { $ne: prefs.userId };
+  const lookforroom = prefs.lookingForRoom === 'true';
   let priceQuery = prefs.lookingForRoom == 'true' ? {$lte: prefs.price} : {$gte: prefs.price};
   let startDateQuery = prefs.lookingForRoom == 'true' ? {$lte: prefs.startDate} : {$gte: prefs.startDate};
   let endDateQuery = prefs.lookingForRoom == 'true' ? {$gte: prefs.endDate} : {$lte: prefs.endDate};
   let smokingQuery = prefs.smoking == 'true' ? {$in: [true, false]} : false;
   let petQuery = prefs.pets == 'true' ? {$in: [true, false]} : false;
+  const maxDistance = 10; // miles
+  let listingFilter = searchutilities.filterByDistanceConstructor(lookforroom ? prefs.roomLocationCtr : prefs.roommateLocationCtr, maxDistance);
   Listing.find({
     price: priceQuery,
     startDate: startDateQuery,
@@ -101,7 +105,7 @@ router.get("/matchinglistings", (req, res) => {
     petFriendly: petQuery,
     lookingForRoom: !prefs.lookingForRoom,
   }).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
-    .then((listings) => {res.send(listings)});
+    .then((listings) => {res.send(listings.map(listingFilter))});
 })
 
 router.post("/logout", auth.logout);
@@ -187,9 +191,10 @@ router.post("/makeuser", async (req, res) => {
     bookmarkedListings: [],
     composedListings: [],
   });
-  userClash = await User.findOne({username: req.body.username});
+  let userClash = await User.findOne({username: req.body.username});
   if (userClash === null) {
     newUser.save(function(err, result){
+      let response;
       if(err) {
         response = { error: true, message: "Error adding data" };
       } else {
@@ -236,7 +241,7 @@ router.get("/uploadfile", async (req, res) => {
 });
 
 router.post("/getProfilePic", async (req, res) => {
-  userIWant = await User.findById(req.body.userId);
+  let userIWant = await User.findById(req.body.userId);
   if (userIWant.profilePictureURL) {
     const replyWithURL = {
       photoURL:  userIWant.profilePictureURL,
@@ -249,7 +254,7 @@ router.post("/getProfilePic", async (req, res) => {
 
 router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
   if (req.file) {
-    userNewPhoto = new Photo({
+    let userNewPhoto = new Photo({
       originalname: req.file.originalname,
       mimetype: req.file.mimetype,
       extension: mime.extension(req.file.mimetype),
@@ -262,9 +267,9 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
       url: googleURL,
     });
     if (req.user._id) {
-      currentUser = await User.findById(req.user._id);
+      let currentUser = await User.findById(req.user._id);
       if (currentUser.profilePicture_ID) {
-        currentPhoto = await Photo.findById(currentUser.profilePicture_ID);
+        let currentPhoto = await Photo.findById(currentUser.profilePicture_ID);
         currentPhoto.deleteFromBucket();
         Photo.deleteOne({_id: currentPhoto._id}).then(()=>{});
       }
