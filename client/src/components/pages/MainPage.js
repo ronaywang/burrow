@@ -8,6 +8,8 @@ import ListingsFast from "../modules/ListingsFast";
 import MapComponent from "../modules/Map";
 import { get, post } from "../../utilities";
 import * as moment from "moment";
+
+const _ = require("lodash");
 // const momentPropTypes = require("react-moment-proptypes");
 
 const mitCoords ={lat: 42.360495, lng: -71.093779 };
@@ -29,6 +31,11 @@ class MainPage extends Component{
     let query = this.state.lookingForRoom ? {
       userId: this.props.userId, 
       location: this.state.roomLocation,
+      locationCtr: this.state.roomLocationCtr,
+      myobj: {
+        a: 1,
+        b: 2
+      },
       lookingForRoom: true,
       price: this.state.roomPrice,
       smoking: this.state.roomSmoking,
@@ -38,6 +45,7 @@ class MainPage extends Component{
     } : {
       userId: this.props.userId, 
       location: this.state.roommateLocation,
+      locationCtr: this.state.roommateLocationCtr,
       lookingForRoom: false,
       price: this.state.roommatePrice,
       smoking: this.state.roommateSmoking,
@@ -45,9 +53,10 @@ class MainPage extends Component{
       startDate: new Date(this.state.roommateStartDate),
       endDate: new Date(this.state.roommateEndDate),
     };
-    get("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
+    post("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
       this.setState({listingsToDisplay: listings});
     });
+    console.log(this.state.roomLocationCtr);
   }
 
   triggerSearch = () => {
@@ -77,7 +86,7 @@ class MainPage extends Component{
             <MapComponent
               initialCenter={locationCtr}
               initialZoom={8}
-              markers={this.state.listingsToDisplay.map(l => l.coordinates)}
+              markers={this.state.listingsToDisplay.filter(l=>!_.isUndefined(l.coordinates.lat)).map(l => l.coordinates)}
             />
           </div>
         </div>
