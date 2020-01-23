@@ -7,13 +7,19 @@ import {GoogleSearchBar} from "./SearchBar.js";
 import DatePicker from "./DatePicker.js";
 import MapComponent from "./Map";
 import moment from "moment";
+import Toggle from 'react-toggle';
 
 class NewListing extends Component {
 
   constructor(props){
     super(props);
     this.state = {
+<<<<<<< HEAD
       location: '',
+=======
+      lookingForRoom: true,
+      location: "",
+>>>>>>> 87e131a73d549be441bb076181a3993f0eca08fd
       locationquery: '',
       locationcenter: '',
       startDate: new moment(),
@@ -28,7 +34,7 @@ class NewListing extends Component {
   handleSubmit(){
     const listingInfo = { 
         photoList: [],
-        lookingForRoom: this.props.lookingForRoom,
+        lookingForRoom: this.state.lookingForRoom,
         coordinates: this.state.locationcenter,
         location: this.state.locationquery,
         price: this.state.price,
@@ -38,7 +44,7 @@ class NewListing extends Component {
         petFriendly: this.state.pets,
         additionalPrefText: this.state.textBox,
     };
-    post("/api/listing", listingInfo).then(newListingId => this.props.update());
+    post("/api/listing", listingInfo).then(() => this.props.update());
   }
 
   /*handleSubmit = (event) => {
@@ -85,15 +91,23 @@ class NewListing extends Component {
           </div>
         </div>
         <div className="NewListing-center">
+          <div className="NewListing-toggleContainer">
+            Roommate
+            <Toggle
+              className="NewListing-toggleSwitch" defaultChecked={this.state.lookingForRoom} 
+              onChange={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}))}
+            />
+            Room
+          </div>
           <div className="NewListing-locationContainer">
             <div className="NewListing-locationDescription">
-              {this.props.lookingForRoom ? "Looking for a room in..." : "Looking for a roommate for the following address..."}
+              {this.state.lookingForRoom ? "Looking for a room in..." : "Looking for a roommate for the following address..."}
             </div>
-            <GoogleSearchBar styleName="NavBar"
-            placeIsCity={this.props.lookingForRoom}
-            searchBarId="newListingSearch"
-            updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}/>
-            {/* <LocationSearchBar styleName="NewListing" /> */}
+            <GoogleSearchBar styleName="NewListing"
+              placeIsCity={this.state.lookingForRoom}
+              searchBarId="newListingSearch"
+              updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}
+            />
           </div>
           <div className="NewListing-dateContainer">
             <div className="NewListing-locationDescription">
@@ -111,10 +125,10 @@ class NewListing extends Component {
           </div>
           <div className="NewListing-priceContainer">
             <div className="NewListing-priceDescription">
-              {this.props.lookingForRoom ? "With maximum budget..." : "With the following price:"}
+              {this.state.lookingForRoom ? "With maximum budget..." : "With the following price:"}
             </div>
             $<input type="number" min="0" onChange={(e) => {this.setState({price: e.target.value})}} 
-              className="NewListing-priceInput" placeholder={this.props.lookingForRoom ? "" : ""} />/month
+              className="NewListing-priceInput" />/month
           </div>
           <div className="NewListing-prefsContainer">
               <button className={petsclassName} onClick={()=>{this.setState({pets: !this.state.pets});}}>{petText}</button>
@@ -128,9 +142,9 @@ class NewListing extends Component {
             className="NewListing-submit"
             type="submit"
             value="Submit"
-            onClick={() => {
-              this.handleSubmit();
-              // this.props.close();
+            onClick={async () => {
+              await this.handleSubmit();
+              this.props.close();
             }}
           />
         </div>
