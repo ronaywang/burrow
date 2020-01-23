@@ -97,15 +97,21 @@ router.get("/matchinglistings", (req, res) => {
   let petQuery = prefs.pets == 'true' ? {$in: [true, false]} : false;
   const maxDistance = 10; // miles
   let listingFilter = searchutilities.filterByDistanceConstructor(lookforroom ? prefs.roomLocationCtr : prefs.roommateLocationCtr, maxDistance);
-  Listing.find({
-    price: priceQuery,
-    startDate: startDateQuery,
-    endDate: endDateQuery,
+  const query = {
+    //price: priceQuery,
+    $and: [
+      {startDate: {$lte: prefs.endDate}},
+      {endDate: {$gte: prefs.startDate}},
+    ],
     smokingFriendly: smokingQuery,
     petFriendly: petQuery,
-    lookingForRoom: !prefs.lookingForRoom,
-  }).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
-    .then((listings) => {res.send(listings.map(listingFilter))});
+//    lookingForRoom: !prefs.lookingForRoom,
+    lookingForRoom: {$in: [true, false]},
+  };
+  
+  console.log(query);
+  Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
+    .then((listings) => {res.send(listings); console.log(listings);});
 })
 
 router.post("/logout", auth.logout);
