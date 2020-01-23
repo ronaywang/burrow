@@ -104,7 +104,8 @@ router.get("/matchinglistings", (req, res) => {
     smokingFriendly: smokingQuery,
     petFriendly: petQuery,
     lookingForRoom: !prefs.lookingForRoom,
-  }).then((listings) => {res.send(listings.map(l => ({_id: l._id, coordinates: l.coordinates}).map(listingFilter)))});
+  }).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
+    .then((listings) => {res.send(listings.map(listingFilter))});
 })
 
 router.post("/logout", auth.logout);
@@ -176,6 +177,7 @@ router.post("/sessionglobals", (req, res) => {
 // |------------------------------|
 
 router.post("/makeuser", async (req, res) => {
+  req.body.username = req.body.username.toLowerCase();
   const newUser = new User ({
     username: req.body.username,
     password: req.body.password,
