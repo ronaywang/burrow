@@ -119,7 +119,7 @@ class SplashPage extends Component {
 
           <Toggle
             id='cheese-status'
-            defaultChecked={this.state.roomOrRoommate===listing_type.ROOM}
+            defaultChecked={this.state.roomOrRoommate!==listing_type.ROOM}
             onChange={this.toggleRoomRoommate}
             className="RoomToggle"
             icons={false}
