@@ -96,7 +96,7 @@ class NavBar extends Component {
             /> : null}
           </div>
          
-          <div className="NavBar-searchContainer" visibility={this.state.lookingForRoom ? "hidden" : "visible"}>
+          <div className="NavBar-searchContainer">
             {this.state.lookingForRoom ? null : 
             <GoogleSearchBar styleName="NavBar" text={this.state.roommateLocation} 
               placeIsCity={false}

@@ -46,7 +46,6 @@ class MainPage extends Component{
       endDate: new Date(this.state.roommateEndDate),
     };
     get("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
-      console.log(JSON.stringify(listings[0].creator_ID));
       this.setState({listingsToDisplay: listings});
     });
   }
