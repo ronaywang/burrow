@@ -4,10 +4,10 @@ import {GoogleSearchBar} from "../modules/SearchBar.js";
 import DatePicker from "../modules/DatePicker.js";
 import "./SplashPage.css";
 import "../../utilities.css";
-import PropTypes from "prop-types";
 import { Link } from "@reach/router";
 import moment from "moment";
 import {listing_type} from "../modules/enums";
+import { post, get } from "../../utilities.js";
 
 class SplashPage extends Component {
 
@@ -17,26 +17,39 @@ class SplashPage extends Component {
       roomStartDate: moment(),
       roomEndDate: moment().add(1, 'days'),
       roomLocation: "",
-      roomLocationCenter: {
-        lat: 0,
-        lng: 0,
-      },
-      roomRentLower: 0,
-      roomRentUpper: 2000,
       roommateStart: moment(),
       roommateEnd: moment().add(1, 'days'),
       roommateLocation: "",
-      roommateLocationCenter: {
-        lat: 0,
-        lng: 0,
-      },
-      roommateRentLower: 0,
-      roommateRentUpper: 2000,
       roomOrRoommate: listing_type.ROOM,
+      doDisplay: false,
     };
+  }
+
+  componentDidMount(){
+    get("/api/sessionglobals").then((globals) => {
+      this.setState({
+        doDisplay: true,
+        roomStartDate: globals.roomStartDate,
+        roomEndDate: globals.roomEndDate,
+        roomLocation: globals.roomLocation,
+        roomLocationCtr: {
+          lat: globals.roomLocationCtr.lat,
+          lng: globals.roomLocationCtr.lng
+        },
+        roommateStart: globals.roommateStartDate,
+        roommateEnd: globals.roommateEndDate,
+        roommateLocation: globals.roommateLocation,
+        roommateLocationCtr: {
+          lat: globals.roommateLocationCtr.lat,
+          lng: globals.roommateLocationCtr.lng
+        },
+      });
+    })
   }
   
   render(){
+    if (!this.state.doDisplay)
+      return null;
     let roomButtonClassName = "SplashPage-listingtypebutton";
     let roommateButtonClassName = "SplashPage-listingtypebutton";
     switch(this.state.roomOrRoommate) {
@@ -61,7 +74,7 @@ class SplashPage extends Component {
       <div>
       <GoogleSearchBar
       setSelectedCenter={(ctr) => {
-        this.setState({roomLocationCenter: ctr});
+        this.setState({roomLocationCtr: ctr});
       }} 
       styleName="SplashPage"
       placeIsCity={true}
@@ -73,8 +86,18 @@ class SplashPage extends Component {
     );
 
     let roommateSearchBar = (
-      <GoogleSearchBar setSelectedCenter={() => null} styleName="SplashPage" placeIsCity={false} searchBarId="splashPageSearchRoommate" updateQuery={(loc) => this.setState({ roommateLocation: loc })}
-      text={this.state.roommateLocation}/>
+      <div>
+      <GoogleSearchBar
+      setSelectedCenter={(ctr) => {
+        this.setState({roommateLocationCtr: ctr});
+      }} 
+      styleName="SplashPage"
+      placeIsCity={false}
+      searchBarId={"splashPageSearchRoommate"}
+      updateQuery={(loc) => {this.setState({ roommateLocation: loc });}}
+      text={this.state.roommateLocation}
+      />
+      </div>
     );
 
     return (
@@ -99,7 +122,7 @@ class SplashPage extends Component {
           </div>
 
 
-          {roomTrue ? (
+          {/* {roomTrue ? (
             <div>
               <input type="number" step="100" className="SplashPage-rentinput"
               max={roomTrue ? this.state.roomRentUpper : this.state.roommateRentUpper}
@@ -128,7 +151,7 @@ class SplashPage extends Component {
                 }}/> 
               <span className="fieldname">(USD / mo.)</span>
             </div>
-          )}
+          )} */}
 
             {roomTrue ? roomSearchBar : roommateSearchBar}
 
@@ -142,25 +165,39 @@ class SplashPage extends Component {
                   this.setState({roommateStart: stdate, roommateEndDate: edate});
               }}/>
           </div>
-          <Link to="/main">
-            <button
-              className="SplashPage-go SplashPage-input"
-              type="submit"
-              value="Go!"
-              onClick={() => {
-                roomTrue ? this.props.passDateLocationToGlobal(roomStartDate, roomEndDate, roomLocation, this.state.roomRentLower, this.state.roomRentUpper, roomTrue) : 
-                  this.props.passDateLocationToGlobal(roommateStart, roommateEnd, roommateLocation, this.state.roommateRentLower, this.state.roommateRentUpper, roomTrue);
-              }}>Go!</button>
-          </Link>
+          <button
+            className="SplashPage-go SplashPage-input"
+            type="submit"
+            value="Go!"
+            onClick={() => {
+              let lookingForRoom = (this.state.roomOrRoommate == listing_type.ROOM);
+              let body = lookingForRoom ? {
+                lookingForRoom: true,
+                roomLocation: this.state.roomLocation,
+                roomLocationCtr: {
+                  lat: this.state.roomLocationCtr.lat,
+                  lng: this.state.roomLocationCtr.lng,
+                },
+                roomStartDate: this.state.roomStartDate,
+                roomEndDate: this.state.roomEndDate
+              } : {
+                lookingForRoom: false,
+                roommateLocation: this.state.roommateLocation,
+                roommateLocationCtr: {
+                  lat: this.state.roommateLocationCtr.lat,
+                  lng: this.state.roommateLocationCtr.lng,
+                },
+                roommateStartDate: this.state.roommateStart,
+                roommateEndDate: this.state.roommateEnd
+              }
+              post("/api/sessionglobals", body).then((res) => {
+                window.location.pathname = "/main";
+              })
+            }}>Go!</button>
         </div>
       </div>
     );
   }
 }
-
-SplashPage.propTypes = {
-  passDateLocationToGlobal: PropTypes.func.isRequired,
-  setSelectedCenter: PropTypes.func,
-};
 
 export default SplashPage;

@@ -35,22 +35,11 @@ class App extends Component {
     this.state = {
       userId: "",
       username: "",
-      searchPrefs: { 
-        location: "",
-        lookingForRoom: true,
-        price: 0,
-        priceLower: 0,
-        priceUpper: 0,
-        startDate: moment(),
-        endDate: moment().add(1, 'days'),
-        smoking: true,
-        pets: true,
-      },
+      doDisplay: false,
       mapCenter: {
         lat: 0,
         lng: 0
-      },
-      listingsToDisplay: []
+      }
     };
   }
 
@@ -58,32 +47,11 @@ class App extends Component {
     get("/api/whoami").then((user) => {
       if (user._id) {
         // they are registed in the database, and currently logged in
-        this.setState({ userId: user._id, username: user.username, });
+        this.setState({ userId: user._id, username: user.username});
       }
-    }).then(() => this.generateListings());
-  }
-
-  generateListings = () => {
-    let query = {
-      userId: this.state.userId, 
-      location: this.state.searchPrefs.location,
-      lookingForRoom: this.state.searchPrefs.lookingForRoom,
-      price: this.state.searchPrefs.price,
-      smoking: this.state.searchPrefs.smoking,
-      pets: this.state.searchPrefs.pets,
-      startDate: this.state.searchPrefs.startDate.toDate(),
-      endDate: this.state.searchPrefs.endDate.toDate(),
-    };
-    get("/api/matchinglistings", query).then((listingIds) => {
-      this.setState({listingsToDisplay: listingIds});
-    });
-  }
-
-  updateSearchPrefs = (price, smoking, pets, startDate, endDate) => {
-    this.setState({searchPrefs: {
-      price: price, smoking: smoking, pets: pets, startDate: startDate, endDate: endDate,
-      location: this.state.searchPrefs.location, lookingForRoom: this.state.searchPrefs.lookingForRoom 
-    }}, () => this.generateListings());
+    }).then(() => {
+      this.setState({doDisplay: true});
+    })
   }
 
   handleLogin = (res) => {
@@ -108,8 +76,16 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar location={this.state.searchPrefs.location} username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout} setSelectedCenter={this.setSelectedCenter}/>
+        <NavBar userId={this.state.userId} handleLogout={this.handleLogout}/>
         <Router>
+          <SplashPage path="/"/>
+          <MainPage path="/main" userId={this.state.userId}
+          />
+          <ProfilePage path={`/profile/${this.state.userId}`}
+          userId={this.state.userId}
+          />
+          {/* EVERY SINGLE FUCKING OTHER URL */}
+          <InboxPage path="/inbox" />
           <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
           <Skeleton
@@ -118,43 +94,17 @@ class App extends Component {
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
-          <MapComponent
+          {/* <MapComponent
             path="/map"
             initialCenter={{lat: 42.360495, lng: -71.093779 }}
             newCenter = {this.state.mapCenter}
             initialZoom={14}
-            />
-          <NotFound default />
-          <SplashPage path="/" passDateLocationToGlobal={(startDate, endDate, location, priceLower, priceUpper, lookingForRoom) =>
-            this.setState({
-              searchPrefs: {
-                startDate: startDate,
-                endDate: endDate,
-                location: location,
-                lookingForRoom: lookingForRoom,
-                priceLower: priceLower,
-                priceUpper: priceUpper,
-                price: lookingForRoom ? priceUpper : priceLower,
-                pets: this.state.searchPrefs.pets,
-                smoking: this.state.searchPrefs.smoking,
-              }
-            }, () => this.generateListings())
-          }
-          setSelectedCenter={this.setSelectedCenter}          
-          />
+          /> */}
           <TryCard path="/cardsample"/>
           <ProfilePicUploader path="/profilepicuploader"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
           <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
-          <MainPage path="/main" userId={this.state.userId}
-          searchPrefs={this.state.searchPrefs}
-          updatePrefs={this.updateSearchPrefs}
-          listingsToDisplay={this.state.listingsToDisplay}
-          />
-          <ProfilePage path={`/profile/${this.state.userId}`}
-          userId={this.state.userId}
-          />
-          <InboxPage path="/inbox" />
+          <NotFound default />
         </Router>
       </>
     );

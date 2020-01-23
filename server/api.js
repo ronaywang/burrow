@@ -128,6 +128,16 @@ router.post("/initsocket", (req, res) => {
   res.send({});
 });
 
+router.get("/sessionglobals", (req, res) => {
+  res.send(req.session.globals);
+})
+
+router.post("/sessionglobals", (req, res) => {
+  Object.assign(req.session.globals, req.body);
+  console.log(`New updated globals are ${JSON.stringify(req.session.globals)}`);
+  res.send({});
+})
+
 // |------------------------------|
 // | write your API methods below!|
 // |------------------------------|

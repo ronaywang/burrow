@@ -162,7 +162,7 @@ class GoogleSearchBar extends Component {
     // Declare State
     this.state = {
       place: '',
-      query: this.props.text || ''
+      query: this.props.text || '',
     };
   }
 
@@ -171,7 +171,6 @@ class GoogleSearchBar extends Component {
     const options = {
       types: [(this.props.placeIsCity ? '(cities)' : 'address')],
     };
-
     // Initialize Google Autocomplete
     /*global google*/ // To disable any eslint 'google not defined' errors
     this.autocomplete = new google.maps.places.Autocomplete(

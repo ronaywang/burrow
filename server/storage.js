@@ -1,25 +1,29 @@
-import * as moment from "moment";
+const moment = require("moment");
 
 function populateSession(req, res, next){
-  if (!req.globals){
-    req.globals = {
+  if (!req.session.globals){
+    req.session.globals = {
       lookingForRoom: true,
-      roomMode: { // used if user's looking for room.
-        location: null,
-        startDate: moment(),
-        endDate: moment().add(1, 'days'),
-        price: 0,
-        smoking: true,
-        pets: true,
+      roomLocation: "",
+      roomLocationCtr: {
+        lat: 0,
+        lng: 0
       },
-      roommateMode: {
-        location: null,
-        startDate: moment(),
-        endDate: moment().add(1, 'days'),
-        price: 0,
-        smoking: true,
-        pets: true,
-      }
+      roomStartDate: moment(),
+      roomEndDate: moment().add(1, 'days'),
+      roomPrice: 0,
+      roomSmoking: true,
+      roomPets: true,
+      roommateLocation: "",
+      roommateLocationCtr: {
+        lat: 0,
+        lng: 0
+      },
+      roommateStartDate: moment(),
+      roommateEndDate: moment().add(1, 'days'),
+      roommatePrice: 0,
+      roommateSmoking: true,
+      roommatePets: true,
     }
   }
   next();

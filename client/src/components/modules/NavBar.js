@@ -7,10 +7,37 @@ import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import { Link } from "@reach/router";
 import { GoogleSearchBar } from "./SearchBar";
+import { get, post } from "../../utilities";
 
 class NavBar extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      doDisplay: false,
+      lookingForRoom: null,
+      roomLocation: null,
+      roomLocationCtr: null,
+      roommateLocation: null,
+      roommateLocationCtr: null,
+    };
+  }
   
+  componentDidMount(){
+    get("/api/sessionglobals").then((globals) => {
+      this.setState({
+        doDisplay: true,
+        lookingForRoom: globals.lookingForRoom,
+        roomLocation: globals.roomLocation,
+        roomLocationCtr: globals.roomLocationCtr,
+        roommateLocation: globals.roommateLocation,
+        roommateLocationCtr: globals.roommateLocationCtr,
+      })
+    })
+  }
+
   render(){
+    if (!this.state.doDisplay)
+      return null;
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
@@ -36,7 +63,6 @@ class NavBar extends Component {
         }>
           <LoginPage />
         </Popup>
-        
       </div>
     );
     return (
@@ -45,7 +71,34 @@ class NavBar extends Component {
           <div className="NavBar-logo">
             <Link to="/" className="NavBar-logo-link">burrow</Link>
           </div>
-          {/* <GoogleSearchBar styleName="NavBar" text={this.props.location} placeIsCity={true} setSelectedCenter={this.props.setSelectedCenter} searchBarId="navBarSearch"/> */}
+          <div className="NavBar-searchContainer">
+            {this.state.lookingForRoom ? 
+            <GoogleSearchBar styleName="NavBar" text={this.state.roomLocation} 
+              placeIsCity={true} setSelectedCenter={(ctr) => {this.setState({roomLocationCtr: ctr })}} 
+              searchBarId="navBarSearch" updateQuery={(query) => {
+                post("/api/sessionglobals", {roomLocation: query, lookingForRoom: true})
+                  .then(() => { window.location.pathname = "/main"; });
+                }}
+            /> : null}
+          </div>
+          <div className="NavBar-searchContainer" visibility={this.state.lookingForRoom ? "hidden" : "visible"}>
+            {this.state.lookingForRoom ? null : 
+            <GoogleSearchBar styleName="NavBar" text={this.state.roommateLocation} 
+              placeIsCity={false} setSelectedCenter={(ctr) => {this.setState({roommateLocationCtr: ctr })}} 
+              searchBarId="navBarSearch" updateQuery={(query) => {
+                post("/api/sessionglobals", {roommateLocation: query, lookingForRoom: false})
+                  .then(() => { window.location.pathname = "/main"; });
+                }}
+            />}
+          </div>  
+          <div className="NavBar-modeContainer">
+            <button type="submit" className="NavBar-modeButton" checked={this.state.lookingForRoom} 
+              onClick={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}), () => {
+                post("/api/sessionglobals", {lookingForRoom: this.state.lookingForRoom});
+              })}>
+              {this.state.lookingForRoom ? "I am looking for a ROOM" : "I have a ROOM and am looking for SOMEONE"}
+            </button>
+          </div>
         </div>
         {linkContainer}
       </div>
@@ -56,7 +109,6 @@ class NavBar extends Component {
 NavBar.propTypes = {
   userId: PropTypes.string.isRequired,
   handleLogout: PropTypes.func.isRequired,
-  setSelectedCenter: PropTypes.func.isRequired,
 };
 
 export default NavBar;
