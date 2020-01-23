@@ -15,7 +15,6 @@ class NewListing extends Component {
     super(props);
     this.state = {
       lookingForRoom: true,
-      location: "",
       locationquery: '',
       locationcenter: '',
       startDate: new moment(),
@@ -23,7 +22,8 @@ class NewListing extends Component {
       price: 0,
       pets: false,
       smoking: false,
-      textBox: ""
+      textBox: "",
+      success: false
     };
   }
 
@@ -43,6 +43,7 @@ class NewListing extends Component {
     post("/api/listing", listingInfo).then(() => this.props.update());
   }
 
+<<<<<<< HEAD
   /*handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.locationcenter === '' || this.state.locationquery === '' || this.state.price === '' || this.state.textBox === '') {
@@ -52,6 +53,12 @@ class NewListing extends Component {
   } */
 
   render() {
+=======
+  render(){
+    if (this.state.success){
+      return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
+    }
+>>>>>>> fba9e9266219eab0f5891bc0a7a5521311424b6b
     let petsclassName = "NewListing-boolbutton";
     let smokclassName = "NewListing-boolbutton";
     let petText;
@@ -99,11 +106,16 @@ class NewListing extends Component {
             <div className="NewListing-locationDescription">
               {this.state.lookingForRoom ? "Looking for a room in..." : "Looking for a roommate for the following address..."}
             </div>
-            <GoogleSearchBar styleName="NewListing"
-              placeIsCity={this.state.lookingForRoom}
+            {this.state.lookingForRoom ? <GoogleSearchBar styleName="NewListing"
+              placeIsCity={true}
               searchBarId="newListingSearch"
               updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}
-            />
+            /> : null}
+            {this.state.lookingForRoom ? null : <GoogleSearchBar styleName="NewListing"
+              placeIsCity={false}
+              searchBarId="newListingSearch"
+              updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}
+            />}
           </div>
           <div className="NewListing-dateContainer">
             <div className="NewListing-locationDescription">
@@ -140,12 +152,14 @@ class NewListing extends Component {
             value="Submit"
             onClick={async () => {
               await this.handleSubmit();
-              this.props.close();
+              this.setState({success: true}, () => {
+                setTimeout(() => this.props.close(), 750);
+              })
             }}
           />
         </div>
       </div>
-      {this.state.locationcenter && (
+      {/* {this.state.locationcenter && (
       <MapComponent
       path="/map"
       initialCenter={{lat: 42.360495, lng: -71.093779 }}
@@ -154,7 +168,7 @@ class NewListing extends Component {
       width={300}
       height={640}
       />
-      )}
+      )} */}
       </div>
     );
   }

@@ -86,8 +86,8 @@ router.post("/listing", (req, res) => {
   newListing.save((err) => {res.send(newListing._id)});
 });
 // Gets all the listings for now (TODO: make into a matching algorithm)
-router.get("/matchinglistings", (req, res) => {
-  var prefs = req.query;
+router.post("/matchinglistings", (req, res) => {
+  var prefs = req.body;
   let userQuery = { $ne: prefs.userId };
   const lookforroom = prefs.lookingForRoom === 'true';
   let priceQuery = prefs.lookingForRoom == 'true' ? {$lte: prefs.price} : {$gte: prefs.price};
@@ -96,7 +96,8 @@ router.get("/matchinglistings", (req, res) => {
   let smokingQuery = prefs.smoking == 'true' ? {$in: [true, false]} : false;
   let petQuery = prefs.pets == 'true' ? {$in: [true, false]} : false;
   const maxDistance = 10; // miles
-  let listingFilter = searchutilities.filterByDistanceConstructor(lookforroom ? prefs.roomLocationCtr : prefs.roommateLocationCtr, maxDistance);
+  console.log(prefs);
+  let listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
   const query = {
     //price: priceQuery,
     $and: [
@@ -111,7 +112,7 @@ router.get("/matchinglistings", (req, res) => {
   
   console.log(query);
   Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
-    .then((listings) => {res.send(listings); console.log(listings);});
+    .then((listings) => {res.send(listings.filter(listingFilter))});
 })
 
 router.post("/logout", auth.logout);

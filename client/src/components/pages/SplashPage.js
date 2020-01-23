@@ -81,7 +81,7 @@ class SplashPage extends Component {
       }
     } = this;
 
-    let roomSearchBar = roomTrue ? (
+    let roomSearchBar = roomTrue ? ( // THIS LOOKS LIKE KLUDGY CODE, BUT PLZ PLZ DON'T CHANGE. THERE'S GOOD REASON IT'S THIS WAY
       <div>
       <GoogleSearchBar 
       styleName="SplashPage"
@@ -175,8 +175,8 @@ class SplashPage extends Component {
               startDateId="splashpage-startdateid"
               endDateId="splashpage-enddateid"
               handleDateChange={(stdate, edate) => {
-                roomTrue ? this.setState({roomStart: stdate, roomEndDate: edate}) :
-                  this.setState({roommateStart: stdate, roommateEndDate: edate});
+                roomTrue ? this.setState({roomStartDate: stdate, roomEndDate: edate}) :
+                  this.setState({roommateStart: stdate, roommateEnd: edate});
               }}/>
           </div>
           <button
