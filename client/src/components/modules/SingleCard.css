@@ -2,12 +2,13 @@
   border: var(--border);
   border-radius: var(--borderradius);
   height: auto;
-  max-width: 60%;
+  max-width: 768px;
   display: grid;
   grid-template-columns: 8rem 27rem auto;
-  grid-template-rows: 2.5rem 6rem 2px auto;
+  grid-template-rows: 2rem 6rem 2px auto;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  margin: var(--s);
 }
 
 .Card-pink {
@@ -41,7 +42,7 @@
 .Card-nameAgeGender{
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  font-size: 200%;
+  font-size: 130%;
   font-weight: 700;
   margin: var(--xs);
   padding-top: 0.2em;
@@ -81,15 +82,16 @@
   font-variant: small-caps;
   font-weight: 500;
   color: var(--neutral2);
-  font-size: 110%;
-  margin: var(--xxs);
+  font-size: 100%;
+  margin: 0px var(--xxs);
 
 }
 
 .Card-date {
-  font-size: 90%;
-  margin: var(--xs);
-  font-weight: 700;
+  font-size: 110%;
+  margin: var(--l) var(--xs) 0px var(--xs);
+  font-weight: 500;
+  color: var(--neutral1);
 
 }
 
@@ -110,7 +112,7 @@
 }
 
 .Card-flags {
-  margin: var(--xs);
+  margin: var(--xxs);
 }
 
 .Card-horizontalLine {

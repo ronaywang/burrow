@@ -43,22 +43,10 @@ class NewListing extends Component {
     post("/api/listing", listingInfo).then(() => this.props.update());
   }
 
-<<<<<<< HEAD
-  /*handleSubmit = (event) => {
-    event.preventDefault();
-    if (this.state.locationcenter === '' || this.state.locationquery === '' || this.state.price === '' || this.state.textBox === '') {
-      this.setState({mustfillfields: true});
-      return;
-    };
-  } */
-
-  render() {
-=======
   render(){
     if (this.state.success){
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
     }
->>>>>>> fba9e9266219eab0f5891bc0a7a5521311424b6b
     let petsclassName = "NewListing-boolbutton";
     let smokclassName = "NewListing-boolbutton";
     let petText;
