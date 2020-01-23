@@ -2,11 +2,12 @@
   border: var(--border);
   border-radius: var(--borderradius);
   height: auto;
+  max-width: 60%;
   display: grid;
-  grid-template-columns: 8rem 27rem 5rem;
-  grid-template-rows: 3rem 10rem 2rem auto auto;
+  grid-template-columns: 8rem 27rem auto;
+  grid-template-rows: 2.5rem 6rem 2px auto;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
-  max-width: 870px;
+  overflow: hidden;
 }
 
 .Card-pink {
@@ -25,7 +26,6 @@
   border-radius: 10em;
   padding: var(--s);
   max-width: 6rem;
-  aspect-ratio: 1;
   background-color: #FFCCCC;
 }
 
@@ -48,7 +48,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: #CCFFCC;
 }
 
 .Card-top {
@@ -73,14 +72,26 @@
 .Card-locationDatePrice{
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  background-color: #FFBBFF;
-  margin: var(--xs);
+  margin: 0px var(--xs);
   display: flex;
-  justify-content: stretch;
-  align-items:  flex-start;
+  flex-direction: column;
 }
 
+.Card-location {
+  font-variant: small-caps;
+  font-weight: 500;
+  color: var(--neutral2);
+  font-size: 110%;
+  margin: var(--xxs);
 
+}
+
+.Card-date {
+  font-size: 90%;
+  margin: var(--xs);
+  font-weight: 700;
+
+}
 
 .Card-topRight {
   grid-column: 3 / 4;
@@ -95,31 +106,29 @@
 
 .Card-bottom {
   grid-column: 1 / 4;
-  grid-row: 3 / 6;
+  grid-row: 3 / 5;
 }
 
 .Card-flags {
-  grid-column: 1 / 4;
-  grid-row: 3 / 5;
-  background-color: #CCCCFF;
+  margin: var(--xs);
 }
 
 .Card-horizontalLine {
   grid-column: 1 / 4;
   grid-row: 3 / 4;
-  background-color: black;
+  background-color: var(--neutral7);
 }
 
 .Card-flag {
   padding-right: 1rem;
-  font-family: skolar-sans-latin-compressed;
-  font-weight: 500;
-  font-size: 110%;
+  font-weight: 300;
+  font-size: 80%;
+  color: var(--neutral3);
 }
 
 .Card-textBox {
   grid-column: 1 / 4;
-  grid-row: 5 / 6;
+  grid-row: 4 / 5;
   margin: 1em;
   font-size: 100%;
   text-align: justify;
@@ -151,7 +160,6 @@ tr {
 .ldp-left {
   font-weight: 500;
   font-size: 110%;
-  font-family: skolar-sans-latin-compressed;
   min-width: 6rem;
 }
 .ldp-right {

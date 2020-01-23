@@ -14,12 +14,8 @@ class NewListing extends Component {
   constructor(props){
     super(props);
     this.state = {
-<<<<<<< HEAD
-      location: '',
-=======
       lookingForRoom: true,
       location: "",
->>>>>>> 87e131a73d549be441bb076181a3993f0eca08fd
       locationquery: '',
       locationcenter: '',
       startDate: new moment(),
