@@ -71,6 +71,14 @@ class NavBar extends Component {
           <div className="NavBar-logo">
             <Link to="/" className="NavBar-logo-link">burrow</Link>
           </div>
+          <div className="NavBar-modeContainer">
+            <button type="submit" className="NavBar-modeButton" checked={this.state.lookingForRoom} 
+              onClick={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}), () => {
+                post("/api/sessionglobals", {lookingForRoom: this.state.lookingForRoom});
+              })}>
+              {this.state.lookingForRoom ? "I want a room" : "I want a roommate"}
+            </button>
+          </div>
           <div className="NavBar-searchContainer">
             {this.state.lookingForRoom ? 
             <GoogleSearchBar styleName="NavBar" text={this.state.roomLocation} 
@@ -81,6 +89,7 @@ class NavBar extends Component {
                 }}
             /> : null}
           </div>
+         
           <div className="NavBar-searchContainer" visibility={this.state.lookingForRoom ? "hidden" : "visible"}>
             {this.state.lookingForRoom ? null : 
             <GoogleSearchBar styleName="NavBar" text={this.state.roommateLocation} 
@@ -91,14 +100,6 @@ class NavBar extends Component {
                 }}
             />}
           </div>  
-          <div className="NavBar-modeContainer">
-            <button type="submit" className="NavBar-modeButton" checked={this.state.lookingForRoom} 
-              onClick={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}), () => {
-                post("/api/sessionglobals", {lookingForRoom: this.state.lookingForRoom});
-              })}>
-              {this.state.lookingForRoom ? "I am looking for a ROOM" : "I have a ROOM and am looking for SOMEONE"}
-            </button>
-          </div>
         </div>
         {linkContainer}
       </div>

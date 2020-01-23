@@ -1,7 +1,7 @@
 .NavBar-container{
     display: flex;
     height: 5%;
-    background: white;
+    background:white;
     align-items: center;
     justify-content: space-between;
     margin: 0% 4%;
@@ -39,5 +39,9 @@
 
 .NavBar-logo-link {
     color: var(--primary3);
+    
+}
+
+.NavBar-modeContainer{
     
 }
