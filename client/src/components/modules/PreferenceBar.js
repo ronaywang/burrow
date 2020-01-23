@@ -24,10 +24,15 @@ class PreferenceBar extends Component {
             className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} />/month
         </div>
         <div className="PreferenceBar-dateContainer">
-          <DatePicker startDate={startDate} endDate={endDate} handleDateChange={(newstartDate, newendDate) => {
+          <DatePicker
+            startDate={startDate}
+            endDate={endDate}
+            startDateId="prefbar-startdateid"
+            endDateId="prefbar-enddateid"
+            handleDateChange={(newstartDate, newendDate) => {
               updatePrefs(price, smoking, pets, newstartDate, newendDate);
-            }
-          } />
+            }}
+            />
         </div>
         <div className="PreferenceBar-pets">  
           Pet friendly? 

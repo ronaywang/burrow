@@ -52,18 +52,23 @@ class App extends Component {
       },
       listingsToDisplay: []
     };
+    this.generateListings = this.generateListings.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.updateSearchPrefs = this.updateSearchPrefs.bind(this);
+    this.setSelectedCenter = this.setSelectedCenter.bind(this);
   }
 
   componentDidMount() {
-    get("/api/whoami").then((user) => {
-      if (user._id) {
+    get("/api/myuid").then((response) => {
+      if (response.userId) {
         // they are registed in the database, and currently logged in
-        this.setState({ userId: user._id, username: user.username, });
+        this.setState({ userId: response.userId, username: response.username, });
       }
     }).then(() => this.generateListings());
   }
 
-  generateListings = () => {
+  generateListings () {
     let query = {
       userId: this.state.userId, 
       location: this.state.searchPrefs.location,
@@ -79,31 +84,31 @@ class App extends Component {
     });
   }
 
-  updateSearchPrefs = (price, smoking, pets, startDate, endDate) => {
+  updateSearchPrefs (price, smoking, pets, startDate, endDate) {
     this.setState({searchPrefs: {
       price: price, smoking: smoking, pets: pets, startDate: startDate, endDate: endDate,
       location: this.state.searchPrefs.location, lookingForRoom: this.state.searchPrefs.lookingForRoom 
     }}, () => this.generateListings());
   }
 
-  handleLogin = (res) => {
+  handleLogin (res) {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
     });
-  };
+  }
 
-  handleLogout = () => {
+  handleLogout () {
     post("/api/logout").then(() => {
       window.location.pathname="/";
       this.setState({ userId: "", username: ""});
     })
-  };
+  }
 
-  setSelectedCenter = (center) => {
+  setSelectedCenter (center) {
     this.setState({ mapCenter: center });
-  };
+  }
 
   render() {
     return (
@@ -144,12 +149,19 @@ class App extends Component {
           />
           <TryCard path="/cardsample"/>
           <ProfilePicUploader path="/profilepicuploader"/>
-          <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
-          <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
-          <MainPage path="/main" userId={this.state.userId}
-          searchPrefs={this.state.searchPrefs}
-          updatePrefs={this.updateSearchPrefs}
-          listingsToDisplay={this.state.listingsToDisplay}
+          <NewListing
+            path="/newlistingprototype/"
+            userId={this.state.userId}
+            addNewListing={(listingInfo) => null}
+            lookingForRoom={true}
+          />
+          <MainPage
+            path="/main"
+            userId={this.state.userId}
+            searchPrefs={this.state.searchPrefs}
+            updatePrefs={this.updateSearchPrefs}
+            triggerSearch={()=>{}}
+            listingsToDisplay={this.state.listingsToDisplay}
           />
           <ProfilePage path={`/profile/${this.state.userId}`}
           userId={this.state.userId}

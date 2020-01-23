@@ -133,7 +133,7 @@ router.get("/composedlistings-ids-only", (req, res) => {
 
 router.get("/myuid", (req, res) => {
   if (_.has(req.user, '_id')) {
-    res.send({userId: req.user._id});
+    res.send({userId: req.user._id, username: req.user.username});
   } else {
     const err = new Error("You are not logged in");
     res.status(401);

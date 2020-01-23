@@ -26,9 +26,9 @@ class DatePicker extends Component {
     return (
       <DateRangePicker
         startDate={moment(this.props.startDate)} // momentPropTypes.momentObj or null,
-        startDateId={this.state.startDateId} // PropTypes.string.isRequired,
+        startDateId={this.props.startDateId} // PropTypes.string.isRequired,
         endDate={moment(this.props.endDate)} // momentPropTypes.momentObj or null,
-        endDateId={this.state.endDateId} // PropTypes.string.isRequired,
+        endDateId={this.props.endDateId} // PropTypes.string.isRequired,
         onDatesChange={({ startDate, endDate }) => {
           endDate = (startDate > endDate) ? startDate : endDate;
           this.props.handleDateChange(startDate, endDate);
