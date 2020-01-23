@@ -56,6 +56,7 @@ body {
   font-family: "skolar-sans-latin", sans-serif;
   font-weight: 300;
   line-height: 110%;
+  color: var(--neutral1);
 }
 
 form {
@@ -149,10 +150,11 @@ h1, h2, h3, h4, h5, h6 {
 
 
 input {
-    border: var(--borders);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--neutral5);
     width: 200px;
     padding: 0.4rem;
-    border-radius: var(--borderradius);
     /*margin: var(--margins); commented this out because it was messing with alignment*/
     font-size: 90%;
     font-family: "skolar-sans-latin", sans-serif;
@@ -178,10 +180,20 @@ button, .u-button{
   margin: var(--inputmargins);
 }
 
-input:focus,
+
 select:focus,
-textarea:focus,
 button:focus {
     outline: none;
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--primary5);
+}
+
+textarea:focus {
+  outline: none;
+  border: 2px solid var(--primary5);
+
 }
