@@ -5,7 +5,7 @@
   max-width: 768px;
   display: grid;
   grid-template-columns: 8rem 27rem auto;
-  grid-template-rows: 2rem 6rem 2px auto;
+  grid-template-rows: 2rem 6rem 1px auto;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin: var(--s);
@@ -73,7 +73,6 @@
 .Card-locationDatePrice{
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  margin: 0px var(--xs);
   display: flex;
   flex-direction: column;
 }
@@ -83,7 +82,7 @@
   font-weight: 500;
   color: var(--neutral2);
   font-size: 100%;
-  margin: 0px var(--xxs);
+  margin: 0px var(--xs);
 
 }
 
@@ -111,9 +110,6 @@
   grid-row: 3 / 5;
 }
 
-.Card-flags {
-  margin: var(--xxs);
-}
 
 .Card-horizontalLine {
   grid-column: 1 / 4;
@@ -126,12 +122,13 @@
   font-weight: 300;
   font-size: 80%;
   color: var(--neutral3);
+  margin: var(--xs);
 }
 
 .Card-textBox {
-  grid-column: 1 / 4;
+  grid-column: 1 / 3;
   grid-row: 4 / 5;
-  margin: 1em;
+  margin: 1em 2em;
   font-size: 100%;
   text-align: justify;
   line-height: 110%;
