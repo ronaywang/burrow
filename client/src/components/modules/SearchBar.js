@@ -164,9 +164,11 @@ class GoogleSearchBar extends Component {
       place: '',
       query: this.props.text || '',
     };
+    this.handleScriptLoad = this.handleScriptLoad.bind(this);
+    this.handleScriptLoad = this.handleScriptLoad.bind(this);
   }
 
-  handleScriptLoad = () => {
+  handleScriptLoad() {
     // Declare Options For Autocomplete
     const options = {
       types: [(this.props.placeIsCity ? '(cities)' : 'address')],
@@ -187,7 +189,7 @@ class GoogleSearchBar extends Component {
     this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
   }
   
-  handlePlaceSelect = () => {
+  handlePlaceSelect() {
 
     // Extract City From Address Object
     const addressObject = this.autocomplete.getPlace();
