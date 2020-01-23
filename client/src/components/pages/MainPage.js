@@ -26,8 +26,6 @@ class MainPage extends Component{
   }
 
   generateListings = () => {
-    console.log(JSON.stringify(this.state));
-    console.log(typeof this.state.roommateStartDate)
     let query = this.state.lookingForRoom ? {
       userId: this.props.userId, 
       location: this.state.roomLocation,
@@ -47,9 +45,8 @@ class MainPage extends Component{
       startDate: new Date(this.state.roommateStartDate),
       endDate: new Date(this.state.roommateEndDate),
     };
-    get("/api/matchinglistings", query).then((listingIds) => {
-      console.log(`You matched with listings ${listingIds}`);
-      this.setState({listingsToDisplay: listingIds});
+    get("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
+      this.setState({listingsToDisplay: listings});
     });
   }
 
@@ -68,16 +65,18 @@ class MainPage extends Component{
     if (!this.state.doDisplay){
       return null;
     }
+    let locationCtr = this.state.lookingForRoom ? this.state.roomLocationCtr : this.state.roommateLocationCtr;
     return (
       <div className="MainPage-container">
         <PreferenceBar triggerSearch={() => {this.triggerSearch()}}/>
         <div className="MainPage-feedMapContainer">
           {/* <div className="MainPage-queryContainer">{`Results for ${location}:`}</div> */}
-          <Listings displayedListings={this.state.listingsToDisplay} styleName="MainPage" />
+          <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" />
           <div className="MainPage-mapContainer">
             <MapComponent
-              initialCenter={mitCoords}
-              initialZoom={14}
+              initialCenter={locationCtr}
+              initialZoom={8}
+              markers={this.state.listingsToDisplay.map(l => l.coordinates)}
             />
           </div>
         </div>

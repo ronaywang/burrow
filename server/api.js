@@ -100,7 +100,7 @@ router.get("/matchinglistings", (req, res) => {
     smokingFriendly: smokingQuery,
     petFriendly: petQuery,
     lookingForRoom: !prefs.lookingForRoom,
-  }).then((listings) => {res.send(listings.map((l) => l._id))});
+  }).then((listings) => {res.send(listings.map(l => ({_id: l._id, coordinates: l.coordinates})))});
 })
 
 router.post("/logout", auth.logout);

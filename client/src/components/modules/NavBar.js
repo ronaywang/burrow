@@ -82,9 +82,9 @@ class NavBar extends Component {
           <div className="NavBar-searchContainer">
             {this.state.lookingForRoom ? 
             <GoogleSearchBar styleName="NavBar" text={this.state.roomLocation} 
-              placeIsCity={true} setSelectedCenter={(ctr) => {this.setState({roomLocationCtr: ctr })}} 
-              searchBarId="navBarSearch" updateQuery={(query) => {
-                post("/api/sessionglobals", {roomLocation: query, lookingForRoom: true})
+              placeIsCity={true}
+              searchBarId="navBarSearch" updateQuery={(query, ctr) => {
+                post("/api/sessionglobals", {roomLocation: query, lookingForRoom: true, roomLocationCtr: ctr})
                   .then(() => { window.location.pathname = "/main"; });
                 }}
             /> : null}
@@ -93,9 +93,9 @@ class NavBar extends Component {
           <div className="NavBar-searchContainer" visibility={this.state.lookingForRoom ? "hidden" : "visible"}>
             {this.state.lookingForRoom ? null : 
             <GoogleSearchBar styleName="NavBar" text={this.state.roommateLocation} 
-              placeIsCity={false} setSelectedCenter={(ctr) => {this.setState({roommateLocationCtr: ctr })}} 
-              searchBarId="navBarSearch" updateQuery={(query) => {
-                post("/api/sessionglobals", {roommateLocation: query, lookingForRoom: false})
+              placeIsCity={false}
+              searchBarId="navBarSearch" updateQuery={(query, ctr) => {
+                post("/api/sessionglobals", {roommateLocation: query, lookingForRoom: false, roommateLocationCtr: ctr})
                   .then(() => { window.location.pathname = "/main"; });
                 }}
             />}
