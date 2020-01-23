@@ -103,7 +103,7 @@ class PreferenceBar extends Component {
         <div className="PreferenceBar-smoking">
           Smoker friendly? 
           <input onClick={async () => {
-            this.update(price, !smoking, pets, this.props.startDate, this.props.endDate);
+            await this.update(price, !smoking, pets, this.props.startDate, this.props.endDate);
             this.props.triggerSearch();
           }
           } 
