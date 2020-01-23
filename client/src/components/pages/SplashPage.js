@@ -8,6 +8,8 @@ import { Link } from "@reach/router";
 import moment from "moment";
 import {listing_type} from "../modules/enums";
 import { post, get } from "../../utilities.js";
+import Toggle from 'react-toggle';
+import "react-toggle/style.css";
 
 class SplashPage extends Component {
 
@@ -23,6 +25,7 @@ class SplashPage extends Component {
       roomOrRoommate: listing_type.ROOM,
       doDisplay: false,
     };
+    this.toggleRoomRoommate = this.toggleRoomRoommate.bind(this);
   }
 
   componentDidMount(){
@@ -45,6 +48,14 @@ class SplashPage extends Component {
         },
       });
     })
+  }
+
+  toggleRoomRoommate() {
+    if (this.state.roomOrRoommate === listing_type.ROOM) {
+      this.setState({roomOrRoommate: listing_type.ROOMMATE});
+    } else {
+      this.setState({roomOrRoommate: listing_type.ROOM});
+    }
   }
   
   render(){
@@ -105,6 +116,12 @@ class SplashPage extends Component {
             <div className="SplashPage-tagline">I&apos;ve GOT a room and am looking for a</div>
             )}
           </div>
+
+          <Toggle
+            id='cheese-status'
+            defaultChecked={this.state.roomOrRoommate===listing_type.ROOM}
+            onChange={this.toggleRoomRoommate} />
+          <label htmlFor='cheese-status'>Adjacent label tag</label>
 
           <div>
             <button
