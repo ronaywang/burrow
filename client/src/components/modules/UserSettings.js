@@ -23,6 +23,7 @@ class UserSettings extends Component {
       femaleButtonActive: false,
       nbButtonActive: false,
     };
+    this.saveSettings = this.saveSettings.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +48,7 @@ class UserSettings extends Component {
     });
   }
 
-  saveSettings = async () => {
+  async saveSettings () {
     console.log(this.state);
     post("/api/saveusersettings", this.state).then((result)=>{
       console.log(result);
@@ -55,7 +56,7 @@ class UserSettings extends Component {
       console.log(err);
     });
     console.log(this.state.birthdate);
-  };
+  }
 
   render() {
     let mbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonM";

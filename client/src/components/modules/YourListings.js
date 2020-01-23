@@ -12,17 +12,19 @@ class YourListings extends Component {
       newListingActive: false,
       usersListings: [],
     };
+    this.getListings = this.getListings.bind(this);
+    this.update = this.update.bind(this);
   }
 
   componentDidMount() {
     this.getListings();
   }
 
-  getListings = () => {
+  getListings () {
     get("/api/composedlistings").then(data=>this.setState({usersListings: data}));
   }
 
-  update = async () => {
+  async update () {
     await this.getListings();
     this.setState({
       newListingActive: false,
