@@ -22,7 +22,6 @@
 
 .ProfileBar-tab {
   font-size: 140%;
-  color: white;
   margin: 0;
   padding: 0.3rem;
   background: var(--accentcolor);
@@ -30,7 +29,7 @@
 }
 
 .ProfileBar-tab:hover {
-  background-color: #EEEEEE;
+  background-color: var(--primary3);
   cursor: pointer;
 }
 
@@ -82,4 +81,12 @@
 
 .UserSettings-genderbuttonActive {
   color: var(--accentcolor);
+}
+
+
+.YourListings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }

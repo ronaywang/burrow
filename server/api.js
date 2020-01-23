@@ -13,6 +13,7 @@ const multer = require("multer");
 const upload = require("./upload");
 const mime = require("mime-types");
 const axios = require("axios");
+const _ = require("lodash");
 
 // import models so we can interact with the database
 const User = require("./models/user");
@@ -79,7 +80,9 @@ router.get("/listing", (req, res) => {
 })
 // Sends a listing to the schema.
 router.post("/listing", (req, res) => {
-  new Listing(req.body).save().then((listing) => res.send(listing));
+  let newListing = new Listing(req.body);
+  newListing.creator_ID = req.user._id;
+  newListing.save().then((listing) => res.send(listing));
 });
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.get("/matchinglistings", (req, res) => {
@@ -111,6 +114,32 @@ router.get("/getthisuserinfo", async (req, res) => {
   clonedusr.password = '';
   res.send(clonedusr);
 });
+
+// Gets the composed listings of a user given their id.
+// If you send sendself=true, you get back the current user's listings.
+// Populates the listings with that user's attributes (admittedly not the fastest way of doing things, but better than separate api calls)
+router.get("/composedlistings", (req, res) => {
+  console.log(req.query);
+  Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id})
+  .populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' }).then((info) => res.send(info.reverse()));
+});
+
+// Gets the composed listings of a user given their id. Listing IDs only.
+// If you send sendself=true, you get back the current user's listings.
+router.get("/composedlistings-ids-only", (req, res) => {
+  console.log(req.query);
+  Listing.find({creator_ID: _.has(req.query, 'userId') ? req.query.userId : req.user._id}, '_id').distinct('_id').then((info) => res.send(info));
+});
+
+router.get("/myuid", (req, res) => {
+  if (_.has(req.user, '_id')) {
+    res.send({userId: req.user._id, username: req.user.username});
+  } else {
+    const err = new Error("You are not logged in");
+    res.status(401);
+    res.send(err);
+  }
+})
 
 router.get("/whoami", (req, res) => {
   if (!req.user) {
@@ -169,7 +198,7 @@ router.post("/makeuser", async (req, res) => {
     });
   
   } else {
-    err = new Error("A user with that username already exists");
+    const err = new Error("A user with that username already exists");
     res.status(409);
     res.send(err);
   }

@@ -10,6 +10,8 @@ import { get, post } from "../../utilities";
 import * as moment from "moment";
 // const momentPropTypes = require("react-moment-proptypes");
 
+const mitCoords ={lat: 42.360495, lng: -71.093779 };
+
 class MainPage extends Component{
   constructor(props){
     super(props);
@@ -72,7 +74,10 @@ class MainPage extends Component{
           {/* <div className="MainPage-queryContainer">{`Results for ${location}:`}</div> */}
           <Listings displayedListings={this.state.listingsToDisplay} styleName="MainPage" />
           <div className="MainPage-mapContainer">
-            <MapComponent />
+            <MapComponent
+              initialCenter={mitCoords}
+              initialZoom={14}
+            />
           </div>
         </div>
       </div>

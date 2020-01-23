@@ -26,23 +26,19 @@ class NewListing extends Component {
   }
 
   handleSubmit(){
-    get("/api/user", {userId: this.props.userId}).then((userInfo) =>{
-      return {
-        creator_ID: this.props.userId,
-        photoList: [],
-        lookingForRoom: this.props.lookingForRoom,
-        coordinates: this.state.locationcenter,
-        location: this.state.locationquery,
-        price: this.state.price,
-        startDate: this.state.startDate.toDate(),
-        endDate: this.state.endDate.toDate(),
-        smokingFriendly: this.state.smoking,
-        petFriendly: this.state.pets,
-        additionalPrefText: this.state.textBox,
-      };
-    }).then((listingInfo) => {
-      post("/api/listing", listingInfo);
-    });
+   const listingInfo = { 
+      photoList: [],
+      lookingForRoom: this.props.lookingForRoom,
+      coordinates: this.state.locationcenter,
+      location: this.state.locationquery,
+      price: this.state.price,
+      startDate: this.state.startDate.toDate(),
+      endDate: this.state.endDate.toDate(),
+      smokingFriendly: this.state.smoking,
+      petFriendly: this.state.pets,
+      additionalPrefText: this.state.textBox,
+   };
+  post("/api/listing", listingInfo);
   }
 
   render(){
@@ -141,7 +137,6 @@ class NewListing extends Component {
 
 NewListing.propTypes = {
   // close: PropTypes.func.isRequired, // NewListing will be a popup. That's why.
-  userId: PropTypes.string.isRequired,
   lookingForRoom: PropTypes.bool.isRequired,
   addNewListing: PropTypes.func.isRequired,
 };

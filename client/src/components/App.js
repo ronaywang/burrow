@@ -41,11 +41,16 @@ class App extends Component {
         lng: 0
       }
     };
+    this.generateListings = this.generateListings.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+    this.updateSearchPrefs = this.updateSearchPrefs.bind(this);
+    this.setSelectedCenter = this.setSelectedCenter.bind(this);
   }
 
   componentDidMount() {
-    get("/api/whoami").then((user) => {
-      if (user._id) {
+    get("/api/myuid").then((response) => {
+      if (response.userId) {
         // they are registed in the database, and currently logged in
         this.setState({ userId: user._id, username: user.username});
       }
@@ -54,24 +59,24 @@ class App extends Component {
     })
   }
 
-  handleLogin = (res) => {
+  handleLogin (res) {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
       post("/api/initsocket", { socketid: socket.id });
     });
-  };
+  }
 
-  handleLogout = () => {
+  handleLogout () {
     post("/api/logout").then(() => {
       window.location.pathname="/";
       this.setState({ userId: "", username: ""});
     })
-  };
+  }
 
-  setSelectedCenter = (center) => {
+  setSelectedCenter (center) {
     this.setState({ mapCenter: center });
-  };
+  }
 
   render() {
     return (

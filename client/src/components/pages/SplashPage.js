@@ -160,6 +160,8 @@ class SplashPage extends Component {
             <DatePicker
               startDate={roomTrue ? roomStartDate : roommateStart}
               endDate={roomTrue ? roomEndDate: roommateEnd}
+              startDateId="splashpage-startdateid"
+              endDateId="splashpage-enddateid"
               handleDateChange={(stdate, edate) => {
                 roomTrue ? this.setState({roomStart: stdate, roomEndDate: edate}) :
                   this.setState({roommateStart: stdate, roommateEndDate: edate});
