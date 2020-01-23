@@ -8,6 +8,7 @@ import RegistrationPage from "../pages/RegistrationPage";
 import { Link } from "@reach/router";
 import { GoogleSearchBar } from "./SearchBar";
 import { get, post } from "../../utilities";
+import Toggle from 'react-toggle'
 
 class NavBar extends Component {
   constructor(props){
@@ -71,13 +72,18 @@ class NavBar extends Component {
           <div className="NavBar-logo">
             <Link to="/" className="NavBar-logo-link">burrow</Link>
           </div>
-          <div className="NavBar-modeContainer">
-            <button type="submit" className="NavBar-modeButton" checked={this.state.lookingForRoom} 
-              onClick={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}), () => {
+          <div className="NavBar-toggleContainer">
+            <Toggle
+            id="lookingForRoom" 
+            className="NavBar-toggleSwitch" defaultChecked={this.state.lookingForRoom} 
+              onChange={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}), () => {
                 post("/api/sessionglobals", {lookingForRoom: this.state.lookingForRoom});
-              })}>
-              {this.state.lookingForRoom ? "I want a room" : "I want a roommate"}
-            </button>
+              })}/>
+               <label className="NavBar-toggleSwitchLabel" htmlFor = {this.state.lookingForRoom ? "I want a room" : "I want a roommate"}>
+               <span className="toggle-switch-inner" />
+              <span className="toggle-switch-switch" />
+              </label>
+    
           </div>
           <div className="NavBar-searchContainer">
             {this.state.lookingForRoom ? 
