@@ -206,8 +206,8 @@ class GoogleSearchBar extends Component {
           },
         }
       , () => {
-        this.props.setSelectedCenter(this.state.center);
-        this.props.updateQuery(this.state.query);
+        // this.props.setSelectedCenter(this.state.center);
+        this.props.updateQuery(this.state.query, this.state.center);
       });
     }
   }

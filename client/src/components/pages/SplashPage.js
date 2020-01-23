@@ -72,14 +72,11 @@ class SplashPage extends Component {
 
     let roomSearchBar = roomTrue ? (
       <div>
-      <GoogleSearchBar
-      setSelectedCenter={(ctr) => {
-        this.setState({roomLocationCtr: ctr});
-      }} 
+      <GoogleSearchBar 
       styleName="SplashPage"
       placeIsCity={true}
       searchBarId={"splashPageSearchRoom"}
-      updateQuery={(loc) => {this.setState({ roomLocation: loc });}}
+      updateQuery={(loc, ctr) => {this.setState({ roomLocation: loc, roomLocationCtr: ctr });}}
       text={this.state.roomLocation}
       />
       </div>
@@ -88,13 +85,10 @@ class SplashPage extends Component {
     let roommateSearchBar = roomTrue ? null : (
       <div>
       <GoogleSearchBar
-      setSelectedCenter={(ctr) => {
-        this.setState({roommateLocationCtr: ctr});
-      }} 
       styleName="SplashPage"
       placeIsCity={false}
       searchBarId={"splashPageSearchRoommate"}
-      updateQuery={(loc) => {this.setState({ roommateLocation: loc });}}
+      updateQuery={(loc, ctr) => {this.setState({ roommateLocation: loc, roommateLocationCtr: ctr });}}
       text={this.state.roommateLocation}
       />
       </div>

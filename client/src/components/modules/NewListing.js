@@ -75,9 +75,8 @@ class NewListing extends Component {
             </div>
             <GoogleSearchBar styleName="NavBar"
             placeIsCity={this.props.lookingForRoom}
-            setSelectedCenter={(center)=>{this.setState({locationcenter: center})}}
             searchBarId="newListingSearch"
-            updateQuery={(newquery)=>{this.setState({locationquery: newquery});}}/>
+            updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}/>
             {/* <LocationSearchBar styleName="NewListing" /> */}
           </div>
           <div className="NewListing-dateContainer">
