@@ -26,7 +26,7 @@ class PreferenceBar extends Component {
     if (this.state.lookingForRoom){
       this.setState({
         roomPrice: price, roomSmoking: smoking, roomPets: pets, roomStartDate: startDate, roomEndDate: endDate,
-      }).then(() => {
+      }, () => {
         post("/api/sessionglobals", {
           roomPrice: this.state.roomPrice,
           roomSmoking: this.state.roomSmoking,
@@ -44,7 +44,7 @@ class PreferenceBar extends Component {
     else {
       this.setState({
         roommatePrice: price, roommateSmoking: smoking, roommatePets: pets, roommateStartDate: startDate, roommateEndDate: endDate,
-      }).then(() => {
+      }, () => {
         post("/api/sessionglobals", {
           roomPrice: this.state.roomPrice,
           roomSmoking: this.state.roomSmoking,
@@ -87,20 +87,26 @@ class PreferenceBar extends Component {
           />/month
         </div>
         <div className="PreferenceBar-dateContainer">
-          <DatePicker startDate={startDate} endDate={endDate} handleDateChange={(newstartDate, newendDate) => {
-              this.update(price, smoking, pets, newstartDate, newendDate).then(() => {this.props.triggerSearch()})
+          <DatePicker startDate={startDate} endDate={endDate} handleDateChange={async (newstartDate, newendDate) => {
+              await this.update(price, smoking, pets, newstartDate, newendDate); 
+              this.props.triggerSearch();
             }
           } />
         </div>
         <div className="PreferenceBar-pets">  
           Pet friendly? 
-          <input onClick={() => {
-              this.update(price, smoking, !pets, startDate, endDate).then(() => {this.props.triggerSearch()});
+          <input onClick={async () => {
+              await this.update(price, smoking, !pets, startDate, endDate);
+              this.props.triggerSearch();
           }} type="checkbox" className="PreferenceBar-checkbox" checked={pets}/>
         </div>
         <div className="PreferenceBar-smoking">
           Smoker friendly? 
-          <input onClick={() => this.update(price, !smoking, pets, this.props.startDate, this.props.endDate).then(() => {this.props.triggerSearch()})} 
+          <input onClick={async () => {
+            this.update(price, !smoking, pets, this.props.startDate, this.props.endDate);
+            this.props.triggerSearch();
+          }
+          } 
             type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
         </div>
         <div>

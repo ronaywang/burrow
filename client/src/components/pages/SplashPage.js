@@ -70,7 +70,7 @@ class SplashPage extends Component {
       }
     } = this;
 
-    let roomSearchBar = (
+    let roomSearchBar = roomTrue ? (
       <div>
       <GoogleSearchBar
       setSelectedCenter={(ctr) => {
@@ -83,9 +83,9 @@ class SplashPage extends Component {
       text={this.state.roomLocation}
       />
       </div>
-    );
+    ) : null;
 
-    let roommateSearchBar = (
+    let roommateSearchBar = roomTrue ? null : (
       <div>
       <GoogleSearchBar
       setSelectedCenter={(ctr) => {
@@ -152,10 +152,8 @@ class SplashPage extends Component {
               <span className="fieldname">(USD / mo.)</span>
             </div>
           )} */}
-
-            {roomTrue ? roomSearchBar : roommateSearchBar}
-
-
+          {roomSearchBar}
+          {roommateSearchBar}
           <div className="SplashPage-date SplashPage-input">
             <DatePicker
               startDate={roomTrue ? roomStartDate : roommateStart}

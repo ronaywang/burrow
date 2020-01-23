@@ -48,6 +48,7 @@ class MainPage extends Component{
       endDate: new Date(this.state.roommateEndDate),
     };
     get("/api/matchinglistings", query).then((listingIds) => {
+      console.log(`You matched with listings ${listingIds}`);
       this.setState({listingsToDisplay: listingIds});
     });
   }

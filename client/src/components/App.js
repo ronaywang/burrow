@@ -41,20 +41,20 @@ class App extends Component {
         lng: 0
       }
     };
-    this.generateListings = this.generateListings.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-    this.updateSearchPrefs = this.updateSearchPrefs.bind(this);
-    this.setSelectedCenter = this.setSelectedCenter.bind(this);
+    // this.generateListings = this.generateListings.bind(this);
+    // this.handleLogin = this.handleLogin.bind(this);
+    // this.handleLogout = this.handleLogout.bind(this);
+    // this.updateSearchPrefs = this.updateSearchPrefs.bind(this);
+    // this.setSelectedCenter = this.setSelectedCenter.bind(this);
   }
 
   componentDidMount() {
     get("/api/myuid").then((response) => {
       if (response.userId) {
         // they are registed in the database, and currently logged in
-        this.setState({ userId: user._id, username: user.username});
+        this.setState({ userId: response.userId, username: response.username});
       }
-    }).then(() => {
+    }).catch(error => {console.log(error)}).finally(() => {
       this.setState({doDisplay: true});
     })
   }
