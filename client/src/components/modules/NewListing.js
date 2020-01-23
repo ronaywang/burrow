@@ -23,10 +23,9 @@ class NewListing extends Component {
       smoking: false,
       textBox: ""
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(){
    const listingInfo = { 
       photoList: [],
       lookingForRoom: this.props.lookingForRoom,
@@ -42,7 +41,7 @@ class NewListing extends Component {
   post("/api/listing", listingInfo);
   }
 
-  render() {
+  render(){
     let petsclassName = "NewListing-boolbutton";
     let smokclassName = "NewListing-boolbutton";
     let petText;
