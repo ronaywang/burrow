@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import "../../utilities.css";
 import "../pages/ProfilePage.css";
 import { SingleDatePicker } from "react-dates";
@@ -24,6 +23,7 @@ class UserSettings extends Component {
       nbButtonActive: false,
       doRender: false,
     };
+    this.saveSettings = this.saveSettings.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +49,7 @@ class UserSettings extends Component {
     });
   }
 
-  saveSettings = async () => {
+  async saveSettings () {
     console.log(this.state);
     post("/api/saveusersettings", this.state).then((result)=>{
       console.log(result);
@@ -57,7 +57,7 @@ class UserSettings extends Component {
       console.log(err);
     });
     console.log(this.state.birthdate);
-  };
+  }
 
   render() {
     if (!this.state.doRender)
