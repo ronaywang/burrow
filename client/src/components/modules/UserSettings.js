@@ -22,6 +22,7 @@ class UserSettings extends Component {
       maleButtonActive: false,
       femaleButtonActive: false,
       nbButtonActive: false,
+      doRender: false,
     };
   }
 
@@ -37,13 +38,14 @@ class UserSettings extends Component {
         gender: userObj.gender,
         textBox: userObj.aboutMe
       });
-        if (this.state.gender === genders.M) {
-          this.setState({maleButtonActive: true});
-        } else if (this.state.gender === genders.F) {
-          this.setState({femaleButtonActive: true});
-        } else if (this.state.gender === genders.NB) {
-          this.setState({nbButtonActive: true});
-        }
+      if (this.state.gender === genders.M) {
+        this.setState({maleButtonActive: true});
+      } else if (this.state.gender === genders.F) {
+        this.setState({femaleButtonActive: true});
+      } else if (this.state.gender === genders.NB) {
+        this.setState({nbButtonActive: true});
+      }
+      this.setState({doRender: true});
     });
   }
 
@@ -58,6 +60,8 @@ class UserSettings extends Component {
   };
 
   render() {
+    if (!this.state.doRender)
+      return null;
     let mbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonM";
     let fbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonF";
     let nbbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonNB";

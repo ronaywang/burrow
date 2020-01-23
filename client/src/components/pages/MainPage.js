@@ -4,7 +4,7 @@ import "../../utilities";
 import "../../utilities.css";
 import "./MainPage.css";
 import PreferenceBar from "../modules/PreferenceBar";
-import Listings from "../modules/Listings";
+import ListingsFast from "../modules/ListingsFast";
 import MapComponent from "../modules/Map";
 import { get, post } from "../../utilities";
 import * as moment from "moment";
@@ -46,6 +46,7 @@ class MainPage extends Component{
       endDate: new Date(this.state.roommateEndDate),
     };
     get("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
+      console.log(JSON.stringify(listings[0].creator_ID));
       this.setState({listingsToDisplay: listings});
     });
   }
@@ -71,7 +72,8 @@ class MainPage extends Component{
         <PreferenceBar triggerSearch={() => {this.triggerSearch()}}/>
         <div className="MainPage-feedMapContainer">
           {/* <div className="MainPage-queryContainer">{`Results for ${location}:`}</div> */}
-          <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" />
+          {/* <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" /> */}
+          <ListingsFast displayedListings={this.state.listingsToDisplay} styleName="MainPage" />
           <div className="MainPage-mapContainer">
             <MapComponent
               initialCenter={locationCtr}
