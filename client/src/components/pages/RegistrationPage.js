@@ -43,8 +43,11 @@ handleSubmit = (event) => {
     return;
   }
   post("/api/makeuser", this.state).then((res) => {
-    this.setState({succeeded: true});
-    window.location.pathname="/profile/" + res._id;
+    return post("/api/login", this.state);
+  }).then((res) => {
+    this.setState({succeeded: true}, () => {
+      setTimeout(() => window.location.pathname="/profile/" + res._id, 1000);
+    });
   }).catch((err) => {
     this.setState({failed: true});
     console.log("error");

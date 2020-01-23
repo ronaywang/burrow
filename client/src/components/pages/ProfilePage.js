@@ -50,9 +50,10 @@ class ProfilePage extends Component {
       <>
       <div className = "ProfileBar-container">
       <div>
-        {this.state.profilePicURL && (
-        <img className = "ProfileBar-photo" src={this.state.profilePicURL}/>
-        )}
+        <img className = "ProfileBar-photo" src={this.state.profilePicURL || require("../../public/assets/account.png")}/>
+      </div>
+      <div>
+        Profile page for <b>{this.props.username}</b>
       </div>
       <ProfilePicUploader/>
       
@@ -72,6 +73,7 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
   userId: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
 }
 
 export default ProfilePage;

@@ -88,28 +88,29 @@ class App extends Component {
           />
           <ProfilePage path={`/profile/${this.state.userId}`}
           userId={this.state.userId}
+          username={this.state.username}
           />
           {/* EVERY SINGLE FUCKING OTHER URL */}
           <InboxPage path="/inbox" />
-          <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
+          {/* <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
           <Skeleton
             path="/skeleton"
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
-          />
+          /> */}
           {/* <MapComponent
             path="/map"
             initialCenter={{lat: 42.360495, lng: -71.093779 }}
             newCenter = {this.state.mapCenter}
             initialZoom={14}
           /> */}
-          <TryCard path="/cardsample"/>
+          {/* <TryCard path="/cardsample"/>
           <ProfilePicUploader path="/profilepicuploader"/>
           <DatePicker path="/datepicker/" handleDateChange={(s,d) => null} />
           <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
-          <NotFound default />
+          <NotFound default /> */}
         </Router>
       </>
     );
