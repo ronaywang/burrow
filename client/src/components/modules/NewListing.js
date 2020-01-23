@@ -13,7 +13,7 @@ class NewListing extends Component {
   constructor(props){
     super(props);
     this.state = {
-      location: "",
+      location: '',
       locationquery: '',
       locationcenter: '',
       startDate: new moment(),
@@ -41,7 +41,15 @@ class NewListing extends Component {
     post("/api/listing", listingInfo).then(newListingId => this.props.update());
   }
 
-  render(){
+  /*handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.locationcenter === '' || this.state.locationquery === '' || this.state.price === '' || this.state.textBox === '') {
+      this.setState({mustfillfields: true});
+      return;
+    };
+  } */
+
+  render() {
     let petsclassName = "NewListing-boolbutton";
     let smokclassName = "NewListing-boolbutton";
     let petText;
@@ -61,6 +69,14 @@ class NewListing extends Component {
       smokText = "Smoker friendly ✗";
     }
 
+    /*if (this.state.succeeded) {
+      return (
+        <div>
+          New listing submitted!
+          <meta http-equiv = "refresh" content = "1; url = /login" />
+        </div>
+      );
+    } else { */
     return (
       <div className="NewListing-supercontainer">
       <div className="NewListing-container">
@@ -133,6 +149,7 @@ class NewListing extends Component {
     );
   }
 }
+
 
 NewListing.propTypes = {
   // close: PropTypes.func.isRequired, // NewListing will be a popup. That's why.
