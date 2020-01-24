@@ -48,10 +48,10 @@ const searchutilities = require("./searchutilities");
 // };
 
 router.post('/login', function(req, res, next) {
-    if (req.body.username && req.body.password) {
-        User.authenticate(req.body.username, req.body.password, function(err, user) {
+    if (req.body.email && req.body.password) {
+        User.authenticate(req.body.email, req.body.password, function(err, user) {
             if (err || !user) {
-                var error = new Error('Wrong username or password');
+                var error = new Error('Wrong email or password');
                 error.status = 401;
                 return next(error);
             } else {
@@ -59,7 +59,7 @@ router.post('/login', function(req, res, next) {
                 req.user = user;
                 const userSkel = {
                   _id: user._id,
-                  username: user.username,
+                 email: user.email,
                 };
                 res.send(userSkel);
             }
@@ -147,7 +147,7 @@ router.get("/composedlistings-ids-only", (req, res) => {
 
 router.get("/myuid", (req, res) => {
   if (_.has(req.user, '_id')) {
-    res.send({userId: req.user._id, username: req.user.username});
+    res.send({userId: req.user._id, email: req.user.email});
   } else {
     const err = new Error("You are not logged in");
     res.status(401);
@@ -186,13 +186,12 @@ router.post("/sessionglobals", (req, res) => {
 // |------------------------------|
 
 router.post("/makeuser", async (req, res) => {
-  req.body.username = req.body.username.toLowerCase();
+  req.body.email = req.body.email.toLowerCase();
   const newUser = new User ({
-    username: req.body.username,
     password: req.body.password,
     email: req.body.email,
-    firstName: "",
-    lastName: "",
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     birthdate: "",
     gender: "",
     fbProfileLink: "",
@@ -200,7 +199,7 @@ router.post("/makeuser", async (req, res) => {
     bookmarkedListings: [],
     composedListings: [],
   });
-  let userClash = await User.findOne({username: req.body.username});
+  let userClash = await User.findOne({email: req.body.email});
   if (userClash === null) {
     newUser.save(function(err, result){
       let response;
@@ -214,7 +213,7 @@ router.post("/makeuser", async (req, res) => {
     });
   
   } else {
-    const err = new Error("A user with that username already exists");
+    const err = new Error("A user with that email already exists");
     res.status(409);
     res.send(err);
   }

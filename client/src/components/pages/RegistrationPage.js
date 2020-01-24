@@ -9,20 +9,19 @@ class RegistrationPage extends Component {
     super(props);
     this.state = {
       email: '',
-      username: '',
+      firstName: '',
+      lastName: '',
+      /*birthdate: undefined,
+      gender: '',*/
       password: '',
       verifypassword: '',
+      
       buttontext: 'Register',
       failed: false,
       succeeded: false,
       mustfillfields: false,
     }
   }
-
-
-u_handleChange = (event) => {
-  this.setState({username: event.target.value});
-};
 
 e_handleChange = (event) => {
   this.setState({email: event.target.value});
@@ -35,10 +34,18 @@ p_handleChange = (event) => {
 vp_handleChange = (event) => {
   this.setState({verifypassword: event.target.value});
 }
+fn_handleChange = (event ) => {
+  this.setState({firstName: event.target.value});
+}
+
+ln_handleChange = (event ) => {
+  this.setState({lastName: event.target.value});
+}
+
 
 handleSubmit = (event) => {
   event.preventDefault();
-  if (this.state.email === '' || this.state.username === '' || this.state.password == '' || this.state.verifypassword !== this.state.password) {
+  if (this.state.email === '' || this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.verifypassword !== this.state.password) {
     this.setState({mustfillfields: true});
     return;
   }
@@ -78,10 +85,10 @@ handleSubmit = (event) => {
           <meta http-equiv = "refresh" content = "1; url = /login" />
         </div>
       );
-    } else if (this.props.username && this.props.userId) {
+    } else if (this.props.email && this.props.userId) {
       return (
         <div>
-          You are logged in as {this.props.username}.
+          {/*You are logged in as {this.props.username}.*/}
           <button onClick={this.props.handleLogout}>Log out</button>
         </div>
       );
@@ -91,7 +98,7 @@ handleSubmit = (event) => {
           { this.state.mustfillfields && (
             <span className="warning">You must fill all fields!</span>
             )}
-          { this.state.failed ? "Registration failed. Username already taken": null}
+          { this.state.failed ? "Registration failed. Email already taken": null}
           <h1 className="u-textCenter">Registration</h1>
           <form className="u-flexColumn u-flex-alignEnd">
            <label className = "Reg-input">
@@ -105,12 +112,21 @@ handleSubmit = (event) => {
               />
             </label>
             <label className = "Reg-input">
-              <span className="fieldname">Username</span>
+              <span className="fieldname">First name</span>
               <input
                 type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.u_handleChange}
+                name="firstname"
+                value={this.state.firstName}
+                onChange={this.fn_handleChange}
+              />
+            </label>
+            <label className = "Reg-input">
+              <span className="fieldname">Last name</span>
+              <input
+                type="text"
+                name="lastname"
+                value={this.state.lastName}
+                onChange={this.ln_handleChange}
               />
             </label>
             <label className = "Reg-input">

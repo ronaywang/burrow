@@ -13,10 +13,11 @@
   height: var(--avatarSize);
 }
 
-.ProfileBar-middle {
+.ProfileBar-tabContainer{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  flex-direction: column;
   margin: 1rem;
 }
 

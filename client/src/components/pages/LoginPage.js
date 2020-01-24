@@ -9,7 +9,7 @@ class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
       buttontext: 'Log in',
       failed: false,
@@ -18,8 +18,8 @@ class LoginPage extends Component {
   }
 
 
-u_handleChange = (event) => {
-  this.setState({username: event.target.value});
+e_handleChange = (event) => {
+  this.setState({email: event.target.value});
 };
 
 p_handleChange = (event) => {
@@ -57,7 +57,7 @@ handleSubmit = (event) => {
     } else if (this.props.userId) {
       return (
         <div>
-          <p/>You are logged in as {this.props.username}.
+          {/*<p/>You are logged in as {this.props.username}. to change later*/}
           <p/>
           <button onClick={this.props.handleLogout}>Log out</button>
         </div>
@@ -69,12 +69,12 @@ handleSubmit = (event) => {
           { this.state.failed ? "Login failed": null}
           <form className="u-flexColumn u-flex-alignEnd" onSubmit={this.handleSubmit}>
             <label className="Login-input">
-              <span className="fieldname">Username</span>
+              <span className="fieldname">Email</span>
               <input 
                 type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.u_handleChange}
+                name="email"
+                value={this.state.email}
+                onChange={this.e_handleChange}
               />
             </label>
             <label className="Login-input">

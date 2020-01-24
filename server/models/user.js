@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
   email: String,
-  username: String,
   password: String,
   firstName: String,
   lastName: String,
@@ -20,8 +19,8 @@ const UserSchema = new mongoose.Schema({
 });
 
 // authentication
-UserSchema.statics.authenticate = (username, password, callback) => {
-    User.findOne({username : username})
+UserSchema.statics.authenticate = (email, password, callback) => {
+    User.findOne({email : email})
         .exec(function(err, user) {
             // checking for user
             if (err) {
