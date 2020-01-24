@@ -28,7 +28,6 @@
   padding: var(--s);
   max-width: 6rem;
   object-fit: cover;
-  background-color: #FFCCCC;
   width: 6rem;
   height: 6rem;
 }
@@ -80,7 +79,6 @@
 }
 
 .Card-location {
-  font-variant: small-caps;
   font-weight: 500;
   color: var(--neutral2);
   font-size: 100%;
@@ -102,9 +100,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: #CCCCCC;
+  align-items: flex-end;
 }
 
 .Card-bottom {
@@ -120,11 +116,12 @@
 }
 
 .Card-flag {
-  padding-right: 1rem;
+  padding: 0rem 0.5rem;
   font-weight: 300;
   font-size: 80%;
-  color: var(--neutral3);
+  background-color: var(--neutral6);
   margin: var(--xs);
+  color: var(--neutral1);
 }
 
 .Card-textBox {

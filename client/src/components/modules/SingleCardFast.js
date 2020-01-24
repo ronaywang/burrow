@@ -78,14 +78,14 @@ class SingleCardFast extends Component {
                 <th className="ldp-right">${price}/month</th>
                 </tr>
           </table> */}
-          <div className="Card-location">{location}</div>
+          
           <div className="Card-date">{formatDate(startDate)} to {formatDate(endDate)}</div>
           <div className="Card-flags">
             <span className="Card-flag">{smoking ? "" : "not "}smoker-friendly </span>
             <span className="Card-flag">{pets ? "" : "not "}pet-friendly </span>
           </div>
             </div>
-          <div className="Card-topRight">top right</div>
+          <div className="Card-topRight"><div className="Card-location">{location}</div></div>
           <div className="Card-horizontalLine"></div>
           
           <div className="Card-textBox">{additionalText}</div>
