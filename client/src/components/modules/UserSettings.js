@@ -99,7 +99,7 @@ class UserSettings extends Component {
           onChange={(event)=>{this.setState({lastName: event.target.value})}}/>
         </div>
         <div>
-          <span className="fieldname">when were ya born, boomer</span>
+          <span className="fieldname">Birthdate</span>
           <SingleDatePicker
           date={dispdate}
           onDateChange={date => this.setState({birthdate: date.toDate()})}
@@ -113,7 +113,7 @@ class UserSettings extends Component {
           displayFormat="MMM DD, YYYY"/>
         </div>
         <div>
-          <span className="fieldname">Which flavor are you</span>
+          <span className="fieldname">Gender</span>
           <button
           className={mbuttonclass}
           onClick={()=>{this.setState({maleButtonActive: true, femaleButtonActive: false, nbButtonActive: false, gender: genders.M})}}

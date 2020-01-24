@@ -104,7 +104,7 @@ handleSubmit = (event) => {
            <label className = "Reg-input">
            {/*<i class="mail-icon"></i> icon stuff, will edit after Milestone 2*/}
            <span className="fieldname">Email</span>
-              <input
+              <input className = "inputTextField"
                 type="text"
                 name="email"
                 value={this.state.email}
@@ -113,7 +113,7 @@ handleSubmit = (event) => {
             </label>
             <label className = "Reg-input">
               <span className="fieldname">First name</span>
-              <input
+              <input className = "inputTextField"
                 type="text"
                 name="firstname"
                 value={this.state.firstName}
@@ -122,7 +122,7 @@ handleSubmit = (event) => {
             </label>
             <label className = "Reg-input">
               <span className="fieldname">Last name</span>
-              <input
+              <input className = "inputTextField"
                 type="text"
                 name="lastname"
                 value={this.state.lastName}
@@ -131,7 +131,7 @@ handleSubmit = (event) => {
             </label>
             <label className = "Reg-input">
               <span className="fieldname">Password</span>
-              <input
+              <input className = "inputTextField"
                 type="password"
                 name="password"
                 value={this.state.password}
@@ -140,7 +140,7 @@ handleSubmit = (event) => {
             </label>
             <label className = "Reg-input">
               <span className="fieldname">Verify password</span>
-              <input
+              <input className = "inputTextField"
                 type="password"
                 name="verifypassword"
                 value={this.state.verifypassword}

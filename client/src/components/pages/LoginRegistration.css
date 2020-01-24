@@ -27,7 +27,18 @@
 }
 
 .Login-input, .Reg-input {
-  margin: var(--inputmargins);
+  display: flex;
+  flex-direction: column;
+}
+
+.inputTextField {
+  background: var(--neutral7);
+  margin: 0px var(--xs) var(--s);
+}
+
+.fieldname {
+  font-size: 80%;
+
 }
 
 

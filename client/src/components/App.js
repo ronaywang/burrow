@@ -34,7 +34,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: "",
-      username: "",
+      email: "",
       doDisplay: false,
       mapCenter: {
         lat: 0,
@@ -52,7 +52,7 @@ class App extends Component {
     get("/api/myuid").then((response) => {
       if (response.userId) {
         // they are registed in the database, and currently logged in
-        this.setState({ userId: response.userId, username: response.username});
+        this.setState({ userId: response.userId, email: response.email});
       }
     }).catch(error => {console.log(error)}).finally(() => {
       this.setState({doDisplay: true});
@@ -70,7 +70,7 @@ class App extends Component {
   handleLogout () {
     post("/api/logout").then(() => {
       window.location.pathname="/";
-      this.setState({ userId: "", username: ""});
+      this.setState({ userId: "", email: ""});
     })
   }
 
@@ -88,7 +88,7 @@ class App extends Component {
           />
           <ProfilePage path={`/profile/${this.state.userId}`}
           userId={this.state.userId}
-          username={this.state.username}
+          email={this.state.email}
           />
           {/* EVERY SINGLE FUCKING OTHER URL */}
           <InboxPage path="/inbox" />
