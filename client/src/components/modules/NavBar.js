@@ -70,7 +70,7 @@ class NavBar extends Component {
       <div className="NavBar-container ">
         <div className="NavBar-logoSearchContainer NavBar-style">
           <div className="NavBar-logo">
-            <Link to="/" className="NavBar-logo-link">burrow</Link>
+            <Link to="/" className="NavBar-logo-link">god javascript is awful</Link>
           </div>
           <div className="NavBar-toggleContainer">
             <Toggle

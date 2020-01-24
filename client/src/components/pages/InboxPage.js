@@ -32,13 +32,13 @@ class InboxPage extends Component{
       chatBoxContents: "",
       lastMessageSubmitted: "",
       displayedMessages: [],
-      fromMe: true,
+      fromMe: true, // development
     };
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
     this.SearchBoxUpdate = this.SearchBoxUpdate.bind(this);
     this.SearchBoxKey= this.SearchBoxKey.bind(this);
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
-    this.ToggleFromMe = this.ToggleFromMe.bind(this);
+    this.ToggleFromMe = this.ToggleFromMe.bind(this); // for development
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
   }
 
@@ -53,7 +53,7 @@ class InboxPage extends Component{
 
   ToggleFromMe(event) {
     this.setState({fromMe: !this.state.fromMe});
-  }
+  } // for development
 
   ChatBoxUpdate(event) {
     this.setState({chatBoxContents: event.target.value});
@@ -67,7 +67,7 @@ class InboxPage extends Component{
         lastMessageSubmitted: this.state.chatBoxContents,
         chatBoxContents: "",
       });
-      setTimeout(() => {this.ChatGoToBottom();}, 100);
+      setTimeout(() => {this.ChatGoToBottom();}, 100); // if you don't add this 100 ms delay, the scroll happens before the new message shows up
     }
   }
 
