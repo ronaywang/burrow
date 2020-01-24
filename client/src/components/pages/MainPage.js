@@ -77,7 +77,7 @@ class MainPage extends Component{
     let locationCtr = this.state.lookingForRoom ? this.state.roomLocationCtr : this.state.roommateLocationCtr;
     return (
       <div className="MainPage-container">
-        <PreferenceBar triggerSearch={() => {this.triggerSearch()}}/>
+        <PreferenceBar triggerSearch={() => {this.triggerSearch()}}/>  
         <div className="MainPage-feedMapContainer">
           {/* <div className="MainPage-queryContainer">{`Results for ${location}:`}</div> */}
           {/* <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" /> */}
