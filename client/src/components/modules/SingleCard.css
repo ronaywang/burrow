@@ -1,15 +1,16 @@
 .Card-container {
   border: var(--border);
-  border-radius: var(--borderradius);
   height: auto;
-  max-width: 768px;
+  max-width: 600px;
   display: grid;
-  grid-template-columns: 4rem 15rem 25rem auto;
-  grid-template-rows: 2rem 6rem 1px auto;
-  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
+  grid-template-columns: 4rem 10rem 15rem auto;
+  grid-template-rows: 2rem 2rem 1px auto;
+  box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  margin: var(--s);
+  margin: var(--m);
+  padding: var(--s);
 }
+
 
 .Card-pink {
   color: rgb(255, 59, 124);
@@ -44,8 +45,8 @@
 .Card-nameAgeGender{
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  font-size: 130%;
-  font-weight: 700;
+  font-size: 110%;
+  font-weight: 600;
   margin: var(--s) var(--xs) var(--xs) var(--xs);
   display: flex;
   align-items: flex-start;
@@ -74,6 +75,7 @@
   grid-column: 3/4;
   grid-row: 1/2;
   display: flex;
+  margin: var(--s) var(--xs) var(--xs) var(--xs);
 }
 
 /*.Card-location {
@@ -87,10 +89,9 @@
 }*/
 
 .Card-date {
-  font-size: 110%;
-  margin: var(--xs);
+  font-size: 90%;
   font-weight: 500;
-  color: var(--neutral1);
+  color: var(--neutral2);
 
 }
 
@@ -121,17 +122,17 @@
 }
 
 .Card-flag {
-  padding: 0rem 0.5rem;
   font-weight: 300;
-  font-size: 80%;
+  font-size: 70%;
   color: var(--neutral3);
   margin: var(--xs);
+  letter-spacing: 0.05em;
 }
 
 .Card-textBox {
-  grid-column: 1 / 3;
+  grid-column: 1 / 4;
   grid-row: 4 / 5;
-  margin: 1em 2em;
+  margin: var(--s);
   font-size: 100%;
   text-align: justify;
   line-height: 110%;
