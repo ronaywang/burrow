@@ -1,0 +1,48 @@
+.InboxPage-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.Messages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  min-height: 30rem;
+  flex: 1 1 auto;
+  border: 1px solid black;
+}
+
+.Chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  flex: 3 1 auto;
+  border: 1px solid black;
+}
+
+.MessageSearch {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: var(--borders);
+}
+
+.ChatBox {
+  width: auto;
+  margin-top: auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-height: 3rem;
+  border: var(--borders);
+  font-family: skolar-sans-latin;
+  font-size: 110%;
+}
