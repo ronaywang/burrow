@@ -6,7 +6,9 @@ import "./InboxPage.css";
 
 const makeMessageNice = (message) => {
   return (
-    <div>{message}</div>
+    <div className="ChatBubble-textContainer ChatBubble-textContainer-fromme">
+      {message}
+    </div>
   );
 };
 
