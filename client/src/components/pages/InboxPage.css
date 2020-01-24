@@ -1,0 +1,33 @@
+.InboxPage-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.Messages-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  min-height: 30rem;
+  flex: 1 1 auto;
+  border: 1px solid black;
+}
+
+.Chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  flex: 3 1 auto;
+  border: 1px solid black;
+}
+
+.MessageSearch {
+  border: var(--borders);
+}
+
+.ChatBox {
+  margin-top: auto;
+}
