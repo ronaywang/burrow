@@ -26,10 +26,13 @@ class InboxPage extends Component{
 
       <div className="Chat-container">
 
-        <input className="ChatBox"
+        <textarea
+        rows="10"
+        cols="30"
+        className="ChatBox" 
         placeholder="Type here"
         />
-      </div>
+        </div>
     </div>
     );
   }
