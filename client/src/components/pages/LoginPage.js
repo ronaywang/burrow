@@ -70,7 +70,7 @@ handleSubmit = (event) => {
           <form className="u-flexColumn u-flex-alignEnd" onSubmit={this.handleSubmit}>
             <label className="Login-input">
               <span className="fieldname">Email</span>
-              <input 
+              <input className = "inputTextField"
                 type="text"
                 name="email"
                 value={this.state.email}
@@ -79,7 +79,7 @@ handleSubmit = (event) => {
             </label>
             <label className="Login-input">
               <span className="fieldname">Password</span>
-              <input
+              <input className = "inputTextField"
                 type="password"
                 name="password"
                 value={this.state.password}
