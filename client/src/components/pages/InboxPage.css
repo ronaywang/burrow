@@ -50,13 +50,14 @@
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-height: 3rem;
+  height: 3.5rem;
   border: var(--borders);
   border-radius: var(--l);
   max-width: 30rem;
   align-self: center;
   font-family: skolar-sans-latin;
   font-size: 110%;
+  word-wrap:break-word
 }
 
 
