@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { message_display } from "../modules/enums";
-import { get } from "../../utilities";
+import { message_display, listing_type } from "../modules/enums";
+import { get, post } from "../../utilities";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
 import Toggle from 'react-toggle';
 import "react-toggle/style.css"
+import moment from "moment";
 
 const makeMessageNice = (message) => {
   let messageClassname = "ChatBubble-textContainer";
@@ -66,14 +67,24 @@ class InboxPage extends Component{
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
   }
 
-  componentDidMount() {
-    get("/api/getthreads").then((response)=>{
-      this.setState({threadsToDisplay: response.threads});
-    });
-    if (this.state.threadsToDisplay !== []) {
-      this.setState({activeThread: this.state.threadsToDisplay[0]});
-    }
+  async componentDidMount() {
+    const uidresponse = await get("/api/myuid");
+    const userId = uidresponse.userId;
+    const response = await get("/api/getthreads");
+    this.setState({threadsToDisplay: response.threads});
+    if (response.threads.length > 0) {
+      this.setState({activeThread: response.threads[0]});
+      const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
+      mresponse.messageList.foreach((mes)=>{
+        if(mes.sender_ID === userId) {
+          this.state.displayedMessages.push([mes.content, listing_type.FROMME]);
+        } else {
+          this.state.displayedMessages.push([mes.content, listing_type.FROMYOU]);
+        }
+      });
+     }
   }
+
 
   ChatGoToBottom() {
    let element = document.getElementById("ChatBubblesContainer");
@@ -94,6 +105,11 @@ class InboxPage extends Component{
     } else if (event.keyCode === 13) {
       const typeOfMessage = (this.state.fromMe ? message_display.FROMME : message_display.FROMYOU);
       this.state.displayedMessages.push([this.state.chatBoxContents, typeOfMessage]);
+      post("/api/postmessage", {
+        content: this.state.chatBoxContents,
+        threadId: this.state.activeThread._id,
+        timestamp: moment().toDate(),
+      }).then
       this.setState({
         lastMessageSubmitted: this.state.chatBoxContents,
         chatBoxContents: "",

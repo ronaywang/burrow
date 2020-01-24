@@ -311,9 +311,19 @@ router.get("/getthreads", async (req, res) => {
   res.status(200).send({threads: usersThreads});
 });
 
-router.post("/postmessage", async (req, res) => { // takes body.threadId, body.content, body.timestamp
+router.post("/postmessage", async (req, res) => { // takes body.threadId, body.content, body.timestamp, body.listing_ID
   const threadId = req.body.threadId;
   let threadOfInterest = await Thread.findById(threadId);
+  const listingOfInterest = await Listing.findById(req.body.listingId);
+  if(threadOfInterest === null) {
+    threadOfInterest = new Thread({
+      sender_ID: req.user._id,
+      recipient_ID: listingOfInterest.creator_ID,
+      listing_ID: req.body.listingId,
+      messages: [],
+      length: 0,
+    });
+  }
   const newMessage = new Message({
     sender_ID: threadOfInterest.sender_ID,
     recipient_ID: threadOfInterest.recipient_ID,
@@ -327,6 +337,7 @@ router.post("/postmessage", async (req, res) => { // takes body.threadId, body.c
   threadOfInterest.length += 1;
   threadOfInterest.messages.push(newMessage._id);
   res.status(200).send({});
+  await threadOfInterest.save;
 });
 
 router.get("/getmessages", async (req, res) => {
@@ -334,7 +345,7 @@ router.get("/getmessages", async (req, res) => {
   const messageList = await Message.find({
     parentThread_ID: threadId,
   });
-  res.send(messageList);
+  res.send({messageList: messageList});
 });
 
 // router.get("/locationsuggestions", (req, res) => {
