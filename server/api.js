@@ -19,6 +19,8 @@ const _ = require("lodash");
 const User = require("./models/user");
 const Photo = require("./models/photo");
 const Listing = require("./models/listing");
+const Thread = require("./models/thread");
+const Message = require("./models/message");
 
 // import authentication library
 const auth = require("./auth");
@@ -293,6 +295,47 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
     message: "thanks",
     h: req.body,
   });
+});
+
+router.get("/getthreads", async (req, res) => {
+  const userId = req.user._id;
+  usersThreads = await Thread.find({
+    $or: [
+      {
+        sender_ID: userId
+      },
+      {
+        recipient_ID: userId
+      }
+    ]
+  });
+  res.status(200).send({threads: usersThreads});
+});
+
+router.post("/postmessage", async (req, res) => { // takes body.threadId, body.content, body.timestamp
+  const threadId = req.body.threadId;
+  let threadOfInterest = await Thread.findById(threadId);
+  const newMessage = new Message({
+    sender_ID: threadOfInterest.sender_ID,
+    recipient_ID: threadOfInterest.recipient_ID,
+    listing_ID: threadOfInterest.listing_ID,
+    messageNumber: threadOfInterest.size,
+    parentThread_ID: threadId,
+    timestamp: req.body.timestamp,
+    content: req.body.content,
+  });
+  newMessage.save().then((thing)=>console.log(thing));
+  threadOfInterest.length += 1;
+  threadOfInterest.messages.push(newMessage._id);
+  res.status(200).send({});
+});
+
+router.get("/getmessages", async (req, res) => {
+  const threadId = req.query.threadId;
+  const messageList = await Message.find({
+    parentThread_ID: threadId,
+  });
+  res.send(messageList);
 });
 
 // router.get("/locationsuggestions", (req, res) => {

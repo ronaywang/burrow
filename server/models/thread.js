@@ -6,6 +6,7 @@ const ThreadSchema = new mongoose.Schema({
     recipient_ID: { type: Schema.Types.ObjectId, ref: 'user' },
     listing_ID: { type: Schema.Types.ObjectId, ref: 'listing' },
     messages: [{ type: Schema.Types.ObjectId, ref: 'message' }],
+    length: Number,
 });
 
 module.exports = mongoose.model("thread", ThreadSchema);

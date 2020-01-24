@@ -8,6 +8,7 @@ const MessageSchema = new mongoose.Schema({
     messageNumber: Number,
     parentThread_ID: {type: Schema.Types.ObjectId, ref: 'thread' },
     timestamp: Date,
+    content: String,
 });
 
 module.exports = mongoose.model("message", MessageSchema);

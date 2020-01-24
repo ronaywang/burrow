@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { message_display } from "../modules/enums";
+import { get } from "../../utilities";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
@@ -21,6 +22,14 @@ const makeMessageNice = (message) => {
   );
 };
 
+const makeThreadNice = (thread) => {
+  return (
+    <div>
+      {thread.recipient_ID}
+    </div>
+  );
+};
+
 
 
 class InboxPage extends Component{
@@ -32,6 +41,8 @@ class InboxPage extends Component{
       chatBoxContents: "",
       lastMessageSubmitted: "",
       displayedMessages: [],
+      threadsToDisplay: [],
+      activeThread: {},
       fromMe: true, // development
     };
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
@@ -43,7 +54,12 @@ class InboxPage extends Component{
   }
 
   componentDidMount() {
-
+    get("/api/getthreads").then((response)=>{
+      this.setState({threadsToDisplay: response.threads});
+    });
+    if (this.state.threadsToDisplay !== []) {
+      this.setState({activeThread: this.state.threadsToDisplay[0]});
+    }
   }
 
   ChatGoToBottom() {
@@ -101,6 +117,7 @@ class InboxPage extends Component{
           onChange={this.SearchBoxUpdate}
           onKeyDown={this.SearchBoxKey}
           />
+        {this.state.threadsToDisplay.map(makeThreadNice)}
 
       </div>
 
@@ -120,7 +137,7 @@ class InboxPage extends Component{
         onKeyUp={this.ChatBoxKey}
         />
           <div className="Chat-howtosubmit">
-            ⇧+⏎ to submit
+            &#x21E7;+&#x23CE;&#x2000;to submit {/* shift plus enter to submit */}
           </div>
         </div>
     </div>
