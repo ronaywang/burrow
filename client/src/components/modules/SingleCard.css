@@ -27,7 +27,6 @@
   border-radius: 10em;
   padding: var(--s);
   max-width: 6rem;
-  background-color: #FFCCCC;
 }
 
 .Card-profilePicContainer {
@@ -44,8 +43,7 @@
   grid-row: 1 / 2;
   font-size: 130%;
   font-weight: 700;
-  margin: var(--xs);
-  padding-top: 0.2em;
+  margin: var(--s) var(--xs) var(--xs) var(--xs);
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
