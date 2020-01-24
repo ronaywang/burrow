@@ -30,6 +30,12 @@ class YourListings extends Component {
 
   render() {
     console.log(`Your listings: ${this.state.usersListings}`);
+    if (this.state.usersListings.length === 0)
+      return (
+        <div className="YourListings-container">
+          No listings here :(
+        </div>
+      );
     return (
       <div className="YourListings-container">
         <Popup modal trigger={

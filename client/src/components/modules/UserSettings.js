@@ -5,6 +5,7 @@ import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import { get, post } from "../../utilities";
 import { genders} from "./enums";
+import ProfilePicUploader from "../modules/ProfilePicUploader";
 
 class UserSettings extends Component {
   constructor(props) {
@@ -22,11 +23,17 @@ class UserSettings extends Component {
       femaleButtonActive: false,
       nbButtonActive: false,
       doRender: false,
+      profilePicURL: "",
     };
     this.saveSettings = this.saveSettings.bind(this);
   }
 
   componentDidMount() {
+    if (this.state.profilePicURL.length == 0) {
+      post("/api/getProfilePic", {userId: this.props.userId}).then((myres) => {
+        this.setState({profilePicURL: myres.photoURL});
+      });
+    }
     get("/api/getthisuserinfo").then((userObj) => {
       console.log(userObj);
       this.setState({
@@ -83,6 +90,16 @@ class UserSettings extends Component {
     }
     return (
       <div className="UserSettings-container">
+        <div className = "ProfileBar-container">
+          <div>
+            <img className = "ProfileBar-photo" src={this.state.profilePicURL || require("../../public/assets/account.png")}/>
+          </div>
+          {/*<div>
+            Profile page for <b>{this.props.username}</b>
+          </div>*/}
+          <ProfilePicUploader/>
+        
+        </div>
         <div>
           <span className="fieldname">Name</span>
           <input
