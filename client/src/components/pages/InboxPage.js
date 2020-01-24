@@ -1,16 +1,27 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import { message_display } from "../modules/enums";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
+import Toggle from 'react-toggle';
+import "react-toggle/style.css"
 
 const makeMessageNice = (message) => {
+  let messageClassname = "ChatBubble-textContainer";
+  if (message[1] === message_display.FROMME) {
+    messageClassname += " ChatBubble-textContainer-fromme";
+  } else {
+    messageClassname += " ChatBubble-textContainer-fromyou";
+  }
   return (
-    <div className="ChatBubble-textContainer ChatBubble-textContainer-fromme">
-      {message}
+    <div className={messageClassname}>
+    {message[0]}
     </div>
   );
 };
+
+
 
 class InboxPage extends Component{
   constructor(props) {
@@ -21,17 +32,22 @@ class InboxPage extends Component{
       chatBoxContents: "",
       lastMessageSubmitted: "",
       displayedMessages: [],
+      fromMe: true,
     };
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
     this.SearchBoxUpdate = this.SearchBoxUpdate.bind(this);
     this.SearchBoxKey= this.SearchBoxKey.bind(this);
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
+    this.ToggleFromMe = this.ToggleFromMe.bind(this);
   }
 
   componentDidMount() {
 
   }
 
+  ToggleFromMe(event) {
+    this.setState({fromMe: !this.state.fromMe});
+  }
 
   ChatBoxUpdate(event) {
     this.setState({chatBoxContents: event.target.value});
@@ -39,7 +55,8 @@ class InboxPage extends Component{
 
   ChatBoxKey(event) {
     if(event.keyCode === 13 && event.shiftKey) {
-      this.state.displayedMessages.push(this.state.chatBoxContents);
+      const typeOfMessage = (this.state.fromMe ? message_display.FROMME : message_display.FROMYOU);
+      this.state.displayedMessages.push([this.state.chatBoxContents, typeOfMessage]);
       this.setState({
         lastMessageSubmitted: this.state.chatBoxContents,
         chatBoxContents: "",
@@ -64,6 +81,11 @@ class InboxPage extends Component{
   render() {
     return (
     <div className="InboxPage-container">
+      <Toggle
+        id='fromme-toggle'
+        defaultChecked={this.state.fromMe}
+        onChange={this.ToggleFromMe}
+      />
       <div className="Messages-container">
         <input className="MessageSearch"
           type="text"
