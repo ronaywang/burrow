@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "../../utilities.css";
 import "../../utilities";
 import "./SingleCard.css";
-import { formatDate, calculateAge, get } from "../../utilities";
+import { formatDate, calculateAge, get, post } from "../../utilities";
 
 class SingleCardFast extends Component {
   static genderColorDict = {
@@ -57,39 +57,52 @@ class SingleCardFast extends Component {
       return null;
     return (
       <div className="Card-container" key={this.props.listingId}>
-          <div className="Card-profilePicContainer">
-          <img src={profilePicURL} className="Card-profilePic"/>
-          </div>
-          <div className="Card-nameAgeGender">
-            <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
-          </div>
-            <div className="Card-locationDatePrice">
-              {/*<table style={{'text-align':'left'}}>
-                <tr>
-                  <th className="ldp-left">{lookingForRoom ? "is moving to" : "is located in"}</th>
-                  <th className="ldp-right">{location}</th>
-                </tr>
-                <tr>
-                  <th className="ldp-left">during</th>
-                  <th className="ldp-right">{formatDate(startDate)}–{formatDate(endDate)}</th>
-                </tr>
-                <tr>
-                <th className="ldp-left">{lookingForRoom ? "with a budget of" : "with a price of"}</th>
-                <th className="ldp-right">${price}/month</th>
-                </tr>
-          </table> */}
-      
-          <div className="Card-date">{formatDate(startDate)} to {formatDate(endDate)}</div></div>
-          <div className="Card-flags">
-            <span className="Card-flag">{location}</span> &bull;
-            <span className="Card-flag">{smoking ? "" : "not "}smoker-friendly </span> &bull;
-            <span className="Card-flag">{pets ? "" : "not "}pet-friendly </span>
-          </div>
-            
-          <div className="Card-topRight"></div>
-          <div className="Card-horizontalLine"></div>
+        <div className="Card-profilePicContainer">
+        <img src={profilePicURL} className="Card-profilePic"/>
+        </div>
+        <div className="Card-nameAgeGender">
+          <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
+        </div>
+          <div className="Card-locationDatePrice">
+            {/*<table style={{'text-align':'left'}}>
+              <tr>
+                <th className="ldp-left">{lookingForRoom ? "is moving to" : "is located in"}</th>
+                <th className="ldp-right">{location}</th>
+              </tr>
+              <tr>
+                <th className="ldp-left">during</th>
+                <th className="ldp-right">{formatDate(startDate)}–{formatDate(endDate)}</th>
+              </tr>
+              <tr>
+              <th className="ldp-left">{lookingForRoom ? "with a budget of" : "with a price of"}</th>
+              <th className="ldp-right">${price}/month</th>
+              </tr>
+        </table> */}
+    
+        <div className="Card-date">{formatDate(startDate)} to {formatDate(endDate)}</div></div>
+        <div className="Card-flags">
+          <span className="Card-flag">{location}</span> &bull;
+          <span className="Card-flag">{smoking ? "" : "not "}smoker-friendly </span> &bull;
+          <span className="Card-flag">{pets ? "" : "not "}pet-friendly </span>
+        </div>
           
-          <div className="Card-textBox">{additionalText}</div>
+        <div className="Card-topRight"></div>
+        <div className="Card-horizontalLine"></div>
+        
+        <div className="Card-textBox">{additionalText}</div>
+        {/* {this.props.listing.creator_ID._id === "0" ? ( */}
+          <div className="Card-editDeleteContainer" >
+            <input className="Card-editContainer" type="submit" value="Edit" />
+            <input className="Card-deleteContainer bkred" type="submit" value="Delete" 
+              onClick={() => {
+                this.setState({doRender: false}, () => {
+                  post("/api/deletelisting", {_id: this.props.listing._id});
+                })
+              }}
+            />
+          </div>
+        {/* ) : null*/}
+        
       </div>
     );
   }
