@@ -99,7 +99,7 @@ handleSubmit = (event) => {
             <span className="warning">You must fill all fields!</span>
             )}
           { this.state.failed ? "Registration failed. Email already taken": null}
-          <h1 className="u-textCenter">Registration</h1>
+          <h1 className="u-textCenter">Find your burrow today.</h1>
           <form className="u-flexColumn u-flex-alignEnd">
            <label className = "Reg-input">
            {/*<i class="mail-icon"></i> icon stuff, will edit after Milestone 2*/}
