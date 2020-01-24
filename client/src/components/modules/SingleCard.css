@@ -27,7 +27,10 @@
   border-radius: 10em;
   padding: var(--s);
   max-width: 6rem;
+  object-fit: cover;
   background-color: #FFCCCC;
+  width: 6rem;
+  height: 6rem;
 }
 
 .Card-profilePicContainer {
