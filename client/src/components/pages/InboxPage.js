@@ -39,10 +39,16 @@ class InboxPage extends Component{
     this.SearchBoxKey= this.SearchBoxKey.bind(this);
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
     this.ToggleFromMe = this.ToggleFromMe.bind(this);
+    this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
   }
 
   componentDidMount() {
 
+  }
+
+  ChatGoToBottom() {
+   let element = document.getElementById("ChatBubblesContainer");
+   element.scrollTop = element.scrollHeight - element.clientHeight;
   }
 
   ToggleFromMe(event) {
@@ -61,6 +67,7 @@ class InboxPage extends Component{
         lastMessageSubmitted: this.state.chatBoxContents,
         chatBoxContents: "",
       });
+      setTimeout(() => {this.ChatGoToBottom();}, 100);
     }
   }
 
@@ -98,7 +105,10 @@ class InboxPage extends Component{
       </div>
 
       <div className="Chat-container">
-        {this.state.displayedMessages.map(makeMessageNice)}
+        <div className="Chat-ChatBubblesContainer"
+        id="ChatBubblesContainer">
+          {this.state.displayedMessages.map(makeMessageNice)}
+        </div>
 
         <textarea
         rows="10"
@@ -109,6 +119,9 @@ class InboxPage extends Component{
         onChange={this.ChatBoxUpdate}
         onKeyUp={this.ChatBoxKey}
         />
+          <div className="Chat-howtosubmit">
+            ⇧+⏎ to submit
+          </div>
         </div>
     </div>
     );

@@ -17,11 +17,20 @@
 
 .Chat-container {
   display: flex;
+  min-height: 40rem;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
   flex: 3 1 auto;
   border: var(--borders);
+}
+
+.Chat-ChatBubblesContainer {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  height: 30rem;
+  overflow-y: auto;
 }
 
 .MessageSearch {
@@ -36,13 +45,16 @@
   margin-top: auto;
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
   min-height: 3rem;
   border: var(--borders);
+  border-radius: var(--l);
+  max-width: 30rem;
+  align-self: center;
   font-family: skolar-sans-latin;
   font-size: 110%;
 }
@@ -58,13 +70,22 @@
 }
 
 .ChatBubble-textContainer-fromme {
+  margin-right: 1rem;
   align-self: flex-end;
   max-width: 40%;
   background-color: var(--primary5);
 }
 
 .ChatBubble-textContainer-fromyou {
+  margin-left: 1rem;
   align-self: flex-start;
   max-width: 40%;
   background-color: var(--neutral5);
+}
+
+.Chat-howtosubmit {
+  text-align: center;
+  font-size: 110%;
+  font-weight: 700;
+  padding-bottom: 0.5rem;
 }
