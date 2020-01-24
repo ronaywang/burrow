@@ -11,10 +11,10 @@ import { get, post } from "../../utilities";
 import Toggle from 'react-toggle'
 
 const houseIcon = (
-  <img src="house_icon.svg" width="13px"/>
+  <img src="/house_icon.svg" width="13px"/>
 );
 const roommateIcon = (
-  <img src="roommate_icon.svg" width="13px"/>
+  <img src="/roommate_icon.svg" width="13px"/>
 );
 
 class NavBar extends Component {
