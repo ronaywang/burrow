@@ -58,6 +58,7 @@ class InboxPage extends Component{
       threadsToDisplay: [],
       activeThread: {},
       fromMe: true, // development
+      prototypelistingId: "5e2b70d459cc704ca9adcf4c", // development
     };
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
     this.SearchBoxUpdate = this.SearchBoxUpdate.bind(this);
@@ -65,6 +66,7 @@ class InboxPage extends Component{
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
     this.ToggleFromMe = this.ToggleFromMe.bind(this); // for development
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
+    this.ListingIdUpdate = this.ListingIdUpdate.bind(this);
   }
 
   async componentDidMount() {
@@ -75,14 +77,21 @@ class InboxPage extends Component{
     if (response.threads.length > 0) {
       this.setState({activeThread: response.threads[0]});
       const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
-      mresponse.messageList.foreach((mes)=>{
+      console.log(mresponse);
+      mresponse.messageList.forEach((mes)=>{
+        let displayedMessages = this.state.displayedMessages;
         if(mes.sender_ID === userId) {
-          this.state.displayedMessages.push([mes.content, listing_type.FROMME]);
+          displayedMessages.push([mes.content, message_display.FROMME]);
         } else {
-          this.state.displayedMessages.push([mes.content, listing_type.FROMYOU]);
+          displayedMessages.push([mes.content, message_display.FROMYOU]);
         }
+        this.setState({displayedMessages: displayedMessages});
       });
      }
+  }
+
+  ListingIdUpdate(event) {
+    this.setState({prototypelistingId: event.target.value});
   }
 
 
@@ -109,6 +118,7 @@ class InboxPage extends Component{
         content: this.state.chatBoxContents,
         threadId: this.state.activeThread._id,
         timestamp: moment().toDate(),
+        listing_ID: this.state.prototypelistingId,
       }).then
       this.setState({
         lastMessageSubmitted: this.state.chatBoxContents,
@@ -148,6 +158,13 @@ class InboxPage extends Component{
           onChange={this.SearchBoxUpdate}
           onKeyDown={this.SearchBoxKey}
           />
+        <input className="MessageSearch"
+          type="text"
+          placeholder="Listing ID"
+          value={this.state.prototypelistingId}
+          onChange={this.ListingIdUpdate}
+          />
+
         {this.state.threadsToDisplay.map(makeThreadNice)}
 
       </div>

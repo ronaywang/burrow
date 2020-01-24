@@ -314,7 +314,7 @@ router.get("/getthreads", async (req, res) => {
 router.post("/postmessage", async (req, res) => { // takes body.threadId, body.content, body.timestamp, body.listing_ID
   const threadId = req.body.threadId;
   let threadOfInterest = await Thread.findById(threadId);
-  const listingOfInterest = await Listing.findById(req.body.listingId);
+  const listingOfInterest = await Listing.findById(req.body.listing_ID);
   if(threadOfInterest === null) {
     threadOfInterest = new Thread({
       sender_ID: req.user._id,
@@ -337,7 +337,7 @@ router.post("/postmessage", async (req, res) => { // takes body.threadId, body.c
   threadOfInterest.length += 1;
   threadOfInterest.messages.push(newMessage._id);
   res.status(200).send({});
-  await threadOfInterest.save;
+  await threadOfInterest.save();
 });
 
 router.get("/getmessages", async (req, res) => {
