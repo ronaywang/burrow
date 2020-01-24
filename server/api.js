@@ -165,6 +165,10 @@ router.get("/whoami", (req, res) => {
   res.send(clonedusr);
 });
 
+router.post("/deletelisting", (req, res) => {
+  Listing.deleteOne({ _id: req.body._id }).then(() => res.send({}));
+})
+
 router.post("/initsocket", (req, res) => {
   // do nothing if user not logged in
   if (req.user) socket.addUser(req.user, socket.getSocketFromSocketID(req.body.socketid));

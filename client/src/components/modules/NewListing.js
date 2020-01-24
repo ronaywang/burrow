@@ -27,7 +27,16 @@ class NewListing extends Component {
     };
   }
 
+  validate = () => {
+
+  }
+
   handleSubmit(){
+    if (this.state.locationquery === '' || 
+        this.state.price === 0 || this.state.textBox.trim().length === 0){
+      this.setState({mustfillfields: true});
+      return;
+    }
     const listingInfo = { 
         photoList: [],
         lookingForRoom: this.state.lookingForRoom,
@@ -40,7 +49,11 @@ class NewListing extends Component {
         petFriendly: this.state.pets,
         additionalPrefText: this.state.textBox,
     };
-    post("/api/listing", listingInfo).then(() => this.props.update());
+    post("/api/listing", listingInfo).then(() => this.props.update())
+      .then(this.setState({success: true}, () => {
+        setTimeout(() => this.props.close(), 750);
+      })
+    );
   }
 
   render(){
@@ -77,6 +90,9 @@ class NewListing extends Component {
     return (
       <div className="NewListing-supercontainer">
       <div className="NewListing-container">
+          { this.state.mustfillfields && (
+            <span className="warning">You must fill all fields!</span>
+            )}
         <div className="NewListing-left">
           <div className="NewListing-profilePicContainer">
           </div>
@@ -138,11 +154,8 @@ class NewListing extends Component {
             className="NewListing-submit"
             type="submit"
             value="Submit"
-            onClick={async () => {
-              await this.handleSubmit();
-              this.setState({success: true}, () => {
-                setTimeout(() => this.props.close(), 750);
-              })
+            onClick={() => {
+              this.handleSubmit();
             }}
           />
         </div>

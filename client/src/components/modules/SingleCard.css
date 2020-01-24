@@ -9,8 +9,32 @@
   overflow: hidden;
   margin: var(--m);
   padding: var(--s);
+  position: relative;
 }
 
+.Card-editDeleteContainer {
+  opacity: 0;
+  position: absolute;
+  background-color: rgba(64, 64, 64,0.5);
+  top: 0;
+  left: 0; 
+}
+
+.Card-editContainer {
+  border-radius: 3px;
+  border: 1px solid white;
+  color: white;
+}
+
+.Card-deleteContainer {
+  border-radius: 3px;
+  border: 1px solid white;
+  color: white;
+}
+ 
+.Card-container:hover .Card-editDeleteContainer{
+  opacity: 1;
+}
 
 .Card-pink {
   color: rgb(255, 59, 124);
