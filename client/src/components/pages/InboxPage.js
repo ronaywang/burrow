@@ -86,6 +86,7 @@ class InboxPage extends Component{
           displayedMessages.push([mes.content, message_display.FROMYOU]);
         }
         this.setState({displayedMessages: displayedMessages});
+        this.ChatGoToBottom();
       });
      }
   }
