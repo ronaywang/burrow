@@ -15,9 +15,22 @@ const makeMessageNice = (message) => {
   } else {
     messageClassname += " ChatBubble-textContainer-fromyou";
   }
+  const splitMessage = message[0].split('\n');
+  const splitMessageTail = splitMessage.slice(1);
+  const breakln = (
+    <br/>
+  );
   return (
     <div className={messageClassname}>
-    {message[0]}
+      {splitMessage[0]}
+    {splitMessageTail.map((mes)=>{
+      return (
+        <>
+        {breakln}
+        {mes}
+        </>
+      );
+    })}
     </div>
   );
 };
@@ -76,7 +89,9 @@ class InboxPage extends Component{
   }
 
   ChatBoxKey(event) {
-    if(event.keyCode === 13 && event.shiftKey) {
+    if(event.keyCode === 13 && event.shiftKey) { // add newline
+
+    } else if (event.keyCode === 13) {
       const typeOfMessage = (this.state.fromMe ? message_display.FROMME : message_display.FROMYOU);
       this.state.displayedMessages.push([this.state.chatBoxContents, typeOfMessage]);
       this.setState({
@@ -137,7 +152,7 @@ class InboxPage extends Component{
         onKeyUp={this.ChatBoxKey}
         />
           <div className="Chat-howtosubmit">
-            &#x21E7;+&#x23CE;&#x2000;to submit {/* shift plus enter to submit */}
+            &#x21E7;+&#x23CE;&#x2000;to add newline{/* shift plus enter to add newline*/}
           </div>
         </div>
     </div>
