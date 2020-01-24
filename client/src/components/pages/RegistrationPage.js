@@ -148,7 +148,8 @@ handleSubmit = (event) => {
               />
             </label>
             <button
-              className = "u-button"
+              className = "u-button" 
+              type="submit"
               onClick={this.handleSubmit}>
               {this.state.buttontext}</button>
             <div>

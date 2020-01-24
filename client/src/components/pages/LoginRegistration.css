@@ -15,6 +15,7 @@
 
 .submit{
     cursor: pointer;
+    background: var(--primary4);
 }
 
 
