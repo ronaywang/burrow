@@ -1,14 +1,27 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import { message_display } from "../modules/enums";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
+import Toggle from 'react-toggle';
+import "react-toggle/style.css"
 
 const makeMessageNice = (message) => {
+  let messageClassname = "ChatBubble-textContainer";
+  if (message[1] === message_display.FROMME) {
+    messageClassname += " ChatBubble-textContainer-fromme";
+  } else {
+    messageClassname += " ChatBubble-textContainer-fromyou";
+  }
   return (
-    <div>{message}</div>
+    <div className={messageClassname}>
+    {message[0]}
+    </div>
   );
 };
+
+
 
 class InboxPage extends Component{
   constructor(props) {
@@ -19,17 +32,28 @@ class InboxPage extends Component{
       chatBoxContents: "",
       lastMessageSubmitted: "",
       displayedMessages: [],
+      fromMe: true, // development
     };
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
     this.SearchBoxUpdate = this.SearchBoxUpdate.bind(this);
     this.SearchBoxKey= this.SearchBoxKey.bind(this);
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
+    this.ToggleFromMe = this.ToggleFromMe.bind(this); // for development
+    this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
   }
 
   componentDidMount() {
 
   }
 
+  ChatGoToBottom() {
+   let element = document.getElementById("ChatBubblesContainer");
+   element.scrollTop = element.scrollHeight - element.clientHeight;
+  }
+
+  ToggleFromMe(event) {
+    this.setState({fromMe: !this.state.fromMe});
+  } // for development
 
   ChatBoxUpdate(event) {
     this.setState({chatBoxContents: event.target.value});
@@ -37,11 +61,13 @@ class InboxPage extends Component{
 
   ChatBoxKey(event) {
     if(event.keyCode === 13 && event.shiftKey) {
-      this.state.displayedMessages.push(this.state.chatBoxContents);
+      const typeOfMessage = (this.state.fromMe ? message_display.FROMME : message_display.FROMYOU);
+      this.state.displayedMessages.push([this.state.chatBoxContents, typeOfMessage]);
       this.setState({
         lastMessageSubmitted: this.state.chatBoxContents,
         chatBoxContents: "",
       });
+      setTimeout(() => {this.ChatGoToBottom();}, 100); // if you don't add this 100 ms delay, the scroll happens before the new message shows up
     }
   }
 
@@ -62,6 +88,11 @@ class InboxPage extends Component{
   render() {
     return (
     <div className="InboxPage-container">
+      <Toggle
+        id='fromme-toggle'
+        defaultChecked={this.state.fromMe}
+        onChange={this.ToggleFromMe}
+      />
       <div className="Messages-container">
         <input className="MessageSearch"
           type="text"
@@ -74,7 +105,10 @@ class InboxPage extends Component{
       </div>
 
       <div className="Chat-container">
-        {this.state.displayedMessages.map(makeMessageNice)}
+        <div className="Chat-ChatBubblesContainer"
+        id="ChatBubblesContainer">
+          {this.state.displayedMessages.map(makeMessageNice)}
+        </div>
 
         <textarea
         rows="10"
@@ -85,6 +119,9 @@ class InboxPage extends Component{
         onChange={this.ChatBoxUpdate}
         onKeyUp={this.ChatBoxKey}
         />
+          <div className="Chat-howtosubmit">
+            ⇧+⏎ to submit
+          </div>
         </div>
     </div>
     );

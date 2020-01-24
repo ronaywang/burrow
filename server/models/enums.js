@@ -5,8 +5,13 @@ const genders = {
 };
 
 const listing_type = {
-    ROOM = 'room',
-    ROOMMATE = 'roommate'
+    ROOM: 'room',
+    ROOMMATE: 'roommate'
 };
 
-export {genders, listing_type};
+const message_display = {
+    FROMME: 'fromme',
+    FROMYOU: 'fromyou'
+}
+
+export {genders, listing_type, message_display};

@@ -9,4 +9,9 @@ const listing_type = {
     ROOMMATE: 'roommate'
 };
 
-export {genders, listing_type};
+const message_display = {
+    FROMME: 'fromme',
+    FROMYOU: 'fromyou'
+}
+
+export {genders, listing_type, message_display};
