@@ -85,7 +85,7 @@ router.get("/listing", (req, res) => {
 router.post("/listing", (req, res) => {
   let newListing = new Listing(req.body);
   newListing.creator_ID = req.user._id;
-  newListing.save((err) => {res.send(newListing._id)});
+  newListing.save((err) => {res.send(newListing.creator_ID)});
 });
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.post("/matchinglistings", (req, res) => {

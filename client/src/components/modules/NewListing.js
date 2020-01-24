@@ -32,8 +32,9 @@ class NewListing extends Component {
   }
 
   handleSubmit(){
+    console.log(this.state.price);
     if (this.state.locationquery === '' || 
-        this.state.price === 0 || this.state.textBox.trim().length === 0){
+        this.state.price === 0 || this.state.price === "" || this.state.textBox.trim().length === 0){
       this.setState({mustfillfields: true});
       return;
     }
@@ -49,9 +50,9 @@ class NewListing extends Component {
         petFriendly: this.state.pets,
         additionalPrefText: this.state.textBox,
     };
-    post("/api/listing", listingInfo).then(() => this.props.update())
+    post("/api/listing", listingInfo)
       .then(this.setState({success: true}, () => {
-        setTimeout(() => this.props.close(), 750);
+        setTimeout(() => window.location.pathname = `/profile/${this.props.userId}`, 750);
       })
     );
   }
@@ -154,7 +155,8 @@ class NewListing extends Component {
             className="NewListing-submit"
             type="submit"
             value="Submit"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               this.handleSubmit();
             }}
           />

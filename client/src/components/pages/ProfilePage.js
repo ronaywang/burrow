@@ -12,7 +12,7 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabIndex: 0, //0, 1, or 2, depending on which tab to display
+      tabIndex: 1, //0, 1, or 2, depending on which tab to display
     };
   }
 
@@ -38,12 +38,11 @@ class ProfilePage extends Component {
     }
     return (
       <>
-      
       <span className = "ProfileBar-tabContainer">
         {/*<span className = "ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 3})}}>Your profile</span>*/}
-        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 0})}}>Your settings</span>
-        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 2})}}>Your favorites</span>
+        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 0})}}>Your profile</span>
         <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 1})}}>Your listings</span>
+        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 2})}}>Your favorites</span>
       </span>
       <div className="TabToDisplay-container">
         <TabToDisplay userId={this.props.userId}/>

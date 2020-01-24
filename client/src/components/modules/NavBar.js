@@ -8,7 +8,8 @@ import RegistrationPage from "../pages/RegistrationPage";
 import { Link } from "@reach/router";
 import { GoogleSearchBar } from "./SearchBar";
 import { get, post } from "../../utilities";
-import Toggle from 'react-toggle'
+import Toggle from 'react-toggle';
+import NewListing from "../modules/NewListing";
 
 const houseIcon = (
   <img src="/house_icon.svg" width="13px"/>
@@ -49,9 +50,14 @@ class NavBar extends Component {
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
-        <Link to="/main" className="NavBar-link">Home</Link>
         <Link to={`/profile/${userId}`} className="NavBar-link">Profile</Link> 
-        <Link to="/inbox" className="NavBar-link">Inbox</Link> 
+        <Link to="/main" className="NavBar-link">Home</Link>
+        <Link to="/inbox" className="NavBar-link">Inbox</Link>
+        <Popup modal trigger={
+          <button className="NavBar-newListing">Add new listing</button>
+        }>
+          {close => (<NewListing userId={userId} close={close}/>) }
+        </Popup> 
         <div className="NavBar-link" onClick={this.props.handleLogout}>Logout</div> 
       </div>
     ) : (
