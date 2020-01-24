@@ -10,6 +10,13 @@ import { GoogleSearchBar } from "./SearchBar";
 import { get, post } from "../../utilities";
 import Toggle from 'react-toggle'
 
+const houseIcon = (
+  <img src="house_icon.svg" width="13px"/>
+);
+const roommateIcon = (
+  <img src="roommate_icon.svg" width="13px"/>
+);
+
 class NavBar extends Component {
   constructor(props){
     super(props);
@@ -78,7 +85,9 @@ class NavBar extends Component {
             className="NavBar-toggleSwitch" defaultChecked={this.state.lookingForRoom} 
               onChange={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}), () => {
                 post("/api/sessionglobals", {lookingForRoom: this.state.lookingForRoom});
-              })}/>
+              })}
+              icons={{checked: houseIcon, unchecked: roommateIcon}}
+              />
                <label className="NavBar-toggleSwitchLabel" htmlFor = {this.state.lookingForRoom ? "I want a room" : "I want a roommate"}>
                <span className="toggle-switch-inner" />
               <span className="toggle-switch-switch" />
