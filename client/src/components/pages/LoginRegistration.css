@@ -39,6 +39,7 @@
 
 .fieldname {
   font-size: 80%;
+  text-transform: lowercase;
 
 }
 
