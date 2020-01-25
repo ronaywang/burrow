@@ -29,11 +29,6 @@ class UserSettings extends Component {
   }
 
   componentDidMount() {
-    if (this.state.profilePicURL.length == 0) {
-      post("/api/getProfilePic", {userId: this.props.userId}).then((myres) => {
-        this.setState({profilePicURL: myres.photoURL});
-      });
-    }
     get("/api/getthisuserinfo").then((userObj) => {
       console.log(userObj);
       this.setState({
@@ -43,7 +38,8 @@ class UserSettings extends Component {
         birthdate: userObj.birthdate,
         fbProfileLink: userObj.fbProfileLink,
         gender: userObj.gender,
-        textBox: userObj.aboutMe
+        textBox: userObj.aboutMe,
+        userId: userObj._id
       });
       if (this.state.gender === genders.M) {
         this.setState({maleButtonActive: true});
@@ -53,7 +49,13 @@ class UserSettings extends Component {
         this.setState({nbButtonActive: true});
       }
       this.setState({doRender: true});
-    });
+    }).then(() => {
+      if (this.state.profilePicURL.length == 0) {
+        post("/api/getProfilePic", {userId: this.state.userId}).then((myres) => {
+          this.setState({profilePicURL: myres.photoURL});
+        });
+      }
+    })
   }
 
   async saveSettings () {

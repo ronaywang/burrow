@@ -39,9 +39,7 @@ class App extends Component {
       mapCenter: {
         lat: 0,
         lng: 0
-      },
-      profilePictureURL: "",
-      firstName: "",
+      }
     };
     // this.generateListings = this.generateListings.bind(this);
     // this.handleLogin = this.handleLogin.bind(this);
@@ -54,8 +52,7 @@ class App extends Component {
     get("/api/myuid").then((response) => {
       if (response.userId) {
         // they are registed in the database, and currently logged in
-        this.setState({ userId: response.userId, email: response.email, firstName: response.firstName.toLowerCase(),
-          profilePictureURL: response.profilePictureURL});
+        this.setState({ userId: response.userId, email: response.email});
       }
     }).catch(error => {console.log(error)}).finally(() => {
       this.setState({doDisplay: true});
@@ -84,8 +81,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar userId={this.state.userId} handleLogout={this.handleLogout} profilePictureURL={this.state.profilePictureURL}
-          firstName={this.state.firstName}/>
+        <NavBar userId={this.state.userId} handleLogout={this.handleLogout} />
         <Router>
           <SplashPage path="/"/>
           <MainPage path="/main" userId={this.state.userId}

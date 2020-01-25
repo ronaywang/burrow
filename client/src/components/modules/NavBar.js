@@ -17,8 +17,6 @@ class NavBar extends Component {
       doDisplay: false,
       location: null,
       locationCtr: null,
-      profilePicURL: "",
-      firstName: ""
     };
   }
   
@@ -47,8 +45,6 @@ class NavBar extends Component {
         </Popup> 
         <Link to="/main" className="NavBar-link">browse</Link>
         <Link to={`/profile/${userId}`} className="NavBar-link">
-          {/*<img className="NavBar-photo" src={this.props.profilePictureURL || require("../../public/assets/account.png")}/>
-          <span className="NavBar-link">{this.props.firstName}</span>*/}
           account
         </Link> 
         <Link to="/inbox" className="NavBar-link">inbox</Link>

@@ -8,14 +8,6 @@
     border-bottom: 1px solid var(--neutral6);
 }
 
-.NavBar-photo {
-  --avatarSize: 35px;
-  object-fit: cover;
-  border-radius: 50%;
-  width: var(--avatarSize);
-  height: var(--avatarSize);
-}
-
 .NavBar-logo {
     font-family: sketchnote-text;
     font-style: normal;
@@ -35,12 +27,14 @@
 .NavBar-link {
     margin: 10px;
     color: var(--primary2);
-    padding: 1rem 2px;
+    padding: 0.4rem 2px;
     cursor: pointer;
     font-size: 90%;
     display: flex;
+}
 
-
+.NavBar-search {
+  background: var(--neutral7);
 }
 
 .NavBar-link:hover{

@@ -253,9 +253,6 @@ router.get("/uploadfile", async (req, res) => {
 });
 
 router.post("/getProfilePic", async (req, res) => {
-  if (req.body.userId.length === 0) {
-    res.status(503).send({photoURL: ""});
-  }
   let userIWant = await User.findById(req.body.userId);
   if (userIWant.profilePictureURL) {
     const replyWithURL = {

@@ -49,6 +49,7 @@ class SingleCard extends Component {
       }).then((userId) => {
         return get("/api/user", {userId: userId});
       }).then((user) => {
+        console.log(user.profilePictureURL);
         this.setState({
           name: user.firstName + " " + user.lastName, // TODO: firstName and lastName instead.
           age: calculateAge(new Date(user.birthdate)),
