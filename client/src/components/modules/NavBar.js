@@ -38,7 +38,9 @@ class NavBar extends Component {
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
-         <Popup modal trigger={
+         <Popup
+         contentStyle={{backgroundColor: 'rgba(255,255,255,0)', border: 'none'}}
+         modal trigger={
           <button className="NavBar-newListing">new listing</button>
         }>
           {close => (<NewListing userId={userId} close={close}/>) }
@@ -58,7 +60,9 @@ class NavBar extends Component {
           <div className="NavBar-link">
             register
           </div>
-        }>
+        }
+        contentStyle={{border: 'var(--borders)', borderRadius: 'var(--borderradius)'}}
+        >
           <RegistrationPage />
         </Popup>
         
@@ -66,7 +70,9 @@ class NavBar extends Component {
         <div className="NavBar-link">
           login
         </div>
-        }>
+        }
+        contentStyle={{border: 'var(--borders)', borderRadius: 'var(--borderradius)'}}
+        >
           <LoginPage />
         </Popup>
       </div>

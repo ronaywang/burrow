@@ -50,7 +50,7 @@ handleSubmit = (event) => {
     if (this.state.succeeded) {
       return (
         <div>
-          You have logged in successfully.
+          Welcome back!
           <meta http-equiv = "refresh" content = "1; url = /" />
         </div>
       );
@@ -65,7 +65,7 @@ handleSubmit = (event) => {
     } else {
       return (
         <div className="u-flexColumn u-flex-alignCenter u-flex-spaceEvenly">
-          <h1 className="u-textCenter">Log in</h1>
+          <h1 className="u-textCenter">Get connected.</h1>
           { this.state.failed ? "Login failed": null}
           <form className="u-flexColumn u-flex-alignEnd" onSubmit={this.handleSubmit}>
             <label className="Login-input">
