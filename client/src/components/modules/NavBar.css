@@ -37,7 +37,8 @@
     color: var(--primary2);
     padding: 1rem 2px;
     cursor: pointer;
-    font-size: 100%;
+    font-size: 90%;
+    display: flex;
 
 
 }
@@ -51,3 +52,7 @@
     
 }
 
+.NavBar-newListing{
+    font-size: 90%;
+    cursor: pointer;
+}

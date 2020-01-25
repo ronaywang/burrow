@@ -4,37 +4,44 @@
 @import url("https://use.typekit.net/chp7dgz.css");
 
 .DateInput_input {
-  font-family: skolar-sans-latin-condensed;
+  font-family: skolar-sans-latin;
   font-weight: 300;
-  margin: var(--margins);
+  font-size: 90%;
+  margin: var(--xs);
+  padding: var(--s);
+  width: auto;
 }
  
 /* Will edit selected date or the endpoints of a range of dates */
 .CalendarDay__selected {
-  background: rgb(82, 85, 255);
+  background: var(--primary4);
   color: white;
 }
 
 
 .CalendarDay {
-  border-color: gray;
+  border-color: var(--neutral7);
 }
 
 .CalendarDay__selected_span {
   color: white;
-  background: rgb(118, 143, 255);
-  border-color: rgb(56, 65, 189);
+  background: var(--primary5);
 }
 .CalendarDay__selected_end {
-  background: rgb(61, 58, 231);
+  background: var(--primary4);
 }
  
-/* Will edit when hovered over. _span style also has this property */
-.CalendarDay__selected:hover {
-  background: orange;
+.CalendarDay:hover{
+  background: var(--primary3);
   color: white;
+  cursor: pointer;
+  border: none;
 }
- 
+
+.CalendarDay:focus{
+  outline: none;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1)
+}
 /* Will edit when the second date (end date) in a range of dates */
 /* is not yet selected. Edits the dates between your mouse and said date */
 
@@ -42,11 +49,12 @@
   opacity: 0;
 }
 .DateRangePickerInput__withBorder {
-  border: var(--borders);
+  border: none;
 }
 
 .DateRangePickerInput {
-  width: 100%;
+  width: auto;
+  background-color: transparent !important;
 }
 
 .DateRangePicker, .DateRangePicker_1 {
@@ -58,9 +66,11 @@
   text-align: center;
   vertical-align: center;
   padding: var(--xs);
-  width: 5em;
-  color: black;
-  border: var(--borders);
+  width: 6em;
+  color: var(--neutral1);
+  border: none;
+  border-bottom: 1px solid var(--neutral5);
+  background-color: transparent !important;
 }
 
 .DayPicker_weekHeader {
@@ -69,18 +79,22 @@
 
 .DateInput {
   width: auto;
+  padding: .2rem;
+  margin: var(--xs);
+  background-color: transparent !important;
 }
 
 .DateRangePickerInput_arrow_svg, .DayPickerNavigation_svg__horizontal {
-  fill: black;
+  fill: none;
 }
 
 .CalendarMonth_caption {
   padding-bottom: 47px;
+  color: var(--neutral1);
 }
 
 .DayPicker_weekHeader_li {
-  color: black;
+  color: var(--neutral1);
 }
 
 .DayPickerNavigation_button {
@@ -90,6 +104,7 @@
 
 small {
   font-size: 100%;
-  font-family: skolar-sans-latin-compressed;
+  font-family: skolar-sans-latin;
   font-weight: 500;
+  color: var(--neutral2);
 }

@@ -90,3 +90,17 @@
   font-weight: 700;
   padding-bottom: 0.5rem;
 }
+
+
+.ThreadDisplay-container {
+  border: 2px solid #AAAAAA;
+  margin: 0.3rem;
+  padding: 0.5rem;
+  border-radius: var(--m);
+}
+
+.ThreadDisplay-name {
+  font-size: 120%;
+  font-weight: 500;
+  font-family: skolar-sans-latin-condensed;
+}

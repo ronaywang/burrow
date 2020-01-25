@@ -314,7 +314,7 @@ router.get("/getthreads", async (req, res) => {
         recipient_ID: userId
       }
     ]
-  });
+  }).populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"});
   res.status(200).send({threads: usersThreads});
 });
 
