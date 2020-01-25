@@ -8,11 +8,8 @@
 */
 
 const express = require("express");
-const bcryptjs = require("bcryptjs");
-const multer = require("multer");
 const upload = require("./upload");
 const mime = require("mime-types");
-const axios = require("axios");
 const _ = require("lodash");
 
 // import models so we can interact with the database
@@ -313,6 +310,27 @@ router.get("/getthreads", async (req, res) => {
     ]
   }).populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"});
   res.status(200).send({threads: usersThreads});
+});
+
+router.post("/newthread", async (req, res) => {
+  const listingOfInterest = await Listing.findById(req.body.listingId);
+  const existingThread = await Thread.findOne({
+    sender_ID: req.user._id,
+    listing_ID: req.body.listingId,
+  });
+  if (existingThread === null) {
+    let newThread = new Thread({
+      sender_ID: req.user._id,
+      recipient_ID: listingOfInterest.creator_ID,
+      listing_ID: req.body.listingId,
+      messages: [],
+      length: 0,
+    });
+    await newThread.save();
+    res.send(newThread);
+  } else {
+    res.send(existingThread);
+  }
 });
 
 router.post("/postmessage", async (req, res) => { // takes body.threadId, body.content, body.timestamp, body.listing_ID
