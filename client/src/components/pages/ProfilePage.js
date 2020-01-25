@@ -37,17 +37,17 @@ class ProfilePage extends Component {
         break;
     }
     return (
-      <>
-      <span className = "ProfileBar-tabContainer">
-        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 0})}}>Your profile</span>
-        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 1})}}>Your listings</span>
-        <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 2})}}>Your favorites</span>
-        {/* <span className = "ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 3})}}>Your account</span> */}
-      </span>
-      <div className="TabToDisplay-container">
-        <TabToDisplay userId={this.props.userId}/>
+      <div className="Profile-container">
+        <span className = "ProfileBar-tabContainer">
+          <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 0})}}>Your profile</span>
+          <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 1})}}>Your listings</span>
+          <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 2})}}>Your favorites</span>
+          {/* <span className = "ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 3})}}>Your account</span> */}
+        </span>
+        <div className="TabToDisplay-container">
+          <TabToDisplay userId={this.props.userId}/>
+        </div>
       </div>
-      </>
     )
   }
 }

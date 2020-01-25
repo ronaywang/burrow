@@ -10,6 +10,7 @@
   margin: var(--m);
   padding: var(--s);
   position: relative;
+  background-color: white;
 }
 
 .Card-editDeleteContainer {

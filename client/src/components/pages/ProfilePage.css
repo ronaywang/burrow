@@ -1,3 +1,10 @@
+.Profile-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: var(--primary7);
+}
+
 .ProfileBar-container {
   display: flex;
   height: var(--avatarSize);
@@ -15,18 +22,22 @@
 
 .ProfileBar-tabContainer{
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-start;
   flex-direction: column;
-  margin: 1rem;
+  background-color: var(--neutral7);
+  margin: 2rem 2rem 26rem 2rem;
+  padding: 0.5rem 1rem 0.5rem 3rem;
+  box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
 }
 
 .ProfileBar-tab {
-  font-size: 140%;
-  margin: 0;
-  padding: 0.3rem;
+  text-transform: lowercase;
+  font-size: 100%;
+  margin: 0.5rem 0rem 0.5rem 0rem;
+  padding: 0;
+  letter-spacing: 0.02em;
   background: var(--accentcolor);
-  border: 1px solid white;
 }
 
 .ProfileBar-tab:hover {
@@ -37,8 +48,8 @@
 .TabToDisplay-container {
   padding: 1rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .UserSettings-container {
