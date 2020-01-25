@@ -9,6 +9,7 @@
   font-size: 90%;
   margin: var(--xs);
   padding: var(--s);
+  width: auto;
 }
  
 /* Will edit selected date or the endpoints of a range of dates */
@@ -53,7 +54,7 @@
 }
 
 .DateRangePickerInput {
-  width: 100%;
+  width: auto;
   background-color: transparent !important;
 }
 
@@ -66,7 +67,7 @@
   text-align: center;
   vertical-align: center;
   padding: var(--xs);
-  width: 5em;
+  width: 6em;
   color: var(--neutral1);
   border: none;
   border-bottom: 1px solid var(--neutral5);

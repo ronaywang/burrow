@@ -54,24 +54,27 @@ class NavBar extends Component {
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
-        <Link to={`/profile/${userId}`} className="NavBar-link">
-          <img className="NavBar-photo" src={this.props.profilePictureURL || require("../../public/assets/account.png")}/>
-          <span className="NavBar-link">{this.props.firstName}</span>
-        </Link> 
-        <Link to="/main" className="NavBar-link">Home</Link>
-        <Link to="/inbox" className="NavBar-link">Inbox</Link>
-        <Popup modal trigger={
-          <button className="NavBar-newListing">Add new listing</button>
+         <Popup modal trigger={
+          <button className="NavBar-newListing">new listing</button>
         }>
           {close => (<NewListing userId={userId} close={close}/>) }
         </Popup> 
-        <div className="NavBar-link" onClick={this.props.handleLogout}>Logout</div> 
+        <Link to="/main" className="NavBar-link">browse</Link>
+        <Link to={`/profile/${userId}`} className="NavBar-link">
+          {/*<img className="NavBar-photo" src={this.props.profilePictureURL || require("../../public/assets/account.png")}/>
+          <span className="NavBar-link">{this.props.firstName}</span>*/}
+          account
+        </Link> 
+        <Link to="/inbox" className="NavBar-link">inbox</Link>
+        <div className="NavBar-link" onClick={this.props.handleLogout}>logout</div> 
+       
       </div>
+
     ) : (
       <div className="NavBar-linkContainer-loggedOut NavBar-style">
         <Popup modal trigger={
           <div className="NavBar-link">
-            Register
+            register
           </div>
         }>
           <RegistrationPage />
@@ -79,7 +82,7 @@ class NavBar extends Component {
         
         <Popup modal trigger={
         <div className="NavBar-link">
-          Login
+          login
         </div>
         }>
           <LoginPage />
