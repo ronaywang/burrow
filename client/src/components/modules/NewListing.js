@@ -94,7 +94,7 @@ class NewListing extends Component {
             <div className="NewListing-priceDescription">
               With approximate budget . . .
             </div>
-            $<input type="number" min="0" onChange={(e) => {this.setState({price: e.target.value})}} 
+            $<input type="number" min="0" step="100" onChange={(e) => {this.setState({price: e.target.value})}} 
               className="NewListing-priceInput" />/month
           </div>
           <div className="NewListing-textBoxContainer">
