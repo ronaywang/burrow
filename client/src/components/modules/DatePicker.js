@@ -39,7 +39,7 @@ class DatePicker extends Component {
         daySize={28}
         transitionDuration={0}
         customArrowIcon={(
-          <img src="/rightarr.svg" width="10px"/>
+          <img src="/rightarr.svg"  width="10px"/>
         )}
       />
     );

@@ -84,7 +84,7 @@
 }
 
 .DateRangePickerInput_arrow_svg, .DayPickerNavigation_svg__horizontal {
-  fill: var(--neutral1);
+  fill: var(--neutral2);
 }
 
 .CalendarMonth_caption {

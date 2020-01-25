@@ -4,15 +4,7 @@
   display: inline-block;
 }
 
-.btn {
-  border: 2px solid gray;
-  color: gray;
-  background-color: white;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 120%;
-  font-weight: bold;
-}
+
 
 .upload-btn-wrapper input {
   position: absolute;

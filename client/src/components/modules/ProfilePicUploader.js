@@ -30,7 +30,7 @@ class ProfilePicUploader extends React.Component {
   render() {
     return (
       <div className={"upload-btn-wrapper"}>
-        <button className={"btn"} >Upload your profile picture</button>
+        <button className={"btn"} >upload photo</button>
         <input type="file" name="file" accept="image/*" onChange={this.handleChange}/>
       </div>
     );

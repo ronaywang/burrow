@@ -3,10 +3,11 @@
     justify-content: flex-start;
     align-items: center;
     background: var(--neutral7);
+    margin: 0px;
 }
 
 .PreferenceBar-container > *{
-    margin: 5px;
+    margin: var(--xs);
 }
 
 .PreferenceBar-pets, .PreferenceBar-smoking {
@@ -20,14 +21,15 @@
 }
 
 .PreferenceBar-priceInput {
-    font-size: 140%;
-    font-family: "skolar-sans-latin-condensed";
+    font-size: 90%;
+    font-family: "skolar-sans-latin";
     font-weight: 300;
+    width: 6rem;
 }
 
 .PreferenceBar-dollarsign {
-    font-size: 160%;
-    font-family: "skolar-sans-latin-condensed";
+    font-size: 90%;
+    font-family: "skolar-sans-latin";
     font-weight: 300
 }
 
