@@ -66,6 +66,9 @@ body {
   line-height: 110%;
   color: var(--neutral1);
   background-color: var(--primary7);
+  background-image:url("/nycbackground2.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 

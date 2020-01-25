@@ -1,0 +1,141 @@
+.Card-container {
+  border: var(--border);
+  height: auto;
+  max-width: 700px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: 4rem 10rem 15rem auto;
+  grid-template-rows: 2rem 2rem 1px auto;
+  box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin: var(--m);
+  padding: var(--m);
+  position: relative;
+  background-color: white;
+}
+
+.Card-top {
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--s);
+}
+
+.Card-editDeleteContainer {
+  opacity: 0;
+  position: absolute;
+  background-color: rgba(64, 64, 64,0.5);
+  top: 0;
+  left: 0; 
+}
+
+.Card-editContainer {
+  border-radius: 3px;
+  border: 1px solid white;
+  color: white;
+}
+
+.Card-deleteContainer {
+  border-radius: 3px;
+  border: 1px solid white;
+  color: white;
+}
+ 
+.Card-container:hover .Card-editDeleteContainer{
+  opacity: 1;
+}
+
+.Card-pink {
+  color: rgb(255, 59, 124);
+}
+
+.Card-blue {
+  color: rgb(0, 75, 146);
+}
+
+.Card-purple {
+  color: rgb(95, 0, 107);
+}
+
+.Card-profilePic {
+  border-radius: 10em;
+  object-fit: cover;
+  max-width: 3rem;
+  width: 3rem;
+  height: 3rem;
+}
+
+.Card-profilePicContainer {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+.Card-aboutContainer {
+  padding: 0 var(--xs) 0 var(--s);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.Card-nameAgeGender{
+  font-size: 120%;
+  font-weight: 525;
+  margin: 0.05rem 0rem 0.35rem 0rem;
+}
+
+
+.Card-locationDateContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.Card-location {
+  color: var(--neutral1);
+  padding: 0.25rem 0rem 0.1rem 0rem;
+  font-size: 90%;
+  letter-spacing: 0.02em;
+} 
+
+.Card-date {
+  font-size: 90%;
+  font-weight: 500;
+  color: var(--neutral2);
+  padding: 0rem 0rem 0.35rem 0rem;
+}
+
+.Card-topRight {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.Card-viewProfile {
+  font-size: 70%;
+  padding: 0.1rem 0.8rem 0.25rem 0.8rem;
+  border-radius: 0.3rem;
+  letter-spacing: 0.05rem;
+  margin: 0.35rem 0rem 0.05rem 0rem;
+}
+
+.Card-horizontalLine {
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+  background-color: var(--neutral7);
+}
+
+
+.Card-textBox {
+  font-size: 100%;
+  text-align: justify;
+  line-height: 110%;
+}

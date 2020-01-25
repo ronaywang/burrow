@@ -92,9 +92,9 @@ class UserSettings extends Component {
     }
     return (
       <div className="UserSettings-container">
-        <div className = "ProfileBar-container">
+        <div className = "UserSettings-photoContainer">
           <div>
-            <img className = "ProfileBar-photo" src={this.state.profilePicURL || require("../../public/assets/account.png")}/>
+            <img className = "UserSettings-photo" src={this.state.profilePicURL || require("../../public/assets/account.png")}/>
           </div>
           {/*<div>
             Profile page for <b>{this.props.username}</b>
