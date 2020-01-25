@@ -64,7 +64,7 @@ class NavBar extends Component {
       <div className="NavBar-linkContainer-loggedOut NavBar-style">
         <Popup modal trigger={
           <div className="NavBar-link">
-            Signup
+            Register
           </div>
         }>
           <RegistrationPage />
