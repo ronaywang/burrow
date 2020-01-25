@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: auto;
     height: auto;
     margin: 10%;
     padding: 2rem 2rem 2rem 2rem;
@@ -33,7 +33,7 @@
     display: flex;
     font-weight: 700;
     color: var(--primary3);
-    font-size: 130%;
+    font-size: 200%;
     justify-content: center;
     line-height: 100%;
     width: auto;
@@ -47,7 +47,7 @@
 }
 
 .SplashPage-tagline {
-    font-size: 120%;
+    font-size: 200%;
 }
 .SplashPage-taglineContainer {
   width: auto;

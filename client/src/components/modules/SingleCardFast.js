@@ -59,20 +59,6 @@ class SingleCardFast extends Component {
           <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
         </div>
           <div className="Card-locationDatePrice">
-            {/*<table style={{'text-align':'left'}}>
-              <tr>
-                <th className="ldp-left">{lookingForRoom ? "is moving to" : "is located in"}</th>
-                <th className="ldp-right">{location}</th>
-              </tr>
-              <tr>
-                <th className="ldp-left">during</th>
-                <th className="ldp-right">{formatDate(startDate)}–{formatDate(endDate)}</th>
-              </tr>
-              <tr>
-              <th className="ldp-left">{lookingForRoom ? "with a budget of" : "with a price of"}</th>
-              <th className="ldp-right">${price}/month</th>
-              </tr>
-        </table> */}
     
         <div className="Card-date">{formatDate(startDate)} to {formatDate(endDate)}</div></div>
         <div className="Card-flags">
