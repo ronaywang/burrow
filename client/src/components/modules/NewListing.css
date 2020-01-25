@@ -5,6 +5,7 @@
     /*grid-template-rows: 45px 100px 10px auto auto;*/
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
     padding: 3em;
+    background-color: white;
 }
 
 .NewListing-left{
