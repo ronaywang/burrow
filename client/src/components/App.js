@@ -84,7 +84,7 @@ class App extends Component {
       <>
         <NavBar userId={this.state.userId} handleLogout={this.handleLogout} />
         <div className="App-container">
-        <Router>
+        <Router className="routerClass">
           <SplashPage path="/"/>
           <MainPage path="/main" userId={this.state.userId}
           />

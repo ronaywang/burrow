@@ -68,23 +68,26 @@ class SplashPage extends Component {
           <div className="SplashPage-taglineContainer">
             <div className="SplashPage-logo">Find fellow roommates near you.</div>
           </div>
-          <div className="SplashPage-searchContainer">
-            <div className="SplashPage-searchDescription">location</div>
-            {searchBar}
-          </div>
-          <div className="SplashPage-dateContainer">
-            <div className="SplashPage-dateDescription">dates</div>
-            <div className="SplashPage-date SplashPage-input">
-              <DatePicker
-                startDate={startDate}
-                endDate={endDate}
-                startDateId="splashpage-startdateid"
-                endDateId="splashpage-enddateid"
-                handleDateChange={(stdate, edate) => {
-                  this.setState({startDate: stdate, endDate: edate})
-                }}/>
+          <div className="SplashPage-searchAndDates">
+            <div className="SplashPage-searchContainer">
+              <div className="SplashPage-searchDescription">location</div>
+              {searchBar}
+            </div>
+            <div className="SplashPage-dateContainer">
+              <div className="SplashPage-dateDescription">dates</div>
+              <div className="SplashPage-date SplashPage-input">
+                <DatePicker
+                  startDate={startDate}
+                  endDate={endDate}
+                  startDateId="splashpage-startdateid"
+                  endDateId="splashpage-enddateid"
+                  handleDateChange={(stdate, edate) => {
+                    this.setState({startDate: stdate, endDate: edate})
+                  }}/>
+              </div>
             </div>
           </div>
+          
           <button
             className="SplashPage-go SplashPage-input"
             type="submit"

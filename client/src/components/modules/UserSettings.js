@@ -140,7 +140,7 @@ class UserSettings extends Component {
           </div>
         </div>
         <div>
-          <span className="fieldname">Link your FB profile</span>
+          <span className="pro-fieldname">Link your FB profile</span>
           <input
           type="text"
           name="fblink"
@@ -148,8 +148,8 @@ class UserSettings extends Component {
           onChange={(event)=>{this.setState({fbProfileLink: event.target.value})}}/>
         </div>
         <div>
-          <div className="fieldname">Tell us about yourself!</div>
-            <textarea rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+          <div className="pro-fieldname">Tell us about yourself!</div>
+            <textarea className="pro-textbox" rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
         </div>
 
         <button id="savebutton"

@@ -1,0 +1,7 @@
+.routerClass {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  fill-opacity: 0;
+}
