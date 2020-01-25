@@ -68,7 +68,7 @@
   align-items: flex-end;
   justify-content: flex-start;
   flex-direction: column;
-  background-color: var(--neutral7);
+  background-color: white;
   margin: 2rem 1rem 26rem 6rem;
   padding: 0.5rem 1rem 0.5rem 3rem;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
@@ -80,11 +80,11 @@
   margin: 0.5rem 0rem 0.5rem 0rem;
   padding: 0;
   letter-spacing: 0.02em;
-  background: var(--accentcolor);
+  color: var(--primary2);
 }
 
 .ProfileBar-tab:hover {
-  background-color: var(--primary3);
+  color: var(--primary4);
   cursor: pointer;
 }
 

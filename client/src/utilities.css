@@ -245,5 +245,6 @@ textarea:focus {
 
 button:hover {
   background-color: var(--primary5);
+  cursor: pointer;
 }
 
