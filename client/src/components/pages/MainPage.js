@@ -28,35 +28,20 @@ class MainPage extends Component{
   }
 
   generateListings = () => {
-    let query = this.state.lookingForRoom ? {
+    let query = {
       userId: this.props.userId, 
-      location: this.state.roomLocation,
-      locationCtr: this.state.roomLocationCtr,
-      myobj: {
-        a: 1,
-        b: 2
-      },
-      lookingForRoom: true,
-      price: this.state.roomPrice,
-      smoking: this.state.roomSmoking,
-      pets: this.state.roomPets,
-      startDate: new Date(this.state.roomStartDate),
-      endDate: new Date(this.state.roomEndDate),
-    } : {
-      userId: this.props.userId, 
-      location: this.state.roommateLocation,
-      locationCtr: this.state.roommateLocationCtr,
-      lookingForRoom: false,
-      price: this.state.roommatePrice,
-      smoking: this.state.roommateSmoking,
-      pets: this.state.roommatePets,
-      startDate: new Date(this.state.roommateStartDate),
-      endDate: new Date(this.state.roommateEndDate),
-    };
+      location: this.state.location,
+      locationCtr: this.state.locationCtr,
+      price: this.state.price,
+      smoking: this.state.smoking,
+      pets: this.state.pets,
+      startDate: new Date(this.state.startDate),
+      endDate: new Date(this.state.endDate),
+    }
     post("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
       this.setState({listingsToDisplay: listings});
     });
-    console.log(this.state.roomLocationCtr);
+    console.log(this.state.locationCtr);
   }
 
   triggerSearch = () => {
@@ -74,7 +59,7 @@ class MainPage extends Component{
     if (!this.state.doDisplay){
       return null;
     }
-    let locationCtr = this.state.lookingForRoom ? this.state.roomLocationCtr : this.state.roommateLocationCtr;
+    const {locationCtr} = this.state;
     return (
       <div className="MainPage-container">
         <PreferenceBar triggerSearch={() => {this.triggerSearch()}}/>  

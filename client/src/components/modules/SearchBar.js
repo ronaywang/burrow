@@ -171,13 +171,12 @@ class GoogleSearchBar extends Component {
   handleScriptLoad () {
     // Declare Options For Autocomplete
     const options = {
-      types: [(this.props.placeIsCity ? '(cities)' : 'address')],
+      types: ['(cities)', 'address', '(regions)'],
     };
     // Initialize Google Autocomplete
     /*global google*/ // To disable any eslint 'google not defined' errors
     this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById(this.props.searchBarId),
-      options,
+      document.getElementById(this.props.searchBarId)
     );
 
     // Avoid paying for data that you don't need by restricting the set of
@@ -222,7 +221,7 @@ class GoogleSearchBar extends Component {
           onLoad={this.handleScriptLoad}
         />
         <input id={this.props.searchBarId}
-          placeholder={this.props.placeIsCity ? "Enter city..." : "Enter address..."} 
+          placeholder="Enter location..."
           onChange={(e) => {
             this.setState({query: e.target.value})
           }}
@@ -235,7 +234,6 @@ class GoogleSearchBar extends Component {
 }
 GoogleSearchBar.propTypes = {
   styleName: PropTypes.string.isRequired,
-  placeIsCity: PropTypes.bool.isRequired,
   searchBarId: PropTypes.string.isRequired,
   setSelectedCenter: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,

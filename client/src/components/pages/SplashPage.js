@@ -16,91 +16,50 @@ class SplashPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      roomStartDate: moment(),
-      roomEndDate: moment().add(1, 'days'),
-      roomLocation: "",
-      roommateStart: moment(),
-      roommateEnd: moment().add(1, 'days'),
-      roommateLocation: "",
-      roomOrRoommate: listing_type.ROOM,
+      startDate: moment(),
+      endDate: moment().add(1, 'days'),
+      location: "",
+      locationCtr: {
+        lat: 0,
+        lng: 0,
+      },
       doDisplay: false,
     };
-    this.toggleRoomRoommate = this.toggleRoomRoommate.bind(this);
   }
 
   componentDidMount(){
     get("/api/sessionglobals").then((globals) => {
       this.setState({
         doDisplay: true,
-        roomStartDate: globals.roomStartDate,
-        roomEndDate: globals.roomEndDate,
-        roomLocation: globals.roomLocation,
-        roomLocationCtr: {
-          lat: globals.roomLocationCtr.lat,
-          lng: globals.roomLocationCtr.lng
-        },
-        roommateStart: globals.roommateStartDate,
-        roommateEnd: globals.roommateEndDate,
-        roommateLocation: globals.roommateLocation,
-        roommateLocationCtr: {
-          lat: globals.roommateLocationCtr.lat,
-          lng: globals.roommateLocationCtr.lng
+        startDate: globals.startDate,
+        endDate: globals.endDate,
+        location: globals.location,
+        locationCtr: {
+          lat: globals.locationCtr.lat,
+          lng: globals.locationCtr.lng
         },
       });
     })
-  }
-
-  toggleRoomRoommate() {
-    if (this.state.roomOrRoommate === listing_type.ROOM) {
-      this.setState({roomOrRoommate: listing_type.ROOMMATE});
-    } else {
-      this.setState({roomOrRoommate: listing_type.ROOM});
-    }
   }
   
   render(){
     if (!this.state.doDisplay)
       return null;
-    let roomButtonClassName = "SplashPage-listingtypebutton";
-    let roommateButtonClassName = "SplashPage-listingtypebutton";
-    switch(this.state.roomOrRoommate) {
-      case(listing_type.ROOM):
-      roomButtonClassName += " SplashPage-listingtypebuttonactive";
-        break;
-      case(listing_type.ROOMMATE):
-      roommateButtonClassName += " SplashPage-listingtypebuttonactive";
-        break;
-    }
-
-    const roomTrue = (this.state.roomOrRoommate === listing_type.ROOM);
+    let buttonClassName = "SplashPage-listingtypebutton";
 
     const {
       state: {
-        roomStartDate, roomEndDate, roommateStart,
-        roommateEnd, roomLocation, roommateLocation
+        startDate, endDate, location
       }
     } = this;
 
-    let roomSearchBar = roomTrue ? ( // THIS LOOKS LIKE KLUDGY CODE, BUT PLZ PLZ DON'T CHANGE. THERE'S GOOD REASON IT'S THIS WAY
+    let searchBar = (
       <div>
       <GoogleSearchBar 
       styleName="SplashPage"
-      placeIsCity={true}
-      searchBarId={"splashPageSearchRoom"}
-      updateQuery={(loc, ctr) => {this.setState({ roomLocation: loc, roomLocationCtr: ctr });}}
-      text={this.state.roomLocation}
-      />
-      </div>
-    ) : null;
-
-    let roommateSearchBar = roomTrue ? null : (
-      <div>
-      <GoogleSearchBar
-      styleName="SplashPage"
-      placeIsCity={false}
-      searchBarId={"splashPageSearchRoommate"}
-      updateQuery={(loc, ctr) => {this.setState({ roommateLocation: loc, roommateLocationCtr: ctr });}}
-      text={this.state.roommateLocation}
+      searchBarId={"splashPageSearch"}
+      updateQuery={(loc, ctr) => {this.setState({ location: loc, locationCtr: ctr });}}
+      text={this.state.location}
       />
       </div>
     );
@@ -110,32 +69,9 @@ class SplashPage extends Component {
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
             <div className="SplashPage-logo">burrow</div>
-            {roomTrue ? (
-            <div className="SplashPage-tagline">I&apos;m looking for a</div>
-            ) : (
-            <div className="SplashPage-tagline">I&apos;ve GOT a room and am looking for a</div>
-            )}
+            Enter location:
           </div>
-
-          <Toggle
-            id='cheese-status'
-            defaultChecked={this.state.roomOrRoommate!==listing_type.ROOM}
-            onChange={this.toggleRoomRoommate}
-            className="RoomToggle"
-            icons={false}
-            />
-          <label htmlFor='cheese-status'>Adjacent label tag</label>
-
-          <div>
-            <button
-            className={roomButtonClassName}
-            onClick={()=>this.setState({roomOrRoommate: listing_type.ROOM})}>Room</button>
-            <button
-            className={roommateButtonClassName}
-            onClick={()=>this.setState({roomOrRoommate: listing_type.ROOMMATE})}>Roommate</button>
-          </div>
-
-
+          
           {/* {roomTrue ? (
             <div>
               <input type="number" step="100" className="SplashPage-rentinput"
@@ -166,17 +102,15 @@ class SplashPage extends Component {
               <span className="fieldname">(USD / mo.)</span>
             </div>
           )} */}
-          {roomSearchBar}
-          {roommateSearchBar}
+          {searchBar}
           <div className="SplashPage-date SplashPage-input">
             <DatePicker
-              startDate={roomTrue ? roomStartDate : roommateStart}
-              endDate={roomTrue ? roomEndDate: roommateEnd}
+              startDate={startDate}
+              endDate={endDate}
               startDateId="splashpage-startdateid"
               endDateId="splashpage-enddateid"
               handleDateChange={(stdate, edate) => {
-                roomTrue ? this.setState({roomStartDate: stdate, roomEndDate: edate}) :
-                  this.setState({roommateStart: stdate, roommateEnd: edate});
+                this.setState({startDate: stdate, endDate: edate})
               }}/>
           </div>
           <button
@@ -184,25 +118,14 @@ class SplashPage extends Component {
             type="submit"
             value="Go!"
             onClick={() => {
-              let lookingForRoom = (this.state.roomOrRoommate == listing_type.ROOM);
-              let body = lookingForRoom ? {
-                lookingForRoom: true,
-                roomLocation: this.state.roomLocation,
-                roomLocationCtr: {
-                  lat: this.state.roomLocationCtr.lat,
-                  lng: this.state.roomLocationCtr.lng,
+              let body = {
+                location: this.state.location,
+                locationCtr: {
+                  lat: this.state.locationCtr.lat,
+                  lng: this.state.locationCtr.lng,
                 },
-                roomStartDate: this.state.roomStartDate,
-                roomEndDate: this.state.roomEndDate
-              } : {
-                lookingForRoom: false,
-                roommateLocation: this.state.roommateLocation,
-                roommateLocationCtr: {
-                  lat: this.state.roommateLocationCtr.lat,
-                  lng: this.state.roommateLocationCtr.lng,
-                },
-                roommateStartDate: this.state.roommateStart,
-                roommateEndDate: this.state.roommateEnd
+                startDate: this.state.startDate,
+                endDate: this.state.endDate
               }
               post("/api/sessionglobals", body).then((res) => {
                 window.location.pathname = "/main";

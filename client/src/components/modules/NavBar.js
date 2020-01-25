@@ -8,26 +8,15 @@ import RegistrationPage from "../pages/RegistrationPage";
 import { Link } from "@reach/router";
 import { GoogleSearchBar } from "./SearchBar";
 import { get, post } from "../../utilities";
-import Toggle from 'react-toggle';
 import NewListing from "../modules/NewListing";
-
-const houseIcon = (
-  <img src="/house_icon.svg" width="13px"/>
-);
-const roommateIcon = (
-  <img src="/roommate_icon.svg" width="13px"/>
-);
 
 class NavBar extends Component {
   constructor(props){
     super(props);
     this.state = {
       doDisplay: false,
-      lookingForRoom: null,
-      roomLocation: null,
-      roomLocationCtr: null,
-      roommateLocation: null,
-      roommateLocationCtr: null,
+      location: null,
+      locationCtr: null,
       profilePicURL: "",
       firstName: ""
     };
@@ -36,11 +25,8 @@ class NavBar extends Component {
   componentDidMount(){
     get("/api/sessionglobals").then((globals) => {
       this.setState({
-        lookingForRoom: globals.lookingForRoom,
-        roomLocation: globals.roomLocation,
-        roomLocationCtr: globals.roomLocationCtr,
-        roommateLocation: globals.roommateLocation,
-        roommateLocationCtr: globals.roommateLocationCtr,
+        location: globals.location,
+        locationCtr: globals.locationCtr,
         doDisplay: true,
       })
     });
@@ -92,42 +78,15 @@ class NavBar extends Component {
           <div className="NavBar-logo">
             <Link to="/" className="NavBar-logo-link">burrow</Link>
           </div>
-          <div className="NavBar-toggleContainer">
-            <Toggle
-            id="lookingForRoom" 
-            className="NavBar-toggleSwitch" defaultChecked={this.state.lookingForRoom} 
-              onChange={() => this.setState((prev) => ({lookingForRoom: !prev.lookingForRoom}), () => {
-                post("/api/sessionglobals", {lookingForRoom: this.state.lookingForRoom});
-              })}
-              icons={{checked: houseIcon, unchecked: roommateIcon}}
-              />
-               <label className="NavBar-toggleSwitchLabel" htmlFor = {this.state.lookingForRoom ? "I want a room" : "I want a roommate"}>
-               <span className="toggle-switch-inner" />
-              <span className="toggle-switch-switch" />
-              </label>
-    
-          </div>
           <div className="NavBar-searchContainer">
-            {this.state.lookingForRoom ? 
-            <GoogleSearchBar styleName="NavBar" text={this.state.roomLocation} 
-              placeIsCity={true}
+            <GoogleSearchBar styleName="NavBar" text={this.state.location} 
               searchBarId="navBarSearch" updateQuery={(query, ctr) => {
-                post("/api/sessionglobals", {roomLocation: query, lookingForRoom: true, roomLocationCtr: ctr})
+                post("/api/sessionglobals", {location: query, locationCtr: ctr})
                   .then(() => { window.location.pathname = "/main"; });
                 }}
-            /> : null}
+            />
           </div>
-         
-          <div className="NavBar-searchContainer">
-            {this.state.lookingForRoom ? null : 
-            <GoogleSearchBar styleName="NavBar" text={this.state.roommateLocation} 
-              placeIsCity={false}
-              searchBarId="navBarSearch" updateQuery={(query, ctr) => {
-                post("/api/sessionglobals", {roommateLocation: query, lookingForRoom: false, roommateLocationCtr: ctr})
-                  .then(() => { window.location.pathname = "/main"; });
-                }}
-            />}
-          </div>  
+          
         </div>
         {linkContainer}
       </div>

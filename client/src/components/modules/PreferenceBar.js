@@ -4,7 +4,15 @@ import "../../utilities.css";
 import { get, post } from "../../utilities";
 import "./PreferenceBar.css";
 import DatePicker from "./DatePicker";
+import Toggle from 'react-toggle';
 const momentPropTypes = require("react-moment-proptypes");
+
+const houseIcon = (
+  <img src="/house_icon.svg" width="13px"/>
+);
+const roommateIcon = (
+  <img src="/roommate_icon.svg" width="13px"/>
+);
 
 class PreferenceBar extends Component {
   constructor(props){
@@ -22,43 +30,14 @@ class PreferenceBar extends Component {
     });
   }
   
-  update = (price, smoking, pets, startDate, endDate) => {
-    if (this.state.lookingForRoom){
-      this.setState({
-        roomPrice: price, roomSmoking: smoking, roomPets: pets, roomStartDate: startDate, roomEndDate: endDate,
-      }, () => {
-        post("/api/sessionglobals", {
-          roomPrice: this.state.roomPrice,
-          roomSmoking: this.state.roomSmoking,
-          roomPets: this.state.roomPets,
-          roomStartDate: this.state.roomStartDate,
-          roomEndDate: this.state.roomEndDate,
-          roommatePrice: this.state.roomPrice,
-          roommateSmoking: this.state.roommateSmoking,
-          roommatePets: this.state.roommatePets,
-          roommateStartDate: this.state.roommateStartDate,
-          roommateEndDate: this.state.roommateEndDate,
-        })
+  update = (price, smoking, pets, startDate, endDate, lookingForRoom) => {
+    this.setState({
+      price, smoking, pets, startDate, endDate, lookingForRoom
+    }, () => {
+      post("/api/sessionglobals", {
+        price, smoking, pets, startDate, endDate, lookingForRoom
       })
-    }
-    else {
-      this.setState({
-        roommatePrice: price, roommateSmoking: smoking, roommatePets: pets, roommateStartDate: startDate, roommateEndDate: endDate,
-      }, () => {
-        post("/api/sessionglobals", {
-          roomPrice: this.state.roomPrice,
-          roomSmoking: this.state.roomSmoking,
-          roomPets: this.state.roomPets,
-          roomStartDate: this.state.roomStartDate,
-          roomEndDate: this.state.roomEndDate,
-          roommatePrice: this.state.roomPrice,
-          roommateSmoking: this.state.roommateSmoking,
-          roommatePets: this.state.roommatePets,
-          roommateStartDate: this.state.roommateStartDate,
-          roommateEndDate: this.state.roommateEndDate,
-        })
-      })
-    }
+    })
   }
 
   render(){
@@ -66,29 +45,31 @@ class PreferenceBar extends Component {
       return null;
     const {
       state: {
-        lookingForRoom, roomPrice, roomSmoking, roomPets, roomStartDate, roomEndDate,
-        roommatePrice, roommateSmoking, roommatePets, roommateStartDate, roommateEndDate
+        lookingForRoom, price, smoking, pets, startDate, endDate
       }
     } = this;
-    let price = lookingForRoom ? roomPrice : roommatePrice;
-    let smoking = lookingForRoom ? roomSmoking: roommateSmoking;
-    let pets = lookingForRoom ? roomPets : roommatePets;
-    let startDate = lookingForRoom ? roomStartDate : roommateStartDate;
-    let endDate = lookingForRoom ? roomEndDate : roommateEndDate;
     return (
       <div className="PreferenceBar-container">
+        <div className="PreferenceBar-toggleContainer">
+          <Toggle
+            id="lookingForRoom" 
+            className="PreferenceBar-toggleSwitch" defaultChecked={lookingForRoom} 
+            onChange={() => this.update(price, smoking, pets, startDate, endDate, !lookingForRoom)}
+            icons={{checked: houseIcon, unchecked: roommateIcon}}
+          />
+        </div>
         <div className="PreferenceBar-price">
           {lookingForRoom ? "Budget: " : "Price: "}
           <span className="PreferenceBar-dollarsign">$</span>
           <input type="number" min="0" value={price} onChange={(e) => {
-              this.update(parseInt(e.target.value), smoking, pets, startDate, endDate)
+              this.update(parseInt(e.target.value), smoking, pets, startDate, endDate, lookingForRoom)
             }} 
             className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} 
           />/month
         </div>
         <div className="PreferenceBar-dateContainer">
           <DatePicker startDate={startDate} endDate={endDate} handleDateChange={async (newstartDate, newendDate) => {
-              await this.update(price, smoking, pets, newstartDate, newendDate); 
+              await this.update(price, smoking, pets, newstartDate, newendDate, lookingForRoom); 
               this.props.triggerSearch();
             }
           } />
@@ -96,14 +77,14 @@ class PreferenceBar extends Component {
         <div className="PreferenceBar-pets">  
           Pet friendly? 
           <input onClick={async () => {
-              await this.update(price, smoking, !pets, startDate, endDate);
+              await this.update(price, smoking, !pets, startDate, endDate, lookingForRoom);
               this.props.triggerSearch();
           }} type="checkbox" className="PreferenceBar-checkbox" checked={pets}/>
         </div>
         <div className="PreferenceBar-smoking">
           Smoker friendly? 
           <input onClick={async () => {
-            await this.update(price, !smoking, pets, startDate, endDate);
+            await this.update(price, !smoking, pets, startDate, endDate, lookingForRoom);
             this.props.triggerSearch();
           }
           } 

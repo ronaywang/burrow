@@ -9,19 +9,21 @@ class YourListings extends Component {
     super(props);
     this.state = {
       usersListings: [],
+      doRender: false
     };
-    this.getListings = this.getListings.bind(this);
   }
 
   componentDidMount() {
     this.getListings();
   }
 
-  getListings () {
-    get("/api/composedlistings").then(data=>this.setState({usersListings: data}));
+  getListings = () => {
+    get("/api/composedlistings").then(data=>this.setState({usersListings: data, doRender: true}));
   }
 
   render() {
+    if (!this.state.doRender)
+      return null;
     console.log(`Your listings: ${this.state.usersListings}`);
     return (
       <div className="YourListings-container">
