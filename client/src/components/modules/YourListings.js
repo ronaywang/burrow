@@ -28,7 +28,8 @@ class YourListings extends Component {
     return (
       <div className="YourListings-container">
         {(this.state.usersListings.length === 0) ? <div className="YourListings-container">
-          No listings here :( 
+          No listings yet!
+          <img src = "/sad bunny.png" width = "30%"/>
         </div> : <ListingsFast displayedListings={this.state.usersListings}/>}
       </div>
     );
