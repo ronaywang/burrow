@@ -28,29 +28,36 @@ class NavBar extends Component {
       roomLocationCtr: null,
       roommateLocation: null,
       roommateLocationCtr: null,
+      profilePicURL: "",
+      firstName: ""
     };
   }
   
   componentDidMount(){
     get("/api/sessionglobals").then((globals) => {
       this.setState({
-        doDisplay: true,
         lookingForRoom: globals.lookingForRoom,
         roomLocation: globals.roomLocation,
         roomLocationCtr: globals.roomLocationCtr,
         roommateLocation: globals.roommateLocation,
         roommateLocationCtr: globals.roommateLocationCtr,
+        doDisplay: true,
       })
-    })
+    });
   }
+
 
   render(){
     if (!this.state.doDisplay)
       return null;
+    console.log(`You are logged in as ${this.props.userId}`);
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
-        <Link to={`/profile/${userId}`} className="NavBar-link">Profile</Link> 
+        <Link to={`/profile/${userId}`} className="NavBar-link">
+          <img className="NavBar-photo" src={this.props.profilePictureURL || require("../../public/assets/account.png")}/>
+          <span className="NavBar-link">{this.props.firstName}</span>
+        </Link> 
         <Link to="/main" className="NavBar-link">Home</Link>
         <Link to="/inbox" className="NavBar-link">Inbox</Link>
         <Popup modal trigger={
