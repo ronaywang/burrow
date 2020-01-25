@@ -8,6 +8,14 @@
     border-bottom: 1px solid var(--neutral6);
 }
 
+.NavBar-photo {
+  --avatarSize: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+  width: var(--avatarSize);
+  height: var(--avatarSize);
+}
+
 .NavBar-logo {
     font-family: 'K2D';
     font-size: 200%;

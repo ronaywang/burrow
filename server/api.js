@@ -147,7 +147,7 @@ router.get("/composedlistings-ids-only", (req, res) => {
 
 router.get("/myuid", (req, res) => {
   if (_.has(req.user, '_id')) {
-    res.send({userId: req.user._id, email: req.user.email});
+    res.send({userId: req.user._id, email: req.user.email, firstName: req.user.firstName, profilePictureURL: req.user.profilePictureURL});
   } else {
     const err = new Error("You are not logged in");
     res.status(401);
@@ -253,6 +253,9 @@ router.get("/uploadfile", async (req, res) => {
 });
 
 router.post("/getProfilePic", async (req, res) => {
+  if (req.body.userId.length === 0) {
+    res.status(503).send({photoURL: ""});
+  }
   let userIWant = await User.findById(req.body.userId);
   if (userIWant.profilePictureURL) {
     const replyWithURL = {
