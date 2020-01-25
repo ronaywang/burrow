@@ -18,14 +18,25 @@
     width: auto;
 }
 
+.SplashPage-searchContainer, .SplashPage-dateContainer {
+  padding: 1rem 0rem 0.5rem 0rem;
+}
+
+.SplashPage-searchDescription, .SplashPage-dateDescription{
+  text-transform: lowercase;
+  font-weight: 300;
+  font-size: 70%;
+  letter-spacing: 0.05em;
+}
+
 .SplashPage-logo {
     display: flex;
     font-weight: 700;
     color: var(--primary3);
-    font-size: 130%;
+    font-size: 200%;
     justify-content: center;
+    line-height: 100%;
     width: auto;
-    margin: 5%;
 }
 .SplashPage-go{
     font-size: 120%;
@@ -36,7 +47,7 @@
 }
 
 .SplashPage-tagline {
-    font-size: 120%;
+    font-size: 200%;
 }
 .SplashPage-taglineContainer {
   width: auto;

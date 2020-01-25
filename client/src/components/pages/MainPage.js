@@ -33,8 +33,6 @@ class MainPage extends Component{
       location: this.state.location,
       locationCtr: this.state.locationCtr,
       price: this.state.price,
-      smoking: this.state.smoking,
-      pets: this.state.pets,
       startDate: new Date(this.state.startDate),
       endDate: new Date(this.state.endDate),
     }

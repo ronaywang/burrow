@@ -19,16 +19,14 @@ class SingleCardFast extends Component {
       name: "",
       age: 0,
       gender: "m",
-      lookingForRoom: false,
       location: "",
       startDate: new Date(),
       endDate: new Date(),
       price: 0,
-      smoking: false,
-      pets: false,
       additionalText: "",
       profilePicURL: "",
       doRender: false,
+      longTerm: false,
     };
   }
 
@@ -38,9 +36,6 @@ class SingleCardFast extends Component {
       startDate: this.props.listing.startDate,
       endDate: this.props.listing.endDate,
       price: this.props.listing.price,
-      smoking: this.props.listing.smokerFriendly,
-      pets: this.props.listing.petFriendly,
-      lookingForRoom: this.props.listing.lookingForRoom,
       additionalText: this.props.listing.additionalPrefText, // TODO: implement photo uploading
       name: this.props.listing.creator_ID.firstName, 
       age: calculateAge(new Date(this.props.listing.creator_ID.birthdate)),
@@ -64,26 +59,10 @@ class SingleCardFast extends Component {
           <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
         </div>
           <div className="Card-locationDatePrice">
-            {/*<table style={{'text-align':'left'}}>
-              <tr>
-                <th className="ldp-left">{lookingForRoom ? "is moving to" : "is located in"}</th>
-                <th className="ldp-right">{location}</th>
-              </tr>
-              <tr>
-                <th className="ldp-left">during</th>
-                <th className="ldp-right">{formatDate(startDate)}–{formatDate(endDate)}</th>
-              </tr>
-              <tr>
-              <th className="ldp-left">{lookingForRoom ? "with a budget of" : "with a price of"}</th>
-              <th className="ldp-right">${price}/month</th>
-              </tr>
-        </table> */}
     
         <div className="Card-date">{formatDate(startDate)} to {formatDate(endDate)}</div></div>
         <div className="Card-flags">
           <span className="Card-flag">{location}</span> &bull;
-          <span className="Card-flag">{smoking ? "" : "not "}smoker-friendly </span> &bull;
-          <span className="Card-flag">{pets ? "" : "not "}pet-friendly </span>
         </div>
           
         <div className="Card-topRight"></div>

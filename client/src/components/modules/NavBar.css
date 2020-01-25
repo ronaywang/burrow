@@ -51,6 +51,10 @@
   padding: 0.5rem 1rem 0.5rem 1rem !important;
 }
 
+.NavBar-newListing, .NavBar-link{
+  letter-spacing: 0.03em;
+}
+
 .NavBar-logo-link {
     color: var(--primary3);
 }

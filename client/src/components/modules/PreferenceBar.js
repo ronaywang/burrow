@@ -30,12 +30,12 @@ class PreferenceBar extends Component {
     });
   }
   
-  update = (price, smoking, pets, startDate, endDate, lookingForRoom) => {
+  update = (price, startDate, endDate) => {
     this.setState({
-      price, smoking, pets, startDate, endDate, lookingForRoom
+      price, startDate, endDate, 
     }, () => {
       post("/api/sessionglobals", {
-        price, smoking, pets, startDate, endDate, lookingForRoom
+        price, startDate, endDate
       })
     })
   }
@@ -45,31 +45,23 @@ class PreferenceBar extends Component {
       return null;
     const {
       state: {
-        lookingForRoom, price, smoking, pets, startDate, endDate
+        price, startDate, endDate
       }
     } = this;
     return (
       <div className="PreferenceBar-container">
-        <div className="PreferenceBar-toggleContainer">
-          <Toggle
-            id="lookingForRoom" 
-            className="PreferenceBar-toggleSwitch" defaultChecked={lookingForRoom} 
-            onChange={() => this.update(price, smoking, pets, startDate, endDate, !lookingForRoom)}
-            icons={{checked: houseIcon, unchecked: roommateIcon}}
-          />
-        </div>
         <div className="PreferenceBar-price">
-          {lookingForRoom ? "Budget: " : "Price: "}
+          Budget:
           <span className="PreferenceBar-dollarsign">$</span>
           <input type="number" min="0" value={price} onChange={(e) => {
-              this.update(parseInt(e.target.value), smoking, pets, startDate, endDate, lookingForRoom)
+              this.update(parseInt(e.target.value), startDate, endDate)
             }} 
-            className="PreferenceBar-priceInput" placeholder={lookingForRoom ? "Enter budget ..." : "Enter price ..."} 
+            className="PreferenceBar-priceInput" placeholder="Enter approximate budget..." 
           />/month
         </div>
         <div className="PreferenceBar-dateContainer">
           <DatePicker startDate={startDate} endDate={endDate} handleDateChange={async (newstartDate, newendDate) => {
-              await this.update(price, smoking, pets, newstartDate, newendDate, lookingForRoom); 
+              await this.update(price, newstartDate, newendDate); 
               this.props.triggerSearch();
             }
           } />

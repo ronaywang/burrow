@@ -11,9 +11,7 @@ function populateSession(req, res, next){
       },
       startDate: moment(),
       endDate: moment().add(1, 'days'),
-      price: 0,
-      smoking: true,
-      pets: true,
+      price: 0
     }
   }
   next();

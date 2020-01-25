@@ -87,26 +87,14 @@ router.post("/listing", (req, res) => {
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.post("/matchinglistings", (req, res) => {
   var prefs = req.body;
-  let userQuery = { $ne: prefs.userId };
-  const lookforroom = prefs.lookingForRoom === 'true';
-  let priceQuery = prefs.lookingForRoom == 'true' ? {$lte: prefs.price} : {$gte: prefs.price};
-  let startDateQuery = prefs.lookingForRoom == 'true' ? {$lte: prefs.startDate} : {$gte: prefs.startDate};
-  let endDateQuery = prefs.lookingForRoom == 'true' ? {$gte: prefs.endDate} : {$lte: prefs.endDate};
-  let smokingQuery = prefs.smoking == 'true' ? {$in: [true, false]} : false;
-  let petQuery = prefs.pets == 'true' ? {$in: [true, false]} : false;
+  const priceMargin = 500; // USD
   const maxDistance = 10; // miles
-  console.log(prefs);
+  let userQuery = { $ne: prefs.userId };
+  let priceQuery = {$lte: prefs.price + priceMargin, $gte: prefs.price - priceMargin};
   let listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
   const query = {
-    //price: priceQuery,
-    $and: [
-      {startDate: {$lte: prefs.endDate}},
-      {endDate: {$gte: prefs.startDate}},
-    ],
-    smokingFriendly: smokingQuery,
-    petFriendly: petQuery,
-//    lookingForRoom: !prefs.lookingForRoom,
-    lookingForRoom: {$in: [true, false]},
+    creator_ID: userQuery,
+    price: priceQuery,
   };
   
   console.log(query);
