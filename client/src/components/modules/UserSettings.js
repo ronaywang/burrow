@@ -103,7 +103,7 @@ class UserSettings extends Component {
         
         </div>
         <div>
-          <span className="fieldname">Name</span>
+          <span className="pro-fieldname">Name</span>
           <input
           type="text"
           name="firstname"
@@ -118,7 +118,7 @@ class UserSettings extends Component {
           onChange={(event)=>{this.setState({lastName: event.target.value})}}/>
         </div>
         <div>
-          <span className="fieldname">Birthdate</span>
+          <span className="pro-fieldname">Birthdate</span>
           <SingleDatePicker
           date={dispdate}
           onDateChange={date => this.setState({birthdate: date.toDate()})}
@@ -132,7 +132,7 @@ class UserSettings extends Component {
           displayFormat="MMM DD, YYYY"/>
         </div>
         <div>
-          <span className="fieldname">Gender</span>
+          <span className="pro-fieldname">Gender</span>
           <button
           className={mbuttonclass}
           onClick={()=>{this.setState({maleButtonActive: true, femaleButtonActive: false, nbButtonActive: false, gender: genders.M})}}
@@ -145,7 +145,7 @@ class UserSettings extends Component {
           >Non-binary</button>
         </div>
         <div>
-          <span className="fieldname">Link your FB profile</span>
+          <span className="pro-fieldname">Link your FB profile</span>
           <input
           type="text"
           name="fblink"
@@ -153,8 +153,8 @@ class UserSettings extends Component {
           onChange={(event)=>{this.setState({fbProfileLink: event.target.value})}}/>
         </div>
         <div>
-          <div className="fieldname">Tell us about yourself!</div>
-            <textarea rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+          <div className="pro-fieldname">Tell us about yourself!</div>
+            <textarea className="pro-textbox" rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
         </div>
 
         <button id="savebutton"

@@ -12,7 +12,7 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabIndex: 1, //0, 1, or 2, depending on which tab to display
+      tabIndex: 0, //0, 1, or 2, depending on which tab to display
     };
   }
 
