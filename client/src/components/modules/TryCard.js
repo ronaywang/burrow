@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SingleCard from "./SingleCard";
 
 class TryCard extends Component {
   render() {

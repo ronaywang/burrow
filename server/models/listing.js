@@ -3,19 +3,17 @@ const Schema = mongoose.Schema;
 
 const ListingSchema = new mongoose.Schema({
     creator_ID: {type: Schema.Types.ObjectId, ref: 'user' },
-    photoList: [{type: Schema.Types.ObjectId, ref: 'photo' }],
-    lookingForRoom: Boolean,
+    // photoList: [{type: Schema.Types.ObjectId, ref: 'photo' }],
     location: String,
     coordinates: { // usual GPS COORDINATES
         lat: Number,
         lng: Number,
     },
-    location_radius: Number,
+    // location_radius: Number,
+    longTerm: Boolean,
     price: Number,
     startDate: Date,
     endDate: Date,
-    smokingFriendly: Boolean,
-    petFriendly: Boolean,
     additionalPrefText: String,
 });
 // A listing determines a search area. If two listings' search areas overlap, then

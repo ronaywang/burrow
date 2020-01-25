@@ -19,16 +19,14 @@ class SingleCardFast extends Component {
       name: "",
       age: 0,
       gender: "m",
-      lookingForRoom: false,
       location: "",
       startDate: new Date(),
       endDate: new Date(),
       price: 0,
-      smoking: false,
-      pets: false,
       additionalText: "",
       profilePicURL: "",
       doRender: false,
+      longTerm: false,
     };
   }
 
@@ -38,9 +36,6 @@ class SingleCardFast extends Component {
       startDate: this.props.listing.startDate,
       endDate: this.props.listing.endDate,
       price: this.props.listing.price,
-      smoking: this.props.listing.smokerFriendly,
-      pets: this.props.listing.petFriendly,
-      lookingForRoom: this.props.listing.lookingForRoom,
       additionalText: this.props.listing.additionalPrefText, // TODO: implement photo uploading
       name: this.props.listing.creator_ID.firstName, 
       age: calculateAge(new Date(this.props.listing.creator_ID.birthdate)),
@@ -82,8 +77,6 @@ class SingleCardFast extends Component {
         <div className="Card-date">{formatDate(startDate)} to {formatDate(endDate)}</div></div>
         <div className="Card-flags">
           <span className="Card-flag">{location}</span> &bull;
-          <span className="Card-flag">{smoking ? "" : "not "}smoker-friendly </span> &bull;
-          <span className="Card-flag">{pets ? "" : "not "}pet-friendly </span>
         </div>
           
         <div className="Card-topRight"></div>

@@ -16,6 +16,13 @@ const UserSchema = new mongoose.Schema({
   aboutMe: String,
   bookmarkedListings: [{ type: Schema.Types.ObjectId, ref: 'listing' }],
   composedListings: [{ type: Schema.Types.ObjectId, ref: 'listing' }],
+  // These are questions with answers from 0 to 2
+  pets: Number, // 0: no pets, 1: a pet, 2: a lot of pets
+  smoking: Number, // 0: no smoking, 1: a little smoking, 2: a lot of smoking
+  cleanliness: Number, // 0: not clean, 1: somewhat clean, 2: very clean
+  nightOwl: Number, // 0: early bird, 1: moderate lark, 2: night owl
+  extroverted: Number, // 0: introvert, 1: ambivert, 2: extrovert
+  // TODO: other questions that determine the user!
 });
 
 // authentication

@@ -54,64 +54,36 @@ class SplashPage extends Component {
     } = this;
 
     let searchBar = (
-      <div>
       <GoogleSearchBar 
       styleName="SplashPage"
       searchBarId={"splashPageSearch"}
       updateQuery={(loc, ctr) => {this.setState({ location: loc, locationCtr: ctr });}}
       text={this.state.location}
       />
-      </div>
     );
 
     return (
       <div className="SplashPage-container">
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
-            <div className="SplashPage-logo">burrow</div>
-            Enter location:
+            <div className="SplashPage-logo">Find fellow roommates near you.</div>
           </div>
-          
-          {/* {roomTrue ? (
-            <div>
-              <input type="number" step="100" className="SplashPage-rentinput"
-              max={roomTrue ? this.state.roomRentUpper : this.state.roommateRentUpper}
-              value={roomTrue ? this.state.roomRentLower : this.state.roommateRentLower}
-              onChange={(event)=>{
-                roomTrue ? this.setState({roomRentLower: event.target.value}) : 
-                  this.setState({roommateRentLower: event.target.value});
-                }}/> 
-              <span className="fieldname">≤ Rent ≤</span>
-              <input type="number" step="100" className="SplashPage-rentinput"
-              min={roomTrue ? this.state.roomRentLower : this.state.roommateRentLower}
-              value={roomTrue ? this.state.roomRentUpper : this.state.roommateRentUpper}
-              onChange={(event)=>{
-                roomTrue ? this.setState({roomRentUpper: event.target.value}) : 
-                  this.setState({roommateRentUpper: event.target.value});
-                }}/> 
-              <span className="fieldname">(USD / mo.)</span>
+          <div className="SplashPage-searchContainer">
+            <div className="SplashPage-searchDescription">location</div>
+            {searchBar}
+          </div>
+          <div className="SplashPage-dateContainer">
+            <div className="SplashPage-dateDescription">dates</div>
+            <div className="SplashPage-date SplashPage-input">
+              <DatePicker
+                startDate={startDate}
+                endDate={endDate}
+                startDateId="splashpage-startdateid"
+                endDateId="splashpage-enddateid"
+                handleDateChange={(stdate, edate) => {
+                  this.setState({startDate: stdate, endDate: edate})
+                }}/>
             </div>
-          ) : (
-            <div>
-              <span className="fieldname">Rent is</span>
-              <input type="number" step="100" className="SplashPage-rentinput"
-              value={this.state.roommateRentLower}
-              onChange={(event)=>{
-                  this.setState({roommateRentLower: event.target.value});
-                }}/> 
-              <span className="fieldname">(USD / mo.)</span>
-            </div>
-          )} */}
-          {searchBar}
-          <div className="SplashPage-date SplashPage-input">
-            <DatePicker
-              startDate={startDate}
-              endDate={endDate}
-              startDateId="splashpage-startdateid"
-              endDateId="splashpage-enddateid"
-              handleDateChange={(stdate, edate) => {
-                this.setState({startDate: stdate, endDate: edate})
-              }}/>
           </div>
           <button
             className="SplashPage-go SplashPage-input"
