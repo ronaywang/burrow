@@ -1,12 +1,9 @@
 .upload-btn-wrapper {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
+  display: none;
 }
 
 
-
-.upload-btn-wrapper input {
+/* .upload-btn-wrapper input {
   position: absolute;
   left: 0;
   top: 0;
@@ -21,4 +18,4 @@
   width: auto;
   height: auto;
   align-items: center;
-}
+} */
