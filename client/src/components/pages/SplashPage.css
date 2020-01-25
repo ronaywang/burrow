@@ -5,6 +5,9 @@
     width: auto;
     height: auto;
     margin: 10%;
+    padding: 5rem 5rem 5rem 5rem;
+    background-color: white;
+    border-radius: 0.5rem;
 }
 
 .SplashPage-infocontainer {

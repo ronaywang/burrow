@@ -24,6 +24,7 @@ import MainPage from "./pages/MainPage.js";
 import ProfilePage from "./pages/ProfilePage";
 import InboxPage from "./pages/InboxPage.js";
 import * as moment from "moment";
+import "./App.css";
 
 /**
  * Define the "App" component as a class.
@@ -82,6 +83,7 @@ class App extends Component {
     return (
       <>
         <NavBar userId={this.state.userId} handleLogout={this.handleLogout} />
+        <div className="App-container">
         <Router>
           <SplashPage path="/"/>
           <MainPage path="/main" userId={this.state.userId}
@@ -112,6 +114,7 @@ class App extends Component {
           <NewListing path="/newlistingprototype/" userId={this.state.userId} addNewListing={(listingInfo) => null} lookingForRoom={true}/>
           <NotFound default /> */}
         </Router>
+        </div>
       </>
     );
   }
