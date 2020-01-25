@@ -5,7 +5,9 @@ import { SingleDatePicker } from "react-dates";
 import moment from "moment";
 import { get, post } from "../../utilities";
 import { genders} from "./enums";
-import ProfilePicUploader from "../modules/ProfilePicUploader";
+import "./ProfilePicUploader.css";
+
+const axios = require("axios");
 
 class UserSettings extends Component {
   constructor(props) {
@@ -42,11 +44,11 @@ class UserSettings extends Component {
         userId: userObj._id
       });
       if (this.state.gender === genders.M) {
-        this.setState({maleButtonActive: true});
+        this.setState({gender: "Male"});
       } else if (this.state.gender === genders.F) {
-        this.setState({femaleButtonActive: true});
+        this.setState({gender: "Female"});
       } else if (this.state.gender === genders.NB) {
-        this.setState({nbButtonActive: true});
+        this.setState({gender: "Non-binary"});
       }
       this.setState({doRender: true});
     }).then(() => {
@@ -57,6 +59,23 @@ class UserSettings extends Component {
       }
     })
   }
+
+  handleChange = (event) => {
+    this.doUploadPic(event.target.files[0]);
+  };
+
+  doUploadPic = async (file) => {
+    this.setState({ uploading: true });
+
+    let formData = new FormData();
+    formData.append('photo', file);
+
+    const uploadRes = await axios.post("/api/newProfilePic", formData);
+    console.log(JSON.stringify(uploadRes));
+    window.location.reload();
+
+  };
+
 
   async saveSettings () {
     console.log(this.state);
@@ -92,57 +111,33 @@ class UserSettings extends Component {
     }
     return (
       <div className="UserSettings-container">
-        <div className = "UserSettings-photoContainer">
-          <div>
-            <img className = "UserSettings-photo" src={this.state.profilePicURL || require("../../public/assets/account.png")}/>
+        <div className = "UserSettings-aboutContainer">
+          <div className="UserSettings-photoContainer">
+            <img className = "UserSettings-photo" onClick={() => {
+              document.getElementById("uploadphoto").click();
+            }} 
+              src={this.state.profilePicURL || require("../../public/assets/account.png")}
+            />
+            <input className="upload-btn-wrapper" id="uploadphoto" type="file" name="file" accept="image/*" onChange={this.handleChange}/>
           </div>
-          {/*<div>
-            Profile page for <b>{this.props.username}</b>
-          </div>*/}
-          <ProfilePicUploader/>
-        
-        </div>
-        <div>
-          <span className="fieldname">Name</span>
-          <input
-          type="text"
-          name="firstname"
-          placeholder = "First name"
-          value={this.state.firstName}
-          onChange={(event)=>{this.setState({firstName: event.target.value})}}/>
-          <input
-          type="text"
-          name="lastname"
-          placeholder = "Last name"
-          value={this.state.lastName}
-          onChange={(event)=>{this.setState({lastName: event.target.value})}}/>
-        </div>
-        <div>
-          <span className="fieldname">Birthdate</span>
-          <SingleDatePicker
-          date={dispdate}
-          onDateChange={date => this.setState({birthdate: date.toDate()})}
-          id="profile-date-picker"
-          focused={this.state.datefocused}
-          onFocusChange={({ focused }) => this.setState({ datefocused: focused })}
-          isOutsideRange={(date)=>{return false;}}
-          initialVisibleMonth={() => moment().subtract(25, "Y")}
-          numberOfMonths={2}
-          transitionDuration={0}
-          displayFormat="MMM DD, YYYY"/>
-        </div>
-        <div>
-          <span className="fieldname">Gender</span>
-          <button
-          className={mbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: true, femaleButtonActive: false, nbButtonActive: false, gender: genders.M})}}
-          >Male</button>
-          <button className={fbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: true, nbButtonActive: false, gender: genders.F})}}
-          >Female</button>
-          <button className={nbbuttonclass}
-          onClick={()=>{this.setState({maleButtonActive: false, femaleButtonActive: false, nbButtonActive: true, gender: genders.NB})}}
-          >Non-binary</button>
+          <div className="UserSettings-personalInfo">
+            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoName">
+              <div className="UserSettings-description">Name</div>
+              <div className="UserSettings-value">{`${this.state.firstName} ${this.state.lastName}`}</div>
+            </div>
+            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
+              <div className="UserSettings-description">E-mail</div>
+              <div className="UserSettings-value">{`${this.state.email}`}</div>
+            </div>
+            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
+              <div className="UserSettings-description">Birthdate</div>
+              <div className="UserSettings-value">{`${new Date(this.state.birthdate).toLocaleDateString()}`}</div>
+            </div>
+            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoGender">
+              <div className="UserSettings-description">Gender</div>
+              <div className="UserSettings-value">{this.state.gender}</div>
+            </div>
+          </div>
         </div>
         <div>
           <span className="fieldname">Link your FB profile</span>
