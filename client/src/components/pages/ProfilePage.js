@@ -28,9 +28,6 @@ class ProfilePage extends Component {
         TabToDisplay = YourListings;
         break;
       case 2:
-        TabToDisplay = SavedListings;
-        break;
-      case 3:
         TabToDisplay = YourProfile;
       default:
         TabToDisplay = YourListings;
@@ -41,7 +38,6 @@ class ProfilePage extends Component {
         <span className = "ProfileBar-tabContainer">
           <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 0})}}>Your profile</span>
           <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 1})}}>Your listings</span>
-          <span className="ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 2})}}>Saved listings</span>
           {/* <span className = "ProfileBar-tab" onClick={()=>{this.setState({tabIndex: 3})}}>Your account</span> */}
         </span>
         <div className="TabToDisplay-container">
