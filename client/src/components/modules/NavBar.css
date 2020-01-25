@@ -41,12 +41,11 @@
     color: var(--primary4);
 }
 
+.NavBar-newListing{
+  padding: 0.5rem 1rem 0.5rem 1rem !important;
+}
+
 .NavBar-logo-link {
     color: var(--primary3);
     
-}
-
-.NavBar-newListing{
-    font-size: 90%;
-    cursor: pointer;
 }

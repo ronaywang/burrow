@@ -36,6 +36,7 @@ class DatePicker extends Component {
         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
         displayFormat={'MMM DD, YYYY'}
+        daySize={28}
         transitionDuration={0}
         customArrowIcon={(
           <img src="/rightarr.svg" width="10px"/>
