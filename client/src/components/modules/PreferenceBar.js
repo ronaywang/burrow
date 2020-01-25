@@ -93,7 +93,7 @@ class PreferenceBar extends Component {
             }
           } />
         </div>
-        <div className="PreferenceBar-pets">  
+        {/*<div className="PreferenceBar-pets">  
           Pet friendly? 
           <input onClick={async () => {
               await this.update(price, smoking, !pets, startDate, endDate);
@@ -108,7 +108,7 @@ class PreferenceBar extends Component {
           }
           } 
             type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
-        </div>
+        </div> */}
         <div>
           <button className="PreferenceBar-gobutton" onClick={this.props.triggerSearch}>Update!</button>
         </div>
