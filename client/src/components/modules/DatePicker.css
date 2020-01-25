@@ -79,8 +79,14 @@
 .DateInput {
   width: auto;
   padding: .2rem;
+  margin: 0rem;
   margin: var(--xs);
   background-color: transparent !important;
+}
+
+.DateInput_1{
+  margin: 0rem;
+  padding: 0rem;
 }
 
 .DateRangePickerInput_arrow_svg, .DayPickerNavigation_svg__horizontal {
