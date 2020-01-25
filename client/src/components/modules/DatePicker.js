@@ -37,6 +37,9 @@ class DatePicker extends Component {
         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
         displayFormat={'MMM DD, YYYY'}
         transitionDuration={0}
+        customArrowIcon={(
+          <img src="/rightarr.svg" width="10px"/>
+        )}
       />
     );
   }
