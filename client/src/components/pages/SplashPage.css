@@ -15,7 +15,9 @@
 
 .SplashPage-logo {
     display: flex;
-    font-family: "K2D";
+    font-family: sketchnote-text;
+    font-weight: 700;
+    color: var(--primary3);
     font-size: 200%;
     justify-content: center;
     width: auto;

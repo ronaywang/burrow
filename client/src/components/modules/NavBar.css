@@ -17,7 +17,9 @@
 }
 
 .NavBar-logo {
-    font-family: 'K2D';
+    font-family: sketchnote-text;
+    font-style: normal;
+    font-weight: 700;
     font-size: 200%;
     margin: 10px 20px;
     color: var(--primary3);
