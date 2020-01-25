@@ -1,8 +1,10 @@
 .InboxPage-container {
+  margin-top: 2rem;
   display: flex;
   justify-content: space-evenly;
   margin-left: 5rem;
   margin-right: 5rem;
+  background-color: white;
 }
 
 .Messages-container {

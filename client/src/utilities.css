@@ -79,16 +79,16 @@
   background: var(--primary5); 
 }
 
+
 body {
   margin: 0;
   font-family: "skolar-sans-latin", sans-serif;
   font-weight: 300;
   line-height: 110%;
   color: var(--neutral1);
-  background-color: var(--primary7);
   /*background: url("/nycbackground2.svg") no-repeat bottom center fixed;*/
   background: url("/nycbackgroundwithbunnies.svg") no-repeat bottom center fixed;
-
+  background-color: var(--primary7);
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
@@ -246,3 +246,4 @@ textarea:focus {
 button:hover {
   background-color: var(--primary5);
 }
+
