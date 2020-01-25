@@ -60,7 +60,9 @@ class NavBar extends Component {
           <div className="NavBar-link">
             register
           </div>
-        }>
+        }
+        contentStyle={{border: 'var(--borders)', borderRadius: 'var(--borderradius)'}}
+        >
           <RegistrationPage />
         </Popup>
         
@@ -68,7 +70,9 @@ class NavBar extends Component {
         <div className="NavBar-link">
           login
         </div>
-        }>
+        }
+        contentStyle={{border: 'var(--borders)', borderRadius: 'var(--borderradius)'}}
+        >
           <LoginPage />
         </Popup>
       </div>
