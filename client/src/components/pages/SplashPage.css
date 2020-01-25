@@ -5,30 +5,31 @@
     width: auto;
     height: auto;
     margin: 10%;
-    padding: 5rem 5rem 5rem 5rem;
+    padding: 2rem 2rem 2rem 2rem;
     background-color: white;
-    border-radius: 0.5rem;
+    border-radius: var(--borderradius);
 }
 
 .SplashPage-infocontainer {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-evenly;
+    flex-direction: column;
+    width: auto;
 }
 
 .SplashPage-logo {
     display: flex;
-    font-family: sketchnote-text;
     font-weight: 700;
     color: var(--primary3);
-    font-size: 200%;
+    font-size: 130%;
     justify-content: center;
     width: auto;
     margin: 5%;
 }
 .SplashPage-go{
-    font-size: 160%;
-    font-weight: 700;
+    font-size: 120%;
+    font-weight: 500;
 }
 .SplashPage-input {
     margin: var(--inputmargins);
@@ -37,6 +38,9 @@
 .SplashPage-tagline {
     font-size: 120%;
 }
+.SplashPage-taglineContainer {
+  width: auto;
+}
 
 .SplashPage-search {
     font-size: 110%;
@@ -44,14 +48,12 @@
 
 .SplashPage-rentinput {
     font-size: 110%;
-    max-width: 4rem;
+    max-width: auto;
 }
 
 .SplashPage-listingtypebutton {
   font-size: 120%;
   font-weight: 700;
-  margin: 0;
-  padding: 0.3rem;
   border: 1px solid white;
   color: white;
   border-radius: var(--s);

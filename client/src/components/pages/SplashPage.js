@@ -68,8 +68,8 @@ class SplashPage extends Component {
       <div className="SplashPage-container">
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
-            <div className="SplashPage-logo">burrow</div>
-            Enter location:
+            <div className="SplashPage-logo">share your next home</div>
+            find roommates in
           </div>
           
           {/* {roomTrue ? (
