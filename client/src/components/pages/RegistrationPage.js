@@ -180,20 +180,21 @@ handleSubmit = (event) => {
                 onChange={this.vp_handleChange}
               />
             </label>
+            <div className = "pwverify">
+              {
+                this.state.password && ((this.state.password === this.state.verifypassword) ? (
+                  <div className="approval">passwords match</div>
+                ) : (
+                  <div className="error">passwords do not match</div>
+                ))
+              }
+            </div>
             <button
               className = "u-button" 
               type="submit"
               onClick={this.handleSubmit}>
               {this.state.buttontext}</button>
-            <div>
-              {
-                this.state.password && ((this.state.password === this.state.verifypassword) ? (
-                  <div className="bkgreen">Passwords match</div>
-                ) : (
-                  <div className="bkred">Passwords do not match</div>
-                ))
-              }
-            </div>
+            
           </form>
         </div>
       );

@@ -12,10 +12,17 @@ h1 {
   left: -1em;
 }
 
+.pwverify {
+  font-size: 70%;
+
+}
 .error{
-    color: red;
+    color: #ff0051;
 }
 
+.approval{
+  color: #00bf5c;
+}
 
 .submit{
     cursor: pointer;
@@ -24,11 +31,10 @@ h1 {
 
 
 .warning {
-  color: red;
+  color: #ff0051;
   font-weight: 700;
   padding: 10px;
   margin: 10px;
-  border: var(--borders);
 }
 
 .Login-input, .Reg-input {
@@ -84,7 +90,6 @@ select {
   -moz-appearance: button;
   -webkit-user-select: none;
   -moz-user-select: none;
-
   background-color: var(--neutral7); /* Fallback color if gradients are not supported */
   /*background-image: url(../images/select-arrow.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); For Chrome and Safari 
   background-image: url(../images/select-arrow.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); For old Firefox (3.6 to 15) 
