@@ -26,6 +26,7 @@ class UserSettings extends Component {
       nbButtonActive: false,
       doRender: false,
       profilePicURL: "",
+      prefsArray: [1,1,3,1,1],
     };
     this.saveSettings = this.saveSettings.bind(this);
   }
@@ -109,8 +110,12 @@ class UserSettings extends Component {
     } else {
       dispdate = '';
     }
+
+    let prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
+                                  "I smoke frequently.", "I am an early bird."];
     return (
       <div className="UserSettings-container">
+        <div className="UserSettings-text">Only your first name, age and gender are shown to the public.</div>
         <div className = "UserSettings-aboutContainer">
           <div className="UserSettings-photoContainer">
             <img className = "UserSettings-photo" onClick={() => {
@@ -138,6 +143,27 @@ class UserSettings extends Component {
               <div className="UserSettings-value">{this.state.gender}</div>
             </div>
           </div>
+        </div>
+        <div className="UserSettings-prefsContainer">
+          {this.state.prefsArray.map((pref, index) => (
+            <div className="UserSettings-prefsBlock">
+              <div className="UserSettings-prefsDesciption">
+                <label>{prefsDescriptionArray[index]}</label>
+              </div>
+              <div className="UserSettings-prefsSlider"> 
+                <input type="range" min="1" max="3" value={this.state.prefsArray[index]} 
+                  onChange={(e) => { 
+                    e.persist();
+                    this.setState((prev) => {
+                      let arr = prev.prefsArray;
+                      arr[index] = parseInt(e.target.value);
+                      return {prefsArray: arr};
+                    }, () => {console.log(this.state.prefsArray)}) 
+                  }}  
+                />
+              </div>
+            </div>
+          ))}
         </div>
         <div>
           <span className="pro-fieldname">Link your FB profile</span>

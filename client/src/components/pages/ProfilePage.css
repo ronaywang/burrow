@@ -56,6 +56,9 @@
   grid-row: 2/3;
 }
 
+.UserSettings-text {
+  padding: 0 0 0.5rem 0;
+}
 
 .UserSettings-description {
   text-transform: lowercase;
