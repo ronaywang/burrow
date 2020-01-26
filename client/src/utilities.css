@@ -231,7 +231,7 @@ button, .u-button{
 select:focus,
 button:focus {
     outline: none;
-    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);*/
 }
 
 input:focus {
