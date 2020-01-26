@@ -13,6 +13,31 @@
     margin: 2em;
 }
 
+.NewListing-description{
+  margin: 1rem 0 0.5rem 0;
+  text-transform: lowercase;
+  font-weight: 400;
+  letter-spacing: 0.03rem;
+}
+.NewListing-durationButton{
+  margin: 0rem 0 0 0;
+  border-radius: 1px;
+  border: 1px solid var(--primary4);
+  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+  color: var(--primary4);
+  background-color: white;
+  font-size: 90%;
+  letter-spacing: 0.02em;
+}
+.NewListing-durationButton:hover{
+  color: white;
+}
+
+.NewListing-durationSelect{
+  color: white !important;
+  background-color: var(--primary4) !important;
+}
+
 .NewListing-center{
     margin: 10%;
     grid-column: 2/3;
@@ -56,3 +81,7 @@
     justify-content: space-evenly;
 }
 
+.NewListing-submit {
+  display: flex;
+  justify-content: flex-end;
+}
