@@ -80,6 +80,8 @@
 }
 
 
+
+
 body {
   margin: 0;
   font-family: "skolar-sans-latin", sans-serif;
@@ -196,7 +198,7 @@ input {
     border: none;
     border-bottom: 1px solid var(--neutral5);
     width: 200px;
-    padding: 0.4rem;
+    padding: 0.3rem;
     /*margin: var(--margins); commented this out because it was messing with alignment*/
     font-size: 90%;
     font-family: "skolar-sans-latin", sans-serif;
@@ -235,6 +237,7 @@ button:focus {
 input:focus {
   outline: none;
   border-bottom: 2px solid var(--primary5);
+  caret-color: var(--primary5);
 }
 
 textarea:focus {
