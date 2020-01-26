@@ -17,6 +17,7 @@ class NewListing extends Component {
       locationquery: '',
       locationcenter: '',
       startDate: new moment(),
+      durationIndex: 0,
       endDate: new moment().add(1, 'd'),
       price: 0,
       textBox: "",
@@ -52,66 +53,76 @@ class NewListing extends Component {
   }
 
   render(){
+    let durationOptions = ["short term (<3 mos.)", "long term (>3 mos.)"];
     if (this.state.success){
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
     }
     return (
       <div className="NewListing-supercontainer">
-      <div className="NewListing-container">
+        <div className="NewListing-container">
           { this.state.mustfillfields && (
             <span className="warning">You must fill all fields!</span>
             )}
-        <div className="NewListing-left">
-          <div className="NewListing-profilePicContainer">
-          </div>
-        </div>
-        <div className="NewListing-center">
-          <div className="NewListing-locationContainer">
-            <div className="NewListing-locationDescription">
-              Looking for a room in . . .
-            </div>
-            <GoogleSearchBar styleName="NewListing"
-              placeIsCity={true}
-              searchBarId="newListingSearch"
-              updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}
-            />
-          </div>
-          <div className="NewListing-dateContainer">
-            <div className="NewListing-locationDescription">
-              During . . .
-            </div>
-            <div className="NewListing-locationInput">
-              <DatePicker
-              handleDateChange={(startDate, endDate) => this.setState({startDate: startDate, endDate: endDate})}
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              startDateId="newl-startdateid"
-              endDateId="newl-enddateid"
+          <div className="NewListing-center">
+            <div className="NewListing-locationContainer">
+              <div className="NewListing-description">
+                Looking for a room in...
+              </div>
+              <GoogleSearchBar styleName="NewListing"
+                placeIsCity={true}
+                searchBarId="newListingSearch"
+                updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}
               />
             </div>
-          </div>
-          <div className="NewListing-priceContainer">
-            <div className="NewListing-priceDescription">
-              With approximate budget . . .
+            <div className="NewListing-dateContainer">
+              <div className="NewListing-description">
+                During...
+              </div>
+              <div className="NewListing-locationInput">
+                <DatePicker
+                handleDateChange={(startDate, endDate) => this.setState({startDate: startDate, endDate: endDate})}
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                startDateId="newl-startdateid"
+                endDateId="newl-enddateid"
+                />
+              </div>
             </div>
-            $<input type="number" min="0" step="100" onChange={(e) => {this.setState({price: e.target.value})}} 
-              className="NewListing-priceInput" />/month
+            <div className="NewListing-durationContainer">
+              <div className="NewListing-description">
+                Duration of stay?
+              </div>
+              <div className="NewListing-duration">
+                {durationOptions.map((desc, i) => (
+                  <button
+                  className={this.state.durationIndex !== i ? "NewListing-durationButton" : "NewListing-durationButton NewListing-durationSelect"}
+                  onClick={()=>{this.setState({durationIndex: i})}}
+                  >{desc}</button>
+                ))}
+              </div>
+            </div>
+            <div className="NewListing-priceContainer">
+              <div className="NewListing-description">
+                With approximate budget...
+              </div>
+              $<input type="number" min="0" step="100" onChange={(e) => {this.setState({price: e.target.value})}} 
+                className="NewListing-priceInput" />/month
+            </div>
+            <div className="NewListing-textBoxContainer">
+              <div className="NewListing-description">Tell us about yourself!</div>
+              <textarea rows="10" cols="30" onChange={(e) => {this.setState({textBox: e.target.value})}} className="NewListing-textBox" />
+            </div>
+            <input
+              className="NewListing-submit"
+              type="submit"
+              value="Submit"
+              onClick={(e) => {
+                e.preventDefault();
+                this.handleSubmit();
+              }}
+            />
           </div>
-          <div className="NewListing-textBoxContainer">
-            <div className="NewListing-textBoxDescription">Tell us about yourself!</div>
-            <textarea rows="10" cols="30" onChange={(e) => {this.setState({textBox: e.target.value})}} className="NewListing-textBox" />
-          </div>
-          <input
-            className="NewListing-submit"
-            type="submit"
-            value="Submit"
-            onClick={(e) => {
-              e.preventDefault();
-              this.handleSubmit();
-            }}
-          />
         </div>
-      </div>
       </div>
     );
   }

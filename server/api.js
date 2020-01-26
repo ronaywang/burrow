@@ -92,11 +92,11 @@ router.post("/matchinglistings", (req, res) => {
   let userQuery = { $ne: prefs.userId };
   let priceQuery = {$lte: prefs.price + priceMargin, $gte: prefs.price - priceMargin};
   let listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
-  const query = {
-    price: priceQuery,
-  };
+  const query = {};
   if (prefs.userId.length !== 0)
     query['creator_ID'] = userQuery;
+  if (prefs.price !== 0)
+    query['price'] = priceQuery;
   
   console.log(query);
   Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
