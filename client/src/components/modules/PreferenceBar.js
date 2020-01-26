@@ -52,7 +52,7 @@ class PreferenceBar extends Component {
       <div className="PreferenceBar-container">
         <div className="PreferenceBar-price">
           Budget:
-          <span className="PreferenceBar-dollarsign">$</span>
+          <span className="PreferenceBar-dollarsign"> $</span>
           <input type="number" min="0" step="100" value={price} onChange={(e) => {
               this.update(parseInt(e.target.value), startDate, endDate)
             }} 

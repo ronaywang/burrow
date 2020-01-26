@@ -53,7 +53,7 @@ class NewListing extends Component {
   }
 
   render(){
-    let durationOptions = ["short term (<3 mos.)", "long term (>3 mos.)"];
+    let durationOptions = ["short (1-3 mos.)", "medium (3-6 mos.)", "long (6-12 mos.)", "indefinite (>12 mos.)"];
     if (this.state.success){
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
     }
@@ -76,7 +76,7 @@ class NewListing extends Component {
             </div>
             <div className="NewListing-dateContainer">
               <div className="NewListing-description">
-                During...
+                My move-in date is approximately...
               </div>
               <div className="NewListing-locationInput">
                 <DatePicker
@@ -90,7 +90,7 @@ class NewListing extends Component {
             </div>
             <div className="NewListing-durationContainer">
               <div className="NewListing-description">
-                Duration of stay?
+                My stay duration is...
               </div>
               <div className="NewListing-duration">
                 {durationOptions.map((desc, i) => (
