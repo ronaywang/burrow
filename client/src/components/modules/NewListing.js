@@ -51,7 +51,7 @@ class NewListing extends Component {
   }
 
   render(){
-    let durationOptions = ["short (1-3 mos.)", "medium (3-6 mos.)", "long (6-12 mos.)", "indefinite (>12 mos.)"];
+    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
     if (this.state.success){
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
     }
@@ -62,9 +62,10 @@ class NewListing extends Component {
             <span className="warning">You must fill all fields!</span>
             )}
           <div className="NewListing-center">
+            <h1>Create a new listing.</h1>
             <div className="NewListing-locationContainer">
               <div className="NewListing-description">
-                i'm looking for a room near...
+                I'm looking for a room near . . .
               </div>
               <GoogleSearchBar styleName="NewListing"
                 placeIsCity={true}
@@ -74,7 +75,7 @@ class NewListing extends Component {
             </div>
             <div className="NewListing-dateContainer">
               <div className="NewListing-description">
-                My move-in date is approximately...
+                My move-in date is approximately . . .
               </div>
               <div className="NewListing-locationInput">
                 <input className = "inputbirthdate"
@@ -87,12 +88,12 @@ class NewListing extends Component {
             </div>
             <div className="NewListing-durationContainer">
               <div className="NewListing-description">
-                My stay duration is...
+                I'll be staying for . . .
               </div>
               <div className="NewListing-duration">
                 {durationOptions.map((desc, i) => (
                   <button
-                  className={this.state.durationIndex !== i ? "NewListing-durationButton" : "NewListing-durationButton NewListing-durationSelect"}
+                  className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
                   onClick={()=>{this.setState({durationIndex: i})}}
                   >{desc}</button>
                 ))}
@@ -100,14 +101,14 @@ class NewListing extends Component {
             </div>
             <div className="NewListing-priceContainer">
               <div className="NewListing-description">
-                With approximate budget...
+                My budget is approximately . . .
               </div>
               $<input type="number" min="0" step="100" onChange={(e) => {this.setState({price: e.target.value})}} 
                 className="NewListing-priceInput" />/month
             </div>
             <div className="NewListing-textBoxContainer">
-              <div className="NewListing-description">Tell us about yourself!</div>
-              <textarea rows="10" cols="30" onChange={(e) => {this.setState({textBox: e.target.value})}} className="NewListing-textBox" />
+              <div className="NewListing-description">More about me . . .</div>
+              <textarea  onChange={(e) => {this.setState({textBox: e.target.value})}} placeholder = "Use this space to tell potential roommates about who you are and who you're looking for!" className="NewListing-textBox" />
             </div>
             <input
               className="NewListing-submit"
