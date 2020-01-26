@@ -42,17 +42,17 @@
 }
 
 .UserSettings-personalInfoEmail {
-  grid-column: 1/2;
-  grid-row: 2/3;
-}
-
-.UserSettings-personalInfoAge {
   grid-column: 2/3;
   grid-row: 1/2;
 }
 
-.UserSettings-personalInfoGender {
+.UserSettings-personalInfoAge {
   grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.UserSettings-personalInfoGender {
+  grid-column: 1/2;
   grid-row: 2/3;
 }
 
