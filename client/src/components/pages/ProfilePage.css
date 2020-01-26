@@ -72,7 +72,7 @@
   justify-content: flex-start;
   flex-direction: column;
   background-color: white;
-  margin: 2rem 1rem 26rem 6rem;
+  margin: 2rem 1rem auto 6rem;
   padding: 0.5rem 1rem 0.5rem 3rem;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
 }
