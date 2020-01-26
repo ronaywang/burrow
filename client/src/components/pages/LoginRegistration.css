@@ -40,12 +40,14 @@ h1 {
   background: var(--neutral7);
   margin: 0px var(--xs) var(--s);
   width: 12rem;
+  font-size: 90%;
 }
 
 .inputTextField-small {
   background: var(--neutral7);
   margin: 0px var(--xs) var(--s);
-  width: 4.75rem;
+  width: 4.65rem;
+  font-size: 90%;
 }
 
 .fieldname {
@@ -62,7 +64,7 @@ h1 {
   background: var(--neutral7);
   margin: 0px var(--xs) var(--s);
   width: 6rem;
-  font-size: 80%;
+  font-size: 90%;
 }
 
 
@@ -77,6 +79,34 @@ input[type=date]::-webkit-calendar-picker-indicator {
   display: none;
 }
 
+select {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+
+  background-color: var(--neutral7); /* Fallback color if gradients are not supported */
+  /*background-image: url(../images/select-arrow.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); For Chrome and Safari 
+  background-image: url(../images/select-arrow.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); For old Firefox (3.6 to 15) 
+  background-image: url(../images/select-arrow.png), -ms-linear-gradient(top, #E5E5E5, #F4F4F4);  For pre-releases of Internet Explorer  10
+  background-image: url(../images/select-arrow.png), -o-linear-gradient(top, #E5E5E5, #F4F4F4); For old Opera (11.1 to 12.0)
+  background-image: url(../images/select-arrow.png), linear-gradient(to bottom, #E5E5E5, #F4F4F4); Standard syntax; must be last */
+  font-family: "skolar-sans-latin", sans-serif;
+  border: none;
+  border-bottom: 1px solid var(--neutral5);
+  border-radius: 0px;
+  overflow: hidden;
+  padding: 0.3rem;
+  line-height: 100%;
+  font-size: 90%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+select:focus {
+  outline: none;
+  border-bottom: 1px solid var(--primary5);
+}
 
 /* NOT ADDING ICONS FOR NOW
 .mail-icon {
