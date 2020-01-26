@@ -115,8 +115,8 @@ class UserSettings extends Component {
                                   "I smoke frequently.", "I am an early bird."];
     return (
       <div className="UserSettings-container">
-        <div className="UserSettings-text">Only your first name, age and gender are shown to the public.</div>
         <div className = "UserSettings-aboutContainer">
+          {/*<div className="UserSettings-text">Your first name, photo, age and gender are public.</div> commented out because i'm not sure this is necessary*/} 
           <div className="UserSettings-photoContainer">
             <img className = "UserSettings-photo" onClick={() => {
               document.getElementById("uploadphoto").click();
@@ -130,18 +130,22 @@ class UserSettings extends Component {
               <div className="UserSettings-description">Name</div>
               <div className="UserSettings-value">{`${this.state.firstName} ${this.state.lastName}`}</div>
             </div>
-            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
-              <div className="UserSettings-description">E-mail</div>
-              <div className="UserSettings-value">{`${this.state.email}`}</div>
-            </div>
-            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
-              <div className="UserSettings-description">Birthdate</div>
-              <div className="UserSettings-value">{`${new Date(this.state.birthdate).toLocaleDateString()}`}</div>
-            </div>
+
             <div className="UserSettings-personalInfoBlock UserSettings-personalInfoGender">
               <div className="UserSettings-description">Gender</div>
               <div className="UserSettings-value">{this.state.gender}</div>
             </div>
+            
+            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
+              <div className="UserSettings-description">E-mail</div>
+              <div className="UserSettings-value">{`${this.state.email}`}</div>
+            </div>
+            
+            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
+              <div className="UserSettings-description">Birthdate</div>
+              <div className="UserSettings-value">{`${new Date(this.state.birthdate).toLocaleDateString()}`}</div>
+            </div>
+            
           </div>
         </div>
         <div className="UserSettings-prefsContainer">

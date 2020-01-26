@@ -80,7 +80,7 @@ class PreferenceBar extends Component {
           </div>
         </div>
         <div>
-          <button className="PreferenceBar-gobutton" onClick={this.props.triggerSearch}>Update!</button>
+          <button className="PreferenceBar-gobutton" onClick={this.props.triggerSearch}>search</button>
         </div>
       </div>
     ) 
