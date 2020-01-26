@@ -11,8 +11,8 @@ class RegistrationPage extends Component {
       email: '',
       firstName: '',
       lastName: '',
-      /*birthdate: undefined,
-      gender: '',*/
+      birthdate: undefined,
+      gender: '',
       password: '',
       verifypassword: '',
       
@@ -34,12 +34,20 @@ p_handleChange = (event) => {
 vp_handleChange = (event) => {
   this.setState({verifypassword: event.target.value});
 }
-fn_handleChange = (event ) => {
+fn_handleChange = (event) => {
   this.setState({firstName: event.target.value});
 }
 
-ln_handleChange = (event ) => {
+ln_handleChange = (event) => {
   this.setState({lastName: event.target.value});
+}
+
+bd_handleChange = (event) => { 
+  this.setState({birthdate: event.target.value});
+}
+
+g_handleChange = (event) => {
+  this.setState({gender: event.target.value}); 
 }
 
 
@@ -111,9 +119,10 @@ handleSubmit = (event) => {
                 onChange={this.e_handleChange}
               />
             </label>
+          <div className = "inputinline">
             <label className = "Reg-input">
               <span className="fieldname">First name</span>
-              <input className = "inputTextField"
+              <input className = "inputTextField-small"
                 type="text"
                 name="firstname"
                 value={this.state.firstName}
@@ -122,13 +131,37 @@ handleSubmit = (event) => {
             </label>
             <label className = "Reg-input">
               <span className="fieldname">Last name</span>
-              <input className = "inputTextField"
+              <input className = "inputTextField-small"
                 type="text"
                 name="lastname"
                 value={this.state.lastName}
                 onChange={this.ln_handleChange}
               />
             </label>
+            </div>
+        <div className = "inputinline">
+          <label className = "Reg-input">
+            <span className="fieldname">Birthdate</span>
+              <input className = "inputbirthdate"
+                type="date"
+                name="birthdate"
+                value={this.state.birthdate}
+                onChange={this.bd_handleChange}
+              />
+          </label>
+          <label className = "Reg-input">
+            <span className="fieldname">Gender</span>
+            <select className = "dropbtn" 
+            name = "gender" 
+            value = {this.state.gender}
+            onChange={this.g_handleChange}>
+              <option value="" disabled selected>choose . . .</option>
+              <option value = "male">male</option>
+              <option value = "female">female</option>
+              <option value = "nonbinary">non-binary</option>
+            </select>
+          </label>
+        </div>
             <label className = "Reg-input">
               <span className="fieldname">Password</span>
               <input className = "inputTextField"
