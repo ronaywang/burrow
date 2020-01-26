@@ -4,6 +4,7 @@ import "../../utilities.css";
 import "../../utilities";
 import "./SingleCard.css";
 import { formatDate, calculateAge, get, post } from "../../utilities";
+import { duration } from "../../../../node_modules/moment";
 
 class SingleCardFast extends Component {
   static genderColorDict = {
@@ -26,7 +27,7 @@ class SingleCardFast extends Component {
       additionalText: "",
       profilePicURL: "",
       doRender: false,
-      longTerm: false,
+      durationIndex: 0,
     };
   }
 
@@ -34,13 +35,13 @@ class SingleCardFast extends Component {
     this.setState({
       location: this.props.listing.location,
       startDate: this.props.listing.startDate,
-      endDate: this.props.listing.endDate,
       price: this.props.listing.price,
       additionalText: this.props.listing.additionalPrefText, // TODO: implement photo uploading
       name: this.props.listing.creator_ID.firstName, 
       age: calculateAge(new Date(this.props.listing.creator_ID.birthdate)),
       gender: this.props.listing.creator_ID.gender,
       profilePicURL: this.props.listing.creator_ID.profilePictureURL,
+      durationIndex: this.props.listing.durationIndex,
       doRender: true
     });
   }
@@ -50,6 +51,8 @@ class SingleCardFast extends Component {
       smoking, pets, additionalText, lookingForRoom, profilePicURL} = this.state;
     if (!this.state.doRender)
       return null;
+
+    let durationOptions = ["~1-3 months", "~3-6 months", "~6-12 months", "over a year"]
     return (
       <div className="Card-container" key={this.props.listingId}>
         <div className="Card-profilePicContainer">
@@ -60,7 +63,7 @@ class SingleCardFast extends Component {
         </div>
           <div className="Card-locationDatePrice">
     
-        <div className="Card-date">{formatDate(startDate)} to {formatDate(endDate)}</div></div>
+        <div className="Card-date">{formatDate(startDate)} for {durationOptions[this.state.durationIndex]}</div></div>
         <div className="Card-flags">
           <span className="Card-flag">{location}</span> &bull;
         </div>

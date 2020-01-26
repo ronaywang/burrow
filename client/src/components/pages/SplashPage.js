@@ -16,8 +16,7 @@ class SplashPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      startDate: moment(),
-      endDate: moment().add(1, 'days'),
+      startDate: new Date(),
       location: "",
       locationCtr: {
         lat: 0,
@@ -32,7 +31,6 @@ class SplashPage extends Component {
       this.setState({
         doDisplay: true,
         startDate: globals.startDate,
-        endDate: globals.endDate,
         location: globals.location,
         locationCtr: {
           lat: globals.locationCtr.lat,
@@ -49,7 +47,7 @@ class SplashPage extends Component {
 
     const {
       state: {
-        startDate, endDate, location
+        startDate, location
       }
     } = this;
 
@@ -74,16 +72,14 @@ class SplashPage extends Component {
               {searchBar}
             </div>
             <div className="SplashPage-dateContainer">
-              <div className="SplashPage-dateDescription">dates</div>
+              <div className="SplashPage-dateDescription">move-in date</div>
               <div className="SplashPage-date SplashPage-input">
-                <DatePicker
-                  startDate={startDate}
-                  endDate={endDate}
-                  startDateId="splashpage-startdateid"
-                  endDateId="splashpage-enddateid"
-                  handleDateChange={(stdate, edate) => {
-                    this.setState({startDate: stdate, endDate: edate})
-                  }}/>
+                <input
+                  type="date"
+                  name="startdate"
+                  value={startDate}
+                  onChange={(e) => this.setState({startDate: e.target.value})}
+                />
               </div>
             </div>
           </div>
@@ -100,7 +96,6 @@ class SplashPage extends Component {
                   lng: this.state.locationCtr.lng,
                 },
                 startDate: this.state.startDate,
-                endDate: this.state.endDate
               }
               post("/api/sessionglobals", body).then((res) => {
                 window.location.pathname = "/main";

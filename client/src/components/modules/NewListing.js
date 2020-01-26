@@ -16,9 +16,8 @@ class NewListing extends Component {
     this.state = {
       locationquery: '',
       locationcenter: '',
-      startDate: new moment(),
-      durationIndex: 0,
-      endDate: new moment().add(1, 'd'),
+      startDate: undefined,
+      durationIndex: -1,
       price: 0,
       textBox: "",
       success: false
@@ -31,18 +30,17 @@ class NewListing extends Component {
 
   handleSubmit(){
     console.log(this.state.price);
-    if (this.state.locationquery === '' || 
+    if (this.state.durationIndex === -1 || this.state.locationquery === '' || this.state.startDate === undefined ||
         this.state.price === 0 || this.state.price === "" || this.state.textBox.trim().length === 0){
       this.setState({mustfillfields: true});
       return;
     }
     const listingInfo = { 
-        photoList: [],
         coordinates: this.state.locationcenter,
         location: this.state.locationquery,
         price: this.state.price,
-        startDate: this.state.startDate.toDate(),
-        endDate: this.state.endDate.toDate(),
+        startDate: this.state.startDate,
+        durationIndex: this.state.durationIndex,
         additionalPrefText: this.state.textBox,
     };
     post("/api/listing", listingInfo)
@@ -66,7 +64,7 @@ class NewListing extends Component {
           <div className="NewListing-center">
             <div className="NewListing-locationContainer">
               <div className="NewListing-description">
-                Looking for a room in...
+                i'm looking for a room near...
               </div>
               <GoogleSearchBar styleName="NewListing"
                 placeIsCity={true}
@@ -79,12 +77,11 @@ class NewListing extends Component {
                 My move-in date is approximately...
               </div>
               <div className="NewListing-locationInput">
-                <DatePicker
-                handleDateChange={(startDate, endDate) => this.setState({startDate: startDate, endDate: endDate})}
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-                startDateId="newl-startdateid"
-                endDateId="newl-enddateid"
+                <input className = "inputbirthdate"
+                  type="date"
+                  name="birthdate"
+                  value={this.state.startDate}
+                  onChange={(e) => {this.setState({startDate: e.target.value})}}
                 />
               </div>
             </div>

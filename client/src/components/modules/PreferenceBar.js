@@ -30,12 +30,12 @@ class PreferenceBar extends Component {
     });
   }
   
-  update = (price, startDate, endDate) => {
+  update = (price, startDate, durationIndex) => {
     this.setState({
-      price, startDate, endDate, 
+      price, startDate, durationIndex, 
     }, () => {
       post("/api/sessionglobals", {
-        price, startDate, endDate
+        price, startDate, durationIndex
       })
     })
   }
@@ -45,43 +45,40 @@ class PreferenceBar extends Component {
       return null;
     const {
       state: {
-        price, startDate, endDate
+        price, startDate, durationIndex
       }
     } = this;
+    let durationOptions = ["1-3 mos.", "3-6 mos.", "6-12 mos.", ">12 mos."];
     return (
       <div className="PreferenceBar-container">
         <div className="PreferenceBar-price">
           Budget:
           <span className="PreferenceBar-dollarsign"> $</span>
           <input type="number" min="0" step="100" value={price} onChange={(e) => {
-              this.update(parseInt(e.target.value), startDate, endDate)
+              this.update(parseInt(e.target.value), startDate, durationIndex)
             }} 
             className="PreferenceBar-priceInput" placeholder="Enter approximate budget..." 
           />/month
         </div>
         <div className="PreferenceBar-dateContainer">
-          <DatePicker startDate={startDate} endDate={endDate} handleDateChange={async (newstartDate, newendDate) => {
-              await this.update(price, newstartDate, newendDate); 
-              this.props.triggerSearch();
-            }
-          } />
+          <input
+            type="date"
+            name="startdate"
+            value={this.state.startDate}
+            onChange={(e) => this.update(price, e.target.value, durationIndex)}
+          />
         </div>
-        {/*<div className="PreferenceBar-pets">  
-          Pet friendly? 
-          <input onClick={async () => {
-              await this.update(price, smoking, !pets, startDate, endDate, lookingForRoom);
-              this.props.triggerSearch();
-          }} type="checkbox" className="PreferenceBar-checkbox" checked={pets}/>
+        <div className="PreferenceBar-durationContainer">
+          Duration of stay:
+          <div className="PreferenceBar-duration">
+            {durationOptions.map((desc, i) => (
+              <button
+              className={this.state.durationIndex !== i ? "PreferenceBar-durationButton" : "PreferenceBar-durationButton PreferenceBar-durationSelect"}
+              onClick={(e)=>{this.update(price, e.target.value, (this.state.durationIndex !== i) ? i : -1)}}
+              >{desc}</button>
+            ))}
+          </div>
         </div>
-        <div className="PreferenceBar-smoking">
-          Smoker friendly? 
-          <input onClick={async () => {
-            await this.update(price, !smoking, pets, startDate, endDate, lookingForRoom);
-            this.props.triggerSearch();
-          }
-          } 
-            type="checkbox" className="PreferenceBar-checkbox" checked={smoking}/>
-        </div> */}
         <div>
           <button className="PreferenceBar-gobutton" onClick={this.props.triggerSearch}>Update!</button>
         </div>

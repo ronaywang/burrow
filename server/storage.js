@@ -9,8 +9,8 @@ function populateSession(req, res, next){
         lat: 0,
         lng: 0
       },
-      startDate: moment(),
-      endDate: moment().add(1, 'days'),
+      startDate: new Date(),
+      durationIndex: -1,
       price: 0
     }
   }

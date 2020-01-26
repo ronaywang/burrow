@@ -10,10 +10,9 @@ const ListingSchema = new mongoose.Schema({
         lng: Number,
     },
     // location_radius: Number,
-    longTerm: Boolean,
-    price: Number,
     startDate: Date,
-    endDate: Date,
+    durationIndex: Number, // (between 1 and 4)
+    price: Number,
     additionalPrefText: String,
 });
 // A listing determines a search area. If two listings' search areas overlap, then
