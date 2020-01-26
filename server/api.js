@@ -182,8 +182,8 @@ router.post("/makeuser", async (req, res) => {
     email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    birthdate: "",
-    gender: "",
+    birthdate: req.body.birthdate,
+    gender: req.body.gender,
     fbProfileLink: "",
     profilePictureURL: "",
     bookmarkedListings: [],
@@ -221,7 +221,7 @@ router.post("/saveusersettings", async (req, res) => {
   if (req.body.fbProfileLink) {
     myUser.fbProfileLink = req.body.fbProfileLink;
   }
-  if (req.body.gender !== "") {
+  if (req.body.gender) {
     myUser.gender = req.body.gender;
   }
   if (req.body.birthdate) {

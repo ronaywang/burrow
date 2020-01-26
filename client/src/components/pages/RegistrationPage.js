@@ -156,9 +156,9 @@ handleSubmit = (event) => {
             value = {this.state.gender}
             onChange={this.g_handleChange}>
               <option value="" disabled selected>choose . . .</option>
-              <option value = "male">male</option>
-              <option value = "female">female</option>
-              <option value = "nonbinary">non-binary</option>
+              <option value = "Male">male</option>
+              <option value = "Female">female</option>
+              <option value = "Non-binary">non-binary</option>
             </select>
           </label>
         </div>
