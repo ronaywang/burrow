@@ -140,9 +140,9 @@ class UserSettings extends Component {
               <div className="UserSettings-description">E-mail</div>
               <div className="UserSettings-value">{`${this.state.email}`}</div>
             </div>
-            
+
             <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
-              <div className="UserSettings-description">Birthdate</div>
+              <div className="UserSettings-description">date of birth</div>
               <div className="UserSettings-value">{`${new Date(this.state.birthdate).toLocaleDateString()}`}</div>
             </div>
             

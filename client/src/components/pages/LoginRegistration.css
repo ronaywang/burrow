@@ -75,12 +75,12 @@ h1 {
 
 
 
-::-webkit-inner-spin-button {
+.inputbirthdate::-webkit-inner-spin-button {
   -webkit-appearance: none;
   display: none;
 }
 
-input[type=date]::-webkit-calendar-picker-indicator {
+.inputbirthdate::-webkit-calendar-picker-indicator {
   -webkit-appearance: none;
   display: none;
 }

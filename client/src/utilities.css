@@ -239,3 +239,9 @@ button:hover, .u-button:hover {
   cursor: pointer;
 }
 
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+
+}
+

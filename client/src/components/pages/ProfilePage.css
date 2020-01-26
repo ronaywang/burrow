@@ -31,7 +31,11 @@
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
+  color: var(--neutral2);
+  font-size: 90%;
+  font-weight: 400;
 }
+
 .UserSettings-personalInfoBlock {
   padding: 0.5rem 1.4rem 0.5rem 0;
 }
@@ -62,8 +66,10 @@
 
 .UserSettings-description {
   text-transform: lowercase;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: 0.03rem;
+  color: var(--neutral3);
+  font-size: 80%;
 }
 
 .ProfileBar-tabContainer{
