@@ -181,18 +181,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
-
-
-.bkgreen {
-  background-color: lightgreen;
-}
-
-.bkred {
-  background-color: lightcoral;
-}
-
-
 input {
     background: transparent;
     border: none;
@@ -229,7 +217,7 @@ button, .u-button{
 
 
 select:focus,
-button:focus {
+button:focus, .u-button:hover {
     outline: none;
     /*box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);*/
 }
@@ -246,7 +234,7 @@ textarea:focus {
 
 }
 
-button:hover {
+button:hover, .u-button:hover {
   background-color: var(--primary5);
   cursor: pointer;
 }
