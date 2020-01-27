@@ -75,13 +75,13 @@ class PreferenceBar extends Component {
         />/month
         </span>
         <div className="PreferenceBar-dateContainer">
-          <input className = "PreferenceBar-moveInDate"
+          <input className = "PreferenceBar-moveInDate PreferenceBar-dateinvisible"
             id="moveindatepicker"
             type="date"
             placeholder = "Move-in date"
             name="startdate" 
             value={this.state.startDate}
-            onFocus={()=>{document.getElementById("moveindatepicker").placeholder = "";}}
+            onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
             onChange={(e) => this.update(price, e.target.value, durationIndex)}
           />
         </div>

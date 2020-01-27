@@ -38,7 +38,10 @@
 #moveindatepicker:before {
   content: attr(placeholder) !important;
   color: var(--neutral3);
-  margin-right: 0.7em;
+}
+
+.PreferenceBar-dateinvisible {
+  color: var(--neutral6);
 }
 
 .PreferenceBar-pricefocus {
@@ -75,7 +78,8 @@
   font-weight: 300;
   width: 7.5rem;
   font-size: 90%;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .moveindate::-webkit-inner-spin-button {
   -webkit-appearance: none;
