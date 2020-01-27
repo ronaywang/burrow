@@ -70,7 +70,7 @@ class SingleCardFast extends Component {
           <span className="Card-flag">{location}</span> &bull;
         </div>
           
-        <div className="Card-topRight">
+        <div className="Card-toptopRight">
           <Link to={"/inbox/"+this.props.listing.creator_ID._id}>Message me</Link>
         </div>
         <div className="Card-horizontalLine"></div>
