@@ -103,8 +103,11 @@
   justify-content: flex-start;
   flex-direction: column;
   background-color: white;
-  margin: 2rem 1rem auto 6rem;
-  padding: 0.5rem 1rem 0.5rem 3rem;
+  width: 6rem;
+  height: 5rem;
+  text-overflow: clip;
+  margin-top: 0.4rem;
+  padding: 0.5rem 1rem 0.5rem 2rem;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
 }
 
