@@ -28,6 +28,7 @@ class UserSettings extends Component {
       profilePicURL: "",
       prefsArray: [1,1,3,1,1],
       isYou: false,
+      savedSettings: false,
     };
     this.saveSettings = this.saveSettings.bind(this);
   }
@@ -80,11 +81,10 @@ class UserSettings extends Component {
   async saveSettings () {
     console.log(this.state);
     post("/api/saveusersettings", this.state).then((result)=>{
-      console.log(result);
+      this.setState({savedSettings: true});
     }).catch((err)=> {
       console.log(err);
     });
-    console.log(this.state.birthdate);
   }
 
   render() {
@@ -103,13 +103,10 @@ class UserSettings extends Component {
           {/*<div className="UserSettings-text">Your first name, photo, age and gender are public.</div> commented out because i'm not sure this is necessary*/} 
           <div className="UserSettings-photoContainer">
             <div className="UserSettings-photoUploadContainer">
-            <img className = {`UserSettings-photo ${isYou ? "UserSettings-photoYou" : ""}`} onClick={() => {
-              if (isYou)
-                document.getElementById("uploadphoto").click();
-            }} 
+            <img className ="UserSettings-photo" 
               src={this.state.profilePicURL || require("../../public/assets/account.png")}
             />
-            <img className = "camerasvg" onClick={() => {
+            <img className = {`camerasvg ${isYou ? "UserSettings-photoYou" : ""}`} onClick={() => {
               if (isYou)
                 document.getElementById("uploadphoto").click(); }} src = "/photograph.svg" width = "15px"
             /> 
@@ -144,25 +141,30 @@ class UserSettings extends Component {
       <div className="TabToDisplay-container">
 
       <h1 className = "Profile-header">more about you</h1>
-          <div className="UserSettings-prefsContainer">
-          {this.state.prefsArray.map((pref, index) => (
-            <div key={index} className="UserSettings-prefsBlock">
-              <div key={index} className="UserSettings-prefsDesciption">
-                <label>{prefsDescriptionArray[index]}</label>
+          <div className="UserSettings-moreContainer">
+            <div className="UserSettings-prefsContainer">
+            {this.state.prefsArray.map((pref, index) => (
+              <div key={index} className="UserSettings-prefsBlock">
+                <div key={index} className="UserSettings-prefsDesciption">
+                  <label>{prefsDescriptionArray[index]}</label>
+                </div>
+                <div key={index} className="UserSettings-prefsSliderContainer">
+                  <span className="UserSettings-prefsDisagree">Disagree</span>
+                  <input key={index} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
+                    onChange={(e) => { 
+                      e.persist();
+                      this.setState((prev) => {
+                        let arr = prev.prefsArray;
+                        arr[index] = parseInt(e.target.value);
+                        return {prefsArray: arr};
+                      }, () => {console.log(this.state.prefsArray)}) 
+                    }}  
+                  />
+                  <span className="UserSettings-prefsAgree">Agree</span>
+                </div>
             </div>
-                <input key={index} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
-                  onChange={(e) => { 
-                    e.persist();
-                    this.setState((prev) => {
-                      let arr = prev.prefsArray;
-                      arr[index] = parseInt(e.target.value);
-                      return {prefsArray: arr};
-                    }, () => {console.log(this.state.prefsArray)}) 
-                  }}  
-                />
+            ))}
           </div>
-          ))}
-    
         {/*{isYou ? (
           <div>
             <span className="pro-fieldname">Link your FB profile</span>
@@ -172,7 +174,7 @@ class UserSettings extends Component {
             value={this.state.fbProfileLink}
             onChange={(event)=>{this.setState({fbProfileLink: event.target.value})}}/>
           </div>
-        ) : (
+        ) : (p
           this.state.fbProfileLink.trim().length === 0 ? null : (
             <div>
               <div className="UserSettings-description">Facebook</div>
@@ -180,11 +182,11 @@ class UserSettings extends Component {
             </div>
           )
           )} i feel bad commenting all this out but i think for now it's best to get rid of it*/}
-        
+        <div className="UserSettings-aboutMe">
         {isYou ? (
           <div>
-            <div className="pro-fieldname">Tell us about yourself!</div>
-              <textarea className="pro-textbox" rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+            <div className="UserSettings-description">Tell us about yourself!</div>
+              <textarea className="UserSettings-textbox" rows="10" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
           </div>
         ) : (
           <div>
@@ -194,11 +196,16 @@ class UserSettings extends Component {
           </div>
         )}
         {isYou ? (
-          <button id="savebutton"
-          name="Save"
-          onClick={this.saveSettings}>Save</button>
+          <div className="UserSettings-save">
+            <button id="savebutton"
+            name="Save!"
+            onClick={this.saveSettings}>Save!</button>
+            <span className="UserSettings-saveSuccess">
+              {this.state.savedSettings ? "Settings successfully saved" : null}
+            </span>
+          </div>
         ) : null}
-        
+        </div>
       </div>
     </div>
     </div>
