@@ -44,13 +44,12 @@
 .camerasvg{
   padding: 2rem 2rem 2rem 2rem;
   position: absolute;
-  opacity: 0;
   width: 30px;
+  opacity: 0.5 !important;
 }
 
 .camerasvg:hover{
   cursor: pointer;
-  opacity: 1 !important;
 }
 
 .UserSettings-personalInfo{
