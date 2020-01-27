@@ -12,11 +12,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: stretch;
-  min-height: 30rem;
+  height: auto;
   flex: 1 1 auto;
   border: var(--borders);
   margin-right: 2rem;
   background-color: white;
+  
 }
 
 .Chat-container {
@@ -42,7 +43,6 @@
   margin-top: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  border: var(--borders);
 }
 
 .ChatBox {
@@ -109,24 +109,24 @@
 
 
 .ThreadDisplay-container {
-  border: 2px solid #AAAAAA;
   margin: 0.3rem;
+  width: 80%;
   padding-top: 0.3rem;
   padding-bottom: 0.5rem;
-  padding-left: 0.3rem;
+  padding-left: 1rem;
   padding-right: 0.3rem;
-  border-radius: var(--xs);
   color: var(--primary2);
-  background-color: var(--primary6);
+  background-color: var(--primary7);
 }
 
 .ThreadDisplay-container:hover {
   color: var(--primary4);
   background-color: white;
+  cursor: pointer;
 }
 
 .ThreadDisplay-active {
-  background-color: var(--primary7);
+  background-color: var(--primary6);
 }
 
 .ThreadDisplay-name {
