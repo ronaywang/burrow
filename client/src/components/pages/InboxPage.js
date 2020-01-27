@@ -1,11 +1,9 @@
 import React, {Component, PureComponent} from "react";
 import PropTypes from "prop-types";
-import { message_display, listing_type } from "../modules/enums";
 import { get, post } from "../../utilities";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
-import moment from "moment";
 const has = require("lodash/has");
 
 const findActiveThread = (activeThread_ID, threads) => {
@@ -41,6 +39,7 @@ class InboxPage extends Component{
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
     this.SetActiveThread = this.SetActiveThread.bind(this);
+    this.GetActiveChatName = this.GetActiveChatName.bind(this);
   }
 
 
@@ -48,29 +47,22 @@ class InboxPage extends Component{
     document.body.classList.remove("SplashPage-body");
     let threadToMakeActive = null;
     if (has(this.props, 'userId')) {
-      console.log("has userid!");
-      console.log(this.props.userId);
       if (this.props.userId !== "*") {
         const response = await get("/api/findthreadbyuser", {userId: this.props.userId});
-        console.log(response);
         threadToMakeActive = response.thread;
-        console.log(threadToMakeActive);
       }
     } else {
       console.log("no userid.");
       threadToMakeActive = null;
     }
-    console.log(threadToMakeActive);
 
     const uidresponse = await get("/api/myuid");
     this.setState({userId: uidresponse.userId});
     const response = await get("/api/getthreads");
-    console.log(response);
     this.setState({threadsToDisplay: response.threads});
 
     if (response.threads.length > 0) {
       if (threadToMakeActive !== null) {
-        console.log(threadToMakeActive);
         this.setState({activeThreadIndex: findActiveThread(threadToMakeActive._id, this.state.threadsToDisplay)});
         this.SetActiveThread(this.state.activeThreadIndex);
       } else {
@@ -80,13 +72,25 @@ class InboxPage extends Component{
   }
 
   async SetActiveThread(i) {
-    console.log(i);
     this.setState({activeThreadIndex: i});
-    console.log(this.state.threadsToDisplay[i]);
     this.setState({chatDisabled: false});
     const mresponse = await get("/api/getmessages", {threadId: this.state.threadsToDisplay[i]._id});
     this.setState({displayedMessages: mresponse.messageList});
     this.ChatGoToBottom();
+  }
+
+  GetActiveChatName() {
+    const i = this.state.activeThreadIndex;
+    if (i !== null && this.state.threadsToDisplay.length > 0 ) {
+      const thread = this.state.threadsToDisplay[i];
+      if (this.state.userId === thread.recipient_ID._id && has(thread.sender_ID, 'firstName')) {
+        return thread.sender_ID.firstName;
+      } else if (this.state.userId === thread.sender_ID._id && has(thread. recipient_ID, 'firstName')) {
+        return thread.recipient_ID.firstName;
+      } else {
+        return thread._id;
+      }
+    }
   }
 
 
@@ -111,7 +115,7 @@ class InboxPage extends Component{
       post("/api/postmessage", {
         content: this.state.chatBoxContents,
         threadId: this.state.threadsToDisplay[this.state.activeThreadIndex]._id,
-        timestamp: moment().toDate(),
+        timestamp: new Date(),
       }).then
       this.setState({
         lastMessageSubmitted: this.state.chatBoxContents,
@@ -161,6 +165,9 @@ class InboxPage extends Component{
       </div>
 
       <div className="Chat-container">
+        <div className="Chat-ChatInfoContainer">
+          Chatting with {this.GetActiveChatName()}
+        </div>
         <div className="Chat-ChatBubblesContainer"
         id="ChatBubblesContainer">
           {/*this.state.displayedMessages.map(makeMessageNice)*/}

@@ -4,7 +4,7 @@ import "../../utilities.css";
 import "../../utilities";
 import "./SingleCard.css";
 import { formatDate, calculateAge, get, post } from "../../utilities";
-import { duration } from "../../../../node_modules/moment";
+//import { duration } from "../../../../node_modules/moment";
 import { Link } from "@reach/router";
 
 

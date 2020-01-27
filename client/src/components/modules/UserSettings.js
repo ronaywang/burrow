@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "../../utilities.css";
 import "../pages/ProfilePage.css";
-import { SingleDatePicker } from "react-dates";
-import moment from "moment";
+//import moment from "moment";
 import { get, post } from "../../utilities";
 import { genders} from "./enums";
 import "./ProfilePicUploader.css";
@@ -148,12 +147,12 @@ class UserSettings extends Component {
       <h1 className = "Profile-header">more about you</h1>
           <div className="UserSettings-prefsContainer">
           {this.state.prefsArray.map((pref, index) => (
-            <div className="UserSettings-prefsBlock">
-              <div className="UserSettings-prefsDesciption">
+            <div key={index} className="UserSettings-prefsBlock">
+              <div key={index} className="UserSettings-prefsDesciption">
                 <label>{prefsDescriptionArray[index]}</label>
             </div>
               <div> 
-                <input className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
+                <input key={index} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
                   onChange={(e) => { 
                     e.persist();
                     this.setState((prev) => {

@@ -17,13 +17,11 @@ import TryCard from "./modules/TryCard";
 //import NavBar from "./modules/NavBar";
 import ProfilePicUploader from "./modules/ProfilePicUploader";
 
-import DatePicker from "./modules/DatePicker.js";
 import NavBar from "./modules/NavBar.js";
 import NewListing from "./modules/NewListing.js";
 import MainPage from "./pages/MainPage.js";
 import ProfilePage from "./pages/ProfilePage";
 import InboxPage from "./pages/InboxPage.js";
-import * as moment from "moment";
 import "./App.css";
 
 /**
