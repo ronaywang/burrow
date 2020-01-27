@@ -296,28 +296,35 @@ router.get("/getthreads", async (req, res) => {
   res.status(200).send({threads: usersThreads});
 });
 
-router.post("/newthread", async (req, res) => {
-  const listingOfInterest = await Listing.findById(req.body.listingId);
+router.get("/findthreadbyuser", async (req, res) => {
+  const thisuserId = req.user._id;
+  const otheruserId = req.query.userId;
   const existingThread = await Thread.findOne({
-    sender_ID: req.user._id,
-    listing_ID: req.body.listingId,
+    $or: [
+      {
+        sender_ID: thisuserId,
+        recipient_ID: otheruserId
+      },
+      {
+        sender_ID: otheruserId,
+        recipient_ID: thisuserId
+      }
+    ]
   });
-  if (existingThread === null) {
-    let newThread = new Thread({
-      sender_ID: req.user._id,
-      recipient_ID: listingOfInterest.creator_ID,
-      listing_ID: req.body.listingId,
-      messages: [],
-      length: 0,
+  if (existingThread !== null) {
+    res.send({thread: existingThread});
+  } else {
+    const newThread = new Thread({
+      sender_ID: thisuserId,
+      recipient_ID: otheruserId,
     });
     await newThread.save();
     res.send(newThread);
-  } else {
-    res.send(existingThread);
   }
-});
+})
 
-router.post("/postmessage", async (req, res) => { // takes body.threadId, body.content, body.timestamp, body.listing_ID
+
+router.post("/postmessageold", async (req, res) => { // takes body.threadId, body.content, body.timestamp, body.listing_ID
   const threadId = req.body.threadId;
   let threadOfInterest = await Thread.findById(threadId);
   const listingOfInterest = await Listing.findById(req.body.listing_ID);
@@ -346,7 +353,7 @@ router.post("/postmessage", async (req, res) => { // takes body.threadId, body.c
   await threadOfInterest.save();
 });
 
-router.get("/getmessages", async (req, res) => {
+router.get("/getmessagesold", async (req, res) => {
   const threadId = req.query.threadId;
   const messageList = await Message.find({
     parentThread_ID: threadId,
