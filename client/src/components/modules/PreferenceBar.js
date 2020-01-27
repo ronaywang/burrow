@@ -18,7 +18,7 @@ class PreferenceBar extends Component {
       doDisplay: false,
       startDate: new Date(),
       price: 0,
-      durationIndex: 0,
+      durationIndex: -1,
     };
     this.update = this.update.bind(this);
     this.pushToGlobals = this.pushToGlobals.bind(this);
@@ -56,6 +56,7 @@ class PreferenceBar extends Component {
       }
     } = this;
     let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
+    const today = new Date();
     return (
       <div className="PreferenceBar-container">
         <span className="PreferenceBar-price" id="prefbarprice">
@@ -81,22 +82,24 @@ class PreferenceBar extends Component {
             placeholder = "Move-in date"
             name="startdate" 
             value={this.state.startDate}
+            min={today.toISOString().split("T")[0]}
             onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
             onChange={(e) => this.update(price, e.target.value, durationIndex)}
           />
         </div>
         <div className="PreferenceBar-durationContainer">
-          <div className="PreferenceBar-duration">
-            {durationOptions.map((desc, i) => (
-              <button
-              key={i}
-              className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
-              onClick={(e)=>{this.update(price, startDate, (this.state.durationIndex !== i) ? i : -1)}}
-              >
-              {desc}
-              </button>
-            ))}
-          </div>
+          <label className = "PreferenceBar-durationDropDown">
+            <select className = "dropbtn" 
+            name = "gender" 
+            value = {this.state.durationIndex}
+            onChange={(e)=>this.update(price, startDate, (this.state.durationIndex !== parseInt(e.target.value)) ? parseInt(e.target.value) : -1)}>
+              <option value={-1} disabled selected>duration</option>
+              <option value = {0}>1&ndash;3 months</option>
+              <option value = {1}>3&ndash;6 months</option>
+              <option value = {2}>6&ndash;12 months</option>
+              <option value = {3}>&gt;1 year</option>
+            </select>
+          </label>
         </div>
         <div>
           <button className="PreferenceBar-gobutton" onClick={() => this.props.triggerSearch()}>search</button>
