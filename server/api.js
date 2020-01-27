@@ -29,20 +29,13 @@ const router = express.Router();
 const socket = require("./server-socket");
 const gcloudstorage = require("./server-gbucket");
 
-// for GoogleMaps Autocomplete
-const googleMapEndpoint = "https://maps.googleapis.com/maps/api/place/autocomplete/json";
-const g_apikey = "AIzaSyCR-ulCKD_elY8EERVo4GCa07_ABalJvw8";
-
 const searchutilities = require("./searchutilities");
 
-// formatParams = (params) => {
-//   return Object.keys(params)
-//     .map((key) => key + "=" + encodeURIComponent(params[key]))
-//     .join("&");
-// };
-// fullPath = (endpoint, params) => {
-//   return endpoint + "?" + formatParams(params);
-// };
+function calculateAge(birthday) { // birthday is a date
+  var ageDifMs = Date.now() - birthday;
+  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
 
 router.post('/login', function(req, res, next) {
     if (req.body.email && req.body.password) {
@@ -84,6 +77,11 @@ router.post("/listing", (req, res) => {
   newListing.creator_ID = req.user._id;
   newListing.save((err) => {res.send(newListing.creator_ID)});
 });
+
+// Edits an existing listing.
+router.post("/editlisting", (req, res) => {
+
+})
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.post("/matchinglistings", (req, res) => {
   var prefs = req.body;
@@ -105,13 +103,20 @@ router.post("/matchinglistings", (req, res) => {
 
 router.post("/logout", auth.logout);
 router.get("/getthisuserinfo", async (req, res) => {
-  if (!req.user) {
-    // not logged in
-    return res.send({});
+  const thisUser = await User.findById(req.query.userId);
+  console.log(JSON.stringify(thisUser));
+  if (!thisUser){
+    res.send("No user found");
   }
-  const thisUser = await User.findById(req.user._id);
   let clonedusr = Object.assign({}, thisUser._doc);
   clonedusr.password = '';
+  clonedusr.age = calculateAge(new Date(clonedusr.birthdate));
+  clonedusr.isYou = true;
+  if (!req.user || req.query.userId !== req.user._id){
+    clonedusr.email = '';
+    clonedusr.birthdate = '';
+    clonedusr.isYou = false;
+  }
   res.send(clonedusr);
 });
 
@@ -138,16 +143,6 @@ router.get("/myuid", (req, res) => {
     res.send(err);
   }
 })
-
-router.get("/whoami", (req, res) => {
-  if (!req.user) {
-    // not logged in
-    return res.send({});
-  }
-  let clonedusr = Object.assign({}, req.user);
-  clonedusr.password = '';
-  res.send(clonedusr);
-});
 
 router.post("/deletelisting", (req, res) => {
   Listing.deleteOne({ _id: req.body._id }).then(() => res.send({}));
@@ -186,6 +181,8 @@ router.post("/makeuser", async (req, res) => {
     profilePictureURL: "",
     bookmarkedListings: [],
     composedListings: [],
+    prefsArray: [1,1,1,1,1],
+    aboutMe: "",
   });
   let userClash = await User.findOne({email: req.body.email});
   if (userClash === null) {
@@ -363,19 +360,6 @@ router.get("/getmessagesold", async (req, res) => {
   });
   res.send({messageList: messageList});
 });
-
-// router.get("/locationsuggestions", (req, res) => {
-//   /* params: input (string), radius (number) [meters] 
-//      For more info, go
-//      https://developers.google.com/places/web-service/autocomplete */
-//   axios.get(fullPath(googleMapEndpoint, {
-//     input: req.query.input,
-//     key: g_apikey,
-//     radius: req.query.radius
-//   })).then((json) => {
-//     res.send(json.data);
-//   });
-// });
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

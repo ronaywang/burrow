@@ -6,6 +6,7 @@ import "./SingleCard.css";
 import { formatDate, calculateAge, get, post } from "../../utilities";
 import { duration } from "../../../../node_modules/moment";
 
+
 class SingleCardFast extends Component {
   static genderColorDict = {
     'm': 'Card-blue',
@@ -72,7 +73,7 @@ class SingleCardFast extends Component {
         <div className="Card-horizontalLine"></div>
         
         <div className="Card-textBox">{additionalText}</div>
-        {/* {this.props.listing.creator_ID._id === "0" ? ( */}
+        {this.props.editDeletePerms ? ( 
           <div className="Card-editDeleteContainer" >
             <input className="Card-editContainer" type="submit" value="Edit" />
             <input className="Card-deleteContainer bkred" type="submit" value="Delete" 
@@ -83,7 +84,7 @@ class SingleCardFast extends Component {
               }}
             />
           </div>
-        {/* ) : null*/}
+        ) : null}
         
       </div>
     );

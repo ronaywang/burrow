@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Redirect } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
 import Skeleton from "./pages/Skeleton.js";
 
@@ -88,10 +88,8 @@ class App extends Component {
           <SplashPage path="/"/>
           <MainPage path="/main" userId={this.state.userId}
           />
-          <ProfilePage path={`/profile/${this.state.userId}`}
-          userId={this.state.userId}
-          email={this.state.email}
-          />
+          
+          <ProfilePage path="/profile/:userId" />
           {/* EVERY SINGLE FUCKING OTHER URL */}
           <InboxPage path="/inbox" />
           {/* <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>

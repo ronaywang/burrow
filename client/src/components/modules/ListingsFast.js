@@ -1,7 +1,7 @@
 import "./Listings.css";
 import React, {Component} from "react";
 import "../../utilities.css";
-import "../../utilities.js";
+import {get, post} from "../../utilities.js";
 import SingleCardFast from "./SingleCardFast.js";
 import PropTypes from "prop-types";
 
@@ -11,7 +11,7 @@ class ListingsFast extends Component {
     return (
       <div className={`${this.props.styleName}-listingsContainer`}>
         {this.props.displayedListings.map((listing) => {return (
-          <SingleCardFast listing={listing} key={listing._id}/>
+          <SingleCardFast listing={listing} key={listing._id} editDeletePerms={this.props.editDeletePerms}/>
         );})}
       </div>
     );

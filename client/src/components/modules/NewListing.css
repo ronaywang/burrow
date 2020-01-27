@@ -4,7 +4,6 @@
     grid-template-columns: 0% 30rem;
     /*grid-template-rows: 45px 100px 10px auto auto;*/
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
-    padding: 3em;
     background-color: white;
 }
 
@@ -15,27 +14,12 @@
 
 .NewListing-description{
   margin: 1rem 0 0.5rem 0;
-  text-transform: lowercase;
   font-weight: 400;
   letter-spacing: 0.03rem;
 }
-.NewListing-durationButton{
-  margin: 0rem 0 0 0;
-  border-radius: 1px;
-  border: 1px solid var(--primary4);
-  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
-  color: var(--primary4);
-  background-color: white;
-  font-size: 90%;
-  letter-spacing: 0.02em;
-}
-.NewListing-durationButton:hover{
-  color: white;
-}
 
-.NewListing-durationSelect{
-  color: white !important;
-  background-color: var(--primary4) !important;
+.NewListing-textBoxContainer{
+  width: 100%;
 }
 
 .NewListing-center{

@@ -5,7 +5,7 @@ import "./ProfilePage.css";
 import UserSettings from "../modules/UserSettings";
 import YourListings from "../modules/YourListings";
 import SavedListings from "../modules/SavedListings";
-
+import {get, post} from "../../utilities";
 
 
 class ProfilePage extends Component {
@@ -17,8 +17,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    if (this.props.userId === "")
-      return (<div>Log in to access this feature</div>);
     let TabToDisplay;
     switch(this.state.tabIndex) {
       case 0:
@@ -28,7 +26,6 @@ class ProfilePage extends Component {
         TabToDisplay = YourListings;
         break;
       case 2:
-        TabToDisplay = YourProfile;
       default:
         TabToDisplay = YourListings;
         break;

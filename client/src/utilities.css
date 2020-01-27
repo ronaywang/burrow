@@ -29,7 +29,7 @@
   --xl: 48px;
 
   --borders: 1px solid #E1E7EC;
-  --borderradius: 0.7rem;
+  --borderradius: 0.9rem;
   --margins: 0.75rem;
   --inputmargins: 5px;
 
@@ -117,6 +117,7 @@ textarea {
   border: var(--borders);
   resize: none;
   height: 5em;
+  width: 30em;
 }
 
 
@@ -159,6 +160,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 100%;
 }
 
+h1 {
+  font-weight: 500;
+  font-size: 140%;
+  color: var(--primary3);
+}
+
 .u-textCenter {
   text-align: center;
 }
@@ -195,7 +202,6 @@ input {
 
 button, .u-button{
     text-transform: lowercase;
-    border: var(--borders);
     padding: 0.2rem 1rem 0.5rem 1rem;
     text-align: center;
     vertical-align: middle;
@@ -231,6 +237,7 @@ input:focus {
 textarea:focus {
   outline: none;
   border: 2px solid var(--primary5);
+  caret-color: var(--primary5);
 
 }
 
@@ -243,5 +250,25 @@ input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   display: none;
 
+}
+
+.durationButton{
+  margin: var(--xs);
+  border-radius: var(--borderradius);
+  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+  color: var(--primary3);
+  background-color: var(--neutral6);
+  font-size: 80%;
+  letter-spacing: 0.02em;
+  border: none;
+}
+
+.durationButton:hover{
+  color: white;
+}
+
+.durationSelect{
+  color: white !important;
+  background-color: var(--primary5) !important;
 }
 

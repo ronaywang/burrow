@@ -29,23 +29,6 @@
     font-weight: 300
 }
 
-.PreferenceBar-durationButton{
-  margin: var(--xs);
-  border-radius: var(--borderradius);
-  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
-  color: var(--primary3);
-  background-color: var(--neutral6);
-  font-size: 70%;
-  letter-spacing: 0.02em;
-}
-.PreferenceBar-durationButton:hover{
-  color: white;
-}
-
-.PreferenceBar-durationSelect{
-  color: white !important;
-  background-color: var(--primary5) !important;
-}
 
 .PreferenceBar-gobutton{
   background-color: var(--primary4);

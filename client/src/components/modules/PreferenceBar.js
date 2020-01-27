@@ -72,7 +72,7 @@ class PreferenceBar extends Component {
           <div className="PreferenceBar-duration">
             {durationOptions.map((desc, i) => (
               <button
-              className={this.state.durationIndex !== i ? "PreferenceBar-durationButton" : "PreferenceBar-durationButton PreferenceBar-durationSelect"}
+              className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
               onClick={(e)=>{this.update(price, e.target.value, (this.state.durationIndex !== i) ? i : -1)}}
               >{desc}</button>
             ))}
