@@ -88,6 +88,7 @@ router.post("/matchinglistings", (req, res) => {
   const priceMargin = 500; // USD
   const maxDistance = 10; // miles
   let userQuery = { $ne: prefs.userId };
+  let noLocation = prefs.location.length === 0 || prefs.location === undefined;
   let priceQuery = {$lte: prefs.price + priceMargin, $gte: prefs.price - priceMargin};
   let listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
   const query = {};
@@ -98,7 +99,7 @@ router.post("/matchinglistings", (req, res) => {
   
   console.log(query);
   Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
-    .then((listings) => {res.send(listings.filter(listingFilter))});
+    .then((listings) => {res.send( noLocation ? listings : listings.filter(listingFilter))});
 })
 
 router.post("/logout", auth.logout);
