@@ -21,6 +21,8 @@ const entryFile = path.resolve(__dirname, "client", "src", "index.js");
 const outputDir = path.resolve(__dirname, "client", "dist");
 
 const webpack = require("webpack");
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+
 
 module.exports = {
   entry: ["@babel/polyfill", entryFile],
@@ -69,7 +71,7 @@ module.exports = {
   resolve: {
     extensions: ["*", ".js", ".jsx"],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin(), new MomentLocalesPlugin()],
   devServer: {
     historyApiFallback: true,
     contentBase: "./client/dist",

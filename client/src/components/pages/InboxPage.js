@@ -5,8 +5,6 @@ import { get, post } from "../../utilities";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
-import Toggle from 'react-toggle';
-import "react-toggle/style.css"
 import moment from "moment";
 const _ = require("lodash");
 
@@ -130,11 +128,6 @@ class InboxPage extends Component{
   render() {
     return (
     <div className="InboxPage-container">
-      <Toggle
-        id='fromme-toggle'
-        defaultChecked={this.state.fromMe}
-        onChange={this.ToggleFromMe}
-      />
       <div className="Messages-container">
         <input className="MessageSearch"
           type="text"
