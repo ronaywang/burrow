@@ -5,6 +5,7 @@ import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
 import { socket } from "../../client-socket.js";
+import { Link } from "@reach/router";
 const has = require("lodash/has");
 
 
@@ -42,6 +43,7 @@ class InboxPage extends Component{
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
     this.SetActiveThread = this.SetActiveThread.bind(this);
     this.GetActiveChatName = this.GetActiveChatName.bind(this);
+    this.GetActiveChatUID = this.GetActiveChatUID.bind(this);
     this.NewMessageHandler = this.NewMessageHandler.bind(this);
   }
 
@@ -108,6 +110,20 @@ class InboxPage extends Component{
         return thread.recipient_ID.firstName;
       } else {
         return thread._id;
+      }
+    }
+  }
+
+  GetActiveChatUID() {
+    const i = this.state.activeThreadIndex;
+    if (i !== null && this.state.threadsToDisplay.length > 0 ) {
+      const thread = this.state.threadsToDisplay[i];
+      if (this.state.userId === thread.recipient_ID._id) {
+        return thread.sender_ID._id;
+      } else if (this.state.userId === thread.sender_ID._id) {
+        return thread.recipient_ID._id;
+      } else {
+        return null;
       }
     }
   }
@@ -184,7 +200,10 @@ class InboxPage extends Component{
 
       <div className="Chat-container">
         <div className="Chat-ChatInfoContainer">
-          Chatting with {this.GetActiveChatName()}
+          Chatting with&nbsp;
+          <Link to={"/profile/" + this.GetActiveChatUID()}>
+          {this.GetActiveChatName()}
+          </Link>
         </div>
         <div className="Chat-ChatBubblesContainer"
         id="ChatBubblesContainer">
