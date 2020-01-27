@@ -6,7 +6,7 @@ import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
 import moment from "moment";
-const _ = require("lodash");
+const has = require("lodash/has");
 
 class InboxPage extends Component{
   constructor(props) {
@@ -36,7 +36,7 @@ class InboxPage extends Component{
 
   async componentDidMount() {
     let threadToMakeActive;
-    if (_.has(this.props, 'userId')) {
+    if (has(this.props, 'userId')) {
       console.log("has userid!");
       console.log(this.props.userId);
       const response = await get("/api/findthreadbyuser", {userId: this.props.userId});
@@ -196,13 +196,13 @@ class ThreadDisplay extends Component {
     const thread = this.props.thread;
     let senderid;
     let recipid;
-    if (_.has(thread.sender_ID, '_id')) {
+    if (has(thread.sender_ID, '_id')) {
       senderid = thread.sender_ID._id;
     } else {
       senderid = thread.sender_ID;
     }
 
-    if (_.has(thread.recipient_ID, '_id')) {
+    if (has(thread.recipient_ID, '_id')) {
       recipid = thread.recipient_ID._id;
     } else {
       recipid = thread.recipient_ID;
@@ -212,7 +212,7 @@ class ThreadDisplay extends Component {
 
     const displayid = userIsSender ? thread.recipient_ID : thread.sender_ID;
 
-    if (_.has(displayid, 'firstName')) {
+    if (has(displayid, 'firstName')) {
       nameToDisplay = displayid.firstName;
     } else {
       nameToDisplay = JSON.stringify(displayid);

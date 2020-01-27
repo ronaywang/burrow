@@ -9,7 +9,8 @@ import MapComponent from "../modules/Map";
 import { get, post } from "../../utilities";
 import * as moment from "moment";
 
-const _ = require("lodash");
+const isUndefined = require("lodash/isUndefined");
+
 // const momentPropTypes = require("react-moment-proptypes");
 
 const mitCoords ={lat: 42.360495, lng: -71.093779 };
@@ -69,7 +70,7 @@ class MainPage extends Component{
             <MapComponent
               initialCenter={locationCtr}
               initialZoom={11}
-              markers={this.state.listingsToDisplay.filter(l=>!_.isUndefined(l.coordinates.lat)).map(l => l.coordinates)}
+              markers={this.state.listingsToDisplay.filter(l=>!isUndefined(l.coordinates.lat)).map(l => l.coordinates)}
             />
           </div>
         </div>
