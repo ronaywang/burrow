@@ -4,7 +4,6 @@ import { get, post } from "../../utilities";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
-import moment from "moment";
 const has = require("lodash/has");
 
 const findActiveThread = (activeThread_ID, threads) => {
@@ -116,7 +115,7 @@ class InboxPage extends Component{
       post("/api/postmessage", {
         content: this.state.chatBoxContents,
         threadId: this.state.threadsToDisplay[this.state.activeThreadIndex]._id,
-        timestamp: moment().toDate(),
+        timestamp: new Date(),
       }).then
       this.setState({
         lastMessageSubmitted: this.state.chatBoxContents,

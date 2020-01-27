@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "../../utilities.css";
 import "../pages/ProfilePage.css";
-import { SingleDatePicker } from "react-dates";
-import moment from "moment";
+//import moment from "moment";
 import { get, post } from "../../utilities";
 import { genders} from "./enums";
 import "./ProfilePicUploader.css";

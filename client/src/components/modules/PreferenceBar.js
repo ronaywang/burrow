@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import "../../utilities.css";
 import { get, post } from "../../utilities";
 import "./PreferenceBar.css";
-import DatePicker from "./DatePicker";
-const momentPropTypes = require("react-moment-proptypes");
 
 const houseIcon = (
   <img src="/house_icon.svg" width="13px"/>

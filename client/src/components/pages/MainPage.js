@@ -7,7 +7,6 @@ import PreferenceBar from "../modules/PreferenceBar";
 import ListingsFast from "../modules/ListingsFast";
 import MapComponent from "../modules/Map";
 import { get, post } from "../../utilities";
-import * as moment from "moment";
 
 const isUndefined = require("lodash/isUndefined");
 

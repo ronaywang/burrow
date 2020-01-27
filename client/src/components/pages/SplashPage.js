@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import {Tabs} from "../modules/Tabs.js";
 import {GoogleSearchBar} from "../modules/SearchBar.js";
-import DatePicker from "../modules/DatePicker.js";
 import "./SplashPage.css";
 import "../../utilities.css";
 import { Link } from "@reach/router";
-import moment from "moment";
 import {listing_type} from "../modules/enums";
 import { post, get } from "../../utilities.js";
 

@@ -4,9 +4,7 @@ import { get, post } from "../../utilities";
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {GoogleSearchBar} from "./SearchBar.js";
-import DatePicker from "./DatePicker.js";
 import MapComponent from "./Map";
-import moment from "moment";
 import {navigate} from '@reach/router';
 
 class NewListing extends Component {
