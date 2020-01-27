@@ -25,6 +25,7 @@ class MainPage extends Component{
   }
   
   componentDidMount() {
+    document.body.classList.remove("SplashPage-body");
     this.triggerSearch();
   }
 

@@ -25,6 +25,7 @@ class SplashPage extends Component {
   }
 
   componentDidMount(){
+    document.body.classList.add("SplashPage-body");
     get("/api/sessionglobals").then((globals) => {
       this.setState({
         doDisplay: true,
@@ -59,7 +60,6 @@ class SplashPage extends Component {
     );
 
     return (
-      <body className = "splashbody">
       <div className="SplashPage-container">
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
@@ -102,7 +102,6 @@ class SplashPage extends Component {
             }}>Go!</button>
         </div>
       </div>
-    /*</body>
     );
   }
 }
