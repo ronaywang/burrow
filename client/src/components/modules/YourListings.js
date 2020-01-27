@@ -30,7 +30,7 @@ class YourListings extends Component {
         {(this.state.usersListings.length === 0) ? <div className="YourListings-container">
           No listings yet!
           <img src = "/sad bunny.png" width = "30%"/>
-        </div> : <ListingsFast displayedListings={this.state.usersListings}/>}
+        </div> : <ListingsFast displayedListings={this.state.usersListings} editDeletePerms={true}/>}
       </div>
     );
   }

@@ -5,7 +5,7 @@ import "../../utilities.css";
 import Popup from "reactjs-popup";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
-import { Link } from "@reach/router";
+import { Link,  navigate } from "@reach/router";
 import { GoogleSearchBar } from "./SearchBar";
 import { get, post } from "../../utilities";
 import NewListing from "../modules/NewListing";
@@ -46,9 +46,12 @@ class NavBar extends Component {
           {close => (<NewListing userId={userId} close={close}/>) }
         </Popup> 
         <Link to="/main" className="NavBar-link">browse</Link>
-        <Link to={`/profile/${userId}`} className="NavBar-link">
+        {/* <Link to={`/profile/${userId}`} className="NavBar-link">
           account
-        </Link> 
+        </Link>  */}
+        <div className="NavBar-link" onClick={() => {
+          navigate(`/profile/${userId}`, {replace: true});
+        }}>account</div> 
         <Link to="/inbox" className="NavBar-link">inbox</Link>
         <div className="NavBar-link" onClick={this.props.handleLogout}>logout</div> 
        

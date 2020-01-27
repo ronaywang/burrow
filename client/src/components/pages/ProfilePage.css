@@ -20,10 +20,12 @@
   border-radius: 50%;
   width: var(--avatarSize);
   height: var(--avatarSize);
-  cursor: pointer;
 }
 
-.UserSettings-photo:hover{
+.UserSettings-photoYou {
+  cursor: pointer;
+}
+.UserSettings-photoYou:hover{
   opacity: 0.75;
 }
 

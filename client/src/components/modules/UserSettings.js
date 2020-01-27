@@ -16,6 +16,7 @@ class UserSettings extends Component {
       firstName: '',
       lastName: '',
       birthdate: undefined,
+      age: 0,
       email: '',
       fbProfileLink: '',
       datefocused: false,
@@ -27,22 +28,27 @@ class UserSettings extends Component {
       doRender: false,
       profilePicURL: "",
       prefsArray: [1,1,3,1,1],
+      isYou: false,
     };
     this.saveSettings = this.saveSettings.bind(this);
   }
 
   componentDidMount() {
-    get("/api/getthisuserinfo").then((userObj) => {
+    get("/api/getthisuserinfo", {userId: this.props.userId}).then((userObj) => {
       console.log(userObj);
       this.setState({
         firstName: userObj.firstName,
         lastName: userObj.lastName,
         email: userObj.email,
         birthdate: userObj.birthdate,
+        age: userObj.age,
         fbProfileLink: userObj.fbProfileLink,
         gender: userObj.gender,
         textBox: userObj.aboutMe,
-        userId: userObj._id
+        userId: userObj._id,
+        profilePicURL: userObj.profilePictureURL,
+        isYou: userObj.isYou,
+        prefsArray: userObj.prefsArray
       });
       if (this.state.gender === genders.M) {
         this.setState({gender: "Male"});
@@ -52,12 +58,6 @@ class UserSettings extends Component {
         this.setState({gender: "Non-binary"});
       }
       this.setState({doRender: true});
-    }).then(() => {
-      if (this.state.profilePicURL.length == 0) {
-        post("/api/getProfilePic", {userId: this.state.userId}).then((myres) => {
-          this.setState({profilePicURL: myres.photoURL});
-        });
-      }
     })
   }
 
@@ -73,8 +73,9 @@ class UserSettings extends Component {
 
     const uploadRes = await axios.post("/api/newProfilePic", formData);
     console.log(JSON.stringify(uploadRes));
-    window.location.reload();
-
+    this.setState({
+      profilePicURL: uploadRes.url
+    });
   };
 
 
@@ -91,25 +92,7 @@ class UserSettings extends Component {
   render() {
     if (!this.state.doRender)
       return null;
-    let mbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonM";
-    let fbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonF";
-    let nbbuttonclass = "UserSettings-genderbutton UserSettings-genderbuttonNB";
-    if (this.state.maleButtonActive) {
-      mbuttonclass += " UserSettings-genderbuttonActive";
-    }
-    if (this.state.femaleButtonActive) {
-      fbuttonclass += " UserSettings-genderbuttonActive";
-    }
-    if (this.state.nbButtonActive) {
-      nbbuttonclass += " UserSettings-genderbuttonActive";
-    }
-
-    let dispdate;
-    if (this.state.birthdate) {
-      dispdate = moment(this.state.birthdate);
-    } else {
-      dispdate = '';
-    }
+    const {isYou} = this.state;
 
     let prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
@@ -118,8 +101,9 @@ class UserSettings extends Component {
         <div className = "UserSettings-aboutContainer">
           {/*<div className="UserSettings-text">Your first name, photo, age and gender are public.</div> commented out because i'm not sure this is necessary*/} 
           <div className="UserSettings-photoContainer">
-            <img className = "UserSettings-photo" onClick={() => {
-              document.getElementById("uploadphoto").click();
+            <img className = {`UserSettings-photo ${isYou ? "UserSettings-photoYou" : ""}`} onClick={() => {
+              if (isYou)
+                document.getElementById("uploadphoto").click();
             }} 
               src={this.state.profilePicURL || require("../../public/assets/account.png")}
             />
@@ -135,15 +119,15 @@ class UserSettings extends Component {
               <div className="UserSettings-description">Gender</div>
               <div className="UserSettings-value">{this.state.gender}</div>
             </div>
-            
-            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
+
+            {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
               <div className="UserSettings-description">E-mail</div>
               <div className="UserSettings-value">{`${this.state.email}`}</div>
-            </div>
+            </div> : null}
             
             <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
-              <div className="UserSettings-description">Birthdate</div>
-              <div className="UserSettings-value">{`${new Date(this.state.birthdate).toLocaleDateString()}`}</div>
+              <div className="UserSettings-description">{isYou ? "Birthdate" : "Age"}</div>
+              <div className="UserSettings-value">{isYou ? new Date(this.state.birthdate).toLocaleDateString() : this.state.age}</div>
             </div>
             
           </div>
@@ -155,7 +139,7 @@ class UserSettings extends Component {
                 <label>{prefsDescriptionArray[index]}</label>
               </div>
               <div className="UserSettings-prefsSlider"> 
-                <input type="range" min="1" max="3" value={this.state.prefsArray[index]} 
+                <input disabled={!isYou} type="range" min="1" max="3" value={pref} 
                   onChange={(e) => { 
                     e.persist();
                     this.setState((prev) => {
@@ -169,22 +153,42 @@ class UserSettings extends Component {
             </div>
           ))}
         </div>
-        <div>
-          <span className="pro-fieldname">Link your FB profile</span>
-          <input
-          type="text"
-          name="fblink"
-          value={this.state.fbProfileLink}
-          onChange={(event)=>{this.setState({fbProfileLink: event.target.value})}}/>
-        </div>
-        <div>
-          <div className="pro-fieldname">Tell us about yourself!</div>
-            <textarea className="pro-textbox" rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
-        </div>
-
-        <button id="savebutton"
-        name="Save"
-        onClick={this.saveSettings}>Save</button>
+        {isYou ? (
+          <div>
+            <span className="pro-fieldname">Link your FB profile</span>
+            <input
+            type="text"
+            name="fblink"
+            value={this.state.fbProfileLink}
+            onChange={(event)=>{this.setState({fbProfileLink: event.target.value})}}/>
+          </div>
+        ) : (
+          this.state.fbProfileLink.trim().length === 0 ? null : (
+            <div>
+              <div className="UserSettings-description">Facebook</div>
+              <div className="UserSettings-value">{this.state.fbProfileLink}</div>
+            </div>
+          )
+        )}
+        
+        {isYou ? (
+          <div>
+            <div className="pro-fieldname">Tell us about yourself!</div>
+              <textarea className="pro-textbox" rows="10" cols="30" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+          </div>
+        ) : (
+          <div>
+            <div className="UserSettings-description">About me</div>
+            <div className="UserSettings-value">{this.state.textBox.trim().length === 0 ? "This user has not filled out their profile yet!" : 
+            this.state.textBox}</div>
+          </div>
+        )}
+        {isYou ? (
+          <button id="savebutton"
+          name="Save"
+          onClick={this.saveSettings}>Save</button>
+        ) : null}
+        
       </div>
     );
   }

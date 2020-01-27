@@ -8,6 +8,7 @@ import DatePicker from "./DatePicker.js";
 import MapComponent from "./Map";
 import moment from "moment";
 import Toggle from 'react-toggle';
+import {navigate} from '@reach/router';
 
 class NewListing extends Component {
 
@@ -29,7 +30,6 @@ class NewListing extends Component {
   }
 
   handleSubmit(){
-    console.log(this.state.price);
     if (this.state.durationIndex === -1 || this.state.locationquery === '' || this.state.startDate === undefined ||
         this.state.price === 0 || this.state.price === "" || this.state.textBox.trim().length === 0){
       this.setState({mustfillfields: true});
@@ -45,7 +45,7 @@ class NewListing extends Component {
     };
     post("/api/listing", listingInfo)
       .then(this.setState({success: true}, () => {
-        setTimeout(() => window.location.pathname = `/profile/${this.props.userId}`, 750);
+        setTimeout(() => {this.props.close(); navigate(`/profile/${this.props.userId}`, {tabIndex: 1, replace: False})}, 750);
       })
     );
   }
