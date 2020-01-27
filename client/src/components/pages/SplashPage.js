@@ -74,6 +74,7 @@ class SplashPage extends Component {
               <div className="SplashPage-dateDescription">move-in date</div>
               <div className="SplashPage-date SplashPage-input">
                 <input
+                  className="SplashPage-dateInput"
                   type="date"
                   name="startdate"
                   value={startDate}

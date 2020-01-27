@@ -48,6 +48,14 @@
   align-items: center;
 }
 
+.SplashPage-search {
+  font-weight: 300;
+}
+
+.SplashPage-dateInput {
+  font-weight: 300;
+}
+
 .SplashPage-logo {
     display: block;
     font-weight: 600;
