@@ -14,7 +14,7 @@
     border: var(--borders);
 }
 
-/*.splashbody {
+.splashbody {
   font-family: "skolar-sans-latin", sans-serif;
   font-weight: 300;
   line-height: 110%;
@@ -27,7 +27,7 @@
   background-clip: content-box;
   background: url("/nycbackgroundwithbunnies.svg") no-repeat bottom center fixed;
 }
-*/
+
 .SplashPage-infoContainer {
     display: flex;
     align-items: center;

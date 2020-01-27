@@ -101,12 +101,18 @@ class UserSettings extends Component {
         <div className = "UserSettings-aboutContainer">
           {/*<div className="UserSettings-text">Your first name, photo, age and gender are public.</div> commented out because i'm not sure this is necessary*/} 
           <div className="UserSettings-photoContainer">
+            <div className="UserSettings-photoUploadContainer">
             <img className = {`UserSettings-photo ${isYou ? "UserSettings-photoYou" : ""}`} onClick={() => {
               if (isYou)
                 document.getElementById("uploadphoto").click();
             }} 
               src={this.state.profilePicURL || require("../../public/assets/account.png")}
             />
+            <img className = "camerasvg" onClick={() => {
+              if (isYou)
+                document.getElementById("uploadphoto").click(); }} src = "/camera.svg" width = "15px"
+            /> 
+            </div>
             <input className="upload-btn-wrapper" id="uploadphoto" type="file" name="file" accept="image/*" onChange={this.handleChange}/>
           </div>
           <div className="UserSettings-personalInfo">
