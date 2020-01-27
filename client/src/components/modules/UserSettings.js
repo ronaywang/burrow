@@ -97,7 +97,10 @@ class UserSettings extends Component {
     let prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
     return (
-      <div className="UserSettings-container">
+      <div>
+      <div className="TabToDisplay-container">
+        {/*<div className="UserSettings-color"></div>*/}
+        <h1 className = "Profile-header">the basics</h1>
         <div className = "UserSettings-aboutContainer">
           {/*<div className="UserSettings-text">Your first name, photo, age and gender are public.</div> commented out because i'm not sure this is necessary*/} 
           <div className="UserSettings-photoContainer">
@@ -138,12 +141,17 @@ class UserSettings extends Component {
             
           </div>
         </div>
-        <div className="UserSettings-prefsContainer">
+      </div>
+
+      <div className="TabToDisplay-container">
+
+      <h1 className = "Profile-header">more about you</h1>
+          <div className="UserSettings-prefsContainer">
           {this.state.prefsArray.map((pref, index) => (
             <div className="UserSettings-prefsBlock">
               <div className="UserSettings-prefsDesciption">
                 <label>{prefsDescriptionArray[index]}</label>
-              </div>
+            </div>
               <div> 
                 <input className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
                   onChange={(e) => { 
@@ -156,9 +164,9 @@ class UserSettings extends Component {
                   }}  
                 />
               </div>
-            </div>
+          </div>
           ))}
-        </div>
+    
         {isYou ? (
           <div>
             <span className="pro-fieldname">Link your FB profile</span>
@@ -196,6 +204,8 @@ class UserSettings extends Component {
         ) : null}
         
       </div>
+    </div>
+    </div>
     );
   }
 }

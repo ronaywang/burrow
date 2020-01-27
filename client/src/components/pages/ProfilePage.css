@@ -3,12 +3,17 @@
   padding: 0 10% 0 10%;
 }
 
+/*.UserSettings-color {
+  height: 20px;
+  background: var(--primary4);
+  width: 120%;
+  margin: -10px 0px 0px -50px;
+}*/
 .UserSettings-photoContainer {
   --avatarSize: 6rem;
   border-radius: 50%;
   display: flex;
   height: var(--avatarSize);
-  margin-right: 1.4rem;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -36,20 +41,31 @@
   opacity: 0.75;
 }
 
+.camerasvg{
+  cursor: pointer;
+  margin: 2px;
+
+}
+
+.camerasvg:hover{
+  opacity: 0.7;
+}
+
 .UserSettings-personalInfo{
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: auto auto;
   grid-template-rows: 50% 50%;
   color: var(--neutral2);
   font-size: 90%;
   font-weight: 400;
   background-color: var(--neutral7);
-  padding: 0.8rem;
-  width: 15rem;
+  padding: 0.2rem 0.6rem;
+  width: auto;
+  margin: var(--s);
 }
 
 .UserSettings-personalInfoBlock {
-  padding: 0.5rem 1.4rem 0.5rem 0;
+  padding: 0.2rem 0.8rem 0.8rem 0.8rem;
 }
 
 .UserSettings-personalInfoName {
@@ -60,6 +76,7 @@
 .UserSettings-personalInfoEmail {
   grid-column: 2/3;
   grid-row: 1/2;
+ 
 }
 
 .UserSettings-personalInfoAge {
@@ -70,10 +87,6 @@
 .UserSettings-personalInfoGender {
   grid-column: 1/2;
   grid-row: 2/3;
-}
-
-.UserSettings-text {
-  padding: 0 0 0.5rem 0;
 }
 
 .UserSettings-description {
@@ -110,22 +123,21 @@
 }
 
 .TabToDisplay-container {
-  margin: 2rem 0.5rem 1rem 2rem;
-  padding: 1rem 0rem 1rem 0rem;
+  margin: var(--s);
+  padding: 0.2rem 1rem;
   border-radius: 3px;
   background-color: white;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 60%;
+  width: 120%;
+  height: auto;
 }
 
 .UserSettings-container, .YourListings-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
+  
 }
 .YourListings-container {
   display: flex;
@@ -137,8 +149,7 @@
 
 .UserSettings-aboutContainer {
   display: flex;
-  flex-direction: column;
-  padding: 0.8rem 5rem 0.8rem 5rem;
+  flex-direction: row;
   border-radius: 5px;
   width: auto;
 }
@@ -146,11 +157,18 @@
   align-self: center;
 }
 
+.UserSettings-prefsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
 .UserSettings-prefsSlider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 100%; /* Full-width */
-  height: var(--xs);
+  width: 50%; /* Full-width */
+  height: var(--xxs);
   border-radius: var(--borderradius);
   background-color: var(--neutral6);
   outline: none; /* Remove outline */
