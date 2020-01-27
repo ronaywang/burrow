@@ -48,29 +48,22 @@ class InboxPage extends Component{
     document.body.classList.remove("SplashPage-body");
     let threadToMakeActive = null;
     if (has(this.props, 'userId')) {
-      console.log("has userid!");
-      console.log(this.props.userId);
       if (this.props.userId !== "*") {
         const response = await get("/api/findthreadbyuser", {userId: this.props.userId});
-        console.log(response);
         threadToMakeActive = response.thread;
-        console.log(threadToMakeActive);
       }
     } else {
       console.log("no userid.");
       threadToMakeActive = null;
     }
-    console.log(threadToMakeActive);
 
     const uidresponse = await get("/api/myuid");
     this.setState({userId: uidresponse.userId});
     const response = await get("/api/getthreads");
-    console.log(response);
     this.setState({threadsToDisplay: response.threads});
 
     if (response.threads.length > 0) {
       if (threadToMakeActive !== null) {
-        console.log(threadToMakeActive);
         this.setState({activeThreadIndex: findActiveThread(threadToMakeActive._id, this.state.threadsToDisplay)});
         this.SetActiveThread(this.state.activeThreadIndex);
       } else {
@@ -80,9 +73,7 @@ class InboxPage extends Component{
   }
 
   async SetActiveThread(i) {
-    console.log(i);
     this.setState({activeThreadIndex: i});
-    console.log(this.state.threadsToDisplay[i]);
     this.setState({chatDisabled: false});
     const mresponse = await get("/api/getmessages", {threadId: this.state.threadsToDisplay[i]._id});
     this.setState({displayedMessages: mresponse.messageList});
@@ -91,11 +82,8 @@ class InboxPage extends Component{
 
   GetActiveChatName() {
     const i = this.state.activeThreadIndex;
-    console.log(this.state.threadsToDisplay);
     if (i !== null && this.state.threadsToDisplay.length > 0 ) {
       const thread = this.state.threadsToDisplay[i];
-      console.log(thread);
-      console.log(i);
       if (this.state.userId === thread.recipient_ID._id && has(thread.sender_ID, 'firstName')) {
         return thread.sender_ID.firstName;
       } else if (this.state.userId === thread.sender_ID._id && has(thread. recipient_ID, 'firstName')) {
