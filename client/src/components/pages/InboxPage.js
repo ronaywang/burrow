@@ -228,8 +228,8 @@ class InboxPage extends Component{
         disabled={this.state.chatDisabled}
         />
           {/*<div className="Chat-howtosubmit">
-            &#x21E7;+&#x23CE;&#x2000;to add newline{ shift plus enter to add newline*/}
-          </div>
+            &#x21E7;+&#x23CE;&#x2000;to add newline{ shift plus enter to add newline
+        </div>*/}
         </div>
     </div>
     );
