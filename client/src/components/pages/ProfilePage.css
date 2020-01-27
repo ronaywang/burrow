@@ -38,13 +38,14 @@
 
 .UserSettings-personalInfo{
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
   color: var(--neutral2);
   font-size: 90%;
   font-weight: 400;
   background-color: var(--neutral7);
   padding: 0.8rem;
+  width: 15rem;
 }
 
 .UserSettings-personalInfoBlock {
