@@ -4,7 +4,6 @@ import "../../utilities.css";
 import { get, post } from "../../utilities";
 import "./PreferenceBar.css";
 import DatePicker from "./DatePicker";
-import Toggle from 'react-toggle';
 const momentPropTypes = require("react-moment-proptypes");
 
 const houseIcon = (

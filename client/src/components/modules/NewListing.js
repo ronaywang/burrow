@@ -7,7 +7,6 @@ import {GoogleSearchBar} from "./SearchBar.js";
 import DatePicker from "./DatePicker.js";
 import MapComponent from "./Map";
 import moment from "moment";
-import Toggle from 'react-toggle';
 import {navigate} from '@reach/router';
 
 class NewListing extends Component {

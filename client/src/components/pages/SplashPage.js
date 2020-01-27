@@ -8,8 +8,6 @@ import { Link } from "@reach/router";
 import moment from "moment";
 import {listing_type} from "../modules/enums";
 import { post, get } from "../../utilities.js";
-import Toggle from 'react-toggle';
-import "react-toggle/style.css";
 
 class SplashPage extends Component {
 
