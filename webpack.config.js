@@ -22,9 +22,14 @@ const outputDir = path.resolve(__dirname, "client", "dist");
 
 const webpack = require("webpack");
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
+
 
 
 module.exports = {
+  optimization: {
+    minimize: true,
+  },
   entry: ["@babel/polyfill", entryFile],
   output: {
     path: outputDir,
