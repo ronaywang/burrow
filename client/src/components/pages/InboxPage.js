@@ -10,45 +10,6 @@ import "react-toggle/style.css"
 import moment from "moment";
 const _ = require("lodash");
 
-const makeMessageNice = (message) => {
-  let messageClassname = "ChatBubble-textContainer";
-  if (message[1] === message_display.FROMME) {
-    messageClassname += " ChatBubble-textContainer-fromme";
-  } else {
-    messageClassname += " ChatBubble-textContainer-fromyou";
-  }
-  const splitMessage = message[0].split('\n');
-  const splitMessageTail = splitMessage.slice(1);
-  const breakln = (
-    <br/>
-  );
-  return (
-    <div className={messageClassname}>
-      {splitMessage[0]}
-    {splitMessageTail.map((mes)=>{
-      return (
-        <>
-        {breakln}
-        {mes}
-        </>
-      );
-    })}
-    </div>
-  );
-};
-
-const makeThreadNice = (thread) => {
-  return (
-    <div>
-      {thread.recipient_ID._id}
-    </div>
-  );
-};
-
-
-
-
-
 class InboxPage extends Component{
   constructor(props) {
     super(props);
@@ -93,7 +54,6 @@ class InboxPage extends Component{
 
     const uidresponse = await get("/api/myuid");
     this.setState({userId: uidresponse.userId});
-    const userId = uidresponse.userId;
     const response = await get("/api/getthreads");
     console.log(response);
     this.setState({threadsToDisplay: response.threads});
@@ -112,34 +72,11 @@ class InboxPage extends Component{
      }
   }
 
-  makePopulatedThreadNice(thread) {
-    let userIsSender;
-    let nameToDisplay;
-    if (thread.sender_ID._id === this.state.userId) {
-      userIsSender = true;
-      nameToDisplay = thread.recipient_ID.firstName + " " + thread.recipient_ID.lastName;
-    } else {
-      userIsSender = false;
-      nameToDisplay = thread.sender_ID.firstName + " " + thread.sender_ID.lastName;
-    }
-    return (
-      <div className="ThreadDisplay-container">
-        <div className="ThreadDisplay-name">
-          {nameToDisplay}
-        </div>
-      </div>
-    );
-  }
-
   async SetActiveThread(thread) {
     this.setState({activeThread: thread});
       const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
       this.setState({displayedMessages: mresponse.messageList});
       this.ChatGoToBottom();
-  }
-
-  ListingIdUpdate(event) {
-    this.setState({prototypelistingId: event.target.value});
   }
 
 
@@ -208,12 +145,6 @@ class InboxPage extends Component{
           onChange={this.SearchBoxUpdate}
           onKeyDown={this.SearchBoxKey}
           />
-        <input className="MessageSearch"
-          type="text"
-          placeholder="Listing ID"
-          value={this.state.prototypelistingId}
-          onChange={this.ListingIdUpdate}
-          />
 
         {/*this.state.threadsToDisplay.map((thread)=>{return (
           <ThreadDisplay
@@ -262,10 +193,6 @@ InboxPage.propTypes = {
 };
 
 export default InboxPage;
-
-
-
-
 
 class ThreadDisplay extends Component {
   constructor(props) {
