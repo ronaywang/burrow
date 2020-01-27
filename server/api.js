@@ -340,10 +340,14 @@ router.post("/postmessage", async (req, res) => { // takes body.threadId, body.c
     return;
   }
   let otherUserId;
-  if (req.user._id === threadOfInterest.sender_ID) {
+  if (req.user._id.toString() === threadOfInterest.sender_ID.toString()) {
     otherUserId = threadOfInterest.recipient_ID;
-  } else {
+  } else if (req.user._id.toString() === threadOfInterest.recipient_ID.toString()) {
     otherUserId = threadOfInterest.sender_ID;
+  } else {
+    console.log("neither");
+    console.log(req.user._id.toString());
+    return;
   }
 
   const newMessage = new Message({
@@ -355,7 +359,7 @@ router.post("/postmessage", async (req, res) => { // takes body.threadId, body.c
   });
   newMessage.save().then((thing)=>console.log(thing));
   res.status(200).send({});
-
+  console.log("Sending to " + otherUserId);
   socket.getSocketFromUserID(otherUserId).emit("message", newMessage);
 });
 
