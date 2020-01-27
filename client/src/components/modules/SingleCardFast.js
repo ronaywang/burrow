@@ -58,7 +58,7 @@ class SingleCardFast extends Component {
     return (
       <div className="Card-container" key={this.props.listingId}>
         <div className="Card-profilePicContainer">
-        <img src={profilePicURL} className="Card-profilePic"/>
+        <img src={this.state.profilePicURL || require("../../public/assets/account.png")} className="Card-profilePic"/>
         </div>
         <div className="Card-nameAgeGender">
           <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
