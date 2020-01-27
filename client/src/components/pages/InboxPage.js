@@ -4,7 +4,9 @@ import { get, post } from "../../utilities";
 import "../../utilities";
 import "../../utilities.css";
 import "./InboxPage.css";
+import { socket } from "../../client-socket.js";
 const has = require("lodash/has");
+
 
 const findActiveThread = (activeThread_ID, threads) => {
   if (threads.length === 0) {
@@ -40,6 +42,7 @@ class InboxPage extends Component{
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
     this.SetActiveThread = this.SetActiveThread.bind(this);
     this.GetActiveChatName = this.GetActiveChatName.bind(this);
+    this.NewMessageHandler = this.NewMessageHandler.bind(this);
   }
 
 
@@ -68,7 +71,23 @@ class InboxPage extends Component{
       } else {
         this.SetActiveThread(0);
       }
+      socket.on("message", this.NewMessageHandler); 
     }
+  }
+
+  NewMessageHandler(data) {
+    console.log(data);
+    const i = this.state.activeThreadIndex;
+    const thread = this.state.threadsToDisplay[i];
+    let displayedMessages = this.state.displayedMessages;
+    if (this.state.userId === thread.recipient_ID._id && data.sender_ID === thread.sender_ID._id) {
+      displayedMessages.push(data);
+      this.setState({displayedMessages: displayedMessages});
+    } else if (this.state.userId === thread.sender_ID._id && data.sender_ID === thread.recipient_ID._id) {
+      displayedMessages.push(data);
+      this.setState({displayedMessages: displayedMessages});
+    }
+    this.ChatGoToBottom();
   }
 
   async SetActiveThread(i) {
@@ -111,7 +130,6 @@ class InboxPage extends Component{
         content: this.state.chatBoxContents,
         sender_ID: this.state.userId,
       });
-      console.log(this.state.activeThread);
       post("/api/postmessage", {
         content: this.state.chatBoxContents,
         threadId: this.state.threadsToDisplay[this.state.activeThreadIndex]._id,

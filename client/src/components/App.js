@@ -45,6 +45,7 @@ class App extends Component {
     // this.handleLogout = this.handleLogout.bind(this);
     // this.updateSearchPrefs = this.updateSearchPrefs.bind(this);
     // this.setSelectedCenter = this.setSelectedCenter.bind(this);
+    this.initializeSockets = this.initializeSockets.bind(this);
   }
 
   componentDidMount() {
@@ -52,10 +53,16 @@ class App extends Component {
       if (response.userId) {
         // they are registed in the database, and currently logged in
         this.setState({ userId: response.userId, email: response.email});
+        this.initializeSockets();
+        console.log("initialized sockets");
       }
     }).catch(error => {console.log(error)}).finally(() => {
       this.setState({doDisplay: true});
     })
+  }
+
+  initializeSockets() {
+    post("/api/initsocket", {socketid: socket.id});
   }
 
   handleLogin (res) {

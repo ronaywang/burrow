@@ -3,8 +3,18 @@ let io;
 const userToSocketMap = {}; // maps user ID to socket object
 const socketToUserMap = {}; // maps socket ID to user object
 
-const getSocketFromUserID = (userid) => userToSocketMap[userid];
-const getUserFromSocketID = (socketid) => socketToUserMap[socketid];
+const getSocketFromUserID = (userid) => {
+  if (!userToSocketMap[userid]) {
+    console.log("user " + userid + " not in map");
+  }
+  return userToSocketMap[userid];
+};
+const getUserFromSocketID = (socketid) => {
+  if (!socketToUserMap[socketid]) {
+    console.log("socket " + socketid + " not in map");
+  }
+  return socketToUserMap[socketid];
+};
 const getSocketFromSocketID = (socketid) => io.sockets.connected[socketid];
 
 const addUser = (user, socket) => {
