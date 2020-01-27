@@ -33,7 +33,8 @@
   background-color: var(--neutral6);
   padding: 0.3rem;
   color: var(--neutral3);
-  width: 8rem;
+  width: 7rem;
+  flex-shrink: 0;
 }
 
 #moveindatepicker:before {
