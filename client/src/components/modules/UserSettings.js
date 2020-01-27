@@ -138,8 +138,8 @@ class UserSettings extends Component {
               <div className="UserSettings-prefsDesciption">
                 <label>{prefsDescriptionArray[index]}</label>
               </div>
-              <div className="UserSettings-prefsSlider"> 
-                <input disabled={!isYou} type="range" min="1" max="3" value={pref} 
+              <div> 
+                <input className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
                   onChange={(e) => { 
                     e.persist();
                     this.setState((prev) => {

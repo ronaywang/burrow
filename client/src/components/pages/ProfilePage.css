@@ -136,36 +136,44 @@
   align-self: center;
 }
 
-.UserSettings-genderbutton {
-  font-size: 120%;
-  font-weight: 700;
-  margin: 0;
-  padding: 0.3rem;
-  border: 1px solid white;
-  color: white;
-  border-radius: 0;
-  --pink: rgb(255, 59, 124);
-  --blue: rgb(0, 75, 146);
-  --purple: rgb(95, 0, 107);
+/* The slider itself */
+.UserSettings-prefsSlider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: var(--xs);
+  border-radius: var(--borderradius);
+  background-color: var(--neutral6);
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
 }
 
-.UserSettings-genderbuttonM {
-  background-color: var(--blue);
-}
-.UserSettings-genderbuttonF {
-  background-color: var(--pink);
-}
-.UserSettings-genderbuttonNB {
-  background-color: var(--purple);
+/* Mouse-over effects */
+.UserSettings-prefsSlider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+  border-bottom: none;
 }
 
-.UserSettings-genderbutton:hover {
-  background-color: #EEEEEE;
-  cursor: pointer;
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.UserSettings-prefsSlider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: var(--m); /* Set a specific slider handle width */
+  height: var(--m); 
+  border-radius: 50%;
+  background: var(--primary5); 
+  cursor: pointer; /* Cursor on hover */
+  border-bottom: none;
 }
 
-.UserSettings-genderbuttonActive {
-  color: var(--accentcolor);
+.UserSettings-prefsSlider::-moz-range-thumb {
+  width: var(--m); /* Set a specific slider handle width */
+  height: var(--m); 
+  border-radius: 50%;
+  background: var(--primary5);  /* Green background */
+  cursor: pointer; /* Cursor on hover */
 }
 
 

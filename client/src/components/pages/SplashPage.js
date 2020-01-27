@@ -64,7 +64,7 @@ class SplashPage extends Component {
       <div className="SplashPage-container">
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
-            <div className="SplashPage-logo">Find fellow roommates near you.</div>
+            <div className="SplashPage-logo">Find your roommate.</div>
           </div>
           <div className="SplashPage-searchAndDates">
             <div className="SplashPage-searchContainer">
