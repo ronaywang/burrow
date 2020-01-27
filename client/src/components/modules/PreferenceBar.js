@@ -59,7 +59,7 @@ class PreferenceBar extends Component {
     return (
       <div className="PreferenceBar-container">
         <span className="PreferenceBar-price" id="prefbarprice">
-          $<input
+          $&nbsp;<input
             id="prefbarpriceinput"
             type="number"
             min="0"
@@ -72,15 +72,16 @@ class PreferenceBar extends Component {
             placeholder="Approximate budget" 
             onFocus={()=>document.getElementById("prefbarprice").classList.add("PreferenceBar-pricefocus")}
             onBlur={()=>document.getElementById("prefbarprice").classList.remove("PreferenceBar-pricefocus")}
-        />
+        />/month
         </span>
         <div className="PreferenceBar-dateContainer">
-          <input className = "PreferenceBar-moveInDate"
-            type="text"
-            placeholder = "Move-in date" 
-            onfocus="(this.type='date')" 
+          <input className = "PreferenceBar-moveInDate PreferenceBar-dateinvisible"
+            id="moveindatepicker"
+            type="date"
+            placeholder = "Move-in date"
             name="startdate" 
             value={this.state.startDate}
+            onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
             onChange={(e) => this.update(price, e.target.value, durationIndex)}
           />
         </div>

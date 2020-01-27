@@ -279,3 +279,6 @@ button:hover, .u-button:hover {
   background-color: var(--primary5) !important;
 }
 
+::placeholder {
+  color: var(--neutral3);
+}

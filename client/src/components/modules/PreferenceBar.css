@@ -31,6 +31,19 @@
 
 .PreferenceBar-price {
   background-color: var(--neutral6);
+  padding: 0.3rem;
+  color: var(--neutral3);
+  width: 7rem;
+  flex-shrink: 0;
+}
+
+#moveindatepicker:before {
+  content: attr(placeholder) !important;
+  color: var(--neutral3);
+}
+
+.PreferenceBar-dateinvisible {
+  color: var(--neutral6);
 }
 
 .PreferenceBar-pricefocus {
@@ -47,6 +60,8 @@
 #prefbarpriceinput {
   outline: none;
   border-bottom: none;
+  padding: 0;
+  width: 2.5rem;
   /*background-color: var(--primary6);*/
 }
 
@@ -66,9 +81,9 @@
   font-weight: 300;
   width: 7.5rem;
   font-size: 90%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-
-
 .moveindate::-webkit-inner-spin-button {
   -webkit-appearance: none;
   display: none;
