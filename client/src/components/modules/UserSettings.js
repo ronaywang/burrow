@@ -110,7 +110,7 @@ class UserSettings extends Component {
             />
             <img className = "camerasvg" onClick={() => {
               if (isYou)
-                document.getElementById("uploadphoto").click(); }} src = "/camera.svg" width = "15px"
+                document.getElementById("uploadphoto").click(); }} src = "/photograph.svg" width = "15px"
             /> 
             </div>
             <input className="upload-btn-wrapper" id="uploadphoto" type="file" name="file" accept="image/*" onChange={this.handleChange}/>

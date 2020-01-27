@@ -43,6 +43,8 @@
   color: var(--neutral2);
   font-size: 90%;
   font-weight: 400;
+  background-color: var(--neutral7);
+  padding: 0.8rem;
 }
 
 .UserSettings-personalInfoBlock {
@@ -134,8 +136,8 @@
 
 .UserSettings-aboutContainer {
   display: flex;
-  background-color: var(--neutral7);
-  padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+  flex-direction: column;
+  padding: 0.8rem 5rem 0.8rem 5rem;
   border-radius: 5px;
   width: auto;
 }

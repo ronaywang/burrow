@@ -102,7 +102,7 @@ class SplashPage extends Component {
             }}>Go!</button>
         </div>
       </div>
-    /*</body>
+    
     );
   }
 }
