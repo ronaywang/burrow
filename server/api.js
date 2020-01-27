@@ -283,7 +283,7 @@ router.post("/newProfilePic", upload.single('photo'), async (req, res) => {
 
 router.get("/getthreads", async (req, res) => {
   const userId = req.user._id;
-  usersThreads = await Thread.find({
+  let usersThreads = await Thread.find({
     $or: [
       {
         sender_ID: userId
@@ -312,48 +312,47 @@ router.get("/findthreadbyuser", async (req, res) => {
     ]
   });
   if (existingThread !== null) {
-    res.send({thread: existingThread});
+    res.send({thread: existingThread.populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"})});
+    console.log(existingThread);
   } else {
     const newThread = new Thread({
       sender_ID: thisuserId,
       recipient_ID: otheruserId,
     });
     await newThread.save();
-    res.send(newThread);
+    res.send({thread: newThread.populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"})});
+    console.log(newThread);
   }
 })
 
 
-router.post("/postmessageold", async (req, res) => { // takes body.threadId, body.content, body.timestamp, body.listing_ID
+router.post("/postmessage", async (req, res) => { // takes body.threadId, body.content, body.timestamp,
   const threadId = req.body.threadId;
   let threadOfInterest = await Thread.findById(threadId);
-  const listingOfInterest = await Listing.findById(req.body.listing_ID);
-  if(threadOfInterest === null) {
-    threadOfInterest = new Thread({
-      sender_ID: req.user._id,
-      recipient_ID: listingOfInterest.creator_ID,
-      listing_ID: req.body.listingId,
-      messages: [],
-      length: 0,
-    });
+  if (threadOfInterest === null) {
+    const err = new Error("No such thread");
+    res.status(404).send(err);
+    return;
   }
+  let otherUserId;
+  if (req.user._id === threadOfInterest.sender_ID) {
+    otherUserId = threadOfInterest.recipient_ID;
+  } else {
+    otherUserId = threadOfInterest.sender_ID;
+  }
+
   const newMessage = new Message({
-    sender_ID: threadOfInterest.sender_ID,
-    recipient_ID: threadOfInterest.recipient_ID,
-    listing_ID: threadOfInterest.listing_ID,
-    messageNumber: threadOfInterest.size,
+    sender_ID: req.user._id,
+    recipient_ID: otherUserId,
     parentThread_ID: threadId,
     timestamp: req.body.timestamp,
     content: req.body.content,
   });
   newMessage.save().then((thing)=>console.log(thing));
-  threadOfInterest.length += 1;
-  threadOfInterest.messages.push(newMessage._id);
   res.status(200).send({});
-  await threadOfInterest.save();
 });
 
-router.get("/getmessagesold", async (req, res) => {
+router.get("/getmessages", async (req, res) => {
   const threadId = req.query.threadId;
   const messageList = await Message.find({
     parentThread_ID: threadId,

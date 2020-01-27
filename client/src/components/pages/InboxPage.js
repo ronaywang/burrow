@@ -8,6 +8,7 @@ import "./InboxPage.css";
 import Toggle from 'react-toggle';
 import "react-toggle/style.css"
 import moment from "moment";
+const _ = require("lodash");
 
 const makeMessageNice = (message) => {
   let messageClassname = "ChatBubble-textContainer";
@@ -76,14 +77,34 @@ class InboxPage extends Component{
   }
 
   async componentDidMount() {
+    let threadToMakeActive;
+    if (_.has(this.props, 'userId')) {
+      console.log("has userid!");
+      console.log(this.props.userId);
+      const response = await get("/api/findthreadbyuser", {userId: this.props.userId});
+      console.log(response);
+      threadToMakeActive = response.thread;
+    } else {
+      console.log("no userid.");
+      threadToMakeActive = 0;
+    }
+    console.log(threadToMakeActive);
+
     const uidresponse = await get("/api/myuid");
     this.setState({userId: uidresponse.userId});
     const userId = uidresponse.userId;
     const response = await get("/api/getthreads");
     console.log(response);
     this.setState({threadsToDisplay: response.threads});
+
+
+
     if (response.threads.length > 0) {
-      this.setState({activeThread: response.threads[0]});
+      if (threadToMakeActive !== 0) {
+        this.setState({activeThread: threadToMakeActive});
+      } else {
+        this.setState({activeThread: response.threads[0]});
+      }
       const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
       console.log(mresponse);
       mresponse.messageList.forEach((mes)=>{
@@ -157,6 +178,7 @@ class InboxPage extends Component{
     } else if (event.keyCode === 13) {
       const typeOfMessage = (this.state.fromMe ? message_display.FROMME : message_display.FROMYOU);
       this.state.displayedMessages.push([this.state.chatBoxContents, typeOfMessage]);
+      console.log(this.state.activeThread);
       post("/api/postmessage", {
         content: this.state.chatBoxContents,
         threadId: this.state.activeThread._id,
@@ -244,7 +266,7 @@ class InboxPage extends Component{
 }
 
 InboxPage.propTypes = {
-
+  userId: PropTypes.string,
 };
 
 export default InboxPage;

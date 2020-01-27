@@ -91,7 +91,7 @@ class App extends Component {
           
           <ProfilePage path="/profile/:userId" />
           {/* EVERY SINGLE FUCKING OTHER URL */}
-          <InboxPage path="/inbox" />
+          <InboxPage path="/inbox/:userId" />
           {/* <LoginPage path="/login" userId={this.state.userId} username={this.state.username} handleLogout={this.handleLogout}/>
           <RegistrationPage path="/register" username={this.state.username} userId={this.state.userId} handleLogout={this.handleLogout}/>
           <Skeleton
