@@ -20,13 +20,10 @@ validator.checkSetup();
 
 //import libraries needed for the webserver to work!
 const http = require("http");
-const https = require("https");
-const fs = require("fs");
 const express = require("express"); // backend framework for our node server.
 const mongoose = require("mongoose"); // library to connect to MongoDB
 const session = require("express-session"); // library that stores info about each connected user
 const MongoStore = require('connect-mongo')(session);
-const multer = require("multer");
 
 require("dotenv").config();
 
@@ -40,12 +37,6 @@ const storage = require("./storage");
 const socket = require("./server-socket");
 
 // Server configuration below
-
-//ssl
-const keycert = {
-  key: fs.readFileSync('server/key.pem'),
-  cert: fs.readFileSync('server/cert.pem')
-}
 
 
 const mongoConnectionURL = process.env.ATLAS_SRV;
@@ -125,4 +116,3 @@ socket.init(server);
 server.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });
-//https.createServer(keycert, app).listen(port);

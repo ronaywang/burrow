@@ -355,6 +355,8 @@ router.post("/postmessage", async (req, res) => { // takes body.threadId, body.c
   });
   newMessage.save().then((thing)=>console.log(thing));
   res.status(200).send({});
+
+  socket.getSocketFromUserID(otherUserId).emit("message", newMessage);
 });
 
 router.get("/getmessages", async (req, res) => {

@@ -34,7 +34,6 @@ class UserSettings extends Component {
 
   componentDidMount() {
     get("/api/getthisuserinfo", {userId: this.props.userId}).then((userObj) => {
-      console.log(userObj);
       this.setState({
         firstName: userObj.firstName,
         lastName: userObj.lastName,
