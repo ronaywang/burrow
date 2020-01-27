@@ -52,7 +52,7 @@ class NavBar extends Component {
         <div className="NavBar-link" onClick={() => {
           navigate(`/profile/${userId}`, {replace: true});
         }}>account</div> 
-        <Link to="/inbox" className="NavBar-link">inbox</Link>
+        <Link to="/inbox/*" className="NavBar-link">inbox</Link>
         <div className="NavBar-link" onClick={this.props.handleLogout}>logout</div> 
        
       </div>
