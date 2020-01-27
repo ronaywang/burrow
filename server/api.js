@@ -299,7 +299,7 @@ router.get("/getthreads", async (req, res) => {
 router.get("/findthreadbyuser", async (req, res) => {
   const thisuserId = req.user._id;
   const otheruserId = req.query.userId;
-  const existingThread = await Thread.findOne({
+  let existingThread = await Thread.findOne({
     $or: [
       {
         sender_ID: thisuserId,
@@ -310,12 +310,12 @@ router.get("/findthreadbyuser", async (req, res) => {
         recipient_ID: thisuserId
       }
     ]
-  });
+  }).populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"});
   if (existingThread !== null) {
-    res.send({thread: existingThread.populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"})});
+    res.send({thread: existingThread});
     console.log(existingThread);
   } else {
-    const newThread = new Thread({
+    let newThread = new Thread({
       sender_ID: thisuserId,
       recipient_ID: otheruserId,
     });

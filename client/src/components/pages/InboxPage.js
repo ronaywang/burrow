@@ -76,6 +76,7 @@ class InboxPage extends Component{
     this.SetActiveThread = this.SetActiveThread.bind(this);
   }
 
+
   async componentDidMount() {
     let threadToMakeActive;
     if (_.has(this.props, 'userId')) {
@@ -106,19 +107,11 @@ class InboxPage extends Component{
         this.setState({activeThread: response.threads[0]});
       }
       const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
-      console.log(mresponse);
-      mresponse.messageList.forEach((mes)=>{
-        let displayedMessages = this.state.displayedMessages;
-        if(mes.sender_ID === userId) {
-          displayedMessages.push([mes.content, message_display.FROMME]);
-        } else {
-          displayedMessages.push([mes.content, message_display.FROMYOU]);
-        }
-        this.setState({displayedMessages: displayedMessages});
-        this.ChatGoToBottom();
-      });
+      this.setState({displayedMessages: mresponse.messageList});
+      this.ChatGoToBottom();
      }
   }
+
   makePopulatedThreadNice(thread) {
     let userIsSender;
     let nameToDisplay;
@@ -140,18 +133,9 @@ class InboxPage extends Component{
 
   async SetActiveThread(thread) {
     this.setState({activeThread: thread});
-    const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
-    console.log(mresponse);
-    mresponse.messageList.forEach((mes)=>{
-      let displayedMessages = [];
-      if(mes.sender_ID === this.state.userId) {
-        displayedMessages.push([mes.content, message_display.FROMME]);
-      } else {
-        displayedMessages.push([mes.content, message_display.FROMYOU]);
-      }
-      this.setState({displayedMessages: displayedMessages});
+      const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
+      this.setState({displayedMessages: mresponse.messageList});
       this.ChatGoToBottom();
-    });
   }
 
   ListingIdUpdate(event) {
@@ -176,14 +160,15 @@ class InboxPage extends Component{
     if(event.keyCode === 13 && event.shiftKey) { // add newline
 
     } else if (event.keyCode === 13) {
-      const typeOfMessage = (this.state.fromMe ? message_display.FROMME : message_display.FROMYOU);
-      this.state.displayedMessages.push([this.state.chatBoxContents, typeOfMessage]);
+      this.state.displayedMessages.push({
+        content: this.state.chatBoxContents,
+        sender_ID: this.state.userId,
+      });
       console.log(this.state.activeThread);
       post("/api/postmessage", {
         content: this.state.chatBoxContents,
         threadId: this.state.activeThread._id,
         timestamp: moment().toDate(),
-        listing_ID: this.state.prototypelistingId,
       }).then
       this.setState({
         lastMessageSubmitted: this.state.chatBoxContents,
@@ -230,21 +215,28 @@ class InboxPage extends Component{
           onChange={this.ListingIdUpdate}
           />
 
-        {this.state.threadsToDisplay.map((thread)=>{return (
+        {/*this.state.threadsToDisplay.map((thread)=>{return (
           <ThreadDisplay
           key={thread._id}
           thread={thread}
           userId={this.state.userId}
           setActiveThread={this.SetActiveThread}
           />
-        );})}
+        );})*/}
 
       </div>
 
       <div className="Chat-container">
         <div className="Chat-ChatBubblesContainer"
         id="ChatBubblesContainer">
-          {this.state.displayedMessages.map(makeMessageNice)}
+          {/*this.state.displayedMessages.map(makeMessageNice)*/}
+          {this.state.displayedMessages.map((message, i)=>{return (
+            <MessageDisplay
+              key={i}
+              message={message}
+              userId={this.state.userId}
+              />
+          );})}
         </div>
 
         <textarea
@@ -309,3 +301,35 @@ ThreadDisplay.propTypes = {
   userId: PropTypes.string.isRequired,
   setActiveThread: PropTypes.func,
 };
+
+class MessageDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fromme: false,
+    };
+  }
+
+  componentDidMount () {
+
+  }
+
+  render () {
+    let messageClassname = "ChatBubble-textContainer";
+    if (this.props.message.sender_ID === this.props.userId) {
+      messageClassname += " ChatBubble-textContainer-fromme";
+    } else {
+      messageClassname += " ChatBubble-textContainer-fromyou";
+    }
+    return (
+      <div className={messageClassname}>
+        {this.props.message.content}
+      </div>
+    );
+  }
+}
+
+MessageDisplay.propTypes = {
+  userId: PropTypes.string.isRequired,
+  message: PropTypes.object.isRequired
+}
