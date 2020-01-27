@@ -164,7 +164,6 @@ router.get("/sessionglobals", (req, res) => {
 
 router.post("/sessionglobals", (req, res) => {
   Object.assign(req.session.globals, req.body);
-  console.log(`New updated globals are ${JSON.stringify(req.session.globals)}`);
   res.send({});
 })
 

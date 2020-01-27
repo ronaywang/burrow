@@ -43,8 +43,7 @@ class PreferenceBar extends Component {
   update (price, startDate, durationIndex) {
     this.setState({
       price, startDate, durationIndex, 
-    });
-    this.pushToGlobals();
+    }, () => this.pushToGlobals());
   }
 
   render(){
