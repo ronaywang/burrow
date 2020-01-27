@@ -70,7 +70,7 @@ class PreferenceBar extends Component {
           />/month
         </div>
         <div className="PreferenceBar-dateContainer">
-          <input className = "moveindate"
+          <input className = "PreferenceBar-moveInDate"
             type="date"
             name="startdate"
             value={this.state.startDate}

@@ -17,15 +17,15 @@
 }
 
 .PreferenceBar-priceInput {
-    font-size: 80%;
-    font-family: "skolar-sans-latin";
+    font-size: 90%;
+    font-family: skolar-sans-latin;
     font-weight: 300;
     width: 6rem;
 }
 
 .PreferenceBar-dollarsign {
-    font-size: 80%;
-    font-family: "skolar-sans-latin";
+    font-size: 90%;
+    font-family: skolar-sans-latin;
     font-weight: 300
 }
 
@@ -42,7 +42,8 @@
 }
 
 
-.moveindate {
+.PreferenceBar-moveInDate {
+  font-weight: 300;
   width: 7.5rem;
   font-size: 90%;
 }
