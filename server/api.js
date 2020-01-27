@@ -315,13 +315,18 @@ router.get("/findthreadbyuser", async (req, res) => {
     res.send({thread: existingThread});
     console.log(existingThread);
   } else {
-    let newThread = new Thread({
-      sender_ID: thisuserId,
-      recipient_ID: otheruserId,
-    });
-    await newThread.save();
-    res.send({thread: newThread.populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"})});
-    console.log(newThread);
+    let doesUserExist = await User.findById(req.query.userId);
+    if (doesUserExist !== null) {
+      let newThread = new Thread({
+        sender_ID: thisuserId,
+        recipient_ID: otheruserId,
+      });
+      await newThread.save();
+      res.send({thread: newThread.populate({path: "sender_ID", select: "firstName lastName"}).populate({path: "recipient_ID", select: "firstName lastName"})});
+      console.log(newThread);
+    } else {
+      res.status(404).send(new Error("No such user."));
+    }
   }
 })
 
