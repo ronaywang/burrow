@@ -35,6 +35,7 @@ class InboxPage extends Component{
 
 
   async componentDidMount() {
+    document.body.classList.remove("SplashPage-body");
     let threadToMakeActive;
     if (has(this.props, 'userId')) {
       console.log("has userid!");

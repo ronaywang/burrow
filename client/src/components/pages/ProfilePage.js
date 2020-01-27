@@ -16,6 +16,10 @@ class ProfilePage extends Component {
     };
   }
 
+  componentDidMount () {
+    document.body.classList.remove("SplashPage-body");
+  }
+
   render() {
     let TabToDisplay;
     switch(this.state.tabIndex) {
