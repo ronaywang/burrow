@@ -150,7 +150,6 @@ class UserSettings extends Component {
               <div key={index} className="UserSettings-prefsDesciption">
                 <label>{prefsDescriptionArray[index]}</label>
             </div>
-              <div> 
                 <input key={index} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
                   onChange={(e) => { 
                     e.persist();
@@ -161,7 +160,6 @@ class UserSettings extends Component {
                     }, () => {console.log(this.state.prefsArray)}) 
                   }}  
                 />
-              </div>
           </div>
           ))}
     

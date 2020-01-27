@@ -163,9 +163,17 @@
 .UserSettings-prefsContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: stretch;
 
 }
+
+.UserSettings-prefsBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 .UserSettings-prefsSlider {
   -webkit-appearance: none;  /* Override default CSS styles */
