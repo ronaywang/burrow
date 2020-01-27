@@ -101,6 +101,10 @@
   border-radius: var(--m);
 }
 
+.ThreadDisplay-active {
+  background-color: var(--neutral6);
+}
+
 .ThreadDisplay-name {
   font-size: 120%;
   font-weight: 500;

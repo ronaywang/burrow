@@ -8,6 +8,18 @@ import "./InboxPage.css";
 import moment from "moment";
 const has = require("lodash/has");
 
+const findActiveThread = (activeThread_ID, threads) => {
+  if (threads.length === 0) {
+    return null;
+  }
+  for (let i = 0; i < threads.length; i++) {
+    if (threads[i]._id === activeThread_ID) {
+      return i;
+    }
+  }
+  return null;
+}
+
 class InboxPage extends Component{
   constructor(props) {
     super(props);
@@ -19,16 +31,14 @@ class InboxPage extends Component{
       lastMessageSubmitted: "",
       displayedMessages: [],
       threadsToDisplay: [],
-      activeThread: {},
-      fromMe: true, // development
-      prototypelistingId: "5e2b70d459cc704ca9adcf4c", // development
+      activeThreadIndex: 0,
+      chatDisabled: true,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
     this.SearchBoxUpdate = this.SearchBoxUpdate.bind(this);
     this.SearchBoxKey= this.SearchBoxKey.bind(this);
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
-    this.ToggleFromMe = this.ToggleFromMe.bind(this); // for development
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
     this.SetActiveThread = this.SetActiveThread.bind(this);
   }
@@ -36,16 +46,19 @@ class InboxPage extends Component{
 
   async componentDidMount() {
     document.body.classList.remove("SplashPage-body");
-    let threadToMakeActive;
+    let threadToMakeActive = null;
     if (has(this.props, 'userId')) {
       console.log("has userid!");
       console.log(this.props.userId);
-      const response = await get("/api/findthreadbyuser", {userId: this.props.userId});
-      console.log(response);
-      threadToMakeActive = response.thread;
+      if (this.props.userId !== "*") {
+        const response = await get("/api/findthreadbyuser", {userId: this.props.userId});
+        console.log(response);
+        threadToMakeActive = response.thread;
+        console.log(threadToMakeActive);
+      }
     } else {
       console.log("no userid.");
-      threadToMakeActive = 0;
+      threadToMakeActive = null;
     }
     console.log(threadToMakeActive);
 
@@ -55,25 +68,25 @@ class InboxPage extends Component{
     console.log(response);
     this.setState({threadsToDisplay: response.threads});
 
-
-
     if (response.threads.length > 0) {
-      if (threadToMakeActive !== 0) {
-        this.setState({activeThread: threadToMakeActive});
+      if (threadToMakeActive !== null) {
+        console.log(threadToMakeActive);
+        this.setState({activeThreadIndex: findActiveThread(threadToMakeActive._id, this.state.threadsToDisplay)});
+        this.SetActiveThread(this.state.activeThreadIndex);
       } else {
-        this.setState({activeThread: response.threads[0]});
+        this.SetActiveThread(0);
       }
-      const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
-      this.setState({displayedMessages: mresponse.messageList});
-      this.ChatGoToBottom();
-     }
+    }
   }
 
-  async SetActiveThread(thread) {
-    this.setState({activeThread: thread});
-      const mresponse = await get("/api/getmessages", {threadId: this.state.activeThread._id});
-      this.setState({displayedMessages: mresponse.messageList});
-      this.ChatGoToBottom();
+  async SetActiveThread(i) {
+    console.log(i);
+    this.setState({activeThreadIndex: i});
+    console.log(this.state.threadsToDisplay[i]);
+    this.setState({chatDisabled: false});
+    const mresponse = await get("/api/getmessages", {threadId: this.state.threadsToDisplay[i]._id});
+    this.setState({displayedMessages: mresponse.messageList});
+    this.ChatGoToBottom();
   }
 
 
@@ -81,10 +94,6 @@ class InboxPage extends Component{
    let element = document.getElementById("ChatBubblesContainer");
    element.scrollTop = element.scrollHeight - element.clientHeight;
   }
-
-  ToggleFromMe(event) {
-    this.setState({fromMe: !this.state.fromMe});
-  } // for development
 
   ChatBoxUpdate(event) {
     this.setState({chatBoxContents: event.target.value});
@@ -101,7 +110,7 @@ class InboxPage extends Component{
       console.log(this.state.activeThread);
       post("/api/postmessage", {
         content: this.state.chatBoxContents,
-        threadId: this.state.activeThread._id,
+        threadId: this.state.threadsToDisplay[this.state.activeThreadIndex]._id,
         timestamp: moment().toDate(),
       }).then
       this.setState({
@@ -141,9 +150,11 @@ class InboxPage extends Component{
         {this.state.threadsToDisplay.map((thread, i)=>{return (
           <ThreadDisplay
           key={i}
+          index={i}
           thread={thread}
           userId={this.state.userId}
           setActiveThread={this.SetActiveThread}
+          active={this.state.activeThreadIndex===i}
           />
         );})}
 
@@ -170,6 +181,7 @@ class InboxPage extends Component{
         value={this.state.chatBoxContents}
         onChange={this.ChatBoxUpdate}
         onKeyUp={this.ChatBoxKey}
+        disabled={this.state.chatDisabled}
         />
           <div className="Chat-howtosubmit">
             &#x21E7;+&#x23CE;&#x2000;to add newline{/* shift plus enter to add newline*/}
@@ -218,11 +230,14 @@ class ThreadDisplay extends Component {
     } else {
       nameToDisplay = JSON.stringify(displayid);
     }
-
+    let threadClassName = "ThreadDisplay-container";
+    if (this.props.active) {
+      threadClassName += " ThreadDisplay-active";
+    }
     return (
       <div
-      className="ThreadDisplay-container"
-      onClick={()=>this.props.setActiveThread(this.props.thread)}
+      className={threadClassName}
+      onClick={()=>this.props.setActiveThread(this.props.index)}
       >
         <div className="ThreadDisplay-name">
           {nameToDisplay}
@@ -236,6 +251,8 @@ ThreadDisplay.propTypes = {
   thread: PropTypes.object.isRequired,
   userId: PropTypes.string.isRequired,
   setActiveThread: PropTypes.func,
+  index: PropTypes.number.isRequired,
+  active: PropTypes.bool.isRequired,
 };
 
 class MessageDisplay extends PureComponent {
