@@ -58,13 +58,22 @@ class PreferenceBar extends Component {
     let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
     return (
       <div className="PreferenceBar-container">
-        <div className="PreferenceBar-price">
-          <input type="number" min="0" step="100" value={price} onChange={(e) => {
+        <span className="PreferenceBar-price" id="prefbarprice">
+          $<input
+            id="prefbarpriceinput"
+            type="number"
+            min="0"
+            step="100"
+            value={price}
+            onChange={(e) => {
               this.update(parseInt(e.target.value), startDate, durationIndex)
             }} 
-            className="PreferenceBar-priceInput" placeholder="Approximate budget" 
+            className="PreferenceBar-priceInput"
+            placeholder="Approximate budget" 
+            onFocus={()=>document.getElementById("prefbarprice").classList.add("PreferenceBar-pricefocus")}
+            onBlur={()=>document.getElementById("prefbarprice").classList.remove("PreferenceBar-pricefocus")}
         />
-        </div>
+        </span>
         <div className="PreferenceBar-dateContainer">
           <input className = "PreferenceBar-moveInDate"
             type="text"

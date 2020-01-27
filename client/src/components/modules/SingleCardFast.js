@@ -71,7 +71,7 @@ class SingleCardFast extends Component {
         </div>
           
         <div className="Card-toptopRight">
-          <Link to={"/inbox/"+this.props.listing.creator_ID._id}>Message me</Link>
+          <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
         </div>
         <div className="Card-horizontalLine"></div>
         

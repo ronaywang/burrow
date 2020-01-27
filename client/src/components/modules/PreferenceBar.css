@@ -29,8 +29,25 @@
     font-weight: 300
 }
 
+.PreferenceBar-price {
+  background-color: var(--neutral6);
+}
+
+.PreferenceBar-pricefocus {
+  outline: none;
+  border-bottom: 2px solid var(--primary5);
+  /*background-color: var(--primary6);*/
+  caret-color: var(--primary5);
+}
+
 .PreferenceBar-priceInput, .PreferenceBar-moveInDate {
   background-color: var(--neutral6);
+}
+
+#prefbarpriceinput {
+  outline: none;
+  border-bottom: none;
+  /*background-color: var(--primary6);*/
 }
 
 .PreferenceBar-gobutton{

@@ -107,15 +107,13 @@ class NewListing extends Component {
               <div className="NewListing-description">More about me . . .</div>
               <textarea  onChange={(e) => {this.setState({textBox: e.target.value})}} placeholder = "Use this space to tell potential roommates about who you are and who you're looking for!" className="NewListing-textBox" />
             </div>
-            <input
+            <button
               className="NewListing-submit"
-              type="submit"
-              value="Submit"
               onClick={(e) => {
                 e.preventDefault();
                 this.handleSubmit();
               }}
-            />
+            >submit</button>
           </div>
         </div>
       </div>
