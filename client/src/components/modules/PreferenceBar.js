@@ -17,8 +17,13 @@ class PreferenceBar extends Component {
   constructor(props){
     super(props);
     this.state = {
-      doDisplay: false
+      doDisplay: false,
+      startDate: new Date(),
+      price: 0,
+      durationIndex: 0,
     };
+    this.update = this.update.bind(this);
+    this.pushToGlobals = this.pushToGlobals.bind(this);
   }
 
   componentDidMount(){
@@ -28,15 +33,20 @@ class PreferenceBar extends Component {
       })
     });
   }
+
+  pushToGlobals () {
+    post("/api/sessionglobals", {
+        price: this.state.price,
+        startDate: this.state.startDate,
+        durationIndex: this.state.durationIndex
+      });
+  }
   
-  update = (price, startDate, durationIndex) => {
+  update (price, startDate, durationIndex) {
     this.setState({
       price, startDate, durationIndex, 
-    }, () => {
-      post("/api/sessionglobals", {
-        price, startDate, durationIndex
-      })
-    })
+    });
+    this.pushToGlobals();
   }
 
   render(){
@@ -71,9 +81,12 @@ class PreferenceBar extends Component {
           <div className="PreferenceBar-duration">
             {durationOptions.map((desc, i) => (
               <button
+              key={i}
               className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
-              onClick={(e)=>{this.update(price, e.target.value, (this.state.durationIndex !== i) ? i : -1)}}
-              >{desc}</button>
+              onClick={(e)=>{this.update(price, startDate, (this.state.durationIndex !== i) ? i : -1)}}
+              >
+              {desc}
+              </button>
             ))}
           </div>
         </div>

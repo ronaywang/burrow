@@ -27,9 +27,6 @@ const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 
 module.exports = {
-  optimization: {
-    minimize: true,
-  },
   entry: ["@babel/polyfill", entryFile],
   output: {
     path: outputDir,
@@ -76,7 +73,7 @@ module.exports = {
   resolve: {
     extensions: ["*", ".js", ".jsx"],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new MomentLocalesPlugin()],
+  plugins: [new webpack.HotModuleReplacementPlugin()],//, new MomentLocalesPlugin()],
   devServer: {
     historyApiFallback: true,
     contentBase: "./client/dist",
