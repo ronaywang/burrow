@@ -32,8 +32,6 @@ class InboxPage extends Component{
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
     this.ToggleFromMe = this.ToggleFromMe.bind(this); // for development
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
-    this.ListingIdUpdate = this.ListingIdUpdate.bind(this);
-    this.makePopulatedThreadNice = this.makePopulatedThreadNice.bind(this);
     this.SetActiveThread = this.SetActiveThread.bind(this);
   }
 
@@ -146,14 +144,14 @@ class InboxPage extends Component{
           onKeyDown={this.SearchBoxKey}
           />
 
-        {/*this.state.threadsToDisplay.map((thread)=>{return (
+        {this.state.threadsToDisplay.map((thread, i)=>{return (
           <ThreadDisplay
-          key={thread._id}
+          key={i}
           thread={thread}
           userId={this.state.userId}
           setActiveThread={this.SetActiveThread}
           />
-        );})*/}
+        );})}
 
       </div>
 
@@ -203,17 +201,34 @@ class ThreadDisplay extends Component {
     let userIsSender;
     let nameToDisplay;
     const thread = this.props.thread;
-    if (thread.sender_ID._id === this.props.userId) {
-      userIsSender = true;
-      nameToDisplay = thread.recipient_ID.firstName + " " + thread.recipient_ID.lastName;
+    let senderid;
+    let recipid;
+    if (_.has(thread.sender_ID, '_id')) {
+      senderid = thread.sender_ID._id;
     } else {
-      userIsSender = false;
-      nameToDisplay = thread.sender_ID.firstName + " " + thread.sender_ID.lastName;
+      senderid = thread.sender_ID;
     }
+
+    if (_.has(thread.recipient_ID, '_id')) {
+      recipid = thread.recipient_ID._id;
+    } else {
+      recipid = thread.recipient_ID;
+    }
+
+    userIsSender =  (this.props.userId === senderid);
+
+    const displayid = userIsSender ? thread.recipient_ID : thread.sender_ID;
+
+    if (_.has(displayid, 'firstName')) {
+      nameToDisplay = displayid.firstName;
+    } else {
+      nameToDisplay = JSON.stringify(displayid);
+    }
+
     return (
       <div
       className="ThreadDisplay-container"
-      onClick={()=>{this.props.setActiveThread(this.props.thread); console.log(this.props.thread);}}
+      onClick={()=>this.props.setActiveThread(this.props.thread)}
       >
         <div className="ThreadDisplay-name">
           {nameToDisplay}
@@ -229,7 +244,7 @@ ThreadDisplay.propTypes = {
   setActiveThread: PropTypes.func,
 };
 
-class MessageDisplay extends Component {
+class MessageDisplay extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -237,11 +252,7 @@ class MessageDisplay extends Component {
     };
   }
 
-  componentDidMount () {
-
-  }
-
-  render () {
+   render () {
     let messageClassname = "ChatBubble-textContainer";
     if (this.props.message.sender_ID === this.props.userId) {
       messageClassname += " ChatBubble-textContainer-fromme";
