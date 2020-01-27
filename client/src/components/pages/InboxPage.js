@@ -1,6 +1,5 @@
 import React, {Component, PureComponent} from "react";
 import PropTypes from "prop-types";
-import { message_display, listing_type } from "../modules/enums";
 import { get, post } from "../../utilities";
 import "../../utilities";
 import "../../utilities.css";
@@ -41,6 +40,7 @@ class InboxPage extends Component{
     this.ChatBoxKey = this.ChatBoxKey.bind(this);
     this.ChatGoToBottom = this.ChatGoToBottom.bind(this);
     this.SetActiveThread = this.SetActiveThread.bind(this);
+    this.GetActiveChatName = this.GetActiveChatName.bind(this);
   }
 
 
@@ -87,6 +87,23 @@ class InboxPage extends Component{
     const mresponse = await get("/api/getmessages", {threadId: this.state.threadsToDisplay[i]._id});
     this.setState({displayedMessages: mresponse.messageList});
     this.ChatGoToBottom();
+  }
+
+  GetActiveChatName() {
+    const i = this.state.activeThreadIndex;
+    console.log(this.state.threadsToDisplay);
+    if (i !== null && this.state.threadsToDisplay.length > 0 ) {
+      const thread = this.state.threadsToDisplay[i];
+      console.log(thread);
+      console.log(i);
+      if (this.state.userId === thread.recipient_ID._id && has(thread.sender_ID, 'firstName')) {
+        return thread.sender_ID.firstName;
+      } else if (this.state.userId === thread.sender_ID._id && has(thread. recipient_ID, 'firstName')) {
+        return thread.recipient_ID.firstName;
+      } else {
+        return thread._id;
+      }
+    }
   }
 
 
@@ -161,6 +178,9 @@ class InboxPage extends Component{
       </div>
 
       <div className="Chat-container">
+        <div className="Chat-ChatInfoContainer">
+          Chatting with {this.GetActiveChatName()}
+        </div>
         <div className="Chat-ChatBubblesContainer"
         id="ChatBubblesContainer">
           {/*this.state.displayedMessages.map(makeMessageNice)*/}

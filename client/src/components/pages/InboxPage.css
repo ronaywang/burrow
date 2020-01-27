@@ -93,20 +93,40 @@
   padding-bottom: 0.5rem;
 }
 
+.Chat-ChatInfoContainer {
+  text-align: center;
+  padding-bottom: 0.5rem;
+  padding-top: 0.3rem;
+  font-size: 110%;
+  font-weight: 300;
+  color: var(--primary2);
+  background-color: var(--primary6);
+}
+
 
 .ThreadDisplay-container {
   border: 2px solid #AAAAAA;
   margin: 0.3rem;
-  padding: 0.5rem;
-  border-radius: var(--m);
+  padding-top: 0.3rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border-radius: var(--xs);
+  color: var(--primary2);
+  background-color: var(--primary6);
+}
+
+.ThreadDisplay-container:hover {
+  color: var(--primary4);
+  background-color: white;
 }
 
 .ThreadDisplay-active {
-  background-color: var(--neutral6);
+  background-color: var(--primary7);
 }
 
 .ThreadDisplay-name {
   font-size: 120%;
-  font-weight: 500;
+  font-weight: 300;
   font-family: skolar-sans-latin-condensed;
 }
