@@ -86,6 +86,7 @@ body {
   margin: 0px;
   padding:0px; 
   font-family: "skolar-sans-latin", sans-serif;
+  font-size: 20px;
   font-weight: 300;
   line-height: 110%;
   color: var(--neutral1);

@@ -15,10 +15,6 @@
 }
 
 .SplashPage-body {
-  font-family: "skolar-sans-latin", sans-serif;
-  font-weight: 300;
-  line-height: 110%;
-  color: var(--neutral1);
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
