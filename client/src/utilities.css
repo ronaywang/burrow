@@ -57,6 +57,8 @@
   --neutral6: #E1E7EC;
   --neutral7: #F8F9FA;
 
+  --accent: #25BAB2;
+
 }
 
 /* width */
@@ -119,7 +121,9 @@ textarea {
   resize: none;
   height: 5em;
   width: 30em;
-  background: var(--neutral6);
+  background: var(--neutral7);
+  font-family: "skolar-sans-latin", sans-serif;
+  font-size: 90%;
 }
 
 
@@ -240,7 +244,7 @@ input:focus {
 textarea:focus {
   outline: none;
   caret-color: var(--primary5);
-  background-color: var(--primary6);
+  border-bottom: 2px solid var(--primary5);
 
 }
 

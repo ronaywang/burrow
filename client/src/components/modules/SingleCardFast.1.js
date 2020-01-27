@@ -7,9 +7,9 @@ import { formatDate, calculateAge, get, post } from "../../utilities";
 
 class SingleCardFast extends Component {
   static genderColorDict = {
-    'm': 'Card-blue',
-    'f': 'Card-pink',
-    'nb': 'Card-purple'
+    'Male': 'Card-blue',
+    'Female': 'Card-pink',
+    'Non-binary': 'Card-purple'
   };
 
   constructor(props) {
@@ -18,7 +18,7 @@ class SingleCardFast extends Component {
       expanded: false,
       name: "",
       age: 0,
-      gender: "m",
+      gender: "",
       location: "",
       startDate: new Date(),
       endDate: new Date(),
