@@ -136,7 +136,6 @@
   align-self: center;
 }
 
-/* The slider itself */
 .UserSettings-prefsSlider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
@@ -146,13 +145,16 @@
   background-color: var(--neutral6);
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .2s;
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
 }
 
 /* Mouse-over effects */
 .UserSettings-prefsSlider:hover {
   opacity: 1; /* Fully shown on mouse-over */
+}
+
+.UserSettings-prefsSlider:focus {
   border-bottom: none;
 }
 
@@ -165,7 +167,6 @@
   border-radius: 50%;
   background: var(--primary5); 
   cursor: pointer; /* Cursor on hover */
-  border-bottom: none;
 }
 
 .UserSettings-prefsSlider::-moz-range-thumb {

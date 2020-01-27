@@ -59,6 +59,7 @@ class SplashPage extends Component {
     );
 
     return (
+      /*<body className = "splashbody">*/
       <div className="SplashPage-container">
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
@@ -101,6 +102,7 @@ class SplashPage extends Component {
             }}>Go!</button>
         </div>
       </div>
+    /*</body>*/
     );
   }
 }

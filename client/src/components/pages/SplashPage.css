@@ -14,6 +14,20 @@
     border: var(--borders);
 }
 
+/*.splashbody {
+  font-family: "skolar-sans-latin", sans-serif;
+  font-weight: 300;
+  line-height: 110%;
+  color: var(--neutral1);
+  background-color: var(--primary7);
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  background-clip: content-box;
+  background: url("/nycbackgroundwithbunnies.svg") no-repeat bottom center fixed;
+}
+*/
 .SplashPage-infoContainer {
     display: flex;
     align-items: center;

@@ -83,13 +83,13 @@
 
 
 body {
-  margin: 0;
+  margin: 0px;
+  padding:0px; 
   font-family: "skolar-sans-latin", sans-serif;
   font-weight: 300;
   line-height: 110%;
   color: var(--neutral1);
-  /*background: url("/nycbackground2.svg") no-repeat bottom center fixed;*/
-  background: url("/nycbackgroundwithbunnies.svg") no-repeat bottom center fixed;
+  background: url("/nycbackground2.svg") no-repeat bottom center fixed;
   background-color: var(--primary7);
   -webkit-background-size: contain;
   -moz-background-size: contain;
