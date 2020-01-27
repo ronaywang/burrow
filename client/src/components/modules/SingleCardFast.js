@@ -5,6 +5,7 @@ import "../../utilities";
 import "./SingleCard.css";
 import { formatDate, calculateAge, get, post } from "../../utilities";
 import { duration } from "../../../../node_modules/moment";
+import { Link } from "@reach/router";
 
 
 class SingleCardFast extends Component {
@@ -69,7 +70,9 @@ class SingleCardFast extends Component {
           <span className="Card-flag">{location}</span> &bull;
         </div>
           
-        <div className="Card-topRight"></div>
+        <div className="Card-topRight">
+          <Link to={"/inbox/"+this.props.listing.creator_ID._id}>Message me</Link>
+        </div>
         <div className="Card-horizontalLine"></div>
         
         <div className="Card-textBox">{additionalText}</div>
