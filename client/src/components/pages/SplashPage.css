@@ -71,17 +71,10 @@
     margin: var(--inputmargins);
 }
 
-.SplashPage-tagline {
-    font-size: 200%;
-}
 .SplashPage-taglineContainer {
   width: auto;
 }
 
-.SplashPage-rentinput {
-    font-size: 110%;
-    max-width: auto;
-}
 
 .SplashPage-listingtypebutton {
   font-size: 120%;
@@ -99,20 +92,4 @@
 
 .SplashPage-listingtypebuttonactive {
   background-color: #475716;
-}
-
-.RoomToggle.react-toggle--checked .react-toggle-track {
-    background-color: darkgray;
-}
-
-.RoomToggle.react-toggle .react-toggle-track {
-    background-color: darkgray;
-}
-
-.RoomToggle.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: #000000;
-}
-
-.RoomToggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: #000000;
 }
