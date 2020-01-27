@@ -17,7 +17,7 @@ class UserSettings extends Component {
       birthdate: undefined,
       age: 0,
       email: '',
-      fbProfileLink: '',
+      /*fbProfileLink: '',*/
       datefocused: false,
       textBox: '',
       gender: '',
@@ -40,7 +40,7 @@ class UserSettings extends Component {
         email: userObj.email,
         birthdate: userObj.birthdate,
         age: userObj.age,
-        fbProfileLink: userObj.fbProfileLink,
+        /*fbProfileLink: userObj.fbProfileLink,*/
         gender: userObj.gender,
         textBox: userObj.aboutMe,
         userId: userObj._id,
@@ -165,7 +165,7 @@ class UserSettings extends Component {
           </div>
           ))}
     
-        {isYou ? (
+        {/*{isYou ? (
           <div>
             <span className="pro-fieldname">Link your FB profile</span>
             <input
@@ -181,7 +181,7 @@ class UserSettings extends Component {
               <div className="UserSettings-value">{this.state.fbProfileLink}</div>
             </div>
           )
-        )}
+          )} i feel bad commenting all this out but i think for now it's best to get rid of it*/}
         
         {isYou ? (
           <div>
@@ -190,7 +190,7 @@ class UserSettings extends Component {
           </div>
         ) : (
           <div>
-            <div className="UserSettings-description">About me</div>
+            <div className="UserSettings-description"></div>
             <div className="UserSettings-value">{this.state.textBox.trim().length === 0 ? "This user has not filled out their profile yet!" : 
             this.state.textBox}</div>
           </div>

@@ -76,7 +76,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary5); 
+  background: var(--primary3); 
 }
 
 
@@ -115,10 +115,11 @@ a {
 }
 
 textarea {
-  border: var(--borders);
+  border: none;
   resize: none;
   height: 5em;
   width: 30em;
+  background: var(--neutral6);
 }
 
 
@@ -232,13 +233,14 @@ button:focus, .u-button:hover {
 input:focus {
   outline: none;
   border-bottom: 2px solid var(--primary5);
+  background-color: var(--primary7);
   caret-color: var(--primary5);
 }
 
 textarea:focus {
   outline: none;
-  border: 2px solid var(--primary5);
   caret-color: var(--primary5);
+  background-color: var(--primary6);
 
 }
 
