@@ -191,9 +191,9 @@ h1 {
 
 
 input {
-    background: transparent;
+    background-color: var(--neutral7);
     border: none;
-    border-bottom: 1px solid var(--neutral5);
+    /*border-bottom: 1px solid var(--neutral5);*/
     width: 200px;
     padding: 0.3rem;
     /*margin: var(--margins); commented this out because it was messing with alignment*/
@@ -233,7 +233,7 @@ button:focus, .u-button:hover {
 input:focus {
   outline: none;
   border-bottom: 2px solid var(--primary5);
-  background-color: var(--primary7);
+  /*background-color: var(--primary6);*/
   caret-color: var(--primary5);
 }
 
