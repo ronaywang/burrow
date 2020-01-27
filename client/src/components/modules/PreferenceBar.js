@@ -48,7 +48,7 @@ class PreferenceBar extends Component {
         price, startDate, durationIndex
       }
     } = this;
-    let durationOptions = ["1-3 mos.", "3-6 mos.", "6-12 mos.", ">12 mos."];
+    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
     return (
       <div className="PreferenceBar-container">
         <div className="PreferenceBar-price">
@@ -61,7 +61,7 @@ class PreferenceBar extends Component {
           />/month
         </div>
         <div className="PreferenceBar-dateContainer">
-          <input
+          <input className = "moveindate"
             type="date"
             name="startdate"
             value={this.state.startDate}
@@ -69,11 +69,10 @@ class PreferenceBar extends Component {
           />
         </div>
         <div className="PreferenceBar-durationContainer">
-          Duration of stay:
           <div className="PreferenceBar-duration">
             {durationOptions.map((desc, i) => (
               <button
-              className={this.state.durationIndex !== i ? "PreferenceBar-durationButton" : "PreferenceBar-durationButton PreferenceBar-durationSelect"}
+              className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
               onClick={(e)=>{this.update(price, e.target.value, (this.state.durationIndex !== i) ? i : -1)}}
               >{desc}</button>
             ))}

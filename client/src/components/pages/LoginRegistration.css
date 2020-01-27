@@ -1,7 +1,4 @@
-h1 {
-  font-weight: 500;
-  font-size: 120%;
-}
+
 .title {
     margin: 0.5em auto;
 }
@@ -75,12 +72,12 @@ h1 {
 
 
 
-::-webkit-inner-spin-button {
+.inputbirthdate::-webkit-inner-spin-button {
   -webkit-appearance: none;
   display: none;
 }
 
-input[type=date]::-webkit-calendar-picker-indicator {
+.inputbirthdate::-webkit-calendar-picker-indicator {
   -webkit-appearance: none;
   display: none;
 }
@@ -90,6 +87,7 @@ select {
   -moz-appearance: button;
   -webkit-user-select: none;
   -moz-user-select: none;
+  -webkit-border-radius: 0px;
   background-color: var(--neutral7); /* Fallback color if gradients are not supported */
   /*background-image: url(../images/select-arrow.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); For Chrome and Safari 
   background-image: url(../images/select-arrow.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); For old Firefox (3.6 to 15) 
@@ -110,7 +108,7 @@ select {
 
 select:focus {
   outline: none;
-  border-bottom: 1px solid var(--primary5);
+  border-bottom: 2px solid var(--primary5);
 }
 
 /* NOT ADDING ICONS FOR NOW

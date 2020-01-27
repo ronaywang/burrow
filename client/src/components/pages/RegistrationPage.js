@@ -15,8 +15,7 @@ class RegistrationPage extends Component {
       gender: '',
       password: '',
       verifypassword: '',
-      
-      buttontext: 'Register',
+      buttontext: "register",
       failed: false,
       succeeded: false,
       mustfillfields: false,
@@ -190,7 +189,6 @@ handleSubmit = (event) => {
               }
             </div>
             <button
-              className = "u-button" 
               type="submit"
               onClick={this.handleSubmit}>
               {this.state.buttontext}</button>

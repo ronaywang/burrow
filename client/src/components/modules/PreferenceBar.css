@@ -17,36 +17,18 @@
 }
 
 .PreferenceBar-priceInput {
-    font-size: 90%;
+    font-size: 80%;
     font-family: "skolar-sans-latin";
     font-weight: 300;
     width: 6rem;
 }
 
 .PreferenceBar-dollarsign {
-    font-size: 90%;
+    font-size: 80%;
     font-family: "skolar-sans-latin";
     font-weight: 300
 }
 
-.PreferenceBar-durationButton{
-  margin: 0rem 0 0 0;
-  border-radius: 1px;
-  border: 1px solid var(--primary4);
-  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
-  color: var(--primary4);
-  background-color: white;
-  font-size: 90%;
-  letter-spacing: 0.02em;
-}
-.PreferenceBar-durationButton:hover{
-  color: white;
-}
-
-.PreferenceBar-durationSelect{
-  color: white !important;
-  background-color: var(--primary4) !important;
-}
 
 .PreferenceBar-gobutton{
   background-color: var(--primary4);
@@ -57,4 +39,23 @@
 }
 .PreferenceBar-gobutton:active {
   background-color: var(--primary6);
+}
+
+
+.moveindate {
+  width: 7.5rem;
+  font-size: 90%;
+}
+
+
+.moveindate::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+.moveindate::-webkit-datetime-edit-day-field[aria-valuetext=blank],
+.moveindate::-webkit-datetime-edit-month-field[aria-valuetext=blank],
+.moveindate::-webkit-datetime-edit-year-field[aria-valuetext=blank]
+{
+  color: #999;
 }

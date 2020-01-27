@@ -11,9 +11,9 @@ class LoginPage extends Component {
     this.state = {
       email: '',
       password: '',
-      buttontext: 'Log in',
       failed: false,
-      succeeded: false
+      succeeded: false,
+      buttontext: "login"
     }
   }
 
@@ -86,10 +86,9 @@ handleSubmit = (event) => {
                 onChange={this.p_handleChange}
               />
             </label>
-            <input
-              className="u-button"
-              type="submit"
-              value={this.state.buttontext}/>
+            <button
+              type="submit" onClick={this.handleSubmit}>
+                {this.state.buttontext}</button>
           </form>
         </div>
       );
