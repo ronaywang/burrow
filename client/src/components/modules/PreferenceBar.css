@@ -29,6 +29,9 @@
     font-weight: 300
 }
 
+.PreferenceBar-priceInput, .PreferenceBar-moveInDate {
+  background-color: var(--neutral6);
+}
 
 .PreferenceBar-gobutton{
   background-color: var(--primary4);

@@ -59,18 +59,18 @@ class PreferenceBar extends Component {
     return (
       <div className="PreferenceBar-container">
         <div className="PreferenceBar-price">
-          Budget:
-          <span className="PreferenceBar-dollarsign"> $</span>
           <input type="number" min="0" step="100" value={price} onChange={(e) => {
               this.update(parseInt(e.target.value), startDate, durationIndex)
             }} 
-            className="PreferenceBar-priceInput" placeholder="Enter approximate budget..." 
-          />/month
+            className="PreferenceBar-priceInput" placeholder="Approximate budget" 
+        />
         </div>
         <div className="PreferenceBar-dateContainer">
           <input className = "PreferenceBar-moveInDate"
-            type="date"
-            name="startdate"
+            type="text"
+            placeholder = "Move-in date" 
+            onfocus="(this.type='date')" 
+            name="startdate" 
             value={this.state.startDate}
             onChange={(e) => this.update(price, e.target.value, durationIndex)}
           />

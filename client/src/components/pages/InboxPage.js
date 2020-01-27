@@ -200,7 +200,7 @@ class InboxPage extends Component{
 
       <div className="Chat-container">
         <div className="Chat-ChatInfoContainer">
-          Chatting with&nbsp;
+          chatting with&nbsp;
           <Link to={"/profile/" + this.GetActiveChatUID()}>
           {this.GetActiveChatName()}
           </Link>
@@ -227,8 +227,8 @@ class InboxPage extends Component{
         onKeyUp={this.ChatBoxKey}
         disabled={this.state.chatDisabled}
         />
-          <div className="Chat-howtosubmit">
-            &#x21E7;+&#x23CE;&#x2000;to add newline{/* shift plus enter to add newline*/}
+          {/*<div className="Chat-howtosubmit">
+            &#x21E7;+&#x23CE;&#x2000;to add newline{ shift plus enter to add newline*/}
           </div>
         </div>
     </div>
