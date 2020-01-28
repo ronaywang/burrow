@@ -5,6 +5,7 @@ import "../pages/ProfilePage.css";
 import { get, post } from "../../utilities";
 import { genders} from "./enums";
 import "./ProfilePicUploader.css";
+import ListingsFast from "./ListingsFast";
 
 const axios = require("axios");
 
@@ -20,13 +21,14 @@ class UserSettings extends Component {
       /*fbProfileLink: '',*/
       datefocused: false,
       textBox: '',
-      genderOptions: 0,
+      gender: '',
       doRender: false,
       profilePicURL: "",
       prefsArray: [1,1,3,1,1],
       isYou: false,
       savedSettings: false,
       uploading: false,
+      usersListings: [],
     };
     this.saveSettings = this.saveSettings.bind(this);
   }
@@ -45,16 +47,12 @@ class UserSettings extends Component {
         userId: userObj._id,
         profilePicURL: userObj.profilePictureURL,
         isYou: userObj.isYou,
-        prefsArray: userObj.prefsArray
+        prefsArray: userObj.prefsArray,
+        doRender: true,
+      }, () => {
+        get("/api/composedlistings", {userId: this.props.userId})
+        .then(data=>this.setState({usersListings: data.listings}));
       });
-      if (this.state.gender === genders.M) {
-        this.setState({gender: "Male"});
-      } else if (this.state.gender === genders.F) {
-        this.setState({gender: "Female"});
-      } else if (this.state.gender === genders.NB) {
-        this.setState({gender: "Non-binary"});
-      }
-      this.setState({doRender: true});
     })
   }
 
@@ -96,7 +94,6 @@ class UserSettings extends Component {
     const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
     const prefsDisagreeArray = ["no pets", "messy", "reserved", "don't smoke", "early bird"];
-    let genderOptions = ["male", "female", "non-binary"]
     const prefsAgreeArray = ["multiple pets", "neat", "outgoing", "frequently smoke", "night owl"];
     console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
     return (
@@ -129,7 +126,7 @@ class UserSettings extends Component {
 
             <div className="UserSettings-personalInfoBlock UserSettings-personalInfoGender">
               <div className="UserSettings-description">Gender</div>
-              <div className="UserSettings-value">{genderOptions[this.state.gender]}</div>
+              <div className="UserSettings-value">{this.state.gender}</div>
             </div>
 
             {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
@@ -145,6 +142,30 @@ class UserSettings extends Component {
           </div>
         </div>
       </div>
+      <div className="TabToDisplay-container">
+        {isYou ? (
+          <div>
+            <h1 className="Profile-header">about yourself</h1>
+              <textarea className="UserSettings-textbox" rows="10"placeholder = "Add some personality to your profile" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+          </div>
+        ) : (
+          <div>
+            <h1 className="Profile-header">About {this.state.firstName}</h1>
+            <div className="UserSettings-value">{this.state.textBox.trim().length === 0 ? "This user has not filled out their profile yet!" : 
+            this.state.textBox}</div>
+          </div>
+        )}
+        {isYou ? (
+          <div className="UserSettings-save">
+            <button id="savebutton"
+            name="Save!"
+            onClick={this.saveSettings}>Save!</button>
+            <span className="UserSettings-saveSuccess">
+              {this.state.savedSettings ? "Settings successfully saved" : null}
+            </span>
+          </div>
+        ) : null}
+        </div>
 
       <div className="TabToDisplay-container">
 
@@ -190,72 +211,16 @@ class UserSettings extends Component {
                       />
               ))}
               </div>
-{/*            {this.state.prefsArray.map((pref, index) => (
-              <div key={index+100} className="UserSettings-prefsBlock">
-                <div key={index+200} className="UserSettings-prefsDesciption">
-                  <label>{prefsDescriptionArray[index]}</label>
-                </div>
-                <div key={index+300} className="UserSettings-prefsSliderContainer">
-            <span className="UserSettings-prefsDisagree">{prefsDisagreeArray[index]}</span>
-                  <input key={index+400} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
-                    onChange={(e) => { 
-                      e.persist();
-                      this.setState((prev) => {
-                        let arr = prev.prefsArray;
-                        arr[index] = parseInt(e.target.value);
-                        return {prefsArray: arr};
-                      }, () => {console.log(this.state.prefsArray)}) 
-                    }}  
-                  />
-                  <span className="UserSettings-prefsAgree">{prefsAgreeArray[index]}</span>
-                </div>
-            </div>
-                  ))}
-                  */}
-          </div>
-        {/*{isYou ? (
-          <div>
-            <span className="pro-fieldname">Link your FB profile</span>
-            <input
-            type="text"
-            name="fblink"
-            value={this.state.fbProfileLink}
-            onChange={(event)=>{this.setState({fbProfileLink: event.target.value})}}/>
-          </div>
-        ) : (p
-          this.state.fbProfileLink.trim().length === 0 ? null : (
-            <div>
-              <div className="UserSettings-description">Facebook</div>
-              <div className="UserSettings-value">{this.state.fbProfileLink}</div>
-            </div>
-          )
-          )} i feel bad commenting all this out but i think for now it's best to get rid of it*/}
-        <div className="UserSettings-aboutMe">
-        {isYou ? (
-          <div>
-            <div className="UserSettings-description">Tell us about yourself!</div>
-              <textarea className="UserSettings-textbox" rows="10"placeholder = "Add some personality to your profile" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
-          </div>
-        ) : (
-          <div>
-            <div className="UserSettings-description"></div>
-            <div className="UserSettings-value">{this.state.textBox.trim().length === 0 ? "This user has not filled out their profile yet!" : 
-            this.state.textBox}</div>
-          </div>
-        )}
-        {isYou ? (
-          <div className="UserSettings-save">
-            <button id="savebutton"
-            name="Save!"
-            onClick={this.saveSettings}>Save!</button>
-            <span className="UserSettings-saveSuccess">
-              {this.state.savedSettings ? "Settings successfully saved" : null}
-            </span>
-          </div>
-        ) : null}
+            </div>   
         </div>
       </div>
-    </div>
+      <div className="TabToDisplay-container">
+        <h1 className = "Profile-header">your listings</h1>
+        {(this.state.usersListings.length === 0) ? <div className="TabToDisplay-container">
+          No listings yet!
+          <img src = "/sad bunny.png" width = "30%"/>
+        </div> : <ListingsFast displayedListings={this.state.usersListings} editDeletePerms={this.state.isYou}/>}
+      </div>
     </div>
     );
   }

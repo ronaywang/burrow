@@ -87,6 +87,19 @@ class PreferenceBar extends Component {
           />
         </div>
         <div className="PreferenceBar-durationContainer">
+          <div className="PreferenceBar-duration">
+            {durationOptions.map((desc, i) => (
+              <button
+              key={i}
+              className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
+              onClick={(e)=>{this.update(price, startDate, (this.state.durationIndex !== i) ? i : -1)}}
+              >
+              {desc}
+              </button>
+            ))}
+          </div>
+        </div>
+        {/* <div className="PreferenceBar-durationContainer">
           <label className = "PreferenceBar-durationDropDown">
             <select className = "dropbtn"  
             value = {this.state.durationIndex}
@@ -98,7 +111,7 @@ class PreferenceBar extends Component {
               <option value = {3}>&gt;1 year</option>
             </select>
           </label>
-        </div>
+            </div> */}
         <div>
           <button className="PreferenceBar-gobutton" onClick={() => this.props.triggerSearch()}>search</button>
         </div>

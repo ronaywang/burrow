@@ -12,7 +12,7 @@ class RegistrationPage extends Component {
       firstName: '',
       lastName: '',
       birthdate: undefined,
-      gender: -1,
+      gender: '',
       password: '',
       verifypassword: '',
       buttontext: "register",
@@ -52,7 +52,7 @@ g_handleChange = (event) => {
 
 handleSubmit = (event) => {
   event.preventDefault();
-  if (this.state.gender === -1 || this.state.birthdate === undefined || this.state.email === '' || this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.verifypassword !== this.state.password) {
+  if (this.state.gender === '' || this.state.birthdate === undefined || this.state.email === '' || this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.verifypassword !== this.state.password) {
     this.setState({mustfillfields: true});
     return;
   }
@@ -139,6 +139,7 @@ handleSubmit = (event) => {
               />
             </label>
             </div>
+          <div className="inputinline">
           <label className = "Reg-input">
             <span className="fieldname">Birthdate</span>
               <input className = "inputbirthdate"
@@ -150,15 +151,17 @@ handleSubmit = (event) => {
           </label>
           <label className = "Reg-input">
             <span className="fieldname">Gender</span>
-            <div>
-                {gender.map((desc, i) => (
-                  <button
-                  className={this.state.gender !== i ? "durationButton" : "durationButton durationSelect"}
-                  onClick={()=>{this.setState({gender: i})}}
-                  >{desc}</button>
-                  ))}
-                  </div>
-         </label>       
+              <select className = "dropbtn" 
+              name = "gender" 
+              value = {this.state.gender}
+              onChange={this.g_handleChange}>
+                <option value="" disabled selected>choose . . .</option>
+                <option value = "Male">male</option>
+                <option value = "Female">female</option>
+                <option value = "Non-binary">non-binary</option>
+              </select>
+            </label>
+          </div>      
             <label className = "Reg-input">
               <span className="fieldname">Password</span>
               <input className = "inputTextField"
