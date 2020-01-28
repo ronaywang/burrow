@@ -289,3 +289,9 @@ button:hover, .u-button:hover {
   font-family: "skolar-sans-latin", sans-serif;
   font-weight: 300;
 }
+
+#root {
+  width:  100%;
+  overflow: auto;
+  box-sizing: border-box;
+}
