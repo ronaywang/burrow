@@ -43,8 +43,7 @@ class PreferenceBar extends Component {
   update (price, startDate, durationIndex) {
     this.setState({
       price, startDate, durationIndex, 
-    });
-    this.pushToGlobals();
+    }, () => this.pushToGlobals());
   }
 
   render(){
@@ -56,6 +55,7 @@ class PreferenceBar extends Component {
       }
     } = this;
     let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
+    const today = new Date();
     return (
       <div className="PreferenceBar-container">
         <span className="PreferenceBar-price" id="prefbarprice">
@@ -81,6 +81,7 @@ class PreferenceBar extends Component {
             placeholder = "Move-in date"
             name="startdate" 
             value={this.state.startDate}
+            min={today.toISOString().split("T")[0]}
             onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
             onChange={(e) => this.update(price, e.target.value, durationIndex)}
           />
@@ -100,7 +101,7 @@ class PreferenceBar extends Component {
           </label>
         </div>
         <div>
-          <button className="PreferenceBar-gobutton" onClick={this.props.triggerSearch}>search</button>
+          <button className="PreferenceBar-gobutton" onClick={() => this.props.triggerSearch()}>search</button>
         </div>
       </div>
     ) 

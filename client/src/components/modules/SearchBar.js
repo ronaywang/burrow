@@ -189,27 +189,30 @@ class GoogleSearchBar extends Component {
   }
   
   handlePlaceSelect () {
+    if (this.state.query.length === 0)
+      this.props.updateQuery(this.state.query, {lat: 0, lng: 0});
+    else {
+      // Extract City From Address Object
+      const addressObject = this.autocomplete.getPlace();
+      const address = addressObject.address_components;
 
-    // Extract City From Address Object
-    const addressObject = this.autocomplete.getPlace();
-    const address = addressObject.address_components;
-
-    // Check if address is valid
-    if (address) {
-      // Set State
-      this.setState(
-        {
-          place: address[0].long_name,
-          query: addressObject.formatted_address,
-          center: {
-            lat: addressObject.geometry.location.lat(),
-            lng: addressObject.geometry.location.lng()
-          },
-        }
-      , () => {
-        // this.props.setSelectedCenter(this.state.center);
-        this.props.updateQuery(this.state.query, this.state.center);
-      });
+      // Check if address is valid
+      if (address) {
+        // Set State
+        this.setState(
+          {
+            place: address[0].long_name,
+            query: addressObject.formatted_address,
+            center: {
+              lat: addressObject.geometry.location.lat(),
+              lng: addressObject.geometry.location.lng()
+            },
+          }
+        , () => {
+          // this.props.setSelectedCenter(this.state.center);
+          this.props.updateQuery(this.state.query, this.state.center);
+        });
+      }
     }
   }
 
@@ -226,6 +229,10 @@ class GoogleSearchBar extends Component {
             this.setState({query: e.target.value})
           }}
           value={this.state.query}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && e.target.value.trim().length === 0)
+              this.handlePlaceSelect();
+          }}
           className={`${this.props.styleName}-search`}
         />
       </div>

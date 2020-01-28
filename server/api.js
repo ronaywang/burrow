@@ -85,6 +85,7 @@ router.post("/editlisting", (req, res) => {
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.post("/matchinglistings", (req, res) => {
   var prefs = req.body;
+  console.log(JSON.stringify(prefs));
   const priceMargin = 500; // USD
   const maxDistance = 10; // miles
   let userQuery = { $ne: prefs.userId };
@@ -96,6 +97,8 @@ router.post("/matchinglistings", (req, res) => {
     query['creator_ID'] = userQuery;
   if (prefs.price !== 0)
     query['price'] = priceQuery;
+  if (prefs.durationIndex !== -1)
+    query['durationIndex'] = prefs.durationIndex;
   
   console.log(query);
   Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
@@ -161,7 +164,6 @@ router.get("/sessionglobals", (req, res) => {
 
 router.post("/sessionglobals", (req, res) => {
   Object.assign(req.session.globals, req.body);
-  console.log(`New updated globals are ${JSON.stringify(req.session.globals)}`);
   res.send({});
 })
 
@@ -226,6 +228,7 @@ router.post("/saveusersettings", async (req, res) => {
   if (req.body.textBox !== '') {
     myUser.aboutMe = req.body.textBox;
   }
+  myUser.prefsArray = req.body.prefsArray;
   await myUser.save();
   res.status(200).send({});
 });

@@ -245,6 +245,13 @@
   cursor: pointer; /* Cursor on hover */
 }
 
+.UserSettings-prefsSliderContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .UserSettings-aboutMe{
   margin: 2rem 0rem 0rem 0rem;
   display: flex;
