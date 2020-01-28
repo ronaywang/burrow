@@ -7,6 +7,7 @@ import PreferenceBar from "../modules/PreferenceBar";
 import ListingsFast from "../modules/ListingsFast";
 import MapComponent from "../modules/Map";
 import { get, post } from "../../utilities";
+const has = require("lodash/has");
 
 const isUndefined = require("lodash/isUndefined");
 
@@ -70,7 +71,7 @@ class MainPage extends Component{
             <MapComponent
               initialCenter={locationCtr}
               initialZoom={11}
-              markers={this.state.listingsToDisplay.filter(l=>!l.hasOwnProperty('coordinates')).map(l => l.coordinates)}
+              markers={this.state.listingsToDisplay.filter(l=>has(l, 'coordinates')).map(l => l.coordinates)}
             />
           </div>
         </div>
