@@ -33,6 +33,7 @@ class InboxPage extends Component{
       displayedMessages: [],
       threadsToDisplay: [],
       activeThreadIndex: 0,
+      noThreads: true,
       chatDisabled: true,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -64,7 +65,7 @@ class InboxPage extends Component{
     const uidresponse = await get("/api/myuid");
     this.setState({userId: uidresponse.userId});
     const response = await get("/api/getthreads");
-    this.setState({threadsToDisplay: response.threads});
+    this.setState({threadsToDisplay: response.threads, noThreads: response.threads.length === 0});
 
     if (response.threads.length > 0) {
       if (threadToMakeActive !== null) {
@@ -177,40 +178,50 @@ class InboxPage extends Component{
     return (
     <div className="InboxPage-SuperContainer">
       <div className="InboxPage-container">
-        <div>
-          <div className="Messages-container">
-            {/*<input className="MessageSearch"
-              type="text"
-              placeholder="Search messages..."
-              value={this.state.searchBoxContents}
-              onChange={this.SearchBoxUpdate}
-              onKeyDown={this.SearchBoxKey}
-        /> */}
+        {!this.state.noThreads && (
+          <div>
+            <div className="Messages-container">
+              {/*<input className="MessageSearch"
+                type="text"
+                placeholder="Search messages..."
+                value={this.state.searchBoxContents}
+                onChange={this.SearchBoxUpdate}
+                onKeyDown={this.SearchBoxKey}
+          /> */}
 
-            <div className="Chat-ChatBoxHeader">
-              <h1 className="Chat-ChatBoxHeaderText">people</h1>
+              <div className="Chat-ChatBoxHeader">
+                <h1 className="Chat-ChatBoxHeaderText">people</h1>
+              </div>
+              {this.state.threadsToDisplay.map((thread, i)=>{return (
+                <ThreadDisplay
+                key={i}
+                index={i}
+                thread={thread}
+                userId={this.state.userId}
+                setActiveThread={this.SetActiveThread}
+                active={this.state.activeThreadIndex===i}
+                />
+              );})}
+
             </div>
-            {this.state.threadsToDisplay.map((thread, i)=>{return (
-              <ThreadDisplay
-              key={i}
-              index={i}
-              thread={thread}
-              userId={this.state.userId}
-              setActiveThread={this.SetActiveThread}
-              active={this.state.activeThreadIndex===i}
-              />
-            );})}
-
           </div>
-        </div>
+        )}
+        
 
         <div className="Chat-container">
+          {this.state.noThreads ? (
+          <div className="Chat-ChatInfoContainer">
+            Nobody yet! 
+          </div>
+          ) : (
           <div className="Chat-ChatInfoContainer">
             chatting with&nbsp;
             <Link to={"/profile/" + this.GetActiveChatUID()}>
             {this.GetActiveChatName()}
             </Link>
           </div>
+          )}
+          
           <div className="Chat-ChatBubblesContainer"
           id="ChatBubblesContainer">
             {/*this.state.displayedMessages.map(makeMessageNice)*/}
