@@ -6,8 +6,7 @@ import { get, post } from "../../utilities";
 import { genders} from "./enums";
 import "./ProfilePicUploader.css";
 import ListingsFast from "./ListingsFast";
-
-const axios = require("axios");
+import axios from 'axios';
 
 class UserSettings extends Component {
   constructor(props) {
@@ -107,7 +106,7 @@ class UserSettings extends Component {
           <div className="UserSettings-photoContainer">
             <div className="UserSettings-photoUploadContainer">
             <img className ="UserSettings-photo" 
-              src={this.state.profilePicURL || require("../../public/assets/account.png")}
+              src={this.state.profilePicURL || "/account.png"}
             />
             {this.state.uploading ? 
               <span className ="UserSettings-uploading">uploading...</span>

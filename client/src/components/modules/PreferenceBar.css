@@ -35,6 +35,8 @@
   color: var(--neutral3);
   width: 7rem;
   flex-shrink: 0;
+
+  font-size: 90%;
 }
 
 #moveindatepicker:before {
@@ -62,6 +64,8 @@
   border-bottom: none;
   padding: 0;
   width: 2.5rem;
+
+  font-size: 90%;
   /*background-color: var(--primary6);*/
 }
 
@@ -101,4 +105,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.PreferenceBar-durationButton {
+  background-color: var(--neutral6);
 }

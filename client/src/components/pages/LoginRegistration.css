@@ -75,6 +75,14 @@
   font-size: 90%;
 }
 
+.validemail:focus {
+  border-bottom: 2px solid green;
+}
+
+.invalidemail, .invalidemail:focus {
+  border-bottom: 2px solid red;
+}
+
 
 
 .inputbirthdate::-webkit-inner-spin-button {
