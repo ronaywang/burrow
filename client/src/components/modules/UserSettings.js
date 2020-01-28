@@ -98,8 +98,8 @@ class UserSettings extends Component {
 
     const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
-    const prefsDisagreeArray = ["No pets", "I love the second law of thermodynamics", "I fukn hate ppl", "Don't smoke", "I wake up at noon"];
-    const prefsAgreeArray = ["Multiple pets", "Neat freak", "I luv ppl", "I smoke every day", "I get up at 5 am"];
+    const prefsDisagreeArray = ["No pets", "messy", "fukn hate ppl", "Don't smoke", "wake up at noon"];
+    const prefsAgreeArray = ["Multiple pets", "Neat freak", "luv ppl", "smoke every day", "get up at 5 am"];
     console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
     return (
       <div>
@@ -154,9 +154,45 @@ class UserSettings extends Component {
           <div className="UserSettings-moreContainer">
             <div className="UserSettings-prefsContainer">
               <div className="UserSettings-prefsGrid">
+                {this.state.prefsArray.map((pref, index) => (
+                  <label
+                    style={{gridRowStart: 1+2*index, gridRowEnd: 2+2*index, gridColumnStart: 2, gridColumnEnd: 3}}
+                  >{prefsDescriptionArray[index]}</label>
+                ))}
 
+                {this.state.prefsArray.map((pref, index) => (
+                  <span className="UserSettings-prefsDisagree"
+                    style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 1, gridColumnEnd: 2}}
+                  >{prefsDisagreeArray[index]}</span>
+                ))}
+
+                {this.state.prefsArray.map((pref, index) => (
+                  <span className="UserSettings-prefsAgree"
+                    style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 3, gridColumnEnd: 4}}
+                  >{prefsAgreeArray[index]}</span>
+                ))}
+                  {this.state.prefsArray.map((pref, index) => (
+                      <input
+                      key={index+400}
+                      className="UserSettings-prefsSlider"
+                      disabled={!isYou}
+                      type="range"
+                      min="1"
+                      max="3"
+                      value={pref}
+                      style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 2, gridColumnEnd: 3}}
+                      onChange={(e) => { 
+                          e.persist();
+                          this.setState((prev) => {
+                            let arr = prev.prefsArray;
+                            arr[index] = parseInt(e.target.value);
+                            return {prefsArray: arr};
+                          }, () => {console.log(this.state.prefsArray)}) 
+                        }}  
+                      />
+              ))}
               </div>
-            {this.state.prefsArray.map((pref, index) => (
+{/*            {this.state.prefsArray.map((pref, index) => (
               <div key={index+100} className="UserSettings-prefsBlock">
                 <div key={index+200} className="UserSettings-prefsDesciption">
                   <label>{prefsDescriptionArray[index]}</label>
@@ -176,7 +212,8 @@ class UserSettings extends Component {
                   <span className="UserSettings-prefsAgree">{prefsAgreeArray[index]}</span>
                 </div>
             </div>
-            ))}
+                  ))}
+                  */}
           </div>
         {/*{isYou ? (
           <div>

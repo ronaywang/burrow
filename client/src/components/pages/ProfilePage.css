@@ -180,7 +180,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: stretch;
+  justify-content: center;
 }
 
 .UserSettings-prefsBlock {
@@ -294,5 +294,9 @@
 .UserSettings-prefsGrid {
   display: grid;
   grid-template-columns: 20% 40% 20%;
-  grid-template-rows: repeat(5, 1.5rem);
+  grid-template-rows: repeat(10, 1.5rem);
+  align-items: center;
+  justify-items: center;
+  justify-content: space-evenly;
+  width: 100%;
 }
