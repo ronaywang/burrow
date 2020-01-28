@@ -35,6 +35,7 @@ class InboxPage extends Component{
       activeThreadIndex: 0,
       noThreads: true,
       chatDisabled: true,
+      pageLoaded: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
@@ -76,6 +77,7 @@ class InboxPage extends Component{
       }
       socket.on("message", this.NewMessageHandler); 
     }
+    this.setState({pageLoaded: true});
   }
 
   NewMessageHandler(data) {
@@ -131,8 +133,10 @@ class InboxPage extends Component{
 
 
   ChatGoToBottom() {
-   let element = document.getElementById("ChatBubblesContainer");
-   element.scrollTop = element.scrollHeight - element.clientHeight;
+    if (this.state.pageLoaded) {
+      let element = document.getElementById("ChatBubblesContainer");
+      element.scrollTop = element.scrollHeight - element.clientHeight;
+    }
   }
 
   ChatBoxUpdate(event) {
