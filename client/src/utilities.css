@@ -92,7 +92,7 @@ body {
   font-weight: 300;
   line-height: 110%;
   color: var(--neutral1);
-  background: url("/nycbackground2.svg") no-repeat bottom center fixed;
+  background: url("/nycbackground2.png") no-repeat bottom center fixed;
   background-color: var(--accent7);
   -webkit-background-size: contain;
   -moz-background-size: contain;
