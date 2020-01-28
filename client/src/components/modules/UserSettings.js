@@ -152,13 +152,13 @@ class UserSettings extends Component {
           <div className="UserSettings-moreContainer">
             <div className="UserSettings-prefsContainer">
             {this.state.prefsArray.map((pref, index) => (
-              <div key={index} className="UserSettings-prefsBlock">
-                <div key={index} className="UserSettings-prefsDesciption">
+              <div key={index+100} className="UserSettings-prefsBlock">
+                <div key={index+200} className="UserSettings-prefsDesciption">
                   <label>{prefsDescriptionArray[index]}</label>
                 </div>
-                <div key={index} className="UserSettings-prefsSliderContainer">
+                <div key={index+300} className="UserSettings-prefsSliderContainer">
                   <span className="UserSettings-prefsDisagree">Disagree</span>
-                  <input key={index} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
+                  <input key={index+400} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
                     onChange={(e) => { 
                       e.persist();
                       this.setState((prev) => {

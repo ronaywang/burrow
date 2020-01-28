@@ -19,7 +19,7 @@
   -o-background-size: contain;
   background-size: contain;
   background-clip: content-box;
-  background: var(--primary7) url("/nycbackgroundwithbunnies.svg") no-repeat bottom center fixed;
+  background: var(--accent7) url("/nycbackgroundwithbunnies.svg") no-repeat bottom center fixed;
 }
 
 .SplashPage-infoContainer {
