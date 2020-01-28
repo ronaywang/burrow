@@ -118,6 +118,7 @@ class UserSettings extends Component {
             </div>
             <input className="upload-btn-wrapper" id="uploadphoto" type="file" name="file" accept="image/*" onChange={this.handleChange}/>
           </div>
+          <div className = "UserSettings-personalInfoBlock-container">
           <div className="UserSettings-personalInfoBlock UserSettings-personalInfoName">
             <div className="UserSettings-description">Name</div>
             <div className="UserSettings-value">{`${this.state.firstName} ${this.state.lastName}`}</div>
@@ -128,14 +129,17 @@ class UserSettings extends Component {
             <div className="UserSettings-value">{this.state.gender}</div>
           </div>
 
+          <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
+            <div className="UserSettings-description">{isYou ? "Date Of Birth" : "Age"}</div>
+            <div className="UserSettings-value">{isYou ? new Date(this.state.birthdate).toLocaleDateString() : this.state.age}</div>
+          </div>
+
           {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
             <div className="UserSettings-description">E-mail</div>
             <div className="UserSettings-value">{`${this.state.email}`}</div>
           </div> : null}
           
-          <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
-            <div className="UserSettings-description">{isYou ? "Date Of Birth" : "Age"}</div>
-            <div className="UserSettings-value">{isYou ? new Date(this.state.birthdate).toLocaleDateString() : this.state.age}</div>
+          
           </div>
           <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAbout">
             <div className="UserSettings-description">About Yourself</div>
@@ -150,7 +154,7 @@ class UserSettings extends Component {
             
           </div>
           {isYou ? (
-            <button className="UserSettings-personalInfoEdit" onClick={() => {
+            <button className="UserSettings-personalInfoEdit"  onClick={() => {
               if (!this.state.editMode)
                 this.setState({editMode: true});
               else

@@ -165,6 +165,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 100%;
+  font-family: "skolar-sans-latin", sans-serif;
 }
 
 h1 {
@@ -283,4 +284,7 @@ button:hover, .u-button:hover {
 
 ::placeholder {
   color: var(--neutral3);
+  font-size: 90%;
+  font-family: "skolar-sans-latin", sans-serif;
+  font-weight: 300;
 }

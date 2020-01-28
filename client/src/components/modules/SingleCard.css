@@ -61,7 +61,7 @@
 
 .Card-profilePic {
   border-radius: 10em;
-  padding: var(--s);
+  margin: var(--m);
   max-width: 3rem;
   object-fit: cover;
   width: 3rem;
