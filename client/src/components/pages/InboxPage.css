@@ -11,14 +11,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: stretch;
   height: auto;
   flex: 1 1 auto;
   border: var(--borders);
   margin-right: 2rem;
-  background-color: white;
+  padding: 0;
   width: auto;
-  
+  background-color: white;
 }
 
 .Chat-container {
@@ -111,15 +111,22 @@
 
 
 .ThreadDisplay-container {
-  margin: var(--xs);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--xs);
+  margin-bottom: var(--xs);
+  margin-left: var(--m);
+  margin-right: var(--m);
   border-radius: var(--borderradius);
-  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   color: var(--primary3);
   background-color: var(--neutral6);
   font-size: 80%;
   letter-spacing: 0.02em;
   border: none;
-  width: 3rem;
+  width: 5rem;
 }
 
 .ThreadDisplay-container:hover {
@@ -134,15 +141,35 @@
 
 .ThreadDisplay-name {
   text-align: center;
-  font-size: 100%;
+  font-size: 120%;
   font-weight: 300;
   font-family: skolar-sans-latin;
 }
 
 .Chat-ChatBoxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   font-size: 120%;
   text-align: center;
-  padding: 0.5rem;
   color: var(--primary7);
   background-color: var(--primary3);
+}
+
+.Chat-ChatBoxHeaderText {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+
+.ThreadDisplay-photo {
+  --avatarSize: 2rem;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 1rem;
+  width: var(--avatarSize);
+  height: var(--avatarSize);
 }

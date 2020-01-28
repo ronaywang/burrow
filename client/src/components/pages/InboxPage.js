@@ -187,7 +187,7 @@ class InboxPage extends Component{
       /> */}
 
           <div className="Chat-ChatBoxHeader">
-            People
+            <span className="Chat-ChatBoxHeaderText">People</span>
           </div>
           {this.state.threadsToDisplay.map((thread, i)=>{return (
             <ThreadDisplay
@@ -250,9 +250,13 @@ export default InboxPage;
 class ThreadDisplay extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      nametoDisplay: "",
+      photoURL: "",
+    };
   }
 
-  render() {
+  componentDidMount() {
     let userIsSender;
     let nameToDisplay;
     const thread = this.props.thread;
@@ -279,6 +283,17 @@ class ThreadDisplay extends Component {
     } else {
       nameToDisplay = JSON.stringify(displayid);
     }
+    this.setState({nameToDisplay: nameToDisplay});
+
+    post("/api/getProfilePic", {userId: displayid}).then((response) => {
+      this.setState({photoURL: response.photoURL});
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  render() {
+    
     let threadClassName = "ThreadDisplay-container";
     if (this.props.active) {
       threadClassName += " ThreadDisplay-active";
@@ -288,8 +303,9 @@ class ThreadDisplay extends Component {
       className={threadClassName}
       onClick={()=>this.props.setActiveThread(this.props.index)}
       >
+        <img className="ThreadDisplay-photo" src={this.state.photoURL || require("../../public/assets/account.png")}/>
         <div className="ThreadDisplay-name">
-          {nameToDisplay}
+          {this.state.nameToDisplay}
         </div>
       </div>
     );
