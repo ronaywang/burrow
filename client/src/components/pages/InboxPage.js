@@ -176,26 +176,31 @@ class InboxPage extends Component{
   render() {
     return (
     <div className="InboxPage-container">
-      <div className="Messages-container">
-        <input className="MessageSearch"
-          type="text"
-          placeholder="Search messages..."
-          value={this.state.searchBoxContents}
-          onChange={this.SearchBoxUpdate}
-          onKeyDown={this.SearchBoxKey}
-          />
+      <div>
+        <div className="Messages-container">
+          {/*<input className="MessageSearch"
+            type="text"
+            placeholder="Search messages..."
+            value={this.state.searchBoxContents}
+            onChange={this.SearchBoxUpdate}
+            onKeyDown={this.SearchBoxKey}
+      /> */}
 
-        {this.state.threadsToDisplay.map((thread, i)=>{return (
-          <ThreadDisplay
-          key={i}
-          index={i}
-          thread={thread}
-          userId={this.state.userId}
-          setActiveThread={this.SetActiveThread}
-          active={this.state.activeThreadIndex===i}
-          />
-        );})}
+          <div className="Chat-ChatBoxHeader">
+            People
+          </div>
+          {this.state.threadsToDisplay.map((thread, i)=>{return (
+            <ThreadDisplay
+            key={i}
+            index={i}
+            thread={thread}
+            userId={this.state.userId}
+            setActiveThread={this.SetActiveThread}
+            active={this.state.activeThreadIndex===i}
+            />
+          );})}
 
+        </div>
       </div>
 
       <div className="Chat-container">

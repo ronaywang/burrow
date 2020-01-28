@@ -96,8 +96,10 @@ class UserSettings extends Component {
       return null;
     const {isYou} = this.state;
 
-    let prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
+    const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
+    const prefsDisagreeArray = ["no pets", "messy", "reserved", "don't smoke", "early bird"];
+    const prefsAgreeArray = ["multiple pets", "neat", "outgoing", "frequently smoke", "night owl"];
     console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
     return (
       <div>
@@ -151,13 +153,52 @@ class UserSettings extends Component {
       <h1 className = "Profile-header">more about you</h1>
           <div className="UserSettings-moreContainer">
             <div className="UserSettings-prefsContainer">
-            {this.state.prefsArray.map((pref, index) => (
+              <div className="UserSettings-prefsGrid">
+                {/*this.state.prefsArray.map((pref, index) => (
+                  <label
+                    style={{gridRowStart: 1+2*index, gridRowEnd: 2+2*index, gridColumnStart: 2, gridColumnEnd: 3}}
+                  >{prefsDescriptionArray[index]}</label>
+                ))*/}
+
+                {this.state.prefsArray.map((pref, index) => (
+                  <span className="UserSettings-prefsDisagree"
+                    style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 1, gridColumnEnd: 2}}
+                  >{prefsDisagreeArray[index]}</span>
+                ))}
+
+                {this.state.prefsArray.map((pref, index) => (
+                  <span className="UserSettings-prefsAgree"
+                    style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 3, gridColumnEnd: 4}}
+                  >{prefsAgreeArray[index]}</span>
+                ))}
+                  {this.state.prefsArray.map((pref, index) => (
+                      <input
+                      key={index+400}
+                      className="UserSettings-prefsSlider"
+                      disabled={!isYou}
+                      type="range"
+                      min="1"
+                      max="3"
+                      value={pref}
+                      style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 2, gridColumnEnd: 3}}
+                      onChange={(e) => { 
+                          e.persist();
+                          this.setState((prev) => {
+                            let arr = prev.prefsArray;
+                            arr[index] = parseInt(e.target.value);
+                            return {prefsArray: arr};
+                          }, () => {console.log(this.state.prefsArray)}) 
+                        }}  
+                      />
+              ))}
+              </div>
+{/*            {this.state.prefsArray.map((pref, index) => (
               <div key={index+100} className="UserSettings-prefsBlock">
                 <div key={index+200} className="UserSettings-prefsDesciption">
                   <label>{prefsDescriptionArray[index]}</label>
                 </div>
                 <div key={index+300} className="UserSettings-prefsSliderContainer">
-                  <span className="UserSettings-prefsDisagree">Disagree</span>
+            <span className="UserSettings-prefsDisagree">{prefsDisagreeArray[index]}</span>
                   <input key={index+400} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
                     onChange={(e) => { 
                       e.persist();
@@ -168,10 +209,11 @@ class UserSettings extends Component {
                       }, () => {console.log(this.state.prefsArray)}) 
                     }}  
                   />
-                  <span className="UserSettings-prefsAgree">Agree</span>
+                  <span className="UserSettings-prefsAgree">{prefsAgreeArray[index]}</span>
                 </div>
             </div>
-            ))}
+                  ))}
+                  */}
           </div>
         {/*{isYou ? (
           <div>
