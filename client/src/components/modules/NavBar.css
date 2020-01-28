@@ -37,7 +37,6 @@
 .NavBar-search {
   background: var(--neutral7);
   border: none;
-  border-bottom: 1px solid var(--neutral5);
   border-radius: 3px;
   font-weight: 300;
 }
