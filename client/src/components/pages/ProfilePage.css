@@ -118,6 +118,9 @@
   background-color: var(--neutral6);
   padding: 0.3rem;
   border-radius: 0.1rem;
+  font-weight: 300;
+  color: var(--neutral1);
+  line-height: 110%;
 }
 
 .ProfileBar-tabContainer{
@@ -324,4 +327,25 @@
   justify-items: center;
   justify-content: space-evenly;
   width: 100%;
+}
+
+
+/* width */
+.UserSettings-textbox::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.UserSettings-textbox::-webkit-scrollbar-track {
+  background: var(--accent7); 
+}
+ 
+/* Handle */
+.UserSettings-textbox::-webkit-scrollbar-thumb {
+  background: var(--accent5); 
+}
+
+/* Handle on hover */
+ .UserSettings-textbox::-webkit-scrollbar-thumb:hover {
+  background: var(--accent4); 
 }
