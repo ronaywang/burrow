@@ -14,11 +14,11 @@
 
 }
 .error{
-    color: #ff0051;
+    color: var(--error);
 }
 
 .approval{
-  color: #00bf5c;
+  color: var(--approval);
 }
 
 .submit{
@@ -28,7 +28,7 @@
 
 
 .warning {
-  color: #ff0051;
+  color: var(--error);
   font-weight: 700;
   padding: 10px;
   margin: 10px;
@@ -76,11 +76,11 @@
 }
 
 .validemail:focus {
-  border-bottom: 2px solid green;
+  border-bottom: 2px solid var(--approval);
 }
 
 .invalidemail, .invalidemail:focus {
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid var(--error);
 }
 
 
@@ -124,40 +124,3 @@ select:focus {
   border-bottom: 2px solid var(--primary5);
 }
 
-/* NOT ADDING ICONS FOR NOW
-.mail-icon {
-  color: #000;
-  position: absolute;
-  margin-left: 2px;
-  margin-top: 4px;
-  width: 15px;
-  height: 10px;
-  border-radius: 1px;
-  border: solid 1px currentColor;
-}
-.mail-icon:before {
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: -4px;
-  width: 1px;
-  height: 10px;
-  background-color: currentColor;
-  -webkit-transform-origin: bottom;
-          transform-origin: bottom;
-  -webkit-transform: rotate(-54deg);
-          transform: rotate(-54deg);
-}
-.mail-icon:after {
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: -4px;
-  width: 1px;
-  height: 10px;
-  background-color: currentColor;
-  -webkit-transform-origin: bottom;
-          transform-origin: bottom;
-  -webkit-transform: rotate(54deg);
-          transform: rotate(54deg);
-}*/
