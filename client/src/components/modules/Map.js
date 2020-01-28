@@ -15,6 +15,7 @@ class MapComponent extends Component {
       marker: undefined,
       markersLoaded: false,
       markerObjArray: [],
+      infoWindowsArray: [],
     };
   }
 
@@ -38,7 +39,11 @@ class MapComponent extends Component {
       }
       if (!this.state.markersLoaded && this.props.markers) {
         this.props.markers.forEach((markerloc)=> {
-          this.state.markerObjArray.push(new google.maps.Marker({position: markerloc, map: this.state.map}));
+          var marker = new google.maps.Marker({position: markerloc.coordinates, title: markerloc.markertitle, map: this.state.map});
+          var infowindow = new google.maps.InfoWindow({content: markerloc.markertitle});
+          marker.addListener('click', ()=>{infowindow.open(this.state.map, marker);});
+          this.state.markerObjArray.push(marker);
+          this.state.infoWindowsArray.push(infowindow);
         })
       }
     }

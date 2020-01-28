@@ -71,7 +71,7 @@ class MainPage extends Component{
             <MapComponent
               initialCenter={locationCtr}
               initialZoom={11}
-              markers={this.state.listingsToDisplay.filter(l=>has(l, 'coordinates')).map(l => l.coordinates)}
+              markers={this.state.listingsToDisplay.filter(l=>has(l, 'coordinates')).map(l => {return {coordinates: l.coordinates, markertitle: l.location};})}
             />
           </div>
         </div>
