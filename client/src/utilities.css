@@ -57,6 +57,9 @@
   --neutral6: #E1E7EC;
   --neutral7: #F8F9FA;
 
+  --error: #ff0051;
+  --approval: #00bf5c;
+
 }
 
 /* width */
