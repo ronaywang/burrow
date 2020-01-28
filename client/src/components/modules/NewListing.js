@@ -19,17 +19,11 @@ class NewListing extends Component {
       price: 0,
       textBox: "",
       success: false,
-      userId: "",
       doRender: false,
     };
   }
 
-  async componentDidMount() {
-    await get("/api/myuid").then((response) => {
-      if (response.userId) 
-        this.setState({ userId: response.userId });
-      }
-    );
+  componentDidMount() {
     if (this.props.currentId !== "") {
       get("/api/listing", {listingId: this.props.currentId})
         .then((info) => {
@@ -65,7 +59,12 @@ class NewListing extends Component {
     };
     post("/api/listing", listingInfo)
       .then(this.setState({success: true}, () => {
-        setTimeout(() => {this.props.close(); navigate(`/profile/${this.state.userId}`, {tabIndex: 1, replace: False})}, 750);
+        setTimeout(() => {
+          this.props.close();
+          if (this.props.userId !== ""){ 
+            navigate(`/profile/${this.props.userId}`, {replace: False});
+          }
+        }, 750);
       })
     );
   }

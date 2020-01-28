@@ -7,6 +7,8 @@ import { genders} from "./enums";
 import "./ProfilePicUploader.css";
 import ListingsFast from "./ListingsFast";
 import axios from 'axios';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 class UserSettings extends Component {
   constructor(props) {
@@ -34,6 +36,10 @@ class UserSettings extends Component {
   }
 
   componentDidMount() {
+    this.getListings();
+  }
+
+  getListings = () => {
     get("/api/getthisuserinfo", {userId: this.props.userId}).then((userObj) => {
       this.setState({
         firstName: userObj.firstName,
@@ -61,10 +67,8 @@ class UserSettings extends Component {
   };
 
   doUploadPic = async (file) => {
-
     let formData = new FormData();
     formData.append('photo', file);
-
     const uploadRes = await axios.post("/api/newProfilePic", formData);
     console.log(JSON.stringify(uploadRes));
     setTimeout(() => {
@@ -75,7 +79,6 @@ class UserSettings extends Component {
     }, 1000);
     this.setState({ uploading: true });
   };
-
 
   async saveSettings () {
     console.log(this.state);
@@ -90,12 +93,9 @@ class UserSettings extends Component {
     if (!this.state.doRender)
       return null;
     const {isYou, editMode} = this.state;
-
-    const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
-                                  "I smoke frequently.", "I am an early bird."];
     const prefsDisagreeArray = ["no pets", "messy", "reserved", "don't smoke", "early bird"];
     const prefsAgreeArray = ["multiple pets", "neat", "outgoing", "frequently smoke", "night owl"];
-    console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
+    console.log(`SRC ${this.state.src}`);
     return (
       <div className="Profile-container">
       <div className="TabToDisplay-container">
@@ -208,7 +208,8 @@ class UserSettings extends Component {
             </div>   
         </div>
       </div>
-      <ListingsFast styleName="UserSettings" displayedListings={this.state.usersListings} editDeletePerms={this.state.isYou}/>
+      <ListingsFast
+        styleName="UserSettings" displayedListings={this.state.usersListings} editDeletePerms={this.state.isYou}/>
     </div>
     );
   }

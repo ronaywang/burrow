@@ -86,7 +86,7 @@ router.post("/listing", (req, res) => {
           additionalPrefText: req.body.additionalPrefText,
         },
       }
-    ).then(() => {res.send(newListing.creator_ID)});
+    ).then(() => {res.send({})});
   }
   else {
     let newListing = new Listing(req.body);
