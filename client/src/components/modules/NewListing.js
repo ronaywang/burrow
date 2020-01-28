@@ -67,6 +67,7 @@ class NewListing extends Component {
 
   render(){
     let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
+    const today = new Date();
     if (this.state.success){
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
     }
@@ -88,20 +89,40 @@ class NewListing extends Component {
                 updateQuery={(newquery, newcenter)=>{this.setState({locationcenter: newcenter, locationquery: newquery});}}
               />
             </div>
-            <div className="NewListing-dateContainer">
+          <div className="NewListing-dateContainer">
               <div className="NewListing-description">
                 My move-in date is approximately . . .
               </div>
-              <div className="NewListing-locationInput">
-                <input className = "inputbirthdate"
-                  type="date"
-                  name="birthdate"
-                  value={this.state.startDate}
-                  onChange={(e) => {this.setState({startDate: e.target.value})}}
-                />
+          <input className = "NewListing-moveInDate NewListing-dateinvisible"
+            id="moveindatepicker"
+            type="date"
+            placeholder = "move-in date"
+            name="startdate" 
+            value={this.state.startDate}
+            min={today.toISOString().split("T")[0]}
+            onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
+            onChange={(e) => {this.setState({startDate: e.target.value})}}
+          />
+        </div>
+            
+            <div className="NewListing-priceContainer">
+              <div className="NewListing-description">
+                My budget is approximately . . .
               </div>
-            </div>
-            <div className="NewListing-durationContainer">
+            <span className="NewListing-price" id="prefbarprice">
+          $&nbsp;<input
+            id="prefbarpriceinput"
+            type="number"
+            min="0"
+            step="100"
+            onChange={(e) => {this.setState({price: e.target.value})}} 
+            className="NewListing-priceInput"
+            placeholder="budget" 
+            onFocus={()=>document.getElementById("prefbarprice").classList.add("NewListing-pricefocus")}
+            onBlur={()=>document.getElementById("prefbarprice").classList.remove("NewListing-pricefocus")}
+        />/month
+        </span>
+        <div className="NewListing-durationContainer">
               <div className="NewListing-description">
                 I'll be staying for . . .
               </div>
@@ -114,13 +135,7 @@ class NewListing extends Component {
                 ))}
               </div>
             </div>
-            <div className="NewListing-priceContainer">
-              <div className="NewListing-description">
-                My budget is approximately . . .
-              </div>
-              $<input type="number" min="0" step="100" onChange={(e) => {this.setState({price: e.target.value})}} 
-                className="NewListing-priceInput" />/month
-            </div>
+
             <div className="NewListing-textBoxContainer">
               <div className="NewListing-description">More about me . . .</div>
               <textarea  
@@ -140,6 +155,7 @@ class NewListing extends Component {
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }
