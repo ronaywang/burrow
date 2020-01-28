@@ -173,7 +173,7 @@
 .UserSettings-prefsContainer {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   justify-content: stretch;
 }
 
@@ -283,4 +283,10 @@
   text-transform: lowercase;
   color: green;
   margin: 0rem 0rem 0.3rem 0rem;
+}
+
+.UserSettings-prefsGrid {
+  display: grid;
+  grid-template-columns: 20% 40% 20%;
+  grid-template-rows: repeat(5, 1.5rem);
 }

@@ -92,8 +92,10 @@ class UserSettings extends Component {
       return null;
     const {isYou} = this.state;
 
-    let prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
+    const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
+    const prefsDisagreeArray = ["No pets", "I love the second law of thermodynamics", "I fukn hate ppl", "Don't smoke", "I wake up at noon"];
+    const prefsAgreeArray = ["Multiple pets", "Neat freak", "I luv ppl", "I smoke every day", "I get up at 5 am"];
     return (
       <div>
       <div className="TabToDisplay-container">
@@ -143,13 +145,16 @@ class UserSettings extends Component {
       <h1 className = "Profile-header">more about you</h1>
           <div className="UserSettings-moreContainer">
             <div className="UserSettings-prefsContainer">
+              <div className="UserSettings-prefsGrid">
+
+              </div>
             {this.state.prefsArray.map((pref, index) => (
               <div key={index+100} className="UserSettings-prefsBlock">
                 <div key={index+200} className="UserSettings-prefsDesciption">
                   <label>{prefsDescriptionArray[index]}</label>
                 </div>
                 <div key={index+300} className="UserSettings-prefsSliderContainer">
-                  <span className="UserSettings-prefsDisagree">Disagree</span>
+            <span className="UserSettings-prefsDisagree">{prefsDisagreeArray[index]}</span>
                   <input key={index+400} className="UserSettings-prefsSlider" disabled={!isYou} type="range" min="1" max="3" value={pref} 
                     onChange={(e) => { 
                       e.persist();
@@ -160,7 +165,7 @@ class UserSettings extends Component {
                       }, () => {console.log(this.state.prefsArray)}) 
                     }}  
                   />
-                  <span className="UserSettings-prefsAgree">Agree</span>
+                  <span className="UserSettings-prefsAgree">{prefsAgreeArray[index]}</span>
                 </div>
             </div>
             ))}
