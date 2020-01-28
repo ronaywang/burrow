@@ -84,7 +84,8 @@ class SingleCardFast extends Component {
                   modal trigger={
                     <img src = "/edit.svg" width = "15px" />
                  }>
-                   {close => (<NewListing key={this.props.listing._id} currentId={this.props.listing._id} close={close}/>) }
+                   {close => (<NewListing 
+                    key={this.props.listing._id} userId="" currentId={this.props.listing._id} close={close}/>) }
                  </Popup>) : 
                 (<Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>)
               }

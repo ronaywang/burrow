@@ -32,18 +32,21 @@ class PreferenceBar extends Component {
     });
   }
 
-  pushToGlobals () {
+  pushToGlobals (trigger) {
     post("/api/sessionglobals", {
         price: this.state.price,
         startDate: this.state.startDate,
         durationIndex: this.state.durationIndex
-      });
+    }).then(() => {
+      if (trigger)
+        this.props.triggerSearch();
+    });
   }
   
-  update (price, startDate, durationIndex) {
+  update (price, startDate, durationIndex, trigger) {
     this.setState({
       price, startDate, durationIndex, 
-    }, () => this.pushToGlobals());
+    }, () => this.pushToGlobals(trigger));
   }
 
   render(){
@@ -66,7 +69,7 @@ class PreferenceBar extends Component {
             step="100"
             value={price}
             onChange={(e) => {
-              this.update(parseInt(e.target.value), startDate, durationIndex)
+              this.update(parseInt(e.target.value), startDate, durationIndex, false)
             }} 
             className="PreferenceBar-priceInput"
             placeholder="budget" 
@@ -83,7 +86,7 @@ class PreferenceBar extends Component {
             value={this.state.startDate}
             min={today.toISOString().split("T")[0]}
             onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
-            onChange={(e) => this.update(price, e.target.value, durationIndex)}
+            onChange={(e) => this.update(price, e.target.value, durationIndex, false)}
           />
         </div>
         <div className="PreferenceBar-durationContainer">
@@ -92,7 +95,9 @@ class PreferenceBar extends Component {
               <button
               key={i}
               className={this.state.durationIndex !== i ? "durationButton PreferenceBar-durationButton" : "durationButton durationSelect"}
-              onClick={(e)=>{this.update(price, startDate, (this.state.durationIndex !== i) ? i : -1)}}
+              onClick={()=>{
+                this.update(price, startDate, (this.state.durationIndex !== i) ? i : -1, true);
+              }}
               >
               {desc}
               </button>

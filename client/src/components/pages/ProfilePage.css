@@ -117,10 +117,13 @@
 .UserSettings-textbox{
   background-color: var(--neutral6);
   padding: 0.3rem;
+<<<<<<< HEAD
   border-radius: 0.1rem;
   font-weight: 300;
   color: var(--neutral1);
   line-height: 110%;
+=======
+>>>>>>> efdf3c11864177623c31a86a6f3e250696a4c38b
 }
 
 .ProfileBar-tabContainer{
