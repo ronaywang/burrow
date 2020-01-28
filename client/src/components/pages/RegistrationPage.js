@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "../../utilities.css"
 import { post } from "../../utilities";
-const Isemail = require("isemail");
+const validator = require("email-validator");
 
 class RegistrationPage extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class RegistrationPage extends Component {
 
 e_handleChange = (event) => {
   this.setState({email: event.target.value});
-  this.setState({validemail: Isemail.validate(this.state.email)});
+  this.setState({validemail: validator.validate(this.state.email)});
 };
 
 p_handleChange = (event) => {
