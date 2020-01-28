@@ -14,12 +14,13 @@ class NewListing extends Component {
     this.state = {
       locationquery: '',
       locationcenter: '',
-      startDate: undefined,
+      startDate: new Date().toISOString().split("T")[0],
       durationIndex: -1,
       price: 0,
       textBox: "",
       success: false,
-      userId: ""
+      userId: "",
+      doRender: false,
     };
   }
 
@@ -38,9 +39,13 @@ class NewListing extends Component {
             startDate: info.startDate,
             durationIndex: info.durationIndex,
             price: info.price,
-            textBox: info.additionalPrefText
+            textBox: info.additionalPrefText,
+            doRender: true
           })
         })
+      }
+    else{
+      this.setState({ doRender: true });
     }
   }
   handleSubmit(){
@@ -66,6 +71,8 @@ class NewListing extends Component {
   }
 
   render(){
+    if (!this.state.doRender)
+      return (<div className="NewListing-container">"Loading listing info..."</div>);
     let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
     const today = new Date();
     if (this.state.success){
@@ -98,7 +105,7 @@ class NewListing extends Component {
             type="date"
             placeholder = "move-in date"
             name="startdate" 
-            value={this.state.startDate}
+            value={this.state.startDate.split("T")[0]}
             min={today.toISOString().split("T")[0]}
             onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
             onChange={(e) => {this.setState({startDate: e.target.value})}}
@@ -120,6 +127,7 @@ class NewListing extends Component {
             placeholder="budget" 
             onFocus={()=>document.getElementById("prefbarprice").classList.add("NewListing-pricefocus")}
             onBlur={()=>document.getElementById("prefbarprice").classList.remove("NewListing-pricefocus")}
+            value={this.state.price}
         />/month
         </span>
         <div className="NewListing-durationContainer">

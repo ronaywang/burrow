@@ -48,6 +48,7 @@
     "react-dom": "^16.7.0",
     "react-dropzone": "^10.2.1",
     "react-google-login": "^5.0.7",
+    "react-image-crop": "^8.5.0",
     "react-images-upload": "^1.2.7",
     "react-load-script": "0.0.6",
     "react-moment-proptypes": "^1.7.0",

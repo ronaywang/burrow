@@ -108,6 +108,13 @@
   white-space: pre-line;
 }
 
+.UserSettings-textbox{
+  background-color: white;
+  border: 1px solid var(--primary6);
+  padding: 0.3rem;
+  border-radius: 0.1rem;
+}
+
 .ProfileBar-tabContainer{
   display: flex;
   align-items: flex-end;
