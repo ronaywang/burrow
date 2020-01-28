@@ -104,6 +104,10 @@
   font-size: 80%;
 }
 
+.UserSettings-textboxvalue {
+  white-space: pre-line;
+}
+
 .ProfileBar-tabContainer{
   display: flex;
   align-items: flex-end;
