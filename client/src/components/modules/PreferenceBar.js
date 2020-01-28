@@ -69,7 +69,7 @@ class PreferenceBar extends Component {
               this.update(parseInt(e.target.value), startDate, durationIndex)
             }} 
             className="PreferenceBar-priceInput"
-            placeholder="Budget" 
+            placeholder="budget" 
             onFocus={()=>document.getElementById("prefbarprice").classList.add("PreferenceBar-pricefocus")}
             onBlur={()=>document.getElementById("prefbarprice").classList.remove("PreferenceBar-pricefocus")}
         />/month
@@ -91,7 +91,7 @@ class PreferenceBar extends Component {
             {durationOptions.map((desc, i) => (
               <button
               key={i}
-              className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
+              className={this.state.durationIndex !== i ? "durationButton PreferenceBar-durationButton" : "durationButton durationSelect"}
               onClick={(e)=>{this.update(price, startDate, (this.state.durationIndex !== i) ? i : -1)}}
               >
               {desc}
