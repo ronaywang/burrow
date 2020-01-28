@@ -35,6 +35,7 @@ class InboxPage extends Component{
       activeThreadIndex: 0,
       noThreads: true,
       chatDisabled: true,
+      pageLoaded: false,
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
@@ -50,6 +51,8 @@ class InboxPage extends Component{
 
 
   async componentDidMount() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     document.body.classList.remove("SplashPage-body");
     let threadToMakeActive = null;
     if (has(this.props, 'userId')) {
@@ -76,6 +79,7 @@ class InboxPage extends Component{
       }
       socket.on("message", this.NewMessageHandler); 
     }
+    setTimeout(()=>{this.setState({pageLoaded: true}); this.ChatGoToBottom()}, 1000);
   }
 
   NewMessageHandler(data) {
@@ -131,8 +135,13 @@ class InboxPage extends Component{
 
 
   ChatGoToBottom() {
-   let element = document.getElementById("ChatBubblesContainer");
-   element.scrollTop = element.scrollHeight - element.clientHeight;
+    if (this.state.pageLoaded) {
+      let element = document.getElementById("ChatBubblesContainer");
+      if (element.style.overflow !== 'visible') {
+        element.scrollTop = element.scrollHeight;
+      }
+      console.log("went to bottom");
+    }
   }
 
   ChatBoxUpdate(event) {
