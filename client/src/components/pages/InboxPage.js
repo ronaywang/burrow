@@ -77,7 +77,7 @@ class InboxPage extends Component{
       }
       socket.on("message", this.NewMessageHandler); 
     }
-    this.setState({pageLoaded: true});
+    setTimeout(()=>{this.setState({pageLoaded: true}); this.ChatGoToBottom()}, 1000);
   }
 
   NewMessageHandler(data) {
@@ -135,7 +135,10 @@ class InboxPage extends Component{
   ChatGoToBottom() {
     if (this.state.pageLoaded) {
       let element = document.getElementById("ChatBubblesContainer");
-      element.scrollTop = element.scrollHeight - element.clientHeight;
+      if (element.style.overflow !== 'visible') {
+        element.scrollTop = element.scrollHeight;
+      }
+      console.log("went to bottom");
     }
   }
 
