@@ -32,4 +32,4 @@ const filterByDistanceConstructor = (refPoint, maxDistance) => {
 };
 
 
-module.exports = { filterByDistanceConstructor };
+module.exports = { filterByDistanceConstructor, getDistance };

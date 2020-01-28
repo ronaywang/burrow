@@ -103,23 +103,29 @@ router.post("/editlisting", (req, res) => {
 router.post("/matchinglistings", (req, res) => {
   var prefs = req.body;
   console.log(JSON.stringify(prefs));
-  const priceMargin = 500; // USD
-  const maxDistance = 10; // miles
-  let userQuery = { $ne: prefs.userId };
+  const priceMargin = 800; // USD
+  const maxDistance = 50; // miles
   let noLocation = prefs.location.length === 0 || prefs.location === undefined;
   let priceQuery = {$lte: prefs.price + priceMargin, $gte: prefs.price - priceMargin};
   let listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
   const query = {};
-  if (prefs.userId.length !== 0)
+  if (req.user!== null && req.user._id.length > 0){
+    let userQuery = { $ne: req.user._id };
     query['creator_ID'] = userQuery;
+  }
   if (prefs.price !== 0)
     query['price'] = priceQuery;
   if (prefs.durationIndex !== -1)
     query['durationIndex'] = prefs.durationIndex;
   
-  console.log(query);
+  console.log(prefs.startDate);
   Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
-    .then((listings) => {res.send( noLocation ? listings : listings.filter(listingFilter))});
+    .then((listings) => {res.send( noLocation ? listings : listings.filter(listingFilter).sort((listing) => {
+      let dateDiffTime = Math.abs(new Date(listing.startDate) - new Date(prefs.startDate));
+      let dateDiffDay = (prefs.startDate === null) ? 1 : dateDiffTime / (1000 * 60 * 60 * 24);
+      let dist = searchutilities.getDistance(listing.coordinates, prefs.locationCtr);
+      return -dist*dateDiffDay^2;
+    }))});
 })
 
 router.post("/logout", auth.logout);
