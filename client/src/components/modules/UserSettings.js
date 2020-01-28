@@ -6,8 +6,7 @@ import { get, post } from "../../utilities";
 import { genders} from "./enums";
 import "./ProfilePicUploader.css";
 import ListingsFast from "./ListingsFast";
-
-const axios = require("axios");
+import axios from 'axios';
 
 class UserSettings extends Component {
   constructor(props) {

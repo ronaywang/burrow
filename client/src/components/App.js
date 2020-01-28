@@ -1,24 +1,14 @@
 import React, { Component } from "react";
-import { Router, navigate } from "@reach/router";
-import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import { Router } from "@reach/router";
 
 import "../utilities.css";
 
 import { socket } from "../client-socket.js";
 
 import { get, post } from "../utilities";
-import LoginPage from "./pages/LoginPage";
-import RegistrationPage from "./pages/RegistrationPage";
-import MapComponent from "./modules/Map";
 import SplashPage from "./pages/SplashPage";
-import TryCard from "./modules/TryCard";
-//import PhotoUploadPrototype from "./pages/PhotoUploadPrototype";
-//import NavBar from "./modules/NavBar";
-import ProfilePicUploader from "./modules/ProfilePicUploader";
 
 import NavBar from "./modules/NavBar.js";
-import NewListing from "./modules/NewListing.js";
 import MainPage from "./pages/MainPage.js";
 import ProfilePage from "./pages/ProfilePage";
 import InboxPage from "./pages/InboxPage.js";
