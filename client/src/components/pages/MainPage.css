@@ -2,6 +2,14 @@
     display: flex;
     margin: 0 10% 0 10%;
     justify-content: center;
+    margin-top: var(--xs);
+}
+
+.MainPage-mapContainer {
+  display: flex;
+  min-width: 30%;
+  max-width: 50%;
+  margin-left: var(--xs);
 }
 
 .MainPage-listingsContainer{
