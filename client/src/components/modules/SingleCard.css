@@ -3,7 +3,7 @@
   height: auto;
   min-width: 300px;
   display: grid;
-  grid-template-rows: 60% 40%;
+  grid-template-rows: 4rem 40%;
   box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   padding: var(--s);
@@ -61,7 +61,8 @@
 
 .Card-profilePic {
   border-radius: 10em;
-  margin: var(--m);
+  margin: var(--s);
+  margin-right: var(--m);
   max-width: 3rem;
   object-fit: cover;
   width: 3rem;

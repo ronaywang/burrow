@@ -117,6 +117,10 @@
 .UserSettings-textbox{
   background-color: var(--neutral6);
   padding: 0.3rem;
+  border-radius: 0.1rem;
+  font-weight: 300;
+  color: var(--neutral1);
+  line-height: 110%;
 }
 
 .ProfileBar-tabContainer{
@@ -228,7 +232,6 @@
 
 .UserSettings-prefsAgree, .UserSettings-prefsDisagree {
   text-transform: lowercase;
-  letter-spacing: 0.03rem;
   color: var(--neutral2);
   font-size: 90%;
   width: auto;
@@ -309,7 +312,6 @@
 }
 .UserSettings-saveSuccess {
   font-size: 70%;
-  letter-spacing: 0.03em;
   text-transform: lowercase;
   color: green;
   margin: 0rem 0rem 0.3rem 0rem;
@@ -323,4 +325,25 @@
   justify-items: center;
   justify-content: space-evenly;
   width: 100%;
+}
+
+
+/* width */
+.UserSettings-textbox::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+.UserSettings-textbox::-webkit-scrollbar-track {
+  background: var(--accent7); 
+}
+ 
+/* Handle */
+.UserSettings-textbox::-webkit-scrollbar-thumb {
+  background: var(--accent5); 
+}
+
+/* Handle on hover */
+ .UserSettings-textbox::-webkit-scrollbar-thumb:hover {
+  background: var(--accent4); 
 }
