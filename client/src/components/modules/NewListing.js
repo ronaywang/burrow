@@ -72,7 +72,7 @@ class NewListing extends Component {
   render(){
     if (!this.state.doRender)
       return (<div className="NewListing-container">"Loading listing info..."</div>);
-    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
+    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than a year"];
     const today = new Date();
     if (this.state.success){
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);

@@ -57,7 +57,7 @@ class PreferenceBar extends Component {
         price, startDate, durationIndex
       }
     } = this;
-    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
+    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than a year"];
     const today = new Date();
     return (
       <div className="PreferenceBar-container">
