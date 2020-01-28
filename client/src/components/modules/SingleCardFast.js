@@ -9,11 +9,11 @@ import { Link } from "@reach/router";
 
 
 class SingleCardFast extends Component {
-  static genderColorDict = {
+  /*static genderColorDict = {
     'm': 'Card-blue',
     'f': 'Card-pink',
     'nb': 'Card-purple'
-  };
+  };*/
 
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class SingleCardFast extends Component {
       expanded: false,
       name: "",
       age: 0,
-      gender: "m",
+      /*gender: "m",*/
       location: "",
       startDate: new Date(),
       endDate: new Date(),
@@ -41,7 +41,7 @@ class SingleCardFast extends Component {
       additionalText: this.props.listing.additionalPrefText, // TODO: implement photo uploading
       name: this.props.listing.creator_ID.firstName, 
       age: calculateAge(new Date(this.props.listing.creator_ID.birthdate)),
-      gender: this.props.listing.creator_ID.gender,
+      /*gender: this.props.listing.creator_ID.gender,*/
       profilePicURL: this.props.listing.creator_ID.profilePictureURL,
       durationIndex: this.props.listing.durationIndex,
       doRender: true
@@ -49,7 +49,7 @@ class SingleCardFast extends Component {
   }
 
   render() {
-    const {expanded, name, age, gender, location, startDate, endDate, price,
+    const {expanded, name, age, /*gender,*/ location, startDate, endDate, price,
       smoking, pets, additionalText, lookingForRoom, profilePicURL} = this.state;
     if (!this.state.doRender)
       return null;
@@ -63,7 +63,7 @@ class SingleCardFast extends Component {
           </div>
           <div className="Card-topMiddle">
             <div className="Card-nameAgeGender">
-              <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
+              <span /*className={SingleCardFast.genderColorDict[gender]}*/>{name}</span>{`, ${age}`}
             </div>
             <div className="Card-date">{formatDate(startDate)}</div>
             <div className="Card-duration">{durationOptions[this.state.durationIndex]}</div>

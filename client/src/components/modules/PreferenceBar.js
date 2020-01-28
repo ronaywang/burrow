@@ -88,8 +88,7 @@ class PreferenceBar extends Component {
         </div>
         <div className="PreferenceBar-durationContainer">
           <label className = "PreferenceBar-durationDropDown">
-            <select className = "dropbtn" 
-            name = "gender" 
+            <select className = "dropbtn"  
             value = {this.state.durationIndex}
             onChange={(e)=>this.update(price, startDate, (this.state.durationIndex !== parseInt(e.target.value)) ? parseInt(e.target.value) : -1)}>
               <option value={-1} disabled selected>duration</option>

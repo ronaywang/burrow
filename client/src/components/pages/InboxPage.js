@@ -188,7 +188,7 @@ class InboxPage extends Component{
         /> */}
 
             <div className="Chat-ChatBoxHeader">
-              <span className="Chat-ChatBoxHeaderText">People</span>
+              <h1 className="Chat-ChatBoxHeaderText">people</h1>
             </div>
             {this.state.threadsToDisplay.map((thread, i)=>{return (
               <ThreadDisplay
@@ -227,7 +227,7 @@ class InboxPage extends Component{
           rows="10"
           cols="30"
           className="ChatBox" 
-          placeholder="Type here"
+          placeholder="send a message"
           value={this.state.chatBoxContents}
           onChange={this.ChatBoxUpdate}
           onKeyUp={this.ChatBoxKey}

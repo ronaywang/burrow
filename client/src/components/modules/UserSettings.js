@@ -20,10 +20,7 @@ class UserSettings extends Component {
       /*fbProfileLink: '',*/
       datefocused: false,
       textBox: '',
-      gender: '',
-      maleButtonActive: false,
-      femaleButtonActive: false,
-      nbButtonActive: false,
+      genderOptions: 0,
       doRender: false,
       profilePicURL: "",
       prefsArray: [1,1,3,1,1],
@@ -99,6 +96,7 @@ class UserSettings extends Component {
     const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
     const prefsDisagreeArray = ["no pets", "messy", "reserved", "don't smoke", "early bird"];
+    let genderOptions = ["male", "female", "non-binary"]
     const prefsAgreeArray = ["multiple pets", "neat", "outgoing", "frequently smoke", "night owl"];
     console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
     return (
@@ -131,7 +129,7 @@ class UserSettings extends Component {
 
             <div className="UserSettings-personalInfoBlock UserSettings-personalInfoGender">
               <div className="UserSettings-description">Gender</div>
-              <div className="UserSettings-value">{this.state.gender}</div>
+              <div className="UserSettings-value">{genderOptions[this.state.gender]}</div>
             </div>
 
             {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
@@ -236,7 +234,7 @@ class UserSettings extends Component {
         {isYou ? (
           <div>
             <div className="UserSettings-description">Tell us about yourself!</div>
-              <textarea className="UserSettings-textbox" rows="10" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
+              <textarea className="UserSettings-textbox" rows="10"placeholder = "Add some personality to your profile" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
           </div>
         ) : (
           <div>
