@@ -29,6 +29,7 @@ class UserSettings extends Component {
       prefsArray: [1,1,3,1,1],
       isYou: false,
       savedSettings: false,
+      uploading: false,
     };
     this.saveSettings = this.saveSettings.bind(this);
   }
@@ -65,16 +66,19 @@ class UserSettings extends Component {
   };
 
   doUploadPic = async (file) => {
-    this.setState({ uploading: true });
 
     let formData = new FormData();
     formData.append('photo', file);
 
     const uploadRes = await axios.post("/api/newProfilePic", formData);
     console.log(JSON.stringify(uploadRes));
-    this.setState({
-      profilePicURL: uploadRes.url
-    });
+    setTimeout(() => {
+      this.setState({
+        profilePicURL: uploadRes.data.url,
+        uploading: false,
+      });
+    }, 1000);
+    this.setState({ uploading: true });
   };
 
 
@@ -94,6 +98,7 @@ class UserSettings extends Component {
 
     let prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
+    console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
     return (
       <div>
       <div className="TabToDisplay-container">
@@ -106,10 +111,13 @@ class UserSettings extends Component {
             <img className ="UserSettings-photo" 
               src={this.state.profilePicURL || require("../../public/assets/account.png")}
             />
-            <img className = {`camerasvg ${isYou ? "UserSettings-photoYou" : ""}`} onClick={() => {
-              if (isYou)
-                document.getElementById("uploadphoto").click(); }} src = "/photograph.svg" width = "15px"
-            /> 
+            {this.state.uploading ? 
+              <span className ="UserSettings-uploading">uploading...</span>
+              :
+              <img className = {`camerasvg ${isYou ? "UserSettings-photoYou" : ""}`} onClick={() => {
+                if (isYou)
+                  document.getElementById("uploadphoto").click(); }} src = "/photograph.svg" width = "15px"
+            />} 
             </div>
             <input className="upload-btn-wrapper" id="uploadphoto" type="file" name="file" accept="image/*" onChange={this.handleChange}/>
           </div>
