@@ -213,6 +213,7 @@ button, .u-button{
     vertical-align: middle;
     line-height: 100%;
     width: auto;
+    border: none;
     border-radius: var(--borderradius);
     margin: var(--margins);
     font-weight: 300;

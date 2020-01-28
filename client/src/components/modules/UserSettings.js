@@ -98,8 +98,8 @@ class UserSettings extends Component {
 
     const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
-    const prefsDisagreeArray = ["No pets", "messy", "fukn hate ppl", "Don't smoke", "wake up at noon"];
-    const prefsAgreeArray = ["Multiple pets", "Neat freak", "luv ppl", "smoke every day", "get up at 5 am"];
+    const prefsDisagreeArray = ["no pets", "messy", "reserved", "don't smoke", "early bird"];
+    const prefsAgreeArray = ["multiple pets", "neat", "outgoing", "frequently smoke", "night owl"];
     console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
     return (
       <div>
@@ -154,11 +154,11 @@ class UserSettings extends Component {
           <div className="UserSettings-moreContainer">
             <div className="UserSettings-prefsContainer">
               <div className="UserSettings-prefsGrid">
-                {this.state.prefsArray.map((pref, index) => (
+                {/*this.state.prefsArray.map((pref, index) => (
                   <label
                     style={{gridRowStart: 1+2*index, gridRowEnd: 2+2*index, gridColumnStart: 2, gridColumnEnd: 3}}
                   >{prefsDescriptionArray[index]}</label>
-                ))}
+                ))*/}
 
                 {this.state.prefsArray.map((pref, index) => (
                   <span className="UserSettings-prefsDisagree"
