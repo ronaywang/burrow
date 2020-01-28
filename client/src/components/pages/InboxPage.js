@@ -21,7 +21,7 @@ const findActiveThread = (activeThread_ID, threads) => {
   return null;
 }
 
-class InboxPage extends Component{
+class InboxPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,8 +35,8 @@ class InboxPage extends Component{
       activeThreadIndex: 0,
       noThreads: true,
       chatDisabled: true,
+      dorender: false,
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
     this.ChatBoxUpdate = this.ChatBoxUpdate.bind(this);
     this.SearchBoxUpdate = this.SearchBoxUpdate.bind(this);
     this.SearchBoxKey= this.SearchBoxKey.bind(this);
@@ -76,6 +76,7 @@ class InboxPage extends Component{
       }
       socket.on("message", this.NewMessageHandler); 
     }
+    this.setState({dorender: true});
   }
 
   NewMessageHandler(data) {
@@ -178,6 +179,9 @@ class InboxPage extends Component{
   }
 
   render() {
+    if (!this.state.dorender) {
+      return(null);
+    }
     return (
     <div className="InboxPage-SuperContainer">
       <div className="InboxPage-container">
