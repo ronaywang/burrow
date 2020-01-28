@@ -54,7 +54,7 @@ class SingleCardFast extends Component {
     if (!this.state.doRender)
       return null;
 
-    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "over a year"]
+    let durationOptions = ["for 1-3 months", "for 3-6 months", "for 6-12 months", "for over a year"]
     return (
       <div className="Card-container" key={this.props.listingId}>
         <div className="Card-top">
