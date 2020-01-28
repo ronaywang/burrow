@@ -62,6 +62,10 @@
 
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
