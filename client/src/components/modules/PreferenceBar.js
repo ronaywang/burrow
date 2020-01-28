@@ -69,7 +69,7 @@ class PreferenceBar extends Component {
               this.update(parseInt(e.target.value), startDate, durationIndex)
             }} 
             className="PreferenceBar-priceInput"
-            placeholder="Approximate budget" 
+            placeholder="Budget" 
             onFocus={()=>document.getElementById("prefbarprice").classList.add("PreferenceBar-pricefocus")}
             onBlur={()=>document.getElementById("prefbarprice").classList.remove("PreferenceBar-pricefocus")}
         />/month
@@ -78,7 +78,7 @@ class PreferenceBar extends Component {
           <input className = "PreferenceBar-moveInDate PreferenceBar-dateinvisible"
             id="moveindatepicker"
             type="date"
-            placeholder = "Move-in date"
+            placeholder = "move-in date"
             name="startdate" 
             value={this.state.startDate}
             min={today.toISOString().split("T")[0]}

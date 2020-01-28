@@ -1,6 +1,6 @@
 .Profile-container{
   display: flex;
-  padding: 0 10% 0 10%;
+  justify-content: center;
 }
 
 /*.UserSettings-color {
