@@ -305,7 +305,7 @@ class ThreadDisplay extends Component {
       className={threadClassName}
       onClick={()=>this.props.setActiveThread(this.props.index)}
       >
-        <img className="ThreadDisplay-photo" src={this.state.photoURL || require("../../public/assets/account.png")}/>
+        <img className="ThreadDisplay-photo" src={this.state.photoURL || "/account.png"}/>
         <div className="ThreadDisplay-name">
           {this.state.nameToDisplay}
         </div>

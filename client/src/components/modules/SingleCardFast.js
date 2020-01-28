@@ -59,7 +59,7 @@ class SingleCardFast extends Component {
       <div className="Card-container" key={this.props.listingId}>
         <div className="Card-top">
           <div className="Card-profilePicContainer">
-            <img src={this.state.profilePicURL || require("../../public/assets/account.png")} className="Card-profilePic"/>
+            <img src={this.state.profilePicURL || "/account.png"} className="Card-profilePic"/>
           </div>
           <div className="Card-topMiddle">
             <div className="Card-nameAgeGender">

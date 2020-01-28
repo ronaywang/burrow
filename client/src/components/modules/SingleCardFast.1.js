@@ -104,7 +104,7 @@ export default SingleCardFast;
 const oldreturn2 = () => {
   return (
     <div className="Card-container">
-        <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
+        <img src="/account.png" className="Card-profilePic"/>
         <div className="Card-nameAgeGender"><span className={SingleCard}>Name</span>  Age Gender</div>
         <div className="Card-locationDatePrice">
           <table>
@@ -132,7 +132,7 @@ const oldreturn = () => {
     return (
       <div className="Card-container">
         <div className="Card-top">
-          <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
+          <img src="/account.png" className="Card-profilePic"/>
           <div className="Card-topMiddle">
             <span className={"Card-nameAgeGender u-textCenter"}
               >
