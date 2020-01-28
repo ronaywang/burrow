@@ -159,6 +159,14 @@ class NewListing extends Component {
                 this.handleSubmit();
               }}
             >submit</button>
+            {this.props.currentId ?
+            <button
+              className="NewListing-submit"
+              onClick={() => {
+                post("/api/deletelisting", {_id: this.props.currentId})
+                  .then(() => {this.props.delete(); this.props.close()});
+              }}
+            >delete listing</button> : null}
           </div>
         </div>
       </div>

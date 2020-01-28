@@ -85,7 +85,8 @@ class SingleCardFast extends Component {
                     <img src = "/edit.svg" width = "15px" />
                  }>
                    {close => (<NewListing 
-                    key={this.props.listing._id} userId="" currentId={this.props.listing._id} close={close}/>) }
+                    key={this.props.listing._id} userId="" currentId={this.props.listing._id} close={close} 
+                    delete={() => this.setState({doRender: false})}/>) }
                  </Popup>) : 
                 (<Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>)
               }

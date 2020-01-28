@@ -168,13 +168,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "skolar-sans-latin", sans-serif;
 }
 
-a:link {
-  color:inherit;
-}
-
-a:visited {
-  color:inherit;
-}
 
 h1 {
   font-weight: 500;

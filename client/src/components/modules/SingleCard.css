@@ -136,3 +136,11 @@
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 500px;
 }
+
+.Card-container a:link{
+  color: inherit;
+}
+
+.Card-container a:visited{
+  color: inherit;
+}
