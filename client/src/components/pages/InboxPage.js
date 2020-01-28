@@ -175,67 +175,69 @@ class InboxPage extends Component{
 
   render() {
     return (
-    <div className="InboxPage-container">
-      <div>
-        <div className="Messages-container">
-          {/*<input className="MessageSearch"
-            type="text"
-            placeholder="Search messages..."
-            value={this.state.searchBoxContents}
-            onChange={this.SearchBoxUpdate}
-            onKeyDown={this.SearchBoxKey}
-      /> */}
+    <div className="InboxPage-SuperContainer">
+      <div className="InboxPage-container">
+        <div>
+          <div className="Messages-container">
+            {/*<input className="MessageSearch"
+              type="text"
+              placeholder="Search messages..."
+              value={this.state.searchBoxContents}
+              onChange={this.SearchBoxUpdate}
+              onKeyDown={this.SearchBoxKey}
+        /> */}
 
-          <div className="Chat-ChatBoxHeader">
-            <span className="Chat-ChatBoxHeaderText">People</span>
-          </div>
-          {this.state.threadsToDisplay.map((thread, i)=>{return (
-            <ThreadDisplay
-            key={i}
-            index={i}
-            thread={thread}
-            userId={this.state.userId}
-            setActiveThread={this.SetActiveThread}
-            active={this.state.activeThreadIndex===i}
-            />
-          );})}
-
-        </div>
-      </div>
-
-      <div className="Chat-container">
-        <div className="Chat-ChatInfoContainer">
-          chatting with&nbsp;
-          <Link to={"/profile/" + this.GetActiveChatUID()}>
-          {this.GetActiveChatName()}
-          </Link>
-        </div>
-        <div className="Chat-ChatBubblesContainer"
-        id="ChatBubblesContainer">
-          {/*this.state.displayedMessages.map(makeMessageNice)*/}
-          {this.state.displayedMessages.map((message, i)=>{return (
-            <MessageDisplay
+            <div className="Chat-ChatBoxHeader">
+              <span className="Chat-ChatBoxHeaderText">People</span>
+            </div>
+            {this.state.threadsToDisplay.map((thread, i)=>{return (
+              <ThreadDisplay
               key={i}
-              message={message}
+              index={i}
+              thread={thread}
               userId={this.state.userId}
+              setActiveThread={this.SetActiveThread}
+              active={this.state.activeThreadIndex===i}
               />
-          );})}
+            );})}
+
+          </div>
         </div>
 
-        <textarea
-        rows="10"
-        cols="30"
-        className="ChatBox" 
-        placeholder="Type here"
-        value={this.state.chatBoxContents}
-        onChange={this.ChatBoxUpdate}
-        onKeyUp={this.ChatBoxKey}
-        disabled={this.state.chatDisabled}
-        />
-          {/*<div className="Chat-howtosubmit">
-            &#x21E7;+&#x23CE;&#x2000;to add newline{ shift plus enter to add newline
-        </div>*/}
-        </div>
+        <div className="Chat-container">
+          <div className="Chat-ChatInfoContainer">
+            chatting with&nbsp;
+            <Link to={"/profile/" + this.GetActiveChatUID()}>
+            {this.GetActiveChatName()}
+            </Link>
+          </div>
+          <div className="Chat-ChatBubblesContainer"
+          id="ChatBubblesContainer">
+            {/*this.state.displayedMessages.map(makeMessageNice)*/}
+            {this.state.displayedMessages.map((message, i)=>{return (
+              <MessageDisplay
+                key={i}
+                message={message}
+                userId={this.state.userId}
+                />
+            );})}
+          </div>
+
+          <textarea
+          rows="10"
+          cols="30"
+          className="ChatBox" 
+          placeholder="Type here"
+          value={this.state.chatBoxContents}
+          onChange={this.ChatBoxUpdate}
+          onKeyUp={this.ChatBoxKey}
+          disabled={this.state.chatDisabled}
+          />
+            {/*<div className="Chat-howtosubmit">
+              &#x21E7;+&#x23CE;&#x2000;to add newline{ shift plus enter to add newline
+          </div>*/}
+          </div>
+      </div>
     </div>
     );
   }

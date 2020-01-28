@@ -1,10 +1,15 @@
+.InboxPage-SuperContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-right: 10%;
+  margin-left: 5%;
+}
 .InboxPage-container {
   margin-top: 2rem;
   display: flex;
   justify-content: space-evenly;
-  margin-left: 15rem;
-  margin-right: 15rem;
-  
+  width: auto;
 }
 
 .Messages-container {
@@ -15,7 +20,7 @@
   height: auto;
   flex: 1 1 auto;
   border: var(--borders);
-  margin-right: 2rem;
+  margin-right: 0.5rem;
   padding: 0;
   width: auto;
   background-color: white;
@@ -24,6 +29,7 @@
 .Chat-container {
   display: flex;
   min-height: 40rem;
+  width: auto;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
@@ -119,14 +125,14 @@
   margin-bottom: var(--xs);
   margin-left: var(--m);
   margin-right: var(--m);
-  border-radius: var(--borderradius);
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   color: var(--primary3);
   background-color: var(--neutral6);
   font-size: 80%;
   letter-spacing: 0.02em;
   border: none;
-  width: 5rem;
+  min-width: auto;
+  width: 80%;
 }
 
 .ThreadDisplay-container:hover {
