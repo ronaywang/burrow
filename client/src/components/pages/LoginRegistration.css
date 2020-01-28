@@ -53,6 +53,11 @@
   font-size: 90%;
 }
 
+.Login-succeed {
+  background-color: white;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 500px;
+}
 .fieldname {
   font-size: 80%;
   text-transform: lowercase;

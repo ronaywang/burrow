@@ -65,3 +65,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.NewListing-submitted {
+  background-color: white;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 500px;
+}

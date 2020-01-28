@@ -49,7 +49,7 @@ handleSubmit = (event) => {
   render() {
     if (this.state.succeeded) {
       return (
-        <div>
+        <div className="Login-succeed">
           Welcome back!
           <meta http-equiv = "refresh" content = "1; url = /" />
         </div>

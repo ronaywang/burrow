@@ -9,6 +9,7 @@ class YourListings extends Component {
     super(props);
     this.state = {
       usersListings: [],
+      isYou: false,
       doRender: false
     };
   }
@@ -18,7 +19,7 @@ class YourListings extends Component {
   }
 
   getListings = () => {
-    get("/api/composedlistings").then(data=>this.setState({usersListings: data, doRender: true}));
+    get("/api/composedlistings", {userId: this.props.userId}).then(data=>this.setState({isYou: data.isYou, usersListings: data.listings, doRender: true}));
   }
 
   render() {
@@ -30,7 +31,7 @@ class YourListings extends Component {
         {(this.state.usersListings.length === 0) ? <div className="YourListings-container">
           No listings yet!
           <img src = "/sad bunny.png" width = "30%"/>
-        </div> : <ListingsFast displayedListings={this.state.usersListings} editDeletePerms={true}/>}
+        </div> : <ListingsFast displayedListings={this.state.usersListings} editDeletePerms={this.state.isYou}/>}
       </div>
     );
   }

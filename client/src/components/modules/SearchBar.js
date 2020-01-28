@@ -190,7 +190,7 @@ class GoogleSearchBar extends Component {
   
   handlePlaceSelect () {
     if (this.state.query.length === 0)
-      this.props.updateQuery(this.state.query, {lat: 0, lng: 0});
+      this.props.updateQuery("", {lat: 0, lng: 0});
     else {
       // Extract City From Address Object
       const addressObject = this.autocomplete.getPlace();

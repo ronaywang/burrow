@@ -45,7 +45,12 @@
   padding: 2rem 2rem 2rem 2rem;
   position: absolute;
   width: 30px;
+  opacity: 0;
+}
+
+.camerasvg.UserSettings-photoYou{
   opacity: 0.5 !important;
+  cursor: pointer;
 }
 .UserSettings-uploading{
   position: absolute;
@@ -53,9 +58,6 @@
   color:white;
   background-color: var(--primary1);
   opacity: 0.5;
-}
-.camerasvg:hover{
-  cursor: pointer;
 }
 
 .UserSettings-personalInfo{
