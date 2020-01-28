@@ -75,7 +75,7 @@ class SingleCardFast extends Component {
               <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
             </div>
             <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
-              {expanded ? "collapse" : "expand"}
+              {expanded ?  <img src = "/up.svg" width = "15px" /> : <img src = "/download.svg" width = "15px"/>}
             </div>
           </div>
         </div>
