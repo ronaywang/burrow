@@ -232,7 +232,6 @@
 
 .UserSettings-prefsAgree, .UserSettings-prefsDisagree {
   text-transform: lowercase;
-  letter-spacing: 0.03rem;
   color: var(--neutral2);
   font-size: 90%;
   width: auto;
@@ -313,7 +312,6 @@
 }
 .UserSettings-saveSuccess {
   font-size: 70%;
-  letter-spacing: 0.03em;
   text-transform: lowercase;
   color: green;
   margin: 0rem 0rem 0.3rem 0rem;
