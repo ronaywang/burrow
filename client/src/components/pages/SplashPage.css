@@ -71,8 +71,8 @@
     font-size: 120%;
     font-weight: 500;
 }
-.SplashPage-input {
-    margin: var(--inputmargins);
+.SplashPage-input .SplashPage-search{
+    margin: var(--inputmargins) 0 var(--inputmargins) 0;
 }
 
 .SplashPage-taglineContainer {
