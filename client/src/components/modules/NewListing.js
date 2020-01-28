@@ -86,19 +86,7 @@ class NewListing extends Component {
             onChange={(e) => {this.setState({startDate: e.target.value})}}
           />
         </div>
-            <div className="NewListing-durationContainer">
-              <div className="NewListing-description">
-                I'll be staying for . . .
-              </div>
-              <div className="NewListing-duration">
-                {durationOptions.map((desc, i) => (
-                  <button
-                  className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
-                  onClick={()=>{this.setState({durationIndex: i})}}
-                  >{desc}</button>
-                ))}
-              </div>
-            </div>
+            
             <div className="NewListing-priceContainer">
               <div className="NewListing-description">
                 My budget is approximately . . .
@@ -116,6 +104,19 @@ class NewListing extends Component {
             onBlur={()=>document.getElementById("prefbarprice").classList.remove("NewListing-pricefocus")}
         />/month
         </span>
+        <div className="NewListing-durationContainer">
+              <div className="NewListing-description">
+                I'll be staying for . . .
+              </div>
+              <div className="NewListing-duration">
+                {durationOptions.map((desc, i) => (
+                  <button
+                  className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
+                  onClick={()=>{this.setState({durationIndex: i})}}
+                  >{desc}</button>
+                ))}
+              </div>
+            </div>
 
             <div className="NewListing-textBoxContainer">
               <div className="NewListing-description">More about me . . .</div>
