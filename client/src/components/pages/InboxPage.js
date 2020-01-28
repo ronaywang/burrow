@@ -211,7 +211,7 @@ class InboxPage extends Component{
         <div className="Chat-container">
           {this.state.noThreads ? (
           <div className="Chat-ChatInfoContainer">
-            Nobody yet! 
+            Message someone through their listing!
           </div>
           ) : (
           <div className="Chat-ChatInfoContainer">
