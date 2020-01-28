@@ -54,29 +54,36 @@ class SingleCardFast extends Component {
     if (!this.state.doRender)
       return null;
 
-    let durationOptions = ["~1-3 months", "~3-6 months", "~6-12 months", "over a year"]
+    let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "over a year"]
     return (
       <div className="Card-container" key={this.props.listingId}>
-        <div className="Card-profilePicContainer">
-        <img src={this.state.profilePicURL || require("../../public/assets/account.png")} className="Card-profilePic"/>
+        <div className="Card-top">
+          <div className="Card-profilePicContainer">
+            <img src={this.state.profilePicURL || require("../../public/assets/account.png")} className="Card-profilePic"/>
+          </div>
+          <div className="Card-topMiddle">
+            <div className="Card-nameAgeGender">
+              <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
+            </div>
+            <div className="Card-date">{formatDate(startDate)}</div>
+            <div className="Card-duration">{durationOptions[this.state.durationIndex]}</div>
+            <div className="Card-location">
+              {location}
+            </div>
+              
+            <div className="Card-inbox">
+              <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
+            </div>
+            <div className="Card-expand">
+              expand
+            </div>
+          </div>
         </div>
-        <div className="Card-nameAgeGender">
-          <span className={SingleCardFast.genderColorDict[gender]}>{name}</span>{`, ${age}`}
+        <div className="Card-bottom">
+          {additionalText}
         </div>
-          <div className="Card-locationDatePrice">
-    
-        <div className="Card-date">{formatDate(startDate)} for {durationOptions[this.state.durationIndex]}</div></div>
-        <div className="Card-flags">
-          <span className="Card-flag">{location}</span> &bull;
-        </div>
-          
-        <div className="Card-toptopRight">
-          <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
-          <Link to={"/profile/"+this.props.listing.creator_ID._id}>view profile</Link>
-        </div>
-        <div className="Card-horizontalLine"></div>
-        
-        <div className="Card-textBox">{additionalText}</div>
+
+
         {this.props.editDeletePerms ? ( 
           <div className="Card-editDeleteContainer" >
             <input className="Card-editContainer" type="submit" value="Edit" />
@@ -89,7 +96,6 @@ class SingleCardFast extends Component {
             />
           </div>
         ) : null}
-        
       </div>
     );
   }
@@ -101,68 +107,3 @@ SingleCardFast.propTypes = {
 
 
 export default SingleCardFast;
-
-const oldreturn2 = () => {
-  return (
-    <div className="Card-container">
-        <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
-        <div className="Card-nameAgeGender"><span className={SingleCard}>Name</span>  Age Gender</div>
-        <div className="Card-locationDatePrice">
-          <table>
-            <tr>
-              <th className="ldp-left">is moving to . . .</th>
-              <th className="ldp-right">Flagstaff, AZ</th>
-            </tr>
-            <tr>
-              <th className="ldp-left">during . . .</th>
-              <th className="ldp-right">Jan 1 – June 1</th>
-            </tr>
-            <th className="ldp-left">with a budget of . . .</th>
-            <th className="ldp-right">$2020/month</th>
-          </table>
-        </div>
-        <div className="Card-topRight">top right</div>
-        <div className="Card-horizontalLine"></div>
-        <div className="Card-flags">Flags</div>
-        <div className="Card-textBox">Text Box</div>
-    </div>
-  );
-}
-
-const oldreturn = () => {
-    return (
-      <div className="Card-container">
-        <div className="Card-top">
-          <img src={require("../../public/assets/account.png")} className="Card-profilePic"/>
-          <div className="Card-topMiddle">
-            <span className={"Card-nameAgeGender u-textCenter"}
-              >
-                <span className="Card-blue">Goodman Brown, </span>
-                  20
-                </span>
-              <div className="Card-locationDatePrice">
-                <ul>
-                  <li>Hello</li>
-                  <li>Two</li>
-                </ul>
-              </div>
-          </div>
-          <div className="Card-topRight">
-              <ul>
-                <li>one</li>
-                <li>two</li>
-              </ul>
-          </div>
-        </div>
-        <hr/>
-        <div className="Card-bottom">
-          <div className="Card-flags">
-
-          </div>
-          <div className="Card-textBox">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-        </div>
-      </div>
-    );
-}
