@@ -89,7 +89,7 @@ class UserSettings extends Component {
   render() {
     if (!this.state.doRender)
       return null;
-    const {isYou} = this.state;
+    const {isYou, editMode} = this.state;
 
     const prefsDescriptionArray = ["I have a lot of pets.", "I value cleanliness in a roommate.", "I tend to be outgoing.",
                                   "I smoke frequently.", "I am an early bird."];
@@ -111,8 +111,8 @@ class UserSettings extends Component {
             {this.state.uploading ? 
               <span className ="UserSettings-uploading">uploading...</span>
               :
-              <img className = {`camerasvg ${isYou ? "UserSettings-photoYou" : ""}`} onClick={() => {
-                if (isYou)
+              <img className = {`camerasvg ${editMode ? "UserSettings-photoYou" : ""}`} onClick={() => {
+                if (editMode)
                   document.getElementById("uploadphoto").click(); }} src = "/photograph.svg" width = "15px"
             />} 
             </div>
@@ -149,14 +149,16 @@ class UserSettings extends Component {
             )}
             
           </div>
-          <button className="UserSettings-personalInfoEdit" onClick={() => {
-            if (!this.state.editMode)
-              this.setState({editMode: true});
-            else
-              this.setState({editMode: false}, () => this.saveSettings());
-          }}>
-            {this.state.editMode ? "Save" : "Edit"}
-          </button>
+          {isYou ? (
+            <button className="UserSettings-personalInfoEdit" onClick={() => {
+              if (!this.state.editMode)
+                this.setState({editMode: true});
+              else
+                this.setState({editMode: false}, () => this.saveSettings());
+            }}>
+              {this.state.editMode ? "Save" : "Edit"}
+            </button>
+          ) : null}
         </div>
       </div>
       <div className="TabToDisplay-container">

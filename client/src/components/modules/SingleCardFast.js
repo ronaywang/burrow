@@ -59,11 +59,15 @@ class SingleCardFast extends Component {
       <div className="Card-container" key={this.props.listingId}>
         <div className="Card-top">
           <div className="Card-profilePicContainer">
-            <img src={this.state.profilePicURL || "/account.png"} className="Card-profilePic"/>
+            <Link to={"/profile/"+this.props.listing.creator_ID._id}>
+              <img src={this.state.profilePicURL || "/account.png"} className="Card-profilePic"/>
+            </Link>
           </div>
           <div className="Card-topMiddle">
             <div className="Card-nameAgeGender">
-              <span /*className={SingleCardFast.genderColorDict[gender]}*/>{name}</span>{`, ${age}`}
+              <Link to={"/profile/"+this.props.listing.creator_ID._id}>
+                <span /*className={SingleCardFast.genderColorDict[gender]}*/>{name}</span>{`, ${age}`}
+              </Link>
             </div>
             <div className="Card-date">{formatDate(startDate)}</div>
             <div className="Card-duration">{durationOptions[this.state.durationIndex]}</div>
