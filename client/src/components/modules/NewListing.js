@@ -123,7 +123,12 @@ class NewListing extends Component {
             </div>
             <div className="NewListing-textBoxContainer">
               <div className="NewListing-description">More about me . . .</div>
-              <textarea  onChange={(e) => {this.setState({textBox: e.target.value})}} placeholder = "Use this space to tell potential roommates about who you are and who you're looking for!" className="NewListing-textBox" />
+              <textarea  
+                onChange={(e) => {this.setState({textBox: e.target.value})}} 
+                placeholder="Use this space to tell potential roommates about who you are and who you're looking for!" 
+                className="NewListing-textBox" 
+                value={this.state.textBox}
+              />
             </div>
             <button
               className="NewListing-submit"
