@@ -29,6 +29,7 @@ class UserSettings extends Component {
       savedSettings: false,
       uploading: false,
       usersListings: [],
+      editMode: false,
     };
     this.saveSettings = this.saveSettings.bind(this);
   }
@@ -97,7 +98,7 @@ class UserSettings extends Component {
     const prefsAgreeArray = ["multiple pets", "neat", "outgoing", "frequently smoke", "night owl"];
     console.log(`PROFILE PIC URL: ${this.state.profilePicURL}`);
     return (
-      <div>
+      <div className="Profile-container">
       <div className="TabToDisplay-container">
         {/*<div className="UserSettings-color"></div>*/}
         <h1 className = "Profile-header">the basics</h1>
@@ -118,55 +119,47 @@ class UserSettings extends Component {
             </div>
             <input className="upload-btn-wrapper" id="uploadphoto" type="file" name="file" accept="image/*" onChange={this.handleChange}/>
           </div>
-          <div className="UserSettings-personalInfo">
-            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoName">
-              <div className="UserSettings-description">Name</div>
-              <div className="UserSettings-value">{`${this.state.firstName} ${this.state.lastName}`}</div>
-            </div>
+          <div className="UserSettings-personalInfoBlock UserSettings-personalInfoName">
+            <div className="UserSettings-description">Name</div>
+            <div className="UserSettings-value">{`${this.state.firstName} ${this.state.lastName}`}</div>
+          </div>
 
-            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoGender">
-              <div className="UserSettings-description">Gender</div>
-              <div className="UserSettings-value">{this.state.gender}</div>
-            </div>
+          <div className="UserSettings-personalInfoBlock UserSettings-personalInfoGender">
+            <div className="UserSettings-description">Gender</div>
+            <div className="UserSettings-value">{this.state.gender}</div>
+          </div>
 
-            {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
-              <div className="UserSettings-description">E-mail</div>
-              <div className="UserSettings-value">{`${this.state.email}`}</div>
-            </div> : null}
-            
-            <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
-              <div className="UserSettings-description">{isYou ? "Date Of Birth" : "Age"}</div>
-              <div className="UserSettings-value">{isYou ? new Date(this.state.birthdate).toLocaleDateString() : this.state.age}</div>
-            </div>
+          {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
+            <div className="UserSettings-description">E-mail</div>
+            <div className="UserSettings-value">{`${this.state.email}`}</div>
+          </div> : null}
+          
+          <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
+            <div className="UserSettings-description">{isYou ? "Date Of Birth" : "Age"}</div>
+            <div className="UserSettings-value">{isYou ? new Date(this.state.birthdate).toLocaleDateString() : this.state.age}</div>
+          </div>
+          <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAbout">
+            <div className="UserSettings-description">About Yourself</div>
+            {this.state.editMode ? (
+              <textarea className="UserSettings-textbox" rows="10"
+                placeholder="Add some personality to your profile" value={this.state.textBox} 
+                onChange={(e) => {this.setState({textBox: e.target.value})}}
+              />
+            ) : (
+              <div className="UserSettings-value">{this.state.textBox}</div>
+            )}
             
           </div>
+          <button className="UserSettings-personalInfoEdit" onClick={() => {
+            if (!this.state.editMode)
+              this.setState({editMode: true});
+            else
+              this.setState({editMode: false}, () => this.saveSettings());
+          }}>
+            {this.state.editMode ? "Save" : "Edit"}
+          </button>
         </div>
       </div>
-      <div className="TabToDisplay-container">
-        {isYou ? (
-          <div>
-            <h1 className="Profile-header">about yourself</h1>
-              <textarea className="UserSettings-textbox" rows="10"placeholder = "Add some personality to your profile" value={this.state.textBox} onChange={(e) => {this.setState({textBox: e.target.value})}}/>
-          </div>
-        ) : (
-          <div>
-            <h1 className="Profile-header">About {this.state.firstName}</h1>
-            <div className="UserSettings-value">{this.state.textBox.trim().length === 0 ? "This user has not filled out their profile yet!" : 
-            this.state.textBox}</div>
-          </div>
-        )}
-        {isYou ? (
-          <div className="UserSettings-save">
-            <button id="savebutton"
-            name="Save!"
-            onClick={this.saveSettings}>Save!</button>
-            <span className="UserSettings-saveSuccess">
-              {this.state.savedSettings ? "Settings successfully saved" : null}
-            </span>
-          </div>
-        ) : null}
-        </div>
-
       <div className="TabToDisplay-container">
 
       <h1 className = "Profile-header">more about you</h1>
@@ -181,13 +174,13 @@ class UserSettings extends Component {
 
                 {this.state.prefsArray.map((pref, index) => (
                   <span className="UserSettings-prefsDisagree"
-                    style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 1, gridColumnEnd: 2}}
+                    style={{gridRowStart: 1+2*index, gridRowEnd: 2+2*index, gridColumnStart: 1, gridColumnEnd: 2}}
                   >{prefsDisagreeArray[index]}</span>
                 ))}
 
                 {this.state.prefsArray.map((pref, index) => (
                   <span className="UserSettings-prefsAgree"
-                    style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 3, gridColumnEnd: 4}}
+                    style={{gridRowStart: 1+2*index, gridRowEnd: 2+2*index, gridColumnStart: 3, gridColumnEnd: 4}}
                   >{prefsAgreeArray[index]}</span>
                 ))}
                   {this.state.prefsArray.map((pref, index) => (
@@ -199,7 +192,7 @@ class UserSettings extends Component {
                       min="1"
                       max="3"
                       value={pref}
-                      style={{gridRowStart: 2+2*index, gridRowEnd: 3+2*index, gridColumnStart: 2, gridColumnEnd: 3}}
+                      style={{gridRowStart: 1+2*index, gridRowEnd: 2+2*index, gridColumnStart: 2, gridColumnEnd: 3}}
                       onChange={(e) => { 
                           e.persist();
                           this.setState((prev) => {
@@ -214,13 +207,7 @@ class UserSettings extends Component {
             </div>   
         </div>
       </div>
-      <div className="TabToDisplay-container">
-        <h1 className = "Profile-header">your listings</h1>
-        {(this.state.usersListings.length === 0) ? <div className="TabToDisplay-container">
-          No listings yet!
-          <img src = "/sad bunny.png" width = "30%"/>
-        </div> : <ListingsFast displayedListings={this.state.usersListings} editDeletePerms={this.state.isYou}/>}
-      </div>
+      <ListingsFast styleName="UserSettings" displayedListings={this.state.usersListings} editDeletePerms={this.state.isYou}/>
     </div>
     );
   }
