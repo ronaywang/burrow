@@ -67,7 +67,7 @@ class NavBar extends Component {
          modal trigger={
           <button className="NavBar-newListing">new listing</button>
         }>
-          {close => (<NewListing userId={userId} close={close}/>) }
+          {close => (<NewListing currentId="" close={close}/>) }
         </Popup> 
         <Link to="/main" className="NavBar-link">browse</Link>
         {/* <Link to={`/profile/${userId}`} className="NavBar-link">

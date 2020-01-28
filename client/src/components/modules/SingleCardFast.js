@@ -6,6 +6,8 @@ import "./SingleCard.css";
 import { formatDate, calculateAge, get, post } from "../../utilities";
 //import { duration } from "../../../../node_modules/moment";
 import { Link } from "@reach/router";
+import NewListing from "./NewListing";
+import Popup from "reactjs-popup";
 
 
 class SingleCardFast extends Component {
@@ -45,7 +47,6 @@ class SingleCardFast extends Component {
       profilePicURL: this.props.listing.creator_ID.profilePictureURL,
       durationIndex: this.props.listing.durationIndex,
       doRender: true,
-      expanded: this.props.editDeletePerms,
     });
   }
 
@@ -77,7 +78,16 @@ class SingleCardFast extends Component {
             </div>
               
             <div className="Card-inbox">
-              <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
+              {this.props.editDeletePerms ? 
+                (<Popup
+                  contentStyle={{backgroundColor: 'rgba(255,255,255,0)', border: 'none'}}
+                  modal trigger={
+                    <img src = "/edit.svg" width = "15px" />
+                 }>
+                   {close => (<NewListing key={this.props.listing._id} currentId={this.props.listing._id} close={close}/>) }
+                 </Popup>) : 
+                (<Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>)
+              }
             </div>
             <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
               {expanded ?  <img src = "/up.svg" width = "15px" /> : <img src = "/download.svg" width = "15px"/>}
@@ -87,18 +97,6 @@ class SingleCardFast extends Component {
         {expanded ? <div className="Card-bottom">
           {additionalText}
         </div> : null}
-        {this.props.editDeletePerms ? ( 
-          <div className="Card-editDeleteContainer" >
-            <input className="Card-editContainer" type="submit" value="Edit" />
-            <input className="Card-deleteContainer bkred" type="submit" value="Delete" 
-              onClick={() => {
-                this.setState({doRender: false}, () => {
-                  post("/api/deletelisting", {_id: this.props.listing._id});
-                })
-              }}
-            />
-          </div>
-        ) : null}
       </div>
     );
   }

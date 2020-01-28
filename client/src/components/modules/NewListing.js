@@ -18,14 +18,31 @@ class NewListing extends Component {
       durationIndex: -1,
       price: 0,
       textBox: "",
-      success: false
+      success: false,
+      userId: ""
     };
   }
 
-  validate = () => {
-
+  async componentDidMount() {
+    await get("/api/myuid").then((response) => {
+      if (response.userId) 
+        this.setState({ userId: response.userId });
+      }
+    );
+    if (this.props.currentId !== "") {
+      get("/api/listing", {listingId: this.props.currentId})
+        .then((info) => {
+          this.setState({
+            locationquery: info.location,
+            locationcenter: info.coordinates,
+            startDate: info.startDate,
+            durationIndex: info.durationIndex,
+            price: info.price,
+            textBox: info.additionalPrefText
+          })
+        })
+    }
   }
-
   handleSubmit(){
     if (this.state.durationIndex === -1 || this.state.locationquery === '' || this.state.startDate === undefined ||
         this.state.price === 0 || this.state.price === "" || this.state.textBox.trim().length === 0){
@@ -39,10 +56,11 @@ class NewListing extends Component {
         startDate: this.state.startDate,
         durationIndex: this.state.durationIndex,
         additionalPrefText: this.state.textBox,
+        currentId: this.props.currentId
     };
     post("/api/listing", listingInfo)
       .then(this.setState({success: true}, () => {
-        setTimeout(() => {this.props.close(); navigate(`/profile/${this.props.userId}`, {tabIndex: 1, replace: False})}, 750);
+        setTimeout(() => {this.props.close(); navigate(`/profile/${this.state.userId}`, {tabIndex: 1, replace: False})}, 750);
       })
     );
   }

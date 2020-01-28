@@ -73,9 +73,26 @@ router.get("/listing", (req, res) => {
 })
 // Sends a listing to the schema.
 router.post("/listing", (req, res) => {
-  let newListing = new Listing(req.body);
-  newListing.creator_ID = req.user._id;
-  newListing.save((err) => {res.send(newListing.creator_ID)});
+  if (req.body.currentId !== ""){
+    Listing.updateOne(
+      { _id:  req.body.currentId },
+      {
+        $set: { 
+          coordinates: req.body.coordinates,
+          location: req.body.location,
+          price: req.body.price,
+          startDate: req.body.startDate,
+          durationIndex: req.body.durationIndex,
+          additionalPrefText: req.body.additionalPrefText,
+        },
+      }
+    ).then(() => {res.send(newListing.creator_ID)});
+  }
+  else {
+    let newListing = new Listing(req.body);
+    newListing.creator_ID = req.user._id;
+    newListing.save((err) => {res.send(newListing.creator_ID)});
+  }
 });
 
 // Edits an existing listing.

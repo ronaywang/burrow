@@ -115,6 +115,7 @@
   grid-row: 1 / 2;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .Card-expand {
@@ -128,4 +129,10 @@
 
 .Card-collapse {
   height: auto;
+}
+
+.NewListing-submitted {
+  background-color: white;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 500px;
 }
