@@ -17,9 +17,14 @@ class NavBar extends Component {
       doDisplay: false,
       location: null,
       locationCtr: null,
+      /*showMenu: false,*/
     };
   }
-  
+
+  /*setShowMenu = (new) => {
+    this.setState({ showMenu: new });
+  } */
+
   componentDidMount(){
     get("/api/sessionglobals").then((globals) => {
       this.setState({
@@ -30,6 +35,7 @@ class NavBar extends Component {
     });
   }
 
+  
 
   render(){
     if (!this.state.doDisplay)
@@ -38,6 +44,24 @@ class NavBar extends Component {
     const {userId} = this.props;
     let linkContainer = userId ? (
       <div className="NavBar-linkContainer-loggedIn NavBar-style">
+        {/*<img
+          className="hamburger"
+          alt="hamburger menu"
+          src="/menu.svg"
+          onClick={() => setShowMenu(true)}
+        />
+        <div className={`menu ${showMenu && "show"}`}>
+          <div className="close" onClick={() => setShowMenu(false)}>
+            close menu
+          </div>
+          <Link to = ""> new listing</Link>
+          <Link to ="/main" className="ignore">browse</Link>
+          <Link to = "inbox/*" className="ignore">message</Link>
+          <div className="ignore" onClick={() => {
+          navigate(`/profile/${userId}`, {replace: true});
+        }}>account</div>   
+          <div className="NavBar-link" onClick={this.props.handleLogout}>logout</div> 
+      </div>*/}
          <Popup
          contentStyle={{backgroundColor: 'rgba(255,255,255,0)', border: 'none'}}
          modal trigger={

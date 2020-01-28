@@ -57,3 +57,28 @@
     color: var(--primary3);
     
 }
+
+.hamburger {
+  display: none;
+}
+
+/* only show when screen size < 640px */
+@media screen and (max-width: 640px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+/* applied to tag with both classes */
+.show.menu {
+  display: block;
+}
+
+
