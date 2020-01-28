@@ -9,6 +9,7 @@ class RegistrationPage extends Component {
     super(props);
     this.state = {
       email: '',
+      emailold: '',
       firstName: '',
       lastName: '',
       birthdate: undefined,
@@ -28,6 +29,10 @@ e_handleChange = (event) => {
   this.setState({email: event.target.value});
   this.setState({validemail: validator.validate(this.state.email)});
 };
+
+e_validate = (event) => {
+  this.setState({validemail: validator.validate(this.state.email)});
+}
 
 p_handleChange = (event) => {
   this.setState({password: event.target.value});
@@ -64,7 +69,7 @@ handleSubmit = (event) => {
     this.setState({mustfillfields: true});
     return;
   }
-  if (this.state.validemailmessage) {
+  if (this.state.validemailmessage || !this.state.validemail) {
     return;
   }
   post("/api/makeuser", this.state).then((res) => {
@@ -137,6 +142,8 @@ handleSubmit = (event) => {
                 name="email"
                 value={this.state.email}
                 onChange={this.e_handleChange}
+                onBlur={this.e_validate}
+                onFocus={this.e_validate}
               />
             </label>
           <div className = "inputinline">
