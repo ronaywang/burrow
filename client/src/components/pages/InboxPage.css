@@ -11,12 +11,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: stretch;
+  justify-content: flex-start;
   height: auto;
   flex: 1 1 auto;
   border: var(--borders);
   margin-right: 2rem;
   background-color: white;
+  width: auto;
   
 }
 
@@ -108,15 +109,17 @@
 }
 
 
+
 .ThreadDisplay-container {
-  margin: 0.3rem;
-  width: 80%;
-  padding-top: 0.3rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 0.3rem;
-  color: var(--primary2);
-  background-color: var(--primary7);
+  margin: var(--xs);
+  border-radius: var(--borderradius);
+  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
+  color: var(--primary3);
+  background-color: var(--neutral6);
+  font-size: 80%;
+  letter-spacing: 0.02em;
+  border: none;
+  width: 3rem;
 }
 
 .ThreadDisplay-container:hover {
@@ -130,7 +133,16 @@
 }
 
 .ThreadDisplay-name {
-  font-size: 120%;
+  text-align: center;
+  font-size: 100%;
   font-weight: 300;
-  font-family: skolar-sans-latin-condensed;
+  font-family: skolar-sans-latin;
+}
+
+.Chat-ChatBoxHeader {
+  font-size: 120%;
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--primary7);
+  background-color: var(--primary3);
 }
