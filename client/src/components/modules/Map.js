@@ -77,7 +77,7 @@ class MapComponent extends Component {
       width = 640;
     }
     return (
-      <div id="map" className="u-flex" style={{width : width, height: height}}>
+      <div id="map" className="u-flex">
       </div>
     );
   }
