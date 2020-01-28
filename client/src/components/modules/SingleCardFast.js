@@ -44,7 +44,8 @@ class SingleCardFast extends Component {
       /*gender: this.props.listing.creator_ID.gender,*/
       profilePicURL: this.props.listing.creator_ID.profilePictureURL,
       durationIndex: this.props.listing.durationIndex,
-      doRender: true
+      doRender: true,
+      expanded: this.props.editDeletePerms,
     });
   }
 
