@@ -6,11 +6,11 @@ import "./SingleCard.css";
 import { formatDate, calculateAge, get, post } from "../../utilities";
 
 class SingleCardFast extends Component {
-  static genderColorDict = {
+  /*static genderColorDict = {
     'Male': 'Card-blue',
     'Female': 'Card-pink',
     'Non-binary': 'Card-purple'
-  };
+  };*/
 
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ class SingleCardFast extends Component {
       expanded: false,
       name: "",
       age: 0,
-      gender: "",
+      /*gender: "",*/
       location: "",
       startDate: new Date(),
       endDate: new Date(),
@@ -39,7 +39,7 @@ class SingleCardFast extends Component {
       additionalText: this.props.listing.additionalPrefText, // TODO: implement photo uploading
       name: this.props.listing.creator_ID.firstName, 
       age: calculateAge(new Date(this.props.listing.creator_ID.birthdate)),
-      gender: this.props.listing.creator_ID.gender,
+      /*gender: this.props.listing.creator_ID.gender,*/
       profilePicURL: this.props.listing.creator_ID.profilePictureURL,
       doRender: true
     });

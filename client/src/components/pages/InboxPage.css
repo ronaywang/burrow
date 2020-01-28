@@ -63,7 +63,6 @@
   padding-left: 1rem;
   padding-right: 1rem;
   height: 3.5rem;
-  border: var(--borders);
   border-radius: var(--l);
   max-width: 30rem;
   align-self: center;
@@ -137,7 +136,7 @@
 
 .ThreadDisplay-container:hover {
   color: var(--primary4);
-  background-color: white;
+  background-color: var(--primary7);
   cursor: pointer;
 }
 
@@ -157,18 +156,18 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: 120%;
+  /*font-size: 120%;
   text-align: center;
-  color: var(--primary7);
-  background-color: var(--primary3);
+  color: var(--primary3);*/
+  background-color: white;
 }
 
-.Chat-ChatBoxHeaderText {
+/*.Chat-ChatBoxHeaderText {
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
+}*/
 
 
 .ThreadDisplay-photo {

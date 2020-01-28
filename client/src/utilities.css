@@ -63,22 +63,22 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--accent7); 
+  background: white; 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--accent5); 
+  background: var(--neutral6); 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent4); 
+  background: var(--primary6); 
 }
 
 
@@ -264,9 +264,9 @@ button:hover, .u-button:hover {
   margin: var(--xs);
   border-radius: var(--borderradius);
   padding: 0.2rem 0.5rem 0.5rem 0.5rem;
-  color: var(--primary3);
-  background-color: var(--neutral6);
-  font-size: 80%;
+  color: var(--neutral3);
+  background-color: var(--neutral7);
+  font-size: 90%;
   letter-spacing: 0.02em;
   border: none;
 }
