@@ -74,16 +74,14 @@ class SingleCardFast extends Component {
             <div className="Card-inbox">
               <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
             </div>
-            <div className="Card-expand">
-              expand
+            <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
+              {expanded ? "collapse" : "expand"}
             </div>
           </div>
         </div>
-        <div className="Card-bottom">
+        {expanded ? <div className="Card-bottom">
           {additionalText}
-        </div>
-
-
+        </div> : null}
         {this.props.editDeletePerms ? ( 
           <div className="Card-editDeleteContainer" >
             <input className="Card-editContainer" type="submit" value="Edit" />
