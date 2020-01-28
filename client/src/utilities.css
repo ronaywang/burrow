@@ -33,13 +33,13 @@
   --margins: 0.75rem;
   --inputmargins: 5px;
 
-  /*--primary1: #003D4D;
-  --primary2: #00566B;
-  --primary3: #008EAD;
-  --primary4: #00B7E0;
-  --primary5: #59E0FF;
-  --primary6: #9EEDFF;
-  --primary7: #E5FAFF;*/
+  --accent1: #02215A;
+  --accent2: #033AA0;
+  --accent3: #377CFB;
+  --accent4: #377CFB;
+  --accent5: #699CFB;
+  --accent6: #C5D9FF;
+  --accent7: #E3EDFF;
 
   --primary1: #1D1D35;
   --primary2: #222549;
@@ -68,17 +68,17 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: var(--primary7); 
+  background: var(--accent7); 
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: var(--primary6); 
+  background: var(--accent5); 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary3); 
+  background: var(--accent4); 
 }
 
 
@@ -93,7 +93,7 @@ body {
   line-height: 110%;
   color: var(--neutral1);
   background: url("/nycbackground2.svg") no-repeat bottom center fixed;
-  background-color: var(--primary7);
+  background-color: var(--accent7);
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;

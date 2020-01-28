@@ -14,8 +14,6 @@
     font-weight: 700;
     font-size: 150%;
     margin: 10px 20px;
-    color: var(--primary3);
-
 }
 
 .NavBar-style {
@@ -58,4 +56,5 @@
 
 .NavBar-logo-link {
     color: var(--primary3);
+    
 }
