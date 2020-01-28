@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "../../utilities.css"
 import { post } from "../../utilities";
-
+const Isemail = require("isemail");
 
 class RegistrationPage extends Component {
   constructor(props) {
@@ -19,11 +19,14 @@ class RegistrationPage extends Component {
       failed: false,
       succeeded: false,
       mustfillfields: false,
+      validemail: null,
+      validemailmessage: false,
     }
   }
 
 e_handleChange = (event) => {
   this.setState({email: event.target.value});
+  this.setState({validemail: Isemail.validate(this.state.email)});
 };
 
 p_handleChange = (event) => {
@@ -52,8 +55,16 @@ g_handleChange = (event) => {
 
 handleSubmit = (event) => {
   event.preventDefault();
+  if (this.state.validemail === false) {
+    this.setState({validemailmessage: true});
+  } else {
+    this.setState({validemailmessage: false});
+  }
   if (this.state.gender === '' || this.state.birthdate === undefined || this.state.email === '' || this.state.firstName === '' || this.state.lastName === '' || this.state.password == '' || this.state.verifypassword !== this.state.password) {
     this.setState({mustfillfields: true});
+    return;
+  }
+  if (this.state.validemailmessage) {
     return;
   }
   post("/api/makeuser", this.state).then((res) => {
@@ -101,18 +112,27 @@ handleSubmit = (event) => {
         </div>
       );
     } else {
+      let emailClassName = "inputTextField";
+      if (this.state.validemail === true) {
+        emailClassName += " validemail";
+      } else if (this.state.validemail === false) {
+        emailClassName += " invalidemail";
+      }
       return (
         <div className="u-flexColumn u-flex-alignCenter u-flex-spaceEvenly">
           { this.state.mustfillfields && (
             <span className="warning">You must fill all fields!</span>
             )}
+          { (this.state.validemailmessage) && (
+            <span className="warning">Please enter a valid email.</span>
+          )}
           { this.state.failed ? "Registration failed. Email already taken": null}
           <h1 className="u-textCenter">Join your burrow today.</h1>
           <form className="u-flexColumn u-flex-alignEnd">
            <label className = "Reg-input">
            {/*<i class="mail-icon"></i> icon stuff, will edit after Milestone 2*/}
            <span className="fieldname">Email</span>
-              <input className = "inputTextField"
+              <input className = {emailClassName}
                 type="text"
                 name="email"
                 value={this.state.email}
