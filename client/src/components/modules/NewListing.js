@@ -105,7 +105,7 @@ class NewListing extends Component {
               name="startdate" 
               value={this.state.startDate.split("T")[0]}
               min={today.toISOString().split("T")[0]}
-              onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
+              onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("NewListing-dateinvisible");}}
               onChange={(e) => {this.setState({startDate: e.target.value})}}
               />
             </label>

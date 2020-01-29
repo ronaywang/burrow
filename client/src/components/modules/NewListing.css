@@ -27,7 +27,7 @@
 }
 
 .fieldname {
-  font-size: 80%;
+  font-size: 90%;
   text-transform: lowercase;
   margin: var(--inputmargins) 0 0.15rem 0;
 }
@@ -61,7 +61,7 @@
 
 .NewListing-moveInDate {
   font-weight: 300;
-  width: 7.5rem;
+  width: 7.4rem;
   font-size: 90%;
   padding-top: 10px;
   padding-bottom: 10px;
