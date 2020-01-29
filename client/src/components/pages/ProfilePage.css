@@ -31,6 +31,7 @@
   height: var(--avatarSize);
 }
 .camerasvg{
+  box-sizing: content-box;
   padding: 2rem 2rem 2rem 2rem;
   position: absolute;
   width: 30px;

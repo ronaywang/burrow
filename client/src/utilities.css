@@ -305,7 +305,6 @@ button:hover, .u-button:hover {
 
 ::placeholder {
   color: var(--neutral3);
-  font-size: 90%;
   font-family: "skolar-sans-latin", sans-serif;
   font-weight: 300;
 }
