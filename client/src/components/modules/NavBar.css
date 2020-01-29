@@ -29,7 +29,7 @@
     color: var(--primary2);
     padding: 0.4rem 2px;
     cursor: pointer;
-    font-size: 90%;
+    font-size: 100%;
     display: flex;
 }
 

@@ -84,6 +84,7 @@
   border-radius: var(--m);
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
   word-break: break-all;
+  white-space: pre-line;
   border-radius: var(--borderradius);
 }
 
@@ -114,7 +115,7 @@
   padding-bottom: 0.5rem;
   padding-top: 0.3rem;
   font-size: 110%;
-  font-weight: 300;
+  font-weight: 500;
   color: var(--primary2);
   background-color: var(--primary6);
   border-top-left-radius: var(--borderradius);
@@ -129,14 +130,11 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: var(--xs);
-  margin-bottom: var(--xs);
-  margin-left: var(--m);
-  margin-right: var(--m);
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin: 0.3rem 0.6rem 0.8rem 0.6rem;
+  padding: 0.3rem;
   color: var(--primary3);
   background-color: var(--neutral6);
-  font-size: 80%;
+  font-size: 90%;
   letter-spacing: 0.02em;
   border: none;
   min-width: auto;
@@ -157,7 +155,7 @@
 .ThreadDisplay-name {
   text-align: center;
   font-size: 120%;
-  font-weight: 300;
+  font-weight: 500;
   font-family: skolar-sans-latin;
 }
 
