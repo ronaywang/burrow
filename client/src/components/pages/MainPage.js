@@ -59,7 +59,9 @@ class MainPage extends Component{
     if (!this.state.doDisplay){
       return null;
     }
+    
     const {locationCtr} = this.state;
+    console.log(`NEW LOCATION CENTER: ${JSON.stringify(locationCtr)}`)
     return (
       <div className="MainPage-container">
         <PreferenceBar triggerSearch={() => {this.triggerSearch()}}/>  
@@ -68,7 +70,6 @@ class MainPage extends Component{
           {/* <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" /> */}
           <ListingsFast styleName="MainPage" displayedListings={this.state.listingsToDisplay} editDeletePerms={false} 
             setCenter={(coords) => {
-              console.log(`NEW LOCATION CENTER: ${JSON.stringify(coords)}`)
               this.setState({locationCtr: coords});
             }}/>
           <div className="MainPage-mapContainer">

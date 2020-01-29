@@ -66,7 +66,8 @@ class SingleCardFast extends Component {
       <div className="Card-container" key={this.props.listingId}  
         onClick={() => {
           this.setState((prev) => ({expanded: !prev.expanded}), () => {
-            this.props.setCenter(this.props.listing.coordinates);
+            if (this.state.expanded)
+              this.props.setCenter(this.props.listing.coordinates);
           })
         }}>
         <div className="Card-top">

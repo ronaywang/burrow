@@ -77,7 +77,7 @@ class MapComponent extends Component {
       width = 640;
     }
     return (
-      <div id="map" className="u-flex">
+      <div id="map" key={this.props.initialCenter} className="u-flex">
       </div>
     );
   }
