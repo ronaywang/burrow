@@ -134,6 +134,7 @@ class NewListing extends Component {
               <div className="NewListing-duration">
                 {durationOptions.map((desc, i) => (
                   <button
+                  key={i+500}
                   className={this.state.durationIndex !== i ? "durationButton" : "durationButton durationSelect"}
                   onClick={()=>{this.setState({durationIndex: i})}}
                   >{desc}</button>
