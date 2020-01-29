@@ -35,7 +35,7 @@ class MainPage extends Component{
       location: this.state.location,
       locationCtr: this.state.locationCtr,
       price: this.state.price,
-      startDate: new Date(this.state.startDate),
+      startDate: this.state.startDate || new Date(),
       durationIndex: this.state.durationIndex,
     }
     post("/api/matchinglistings", query).then((listings) => { 

@@ -18,10 +18,13 @@ class PreferenceBar extends Component {
       doDisplay: false,
       startDate: new Date(),
       price: 0,
+      visibleprice: "",
       durationIndex: -1,
     };
+    console.log(this.state.startDate);
     this.update = this.update.bind(this);
     this.pushToGlobals = this.pushToGlobals.bind(this);
+    this.priceupdate = this.priceupdate.bind(this);
   }
 
   componentDidMount(){
@@ -47,6 +50,24 @@ class PreferenceBar extends Component {
     this.setState({
       price, startDate, durationIndex, 
     }, () => this.pushToGlobals(trigger));
+    console.log(this.state.startDate);
+    console.log("hello");
+  }
+
+  async priceupdate(event) {
+    console.log("hi");
+    console.log(this.state.startDate);
+    let a = event.target.value;
+    if (event.target.value === "") {
+      a = 0;
+    } else {
+      a = parseInt(event.target.value);
+    }
+    this.setState({
+      visibleprice: event.target.value,
+      price: a,
+    });
+    this.pushToGlobals(false);
   }
 
   render(){
@@ -81,10 +102,8 @@ class PreferenceBar extends Component {
             type="number"
             min="0"
             step="100"
-            value={price}
-            onChange={(e) => {
-              this.update(parseInt(e.target.value), startDate, durationIndex, false)
-            }} 
+            value={this.state.visibleprice}
+            onChange={this.priceupdate}
             className="PreferenceBar-priceInput"
             placeholder="budget" 
             onFocus={()=>document.getElementById("prefbarprice").classList.add("PreferenceBar-pricefocus")}
