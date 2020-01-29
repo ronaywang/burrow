@@ -95,12 +95,19 @@
   background-color: var(--neutral7);
   padding: 0.3rem;
   color: var(--neutral3);
-  width: 7rem;
+  width: auto;
   flex-shrink: 0;
 
   font-size: 90%;
 }
 
+.NewListing-priceInput {
+  outline: none;
+  border-bottom: none !important;
+  padding: 0;
+  width: auto;
+  font-size: 90%;
+}
 
 .NewListing-center > * {
     /*apparently this changes the margin of all the children elements of NewListing-center!*/

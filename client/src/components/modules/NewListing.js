@@ -115,7 +115,6 @@ class NewListing extends Component {
               <span className="fieldname">My budget is approximately&hellip;</span>
               <span className="NewListing-price" id="prefbarprice">
                 $&nbsp;<input
-                  id="prefbarpriceinput"
                   type="number"
                   min="0"
                   max="9999"
