@@ -147,7 +147,7 @@ class UserSettings extends Component {
                 onChange={(e) => {this.setState({textBox: e.target.value})}}
               />
             ) : (
-              <div className="UserSettings-value UserSettings-textboxvalue">{this.state.textBox.trim().length === 0 ? "empty :(" : this.state.textBox}</div>
+              <div className="UserSettings-value UserSettings-textboxvalue">{this.state.textBox.trim().length === 0 ? "Nothing here yet!" : this.state.textBox}</div>
             )}
             
           </div>
