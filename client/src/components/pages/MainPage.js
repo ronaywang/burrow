@@ -66,7 +66,7 @@ class MainPage extends Component{
         <div className="MainPage-feedMapContainer">
           {/* <div className="MainPage-queryContainer">{`Results for ${location}:`}</div> */}
           {/* <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" /> */}
-          <ListingsFast displayedListings={this.state.listingsToDisplay} styleName="MainPage" editDeletePerms={false} />
+          <ListingsFast displayedListings={this.state.listingsToDisplay} editDeletePerms={false} />
           <div className="MainPage-mapContainer">
             <MapComponent
               initialCenter={locationCtr}
