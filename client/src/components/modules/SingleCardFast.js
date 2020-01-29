@@ -94,12 +94,12 @@ class SingleCardFast extends Component {
                     delete={() => this.setState({doRender: false})}/>) }
                  </Popup>) : 
                 (
-                this.state.loggedIn && <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
+                this.state.loggedIn && <Link to={"/inbox/"+this.props.listing.creator_ID._id} style={{alignSelf: 'center'}}><img src = "/envelope-mod.svg" width = "25px"></img></Link>
                 )
               }
             </div>
             <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
-              {expanded ?  <img src = "/up.svg" width = "15px" /> : <img src = "/download.svg" width = "15px"/>}
+              {expanded ?  <img src = "/up.svg" width = "20px" /> : <img src = "/download.svg" width = "20px"/>}
             </div>
           </div>
         </div>
