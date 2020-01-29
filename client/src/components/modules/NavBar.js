@@ -107,7 +107,7 @@ class NavBar extends Component {
     return (
       <div className="NavBar-container ">
         <div className="NavBar-logoSearchContainer NavBar-style">
-          <div className="NavBar-logo" title="Tip: Clear the location query and press enter to see ALL listings :)">
+          <div className="NavBar-logo" title="Tip: Clear location query and press Enter to see all listings!">
             <Link to="/" className="NavBar-logo-link">burrow</Link>
           </div>
           <div className="NavBar-searchContainer">
