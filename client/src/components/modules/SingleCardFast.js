@@ -97,12 +97,16 @@ class SingleCardFast extends Component {
                  </Popup>) : 
                 (
                 this.state.loggedIn && <Link to={"/inbox/"+this.props.listing.creator_ID._id}>
-                  <img src = "/envelope.svg" title={`Message ${this.props.listing.creator_ID.firstName}`} width = "20px"></img></Link>
+                  <img src = "/envelope-mod.svg" style={{alignSelf: 'center'}} title={`Message ${this.props.listing.creator_ID.firstName}`} width = "25px"></img></Link>
                 )
               }
             </div>
             <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
+<<<<<<< HEAD
               {expanded ?  <img src = "/up.svg" title="Collapse" width = "15px" /> : <img src = "/download.svg" title="Expand" width = "15px"/>}
+=======
+              {expanded ?  <img src = "/up.svg" width = "20px" /> : <img src = "/download.svg" width = "20px"/>}
+>>>>>>> 4bed34153393d21d268862ae5681c0f2a2c69b71
             </div>
           </div>
         </div>

@@ -173,7 +173,7 @@
   box-sizing: border-box;
   padding: 1rem;
   width: 100%;
-  border-radius: 3px;
+  border-radius: var(--borderradius);
   background-color: white;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
   height: auto;
