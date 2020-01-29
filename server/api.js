@@ -102,11 +102,9 @@ router.post("/editlisting", (req, res) => {
 // Gets all the listings for now (TODO: make into a matching algorithm)
 router.post("/matchinglistings", (req, res) => {
   var prefs = req.body;
-  console.log(JSON.stringify(prefs));
   const priceMargin = 800; // USD
   const maxDistance = 50; // miles
   let noLocation = prefs.location.length === 0 || prefs.location === undefined;
-  console.log(`NOLOCATION ${noLocation}`);
   let priceQuery = {$lte: prefs.price + priceMargin, $gte: prefs.price - priceMargin};
   if (noLocation)
     var listingFilter = (x) => x;
@@ -122,7 +120,6 @@ router.post("/matchinglistings", (req, res) => {
   if (prefs.durationIndex !== -1)
     query['durationIndex'] = prefs.durationIndex;
 
-  console.log(prefs.startDate);
   Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
     .then((listings) => { 
       

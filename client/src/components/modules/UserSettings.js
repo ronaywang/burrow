@@ -128,8 +128,8 @@ class UserSettings extends Component {
           </div>
 
           <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
-            <div className={isYou ? "UserSettings-description wDate" : "UserSettings-description wAge"}>{isYou ? "Date Of Birth" : "Age"}</div>
-            <div className="UserSettings-value">{isYou ? new Date(this.state.birthdate).toLocaleDateString() : this.state.age}</div>
+            <div className="UserSettings-description wAge">Age</div>
+            <div className="UserSettings-value">{this.state.age}</div>
           </div>
 
           {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
