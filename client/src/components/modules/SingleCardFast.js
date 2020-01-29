@@ -72,7 +72,7 @@ class SingleCardFast extends Component {
           </div>
           <div className="Card-topMiddle">
             <div className="Card-nameAgeGender">
-              <Link to={"/profile/"+this.props.listing.creator_ID._id} style={{textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', paddingBottom: '0.3rem'}}>
+              <Link to={"/profile/"+this.props.listing.creator_ID._id} style={{textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', paddingBottom: '0.3rem', marginRight: "1rem"}}>
                 {`${name}, ${age}`}
               </Link>
             </div>
