@@ -61,6 +61,20 @@ class PreferenceBar extends Component {
     const today = new Date();
     return (
       <div className="PreferenceBar-container">
+       
+        <div className="PreferenceBar-dateContainer">
+          <input className = "PreferenceBar-moveInDate PreferenceBar-dateinvisible"
+            id="moveindatepicker"
+            type="date"
+            placeholder = "move-in date"
+            name="startdate" 
+            value={this.state.startDate}
+            min={today.toISOString().split("T")[0]}
+            onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
+            onChange={(e) => this.update(price, e.target.value, durationIndex, false)}
+          />
+        </div>
+        
         <span className="PreferenceBar-price" id="prefbarprice">
           $&nbsp;<input
             id="prefbarpriceinput"
@@ -77,18 +91,7 @@ class PreferenceBar extends Component {
             onBlur={()=>document.getElementById("prefbarprice").classList.remove("PreferenceBar-pricefocus")}
         />/month
         </span>
-        <div className="PreferenceBar-dateContainer">
-          <input className = "PreferenceBar-moveInDate PreferenceBar-dateinvisible"
-            id="moveindatepicker"
-            type="date"
-            placeholder = "move-in date"
-            name="startdate" 
-            value={this.state.startDate}
-            min={today.toISOString().split("T")[0]}
-            onFocus={()=>{document.getElementById("moveindatepicker").placeholder = ""; document.getElementById("moveindatepicker").classList.remove("PreferenceBar-dateinvisible");}}
-            onChange={(e) => this.update(price, e.target.value, durationIndex, false)}
-          />
-        </div>
+
         <div className="PreferenceBar-durationContainer">
           <div className="PreferenceBar-duration">
             {durationOptions.map((desc, i) => (
