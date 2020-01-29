@@ -155,20 +155,20 @@ class NewListing extends Component {
           </div>
           <div className="NewListing-buttons">
             <button
-              className="NewListing-submit"
+              className={`NewListing-submit ${this.props.currentId ? "NewListing-update" : ""}`}
               onClick={(e) => {
                 e.preventDefault();
                 this.handleSubmit();
               }}
-            >{this.props.currentId ? "update listing" : "submit listing"}</button>
+            >{this.props.currentId ? "update" : "submit"}</button>
             {this.props.currentId ?
             <button
-              className="NewListing-submit"
+              className="NewListing-submit NewListing-delete"
               onClick={() => {
                 post("/api/deletelisting", {_id: this.props.currentId})
                   .then(() => {this.props.delete(); this.props.close()});
               }}
-            >delete listing</button> : null}
+            >delete</button> : null}
           </div>
         </div>
       </div>
