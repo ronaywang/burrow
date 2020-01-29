@@ -78,7 +78,6 @@ class NewListing extends Component {
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
     }
     return (
-      <div className="NewListing-supercontainer">
         <div className="NewListing-container">
           { this.state.mustfillfields && (
             <span className="warning">You must fill all fields!</span>
@@ -170,7 +169,6 @@ class NewListing extends Component {
           </div>
         </div>
       </div>
-    </div>
     );
   }
 }
