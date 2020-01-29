@@ -14,8 +14,9 @@
 
 .NewListing-description{
   margin: 1rem 0 0.5rem 0;
+  padding-bottom: 0.3rem;
   font-weight: 400;
-  letter-spacing: 0.03rem;
+  font-family: skolar-sans-latin-extended;
 }
 
 .NewListing-center{
@@ -99,4 +100,22 @@
 .NewListing-submit {
   display: flex;
   justify-content: flex-end;
+}
+
+
+.NewListing-textBoxContainer {
+  width: 100%;
+}
+
+.NewListing-textBox {
+  width: 100%;
+  border: var(--borders);
+  margin: var(--xs);
+  border-radius: var(--borderradius);
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 300;
+  font-size: 90%;
 }
