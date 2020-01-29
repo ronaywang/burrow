@@ -37,7 +37,7 @@
   color: var(--neutral3);
   width: 7rem;
   flex-shrink: 0;
-
+  height: 2rem;
   font-size: 90%;
 }
 
@@ -87,8 +87,7 @@
   font-weight: 300;
   width: 9rem;
   font-size: 90%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  height: 2rem;
 }
 .moveindate::-webkit-inner-spin-button {
   -webkit-appearance: none;
