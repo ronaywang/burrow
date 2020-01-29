@@ -31,6 +31,7 @@
   display: flex;
   min-height: 40rem;
   width: auto;
+  max-width: 30rem;
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;
@@ -82,6 +83,7 @@
   margin-bottom: 0.5rem;
   border-radius: var(--m);
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
+  word-break: break-all;
 }
 
 .ChatBubble-textContainer-fromme {
