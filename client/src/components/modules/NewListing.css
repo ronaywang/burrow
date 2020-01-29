@@ -105,12 +105,14 @@
 
 .NewListing-textBoxContainer {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .NewListing-textBox {
+  min-height: 6rem;
   width: 100%;
+  box-sizing: border-box;
   border: var(--borders);
-  margin: var(--xs);
   border-radius: var(--borderradius);
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
