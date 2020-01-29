@@ -140,3 +140,17 @@ select:focus {
   margin: 0px var(--xs) var(--s);
   max-height: 2rem;
 }
+
+.LoginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+}

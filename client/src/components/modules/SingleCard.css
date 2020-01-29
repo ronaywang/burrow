@@ -9,7 +9,6 @@
   padding: var(--s);
   position: relative;
   background-color: white;
-  margin: 0.7rem;
   border-radius: var(--borderradius);
 }
 
