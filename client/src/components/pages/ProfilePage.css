@@ -288,6 +288,10 @@
   cursor: pointer; /* Cursor on hover */
 }
 
+.UserSettings-moreContainer {
+  padding: 0.7rem;
+}
+
 .UserSettings-prefsSlider::-moz-range-thumb {
   width: var(--m); /* Set a specific slider handle width */
   height: var(--m); 
