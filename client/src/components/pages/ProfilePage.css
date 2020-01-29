@@ -112,6 +112,7 @@
 
 .UserSettings-textboxvalue {
   white-space: pre-line;
+  word-wrap: break-word;
 }
 
 .UserSettings-textbox{
@@ -121,6 +122,7 @@
   font-weight: 300;
   color: var(--neutral1);
   line-height: 110%;
+  word-wrap: break-word;
 }
 
 .ProfileBar-tabContainer{
@@ -347,4 +349,30 @@
 /* Handle on hover */
  .UserSettings-textbox::-webkit-scrollbar-thumb:hover {
   background: var(--accent4); 
+}
+
+.wGender {
+  min-width: 2.5rem;
+}
+
+.wDate {
+  min-width: 4.2rem;
+}
+
+.wEmail {
+  min-width: 2.5rem;
+}
+
+.wName {
+  min-width: 2.3rem;
+}
+
+.dispName {
+  white-space: pre;
+}
+
+.dispEmail {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 5rem;
 }
