@@ -19,7 +19,7 @@
   justify-content: stretch;
   height: auto;
   flex: 1 1 auto;
-  padding: 0;
+  padding: 0px 0px 0.8rem 0px;
   width: 100%;
   background-color: white;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
@@ -129,7 +129,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0.3rem 0.6rem 0.8rem 0.6rem;
+  margin: 0.2rem 0.6rem 0.2rem 0.6rem;
   padding: 0.3rem;
   color: var(--primary3);
   background-color: var(--neutral6);
