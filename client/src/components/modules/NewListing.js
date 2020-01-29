@@ -71,7 +71,7 @@ class NewListing extends Component {
 
   render(){
     if (!this.state.doRender)
-      return (<div className="NewListing-container">Loading listing info...</div>);
+      return (<div className="NewListing-container">Loading listing info&hellip;</div>);
     let durationOptions = ["1-3 months", "3-6 months", "6-12 months", "more than 1 year"];
     const today = new Date();
     if (this.state.success){
@@ -86,7 +86,7 @@ class NewListing extends Component {
         <div className="NewListing-inputForm">
           <div className="inputinline">
             <label className = "Reg-input">
-            <span className="fieldname">I'm looking for a room near...</span>
+            <span className="fieldname">I'm looking for a room near&hellip;</span>
                 <GoogleSearchBar styleName="NewListing" //emailClassName
                   placeIsCity={true}
                   searchBarId="newListingSearch"
@@ -97,7 +97,7 @@ class NewListing extends Component {
           </div>
           <div className="inputinline">
             <label className = "Reg-input">
-              <span className="fieldname">My move-in date is approximately...</span>
+              <span className="fieldname">My move-in date is approximately&hellip;</span>
               <input className = "NewListing-moveInDate"
               id="moveindatepicker"
               type="date"
@@ -112,7 +112,7 @@ class NewListing extends Component {
           </div>
           <div className="inputinline">
             <label className="Reg-input">
-              <span className="fieldname">My budget is approximately...</span>
+              <span className="fieldname">My budget is approximately&hellip;</span>
               <span className="NewListing-price" id="prefbarprice">
                 $&nbsp;<input
                   id="prefbarpriceinput"
@@ -130,7 +130,7 @@ class NewListing extends Component {
           </div>
           <div className="inputinline">
             <div className="Reg-input">
-              <span className="fieldname">I'll be staying for...</span>
+              <span className="fieldname">I'll be staying for&hellip;</span>
               <div className="NewListing-duration">
                 {durationOptions.map((desc, i) => (
                   <button
