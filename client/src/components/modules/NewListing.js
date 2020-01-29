@@ -92,13 +92,13 @@ class NewListing extends Component {
                   post("/api/deletelisting", {_id: this.props.currentId})
                     .then(() => {this.props.delete(); this.props.close()});
                 }}
-              >yes</button>
+              >delete</button>
             <button
                 className="NewListing-submit"
                 onClick={() => {
                   this.setState({intermediary: false});
                 }}
-              >no</button>
+              >go back</button>
           </div>
         </div>
       )
