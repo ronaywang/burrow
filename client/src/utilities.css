@@ -285,7 +285,6 @@ button:hover, .u-button:hover {
 
 .durationButton{
   margin: var(--xs);
-  padding: 0.2rem 0.5rem 0.5rem 0.5rem;
   color: var(--neutral3);
   background-color: var(--neutral7);
   font-size: 90%;

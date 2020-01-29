@@ -37,7 +37,7 @@
   margin: 0px 10px 0px 10px;
   width: auto;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-end;
 }
 .NavBar-search {
@@ -52,7 +52,6 @@
 }
 
 .NavBar-newListing{
-  padding: 0.5rem 1rem 0.5rem 1rem !important;
 }
 
 .NavBar-newListing, .NavBar-link{
