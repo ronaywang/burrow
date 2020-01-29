@@ -51,7 +51,10 @@
     color: var(--primary4);
 }
 
-.NavBar-newListing{
+.NavBar-newListing {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .NavBar-newListing, .NavBar-link{

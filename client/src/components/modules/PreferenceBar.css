@@ -4,7 +4,7 @@
     align-items: center;
     background: var(--neutral7);
     margin: 0px;
-    padding: 0 5% 0 5%;
+    padding: 0 10% 0 10%;
     width: 100%;
     box-sizing: border-box;
 }
@@ -106,8 +106,21 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  max-width: 100%;
 }
 
 .PreferenceBar-durationButton {
   background-color: var(--neutral6);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: auto !important;
+  flex-shrink: 1;
+}
+.durationSelect {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: auto !important;
+  flex-shrink: 1;
 }
