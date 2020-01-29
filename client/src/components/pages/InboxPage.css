@@ -29,7 +29,7 @@
 
 .Chat-container {
   display: flex;
-  min-height: 40rem;
+  min-height: 36.5rem;
   width: auto;
   max-width: 30rem;
   flex-direction: column;
@@ -57,10 +57,10 @@
 
 .ChatBox {
   width: auto;
-  margin-top: auto;
+  margin-top: 0.3rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
@@ -84,6 +84,7 @@
   border-radius: var(--m);
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
   word-break: break-all;
+  border-radius: var(--borderradius);
 }
 
 .ChatBubble-textContainer-fromme {

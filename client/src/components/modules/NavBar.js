@@ -65,26 +65,26 @@ class NavBar extends Component {
          <Popup
          contentStyle={{backgroundColor: 'rgba(255,255,255,0)', border: 'none', width: '90%', maxWidth: '30rem'}}
          modal trigger={
-          <button className="NavBar-newListing">new listing</button>
+          <button className="NavBar-newListing" title="Make new listing">new listing</button>
         }>
           {close => (<NewListing userId={this.props.userId} currentId="" close={close}/>) }
         </Popup> 
-        <Link to="/main" className="NavBar-link">browse</Link>
+        <Link to="/main" className="NavBar-link" title="Browse listings">browse</Link>
         {/* <Link to={`/profile/${userId}`} className="NavBar-link">
           account
         </Link>  */}
-        <Link to="/inbox/*" className="NavBar-link">message</Link>
+        <Link to="/inbox/*" className="NavBar-link" title="Message other rabbits">message</Link>
         <div className="NavBar-link" onClick={() => {
           navigate(`/profile/${userId}`, {replace: true});
-        }}>account</div>   
-        <div className="NavBar-link" onClick={this.props.handleLogout}>logout</div> 
+        }} title="View your account">account</div>   
+        <div className="NavBar-link" onClick={this.props.handleLogout} title="Logout">logout</div> 
        
       </div>
 
     ) : (
       <div className="NavBar-linkContainer-loggedOut NavBar-style">
         <Popup modal trigger={
-          <div className="NavBar-link">
+          <div className="NavBar-link" title="Register">
             register
           </div>
         }
@@ -94,7 +94,7 @@ class NavBar extends Component {
         </Popup>
         
         <Popup modal trigger={
-        <div className="NavBar-link">
+        <div className="NavBar-link" title="Login">
           login
         </div>
         }

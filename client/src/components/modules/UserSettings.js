@@ -157,7 +157,7 @@ class UserSettings extends Component {
                 this.setState({editMode: true});
               else
                 this.setState({editMode: false}, () => this.saveSettings());
-            }}>
+            }} title={this.state.editMode ? "Save" : "Edit"}>
               {this.state.editMode ? "Save" : "Edit"}
             </button>
           ) : null}
