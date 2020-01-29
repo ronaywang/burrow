@@ -12,6 +12,7 @@ class ListingsFast extends Component {
       <div className={`${this.props.styleName}-listingsContainer`}>
         {this.props.displayedListings.map((listing) => {return (
           <SingleCardFast 
+            setCenter={this.props.setCenter}
             listing={listing} key={listing._id} editDeletePerms={this.props.editDeletePerms}/>
         );})}
       </div>

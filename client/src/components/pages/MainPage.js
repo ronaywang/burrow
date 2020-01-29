@@ -66,7 +66,11 @@ class MainPage extends Component{
         <div className="MainPage-feedMapContainer">
           {/* <div className="MainPage-queryContainer">{`Results for ${location}:`}</div> */}
           {/* <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" /> */}
-          <ListingsFast styleName="MainPage" displayedListings={this.state.listingsToDisplay} editDeletePerms={false} />
+          <ListingsFast styleName="MainPage" displayedListings={this.state.listingsToDisplay} editDeletePerms={false} 
+            setCenter={(coords) => {
+              console.log(`NEW LOCATION CENTER: ${JSON.stringify(coords)}`)
+              this.setState({locationCtr: coords});
+            }}/>
           <div className="MainPage-mapContainer">
             <MapComponent
               initialCenter={locationCtr}

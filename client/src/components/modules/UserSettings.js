@@ -211,6 +211,7 @@ class UserSettings extends Component {
         </div>
       </div>
       <ListingsFast
+        setCenter={(a) => null}
         styleName="UserSettings" displayedListings={this.state.usersListings} editDeletePerms={this.state.isYou}/>
     </div>
     );
