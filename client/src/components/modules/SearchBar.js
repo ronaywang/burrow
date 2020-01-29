@@ -233,6 +233,7 @@ class GoogleSearchBar extends Component {
             if (e.key === "Enter" && e.target.value.trim().length === 0)
               this.handlePlaceSelect();
           }}
+          title="Enter location"
           className={`${this.props.styleName}-search`}
         />
       </div>

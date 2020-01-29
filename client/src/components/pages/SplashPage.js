@@ -61,14 +61,14 @@ class SplashPage extends Component {
       <div className="SplashPage-container">
         <div className="SplashPage-infoContainer">
           <div className="SplashPage-taglineContainer">
-            <div className="SplashPage-logo">Find your roommate.</div>
+            <div className="SplashPage-logo" title="find your roommate">Find your roommate.</div>
           </div>
           <div className="SplashPage-searchAndDates">
-            <div className="SplashPage-searchContainer">
+            <div className="SplashPage-searchContainer" title="Enter location">
               <div className="SplashPage-searchDescription">location</div>
               {searchBar}
             </div>
-            <div className="SplashPage-dateContainer">
+            <div className="SplashPage-dateContainer" title="Move-in date">
               <div className="SplashPage-dateDescription">move-in date</div>
               <div className="SplashPage-date SplashPage-input">
                 <input
@@ -87,6 +87,7 @@ class SplashPage extends Component {
             className="SplashPage-go SplashPage-input"
             type="submit"
             value="Go!"
+            title="Go!"
             onClick={() => {
               let body = {
                 location: this.state.location,
