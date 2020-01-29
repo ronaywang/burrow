@@ -28,14 +28,6 @@ class MapComponent extends Component {
     } else {
       if (this.props.newCenter) {
         this.state.map.setCenter(this.props.newCenter);
-        let newmarker = new google.maps.Marker({
-          position: this.props.newCenter,
-        });
-        if (this.state.marker) {
-          this.state.marker.setMap(null);
-        }
-        newmarker.setMap(this.state.map);
-        this.state.marker = newmarker;
       }
       if (!this.state.markersLoaded && this.props.markers) {
         this.props.markers.forEach((markerloc)=> {
