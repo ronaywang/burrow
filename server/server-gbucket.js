@@ -45,7 +45,7 @@ const deleteFile = async(filename) => {
 
 
 const gobjURL = (filename) => {
-  return "https://storage.cloud.google.com/" + bucketName + "/" + filename;
+  return "https://storage.googleapis.com/" + bucketName + "/" + filename;
 };
 
 module.exports = {
