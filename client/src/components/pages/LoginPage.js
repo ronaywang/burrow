@@ -64,10 +64,10 @@ handleSubmit = (event) => {
       );
     } else {
       return (
-        <div className="u-flexColumn u-flex-alignCenter u-flex-spaceEvenly">
+        <div className="LoginContainer">
           <h1 className="u-textCenter">Get connected.</h1>
           { this.state.failed ? "Login failed": null}
-          <form className="u-flexColumn u-flex-alignEnd" onSubmit={this.handleSubmit}>
+          <form className="LoginForm" onSubmit={this.handleSubmit}>
             <label className="Login-input">
               <span className="fieldname">Email</span>
               <input className = "inputTextField"
