@@ -33,9 +33,9 @@
 
 .PreferenceBar-price {
   background-color: var(--neutral6);
-  padding: 0.3rem;
+  padding: 0.2rem 0.3rem 0.2rem 0.3rem;
   color: var(--neutral3);
-  width: 7rem;
+  width: 7.4rem;
   flex-shrink: 0;
   height: 2rem;
   font-size: 90%;
@@ -66,9 +66,8 @@
   outline: none;
   border-bottom: none;
   padding: 0;
-  width: 2.5rem;
-
-  font-size: 90%;
+  width: 2.7rem;
+  font-size: 100%;
   /*background-color: var(--primary6);*/
 }
 
@@ -90,6 +89,7 @@
   font-size: 90%;
   height: 2rem;
   margin-right: 1.5rem;
+  padding: 0.2rem 0.3rem 0.3rem 0.3rem;
   word-break: break-all;
 }
 .moveindate::-webkit-inner-spin-button {
