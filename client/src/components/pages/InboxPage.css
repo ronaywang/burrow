@@ -30,7 +30,7 @@
 .Chat-container {
   display: flex;
   min-height: 36.5rem;
-  width: auto;
+  width: 100%;
   max-width: 30rem;
   flex-direction: column;
   align-items: stretch;
