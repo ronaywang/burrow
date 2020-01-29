@@ -107,7 +107,7 @@ class PreferenceBar extends Component {
             className="PreferenceBar-priceInput"
             placeholder="budget" 
             onFocus={()=>document.getElementById("prefbarprice").classList.add("PreferenceBar-pricefocus")}
-            onBlur={()=>document.getElementById("prefbarprice").classList.remove("PreferenceBar-pricefocus")}
+            onBlur={()=>{document.getElementById("prefbarprice").classList.remove("PreferenceBar-pricefocus"); this.pushToGlobals(false);}}
         />/month
         </span>
 
