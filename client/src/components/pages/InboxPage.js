@@ -140,13 +140,15 @@ class InboxPage extends Component {
   }
 
   ChatBoxUpdate(event) {
-    this.setState({chatBoxContents: event.target.value});
+    if (!(this.state.chatBoxContents === "" && event.target.value === "\n")) {
+      this.setState({chatBoxContents: event.target.value});
+    }
   }
 
   ChatBoxKey(event) {
     if(event.keyCode === 13 && event.shiftKey) { // add newline
 
-    } else if (event.keyCode === 13) {
+    } else if (event.keyCode === 13 && this.state.chatBoxContents !== "") {
       this.state.displayedMessages.push({
         content: this.state.chatBoxContents,
         sender_ID: this.state.userId,
