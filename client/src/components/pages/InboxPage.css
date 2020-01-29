@@ -19,7 +19,6 @@
   justify-content: stretch;
   height: auto;
   flex: 1 1 auto;
-  border: var(--borders);
   margin-right: 0.5rem;
   padding: 0;
   width: auto;
@@ -34,7 +33,6 @@
   align-items: stretch;
   justify-content: stretch;
   flex: 2 1 auto;
-  border: var(--borders);
   background-color: white;
 }
 

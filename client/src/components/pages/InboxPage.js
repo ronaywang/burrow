@@ -50,7 +50,7 @@ class InboxPage extends Component {
 
 
   async componentDidMount() {
-    document.body.classList.remove("SplashPage-body");
+    document.body.classList.add("SplashPage-body");
     let threadToMakeActive = null;
     if (has(this.props, 'userId')) {
       if (this.props.userId !== "*") {
