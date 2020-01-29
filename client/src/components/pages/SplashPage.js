@@ -41,7 +41,7 @@ class SplashPage extends Component {
     if (!this.state.doDisplay)
       return null;
     let buttonClassName = "SplashPage-listingtypebutton";
-
+    const today = new Date();
     const {
       state: {
         startDate, location
@@ -75,6 +75,7 @@ class SplashPage extends Component {
                   className="SplashPage-dateInput"
                   type="date"
                   name="startdate"
+                  min={today.toISOString().split("T")[0]}
                   value={startDate}
                   onChange={(e) => this.setState({startDate: e.target.value})}
                 />

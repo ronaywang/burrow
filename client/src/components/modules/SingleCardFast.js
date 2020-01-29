@@ -72,8 +72,8 @@ class SingleCardFast extends Component {
           </div>
           <div className="Card-topMiddle">
             <div className="Card-nameAgeGender">
-              <Link to={"/profile/"+this.props.listing.creator_ID._id}>
-                <span /*className={SingleCardFast.genderColorDict[gender]}*/>{name}</span>{`, ${age}`}
+              <Link to={"/profile/"+this.props.listing.creator_ID._id} style={{textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap'}}>
+                {`${name}, ${age}`}
               </Link>
             </div>
             <div className="Card-date">{formatDate(startDate)}</div>
