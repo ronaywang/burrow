@@ -145,8 +145,15 @@
 .NewListing-submit {
   display: flex;
   align-self: stretch;
-  margin-left: 0;
-  margin-right: 0;
+}
+
+
+.NewListing-submit.NewListing-update{
+  background-color: var(--approval);
+}
+.NewListing-submit.NewListing-update:hover{
+  opacity: 0.5;
+  background-color: var(--approval)
 }
 
 
@@ -170,4 +177,12 @@
 
 .NewListing-search {
   width: 100%;
+}
+
+.NewListing-submit.NewListing-delete{
+  background-color: var(--error);
+}
+
+.NewListing-submit.NewListing-delete:hover{
+  opacity: 0.5;
 }
