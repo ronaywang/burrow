@@ -24,7 +24,7 @@ class MainPage extends Component{
     };
   }
   
-  componentDidMount() {
+  async componentDidMount() {
     document.body.classList.remove("SplashPage-body");
     this.triggerSearch();
   }
@@ -39,9 +39,11 @@ class MainPage extends Component{
       durationIndex: this.state.durationIndex,
     }
     post("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
-      this.setState({listingsToDisplay: listings});
+      this.setState({listingsToDisplay: listings}, () => {
+        if (this.state.location.length == 0 && this.state.listingsToDisplay.length > 0)
+          this.setState({locationCtr: this.state.listingsToDisplay[0].coordinates});
+      });
     });
-    console.log(this.state.locationCtr);
   }
 
   triggerSearch = () => {
@@ -60,7 +62,7 @@ class MainPage extends Component{
       return null;
     }
     
-    const {locationCtr} = this.state;
+    const {locationCtr, listingsToDisplay} = this.state;
     console.log(`NEW LOCATION CENTER: ${JSON.stringify(locationCtr)}`)
     return (
       <div className="MainPage-container">
@@ -68,16 +70,16 @@ class MainPage extends Component{
         <div className="MainPage-feedMapContainer">
           {/* <div className="MainPage-queryContainer">{`Results for ${location}:`}</div> */}
           {/* <Listings displayedListings={this.state.listingsToDisplay.map(l => l._id)} styleName="MainPage" /> */}
-          <ListingsFast styleName="MainPage" displayedListings={this.state.listingsToDisplay} editDeletePerms={false} 
+          <ListingsFast styleName="MainPage" displayedListings={listingsToDisplay} editDeletePerms={false} 
             setCenter={(coords) => {
               this.setState({locationCtr: coords});
             }}/>
           <div className="MainPage-mapContainer">
             <MapComponent
-              initialCenter={mitCoords}
+              initialCenter={locationCtr}
               newCenter={locationCtr}
               initialZoom={8}
-              markers={this.state.listingsToDisplay.filter(l=>has(l, 'coordinates')).map(l => {return {coordinates: l.coordinates, markertitle: l.location};})}
+              markers={listingsToDisplay.filter(l=>has(l, 'coordinates')).map(l => {return {coordinates: l.coordinates, markertitle: l.location};})}
             />
           </div>
         </div>
