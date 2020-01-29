@@ -63,7 +63,7 @@ class NavBar extends Component {
           <div className="NavBar-link" onClick={this.props.handleLogout}>logout</div> 
       </div>*/}
          <Popup
-         contentStyle={{backgroundColor: 'rgba(255,255,255,0)', border: 'none'}}
+         contentStyle={{backgroundColor: 'rgba(255,255,255,0)', border: 'none', width: '90%', maxWidth: '30rem'}}
          modal trigger={
           <button className="NavBar-newListing">new listing</button>
         }>
@@ -98,7 +98,7 @@ class NavBar extends Component {
           login
         </div>
         }
-        contentStyle={{borderRadius: 'var(--borderradius)', width: '90%', maxWidth: '30rem'}}
+        contentStyle={{borderRadius: 'var(--borderradius)', width: '90%', maxWidth: '20rem'}}
         >
           <LoginPage />
         </Popup>
