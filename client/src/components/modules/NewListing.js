@@ -62,7 +62,10 @@ class NewListing extends Component {
         setTimeout(() => {
           this.props.close();
           if (this.props.userId !== ""){ 
-            navigate(`/profile/${this.props.userId}`, {replace: False});
+            window.location.pathname = `/profile/${this.props.userId}`;
+          }
+          else {
+            window.location.reload();
           }
         }, 750);
       })
