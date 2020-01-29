@@ -123,7 +123,6 @@
   font-weight: 300;
   letter-spacing: 0.03rem;
   color: var(--neutral3);
-  font-size: 80%;
 }
 
 .UserSettings-textboxvalue {
@@ -141,7 +140,7 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   font-weight: 300;
-  font-size: 90%;
+  font-size: 100%;
   background-color: var(--neutral6);
   word-wrap: break-word;
 }
@@ -255,7 +254,7 @@
 .UserSettings-prefsAgree, .UserSettings-prefsDisagree {
   text-transform: lowercase;
   color: var(--neutral2);
-  font-size: 90%;
+  font-size: 100%;
   width: auto;
 }
 .UserSettings-prefsSlider {
