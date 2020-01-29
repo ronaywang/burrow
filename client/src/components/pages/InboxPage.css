@@ -34,6 +34,8 @@
   justify-content: stretch;
   flex: 2 1 auto;
   background-color: white;
+
+  border-radius: var(--borderradius);
 }
 
 .Chat-ChatBubblesContainer {
@@ -108,6 +110,8 @@
   font-weight: 300;
   color: var(--primary2);
   background-color: var(--primary6);
+  border-top-left-radius: var(--borderradius);
+  border-top-right-radius: var(--borderradius);
 }
 
 
