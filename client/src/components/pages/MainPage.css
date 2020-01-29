@@ -7,13 +7,15 @@
 
 .MainPage-mapContainer {
   display: flex;
-  min-width: 30%;
+  flex-shrink: 1;
+  width: 30%;
   max-width: 50%;
   margin-left: var(--xs);
 }
 
 .MainPage-listingsContainer{
   min-width: 60%;
+  flex-shrink: 0;
 }
 
 #map {
