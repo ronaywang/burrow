@@ -116,12 +116,17 @@
   padding-top: 0.3rem;
   font-size: 110%;
   font-weight: 500;
-  color: var(--primary2);
-  background-color: var(--primary6);
+  color: white;
+  background-color: var(--primary3);
   border-top-left-radius: var(--borderradius);
   border-top-right-radius: var(--borderradius);
 
 }
+
+.Chat-ChatInfoContainerName {
+  color: var(--primary6);
+}
+
 
 
 
