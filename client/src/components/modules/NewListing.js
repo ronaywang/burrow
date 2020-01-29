@@ -20,6 +20,7 @@ class NewListing extends Component {
       textBox: "",
       success: false,
       doRender: false,
+      intermediary: false,
     };
   }
 
@@ -79,6 +80,28 @@ class NewListing extends Component {
     const today = new Date();
     if (this.state.success){
       return (<div className="NewListing-submitted">Listing submitted successfully!</div>);
+    }
+    if (this.state.intermediary){
+      return (
+        <div className="NewListing-container">
+          Are you sure you want to delete this listing?
+          <div className="NewListing-buttons">
+            <button
+                className="NewListing-submit NewListing-delete"
+                onClick={() => {
+                  post("/api/deletelisting", {_id: this.props.currentId})
+                    .then(() => {this.props.delete(); this.props.close()});
+                }}
+              >yes</button>
+            <button
+                className="NewListing-submit"
+                onClick={() => {
+                  this.setState({intermediary: false});
+                }}
+              >no</button>
+          </div>
+        </div>
+      )
     }
     return (
       <div className="NewListing-container">
@@ -167,8 +190,7 @@ class NewListing extends Component {
             <button
               className="NewListing-submit NewListing-delete"
               onClick={() => {
-                post("/api/deletelisting", {_id: this.props.currentId})
-                  .then(() => {this.props.delete(); this.props.close()});
+                this.setState({intermediary: true});
               }}
             >delete</button> : null}
           </div>
