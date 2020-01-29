@@ -42,14 +42,14 @@
 .inputTextField {
   background: var(--neutral7);
   margin: 0px var(--xs) var(--s);
-  width: 12rem;
+  width: auto;
   font-size: 90%;
 }
 
 .inputTextField-small {
   background: var(--neutral7);
   margin: 0px var(--xs) var(--s);
-  width: 4.65rem;
+  width: auto;
   font-size: 90%;
 }
 
@@ -71,8 +71,10 @@
 .inputbirthdate {
   background: var(--neutral7);
   margin: 0px var(--xs) var(--s);
-  width: 6rem;
+  width: auto;
+  padding: 0.4rem;
   font-size: 90%;
+  height: 100%;
 }
 
 .validemail:focus {
@@ -124,3 +126,17 @@ select:focus {
   border-bottom: 2px solid var(--primary5);
 }
 
+.reg-container {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+  display: grid;
+  grid-template-rows: 4rem 4rem 4rem 4rem 4rem;
+  grid-template-columns: 50% 50%;
+  max-width: 25rem;
+}
+
+.reg-dropbtn {
+  margin: 0px var(--xs) var(--s);
+  max-height: 2rem;
+}

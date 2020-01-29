@@ -6,6 +6,8 @@
     justify-content: space-between;
     padding: 0% 3rem;
     border-bottom: 1px solid var(--neutral6);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .NavBar-logo {
@@ -33,6 +35,10 @@
 
 .NavBar-linkContainer-loggedIn, .NavBar-linkContainer-loggedOut {
   margin: 0px 10px 0px 10px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .NavBar-search {
   background: var(--neutral7);

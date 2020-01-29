@@ -88,7 +88,7 @@ class NavBar extends Component {
             register
           </div>
         }
-        contentStyle={{borderRadius: 'var(--borderradius)'}}
+        contentStyle={{borderRadius: 'var(--borderradius)', width: '90%', maxWidth: '30rem'}}
         >
           <RegistrationPage />
         </Popup>

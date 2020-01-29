@@ -133,8 +133,8 @@ handleSubmit = (event) => {
           )}
           { this.state.failed ? "Registration failed. Email already taken": null}
           <h1 className="u-textCenter">Join your burrow today.</h1>
-          <form className="u-flexColumn u-flex-alignEnd">
-           <label className = "Reg-input">
+          <div className="reg-container">
+           <label className = "Reg-input" style={{gridRowStart: 1, gridRowEnd: 2, gridColumnStart: 1, gridColumnEnd: 3}} >
            {/*<i class="mail-icon"></i> icon stuff, will edit after Milestone 2*/}
            <span className="fieldname">Email</span>
               <input className = {emailClassName}
@@ -146,8 +146,7 @@ handleSubmit = (event) => {
                 onFocus={this.e_validate}
               />
             </label>
-          <div className = "inputinline">
-            <label className = "Reg-input">
+            <label className = "Reg-input" style={{gridRowStart: 2, gridRowEnd: 3, gridColumnStart: 1, gridColumnEnd: 2}}>
               <span className="fieldname">First name</span>
               <input className = "inputTextField-small"
                 type="text"
@@ -156,7 +155,7 @@ handleSubmit = (event) => {
                 onChange={this.fn_handleChange}
               />
             </label>
-            <label className = "Reg-input">
+            <label className = "Reg-input" style={{gridRowStart: 2, gridRowEnd: 3, gridColumnStart: 2, gridColumnEnd: 3}}>
               <span className="fieldname">Last name</span>
               <input className = "inputTextField-small"
                 type="text"
@@ -165,9 +164,7 @@ handleSubmit = (event) => {
                 onChange={this.ln_handleChange}
               />
             </label>
-            </div>
-          <div className="inputinline">
-          <label className = "Reg-input">
+          <label className = "Reg-input" style={{gridRowStart: 3, gridRowEnd: 4, gridColumnStart: 1, gridColumnEnd: 2}}>
             <span className="fieldname">Birthdate</span>
               <input className = "inputbirthdate"
                 type="date"
@@ -176,9 +173,9 @@ handleSubmit = (event) => {
                 onChange={this.bd_handleChange}
               />
           </label>
-          <label className = "Reg-input">
+          <label className = "Reg-input" style={{gridRowStart: 3, gridRowEnd: 4, gridColumnStart: 2, gridColumnEnd: 3}}>
             <span className="fieldname">Gender</span>
-              <select className = "dropbtn" 
+              <select className = "dropbtn reg-dropbtn" 
               name = "gender" 
               value = {this.state.gender}
               onChange={this.g_handleChange}>
@@ -188,8 +185,7 @@ handleSubmit = (event) => {
                 <option value = "Non-binary">non-binary</option>
               </select>
             </label>
-          </div>      
-            <label className = "Reg-input">
+            <label className = "Reg-input" style={{gridRowStart: 4, gridRowEnd: 5, gridColumnStart: 1, gridColumnEnd: 3}}>
               <span className="fieldname">Password</span>
               <input className = "inputTextField"
                 type="password"
@@ -198,7 +194,7 @@ handleSubmit = (event) => {
                 onChange={this.p_handleChange}
               />
             </label>
-            <label className = "Reg-input">
+            <label className = "Reg-input" style={{gridRowStart: 5, gridRowEnd: 6, gridColumnStart: 1, gridColumnEnd: 3}}>
               <span className="fieldname">Verify password</span>
               <input className = "inputTextField"
                 type="password"
@@ -216,12 +212,12 @@ handleSubmit = (event) => {
                 ))
               }
             </div>
+            </div>
             <button
               type="submit"
               onClick={this.handleSubmit}>
               {this.state.buttontext}</button>
             
-          </form>
         </div>
       );
     }
