@@ -106,8 +106,12 @@ router.post("/matchinglistings", (req, res) => {
   const priceMargin = 800; // USD
   const maxDistance = 50; // miles
   let noLocation = prefs.location.length === 0 || prefs.location === undefined;
+  console.log(`NOLOCATION ${noLocation}`);
   let priceQuery = {$lte: prefs.price + priceMargin, $gte: prefs.price - priceMargin};
-  let listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
+  if (noLocation)
+    var listingFilter = (x) => x;
+  else
+    var listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
   const query = {};
   if (req.user !== null && req.user._id.length > 0){
     let userQuery = { $ne: req.user._id };
@@ -117,15 +121,24 @@ router.post("/matchinglistings", (req, res) => {
     query['price'] = priceQuery;
   if (prefs.durationIndex !== -1)
     query['durationIndex'] = prefs.durationIndex;
-  
+
   console.log(prefs.startDate);
   Listing.find(query).populate({ path: 'creator_ID', select: 'firstName lastName birthdate gender profilePictureURL' })
-    .then((listings) => {res.send( noLocation ? listings : listings.filter(listingFilter).sort((listing) => {
-      let dateDiffTime = Math.abs(new Date(listing.startDate) - new Date(prefs.startDate));
-      let dateDiffDay = (prefs.startDate === null) ? 1 : dateDiffTime / (1000 * 60 * 60 * 24);
-      let dist = searchutilities.getDistance(listing.coordinates, prefs.locationCtr);
-      return -dist*dateDiffDay^2;
-    }))});
+    .then((listings) => { 
+      
+      let ret = listings.filter(listingFilter).sort((listing1, listing2) => {
+        let f = (listing) => {
+          let stDate = prefs.startDate ? new Date(prefs.startDate) : new Date()  
+          let dateDiffTime = Math.abs(new Date(listing.startDate) - stDate);
+          let dateDiffDay =  dateDiffTime / (1000 * 60 * 60 * 24);
+          let dist = noLocation ? 1 : searchutilities.getDistance(listing.coordinates, prefs.locationCtr);
+          let ret = dist*dateDiffDay*dateDiffDay;
+          return ret;
+        }
+        return f(listing1)-f(listing2);
+      });
+      res.send(ret);
+    });
 })
 
 router.post("/logout", auth.logout);
