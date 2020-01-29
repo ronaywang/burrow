@@ -19,9 +19,8 @@
   justify-content: stretch;
   height: auto;
   flex: 1 1 auto;
-  margin-right: 0.6rem;
   padding: 0;
-  width: auto;
+  width: 100%;
   background-color: white;
   box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
   border-radius: var(--borderradius);
@@ -47,12 +46,6 @@
   width: auto;
   height: 30rem;
   overflow-y: auto;
-}
-
-.MessageSearch {
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 
 .ChatBox {
@@ -86,12 +79,13 @@
   word-break: break-all;
   white-space: pre-line;
   border-radius: var(--borderradius);
+  max-width: 10rem;
 }
 
 .ChatBubble-textContainer-fromme {
   margin-right: 1rem;
   align-self: flex-end;
-  max-width: 40%;
+  max-width: 10rem;
   background-color: var(--primary4);
   color: white;
 }
@@ -99,7 +93,7 @@
 .ChatBubble-textContainer-fromyou {
   margin-left: 1rem;
   align-self: flex-start;
-  max-width: 40%;
+  max-width: 10rem;
   background-color: var(--neutral5);
 }
 
@@ -162,6 +156,8 @@
   font-size: 120%;
   font-weight: 500;
   font-family: skolar-sans-latin;
+  margin-left: 1rem;
+  margin-right: 0.3rem;
 }
 
 .Chat-ChatBoxHeader {
@@ -188,9 +184,11 @@
 .ThreadDisplay-photo {
   --avatarSize: 2rem;
   object-fit: cover;
-  box-sizing: content-box;
   border-radius: 50%;
+  width: var(--avatarSize) !important;
+  height: var(--avatarSize) !important;
+}
+
+.InboxPage-SubContainer {
   margin-right: 1rem;
-  width: var(--avatarSize);
-  height: var(--avatarSize);
 }
