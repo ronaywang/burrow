@@ -92,11 +92,11 @@ class PreferenceBar extends Component {
         />/month
         </span>
 
-        <div className="PreferenceBar-durationContainer">
           <div className="PreferenceBar-duration">
             {durationOptions.map((desc, i) => (
               <button
               key={i}
+              style={{gridColumnStart: (i+1).toString(), gridColumnEnd: (i+2).toString()}}
               className={this.state.durationIndex !== i ? "durationButton PreferenceBar-durationButton" : "durationButton durationSelect"}
               onClick={()=>{
                 this.update(price, startDate, (this.state.durationIndex !== i) ? i : -1, true);
@@ -106,7 +106,6 @@ class PreferenceBar extends Component {
               </button>
             ))}
           </div>
-        </div>
         {/* <div className="PreferenceBar-durationContainer">
           <label className = "PreferenceBar-durationDropDown">
             <select className = "dropbtn"  
