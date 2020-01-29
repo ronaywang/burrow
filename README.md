@@ -1,4 +1,4 @@
 # Burrow
 
-## Find your next home in a new city.
+## Find new people to share your home with. Connect with roommates on burrow.
 
