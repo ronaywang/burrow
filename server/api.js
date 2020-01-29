@@ -113,7 +113,7 @@ router.post("/matchinglistings", (req, res) => {
   else
     var listingFilter = searchutilities.filterByDistanceConstructor(prefs.locationCtr, maxDistance);
   const query = {};
-  if (req.user !== null && req.user._id.length > 0){
+  if (req.user && req.user._id.length > 0){
     let userQuery = { $ne: req.user._id };
     query['creator_ID'] = userQuery;
   }
