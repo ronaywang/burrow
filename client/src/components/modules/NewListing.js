@@ -98,7 +98,7 @@ class NewListing extends Component {
           <div className="inputinline">
             <label className = "Reg-input">
               <span className="fieldname">My move-in date is approximately&hellip;</span>
-              <input className = "NewListing-moveInDate"
+              <input className = "NewListing-moveInDate NewListing-dateinvisible"
               id="moveindatepicker"
               type="date"
               placeholder = "move-in date"
@@ -159,7 +159,7 @@ class NewListing extends Component {
                 e.preventDefault();
                 this.handleSubmit();
               }}
-            >submit</button>
+            >{this.props.currentId ? "update listing" : "submit listing"}</button>
             {this.props.currentId ?
             <button
               className="NewListing-submit"

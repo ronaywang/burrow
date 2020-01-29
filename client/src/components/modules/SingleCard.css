@@ -72,7 +72,7 @@
 .Card-topMiddle {
   display: grid;
   grid-template-rows: 50% 50%;
-  grid-template-columns: 40% 40% 20%; 
+  grid-template-columns: 50% 40% 10%; 
   flex: 1;
 }
 
