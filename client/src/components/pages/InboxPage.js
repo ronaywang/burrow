@@ -188,7 +188,7 @@ class InboxPage extends Component {
     <div className="InboxPage-SuperContainer">
       <div className="InboxPage-container">
         {!this.state.noThreads && (
-          <div>
+          <div className="InboxPage-SubContainer">
             <div className="Messages-container">
               {/*<input className="MessageSearch"
                 type="text"
