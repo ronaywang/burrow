@@ -1,17 +1,46 @@
 .NewListing-container{
     border-radius: var(--borderradius);
-    display: grid;
-    grid-template-columns: 0% 30rem;
-    /*grid-template-rows: 45px 100px 10px auto auto;*/
+    display: flex;
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
     background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
 }
+
+
 
 .NewListing-left{
     grid-column:1 / 2;
     margin: 2em;
 }
 
+
+.NewListing-buttons{
+  display: flex;
+  justify-content: flex-end;
+}
+.Reg-input {
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem 0rem 0.25rem 0rem;
+}
+
+.fieldname {
+  font-size: 80%;
+  text-transform: lowercase;
+  margin: var(--inputmargins) 0 0.15rem 0;
+}
+
+.inputinline {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.NewListing-inputForm {
+  width: 100%;
+}
 .NewListing-description{
   margin: 1rem 0 0.5rem 0;
   font-weight: 400;
@@ -98,5 +127,7 @@
 
 .NewListing-submit {
   display: flex;
-  justify-content: flex-end;
+  align-self: stretch;
+  margin-left: 0;
+  margin-right: 0;
 }

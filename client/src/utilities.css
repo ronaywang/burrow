@@ -213,6 +213,10 @@ input {
     line-height: 100%;
 }
 
+textarea {
+  padding: 0.3rem;
+}
+
 button, .u-button{
     text-transform: lowercase;
     padding: 0.2rem 1rem 0.5rem 1rem;
@@ -240,6 +244,18 @@ select:focus,
 button:focus, .u-button:hover {
     outline: none;
     /*box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);*/
+}
+/* DON'T DISPLAY ARROWS IN NUMBER INPUTS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance:textfield;
 }
 
 input:focus {
