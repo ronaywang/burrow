@@ -63,7 +63,12 @@ class SingleCardFast extends Component {
 
     let durationOptions = ["for 1-3 months", "for 3-6 months", "for 6-12 months", "for over a year"]
     return (
-      <div className="Card-container" key={this.props.listingId}  onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
+      <div className="Card-container" key={this.props.listingId}  
+        onClick={() => {
+          this.setState((prev) => ({expanded: !prev.expanded}), () => {
+            this.props.setCenter(this.props.listing.coordinates);
+          })
+        }}>
         <div className="Card-top">
           <div className="Card-profilePicContainer">
             <Link to={"/profile/"+this.props.listing.creator_ID._id}>
