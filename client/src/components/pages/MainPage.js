@@ -38,7 +38,7 @@ class MainPage extends Component{
       startDate: new Date(this.state.startDate),
       durationIndex: this.state.durationIndex,
     }
-    post("/api/matchinglistings", query).then((listings) => { // "listings" is an array of form {_id: <blah>, coordinates: <blah}
+    post("/api/matchinglistings", query).then((listings) => { 
       this.setState({listingsToDisplay: listings}, () => {
         if (this.state.location.length == 0 && this.state.listingsToDisplay.length > 0)
           this.setState({locationCtr: this.state.listingsToDisplay[0].coordinates});
