@@ -23,6 +23,8 @@
   padding: 0;
   width: auto;
   background-color: white;
+
+  border-radius: var(--borderradius);
 }
 
 .Chat-container {
@@ -68,6 +70,7 @@
   font-family: skolar-sans-latin;
   font-size: 110%;
   word-wrap:break-word
+  
 }
 
 
@@ -112,6 +115,7 @@
   background-color: var(--primary6);
   border-top-left-radius: var(--borderradius);
   border-top-right-radius: var(--borderradius);
+
 }
 
 
@@ -162,6 +166,8 @@
   text-align: center;
   color: var(--primary3);*/
   background-color: white;
+
+  border-radius: var(--borderradius);
 }
 
 /*.Chat-ChatBoxHeaderText {

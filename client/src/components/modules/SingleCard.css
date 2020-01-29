@@ -9,6 +9,8 @@
   padding: var(--s);
   position: relative;
   background-color: white;
+
+  border-radius: var(--borderradius);
 }
 
 .Card-editDeleteContainer {
@@ -18,8 +20,8 @@
 }
 
 .Card-editContainer {
-  border-radius: 3px;
-  border: 1px solid white;
+  
+  border-radius: var(--borderradius);
   color: white;
 }
 
