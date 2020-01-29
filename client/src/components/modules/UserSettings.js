@@ -204,7 +204,7 @@ class UserSettings extends Component {
                             let arr = prev.prefsArray;
                             arr[index] = parseInt(e.target.value);
                             return {prefsArray: arr};
-                          }, () => {console.log(this.state.prefsArray)}) 
+                          }, () => {this.saveSettings()}) 
                         }}  
                       />
               ))}
