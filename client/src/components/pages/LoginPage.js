@@ -65,21 +65,22 @@ handleSubmit = (event) => {
     } else {
       return (
         <div className="LoginContainer">
-          <h1 className="u-textCenter">Get connected.</h1>
+          <h1 className="u-textCenter" title="get connected">Get connected.</h1>
           { this.state.failed ? "Login failed": null}
           <form className="LoginForm" onSubmit={this.handleSubmit}>
             <label className="Login-input">
-              <span className="fieldname">Email</span>
+              <span className="fieldname" title="Email">Email</span>
               <input className = "inputTextField"
                 type="text"
                 name="email"
+                title="Email"
                 value={this.state.email}
                 onChange={this.e_handleChange}
               />
             </label>
             <label className="Login-input">
-              <span className="fieldname">Password</span>
-              <input className = "inputTextField"
+              <span className="fieldname" title="Password">Password</span>
+              <input className = "inputTextField" title="Password"
                 type="password"
                 name="password"
                 value={this.state.password}
@@ -87,7 +88,7 @@ handleSubmit = (event) => {
               />
             </label>
             <button
-              type="submit"  onClick={this.handleSubmit}>
+              type="submit"  onClick={this.handleSubmit} title="Login">
                 {this.state.buttontext}</button>
           </form>
         </div>

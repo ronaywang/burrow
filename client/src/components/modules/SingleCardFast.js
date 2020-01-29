@@ -78,9 +78,9 @@ class SingleCardFast extends Component {
                 {`${name}, ${age}`}
               </Link>
             </div>
-            <div className="Card-date">{formatDate(startDate)}</div>
-            <div className="Card-duration">{durationOptions[this.state.durationIndex]}</div>
-            <div className="Card-location">
+            <div className="Card-date" title={`Move-in date: ${formatDate(startDate)}`}>{formatDate(startDate)}</div>
+            <div className="Card-duration" title={`Duration: ${durationOptions[this.state.durationIndex]}`}>{durationOptions[this.state.durationIndex]}</div>
+            <div className="Card-location" title={`Location: ${location}`}>
               {location}
             </div>
               

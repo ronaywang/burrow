@@ -126,20 +126,21 @@ handleSubmit = (event) => {
       return (
         <div className="u-flexColumn u-flex-alignCenter u-flex-spaceEvenly">
           { this.state.mustfillfields && (
-            <span className="warning">You must fill all fields!</span>
+            <span className="warning" title="you must fill all fields">You must fill all fields!</span>
             )}
           { (this.state.validemailmessage) && (
-            <span className="warning">Please enter a valid email.</span>
+            <span className="warning" title="please enter a valid email">Please enter a valid email.</span>
           )}
           { this.state.failed ? "Registration failed. Email already taken": null}
-          <h1 className="u-textCenter">Join your burrow today.</h1>
+          <h1 className="u-textCenter" title="join your burrow today">Join your burrow today.</h1>
           <div className="reg-container">
            <label className = "Reg-input" style={{gridRowStart: 1, gridRowEnd: 2, gridColumnStart: 1, gridColumnEnd: 3}} >
            {/*<i class="mail-icon"></i> icon stuff, will edit after Milestone 2*/}
-           <span className="fieldname">Email</span>
+           <span className="fieldname" title="Email">Email</span>
               <input className = {emailClassName}
                 type="text"
                 name="email"
+                title="Email"
                 value={this.state.email}
                 onChange={this.e_handleChange}
                 onBlur={this.e_validate}
@@ -147,35 +148,38 @@ handleSubmit = (event) => {
               />
             </label>
             <label className = "Reg-input" style={{gridRowStart: 2, gridRowEnd: 3, gridColumnStart: 1, gridColumnEnd: 2}}>
-              <span className="fieldname">First name</span>
+              <span className="fieldname" title="First name">First name</span>
               <input className = "inputTextField-small"
                 type="text"
                 name="firstname"
+                title="First name"
                 value={this.state.firstName}
                 onChange={this.fn_handleChange}
               />
             </label>
             <label className = "Reg-input" style={{gridRowStart: 2, gridRowEnd: 3, gridColumnStart: 2, gridColumnEnd: 3}}>
-              <span className="fieldname">Last name</span>
+              <span className="fieldname" title="Last name">Last name</span>
               <input className = "inputTextField-small"
                 type="text"
                 name="lastname"
+                title="Last name"
                 value={this.state.lastName}
                 onChange={this.ln_handleChange}
               />
             </label>
           <label className = "Reg-input" style={{gridRowStart: 3, gridRowEnd: 4, gridColumnStart: 1, gridColumnEnd: 2}}>
-            <span className="fieldname">Birthdate</span>
+            <span className="fieldname" title="Birthdate">Birthdate</span>
               <input className = "inputbirthdate"
                 type="date"
                 name="birthdate"
+                title="Birthdate"
                 value={this.state.birthdate}
                 onChange={this.bd_handleChange}
               />
           </label>
           <label className = "Reg-input" style={{gridRowStart: 3, gridRowEnd: 4, gridColumnStart: 2, gridColumnEnd: 3}}>
-            <span className="fieldname">Gender</span>
-              <select className = "dropbtn reg-dropbtn" 
+            <span className="fieldname" title="Gender">Gender</span>
+              <select title="Gender" className = "dropbtn reg-dropbtn" 
               name = "gender" 
               value = {this.state.gender}
               onChange={this.g_handleChange}>
@@ -186,17 +190,18 @@ handleSubmit = (event) => {
               </select>
             </label>
             <label className = "Reg-input" style={{gridRowStart: 4, gridRowEnd: 5, gridColumnStart: 1, gridColumnEnd: 3}}>
-              <span className="fieldname">Password</span>
+              <span className="fieldname" title="Password">Password</span>
               <input className = "inputTextField"
                 type="password"
                 name="password"
+                title="Password"
                 value={this.state.password}
                 onChange={this.p_handleChange}
               />
             </label>
             <label className = "Reg-input" style={{gridRowStart: 5, gridRowEnd: 6, gridColumnStart: 1, gridColumnEnd: 3}}>
-              <span className="fieldname">Verify password</span>
-              <input className = "inputTextField"
+              <span className="fieldname" title="Verify password">Verify password</span>
+              <input className = "inputTextField" title="Verify password"
                 type="password"
                 name="verifypassword"
                 value={this.state.verifypassword}
@@ -214,6 +219,7 @@ handleSubmit = (event) => {
             </div>
             </div>
             <button
+              title="Register your account"
               type="submit"
               onClick={this.handleSubmit}>
               {this.state.buttontext}</button>
