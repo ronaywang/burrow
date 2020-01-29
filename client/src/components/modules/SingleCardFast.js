@@ -102,11 +102,7 @@ class SingleCardFast extends Component {
               }
             </div>
             <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
-<<<<<<< HEAD
               {expanded ?  <img src = "/up.svg" title="Collapse" width = "15px" /> : <img src = "/download.svg" title="Expand" width = "15px"/>}
-=======
-              {expanded ?  <img src = "/up.svg" width = "20px" /> : <img src = "/download.svg" width = "20px"/>}
->>>>>>> 4bed34153393d21d268862ae5681c0f2a2c69b71
             </div>
           </div>
         </div>
