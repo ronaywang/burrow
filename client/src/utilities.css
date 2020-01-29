@@ -285,12 +285,12 @@ button:hover, .u-button:hover {
 
 .durationButton{
   margin: var(--xs);
-  border-radius: var(--borderradius);
   color: var(--neutral3);
   background-color: var(--neutral7);
   font-size: 90%;
   letter-spacing: 0.02em;
   border: none;
+  border-radius: 0;
 }
 
 .durationButton:hover{
