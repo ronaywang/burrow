@@ -10,12 +10,14 @@
   min-width: 30%;
   max-width: 50%;
   margin-left: var(--xs);
+  position: sticky;
+  top: 0;
 }
 
 .MainPage-listingsContainer{
   min-width: 60%;
 }
 
-#map {
+#map{
   min-width: 40%;
 }

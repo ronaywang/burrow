@@ -249,7 +249,7 @@ router.post("/saveusersettings", async (req, res) => {
   if (req.body.birthdate) {
     myUser.birthdate = req.body.birthdate;
   }
-  if (req.body.textBox !== '') {
+  if (req.body.textBox) {
     myUser.aboutMe = req.body.textBox;
   }
   myUser.prefsArray = req.body.prefsArray;

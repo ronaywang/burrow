@@ -82,9 +82,7 @@ class UserSettings extends Component {
 
   async saveSettings () {
     console.log(this.state);
-    post("/api/saveusersettings", this.state).then((result)=>{
-      this.setState({savedSettings: true});
-    }).catch((err)=> {
+    post("/api/saveusersettings", this.state).catch((err)=> {
       console.log(err);
     });
   }
@@ -149,7 +147,7 @@ class UserSettings extends Component {
                 onChange={(e) => {this.setState({textBox: e.target.value})}}
               />
             ) : (
-              <div className="UserSettings-value UserSettings-textboxvalue">{this.state.textBox}</div>
+              <div className="UserSettings-value UserSettings-textboxvalue">{this.state.textBox.trim().length === 0 ? "empty :(" : this.state.textBox}</div>
             )}
             
           </div>
