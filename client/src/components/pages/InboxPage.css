@@ -187,6 +187,8 @@
   border-radius: 50%;
   width: var(--avatarSize) !important;
   height: var(--avatarSize) !important;
+  min-width: var(--avatarSize) !important;
+  min-height: var(--avatarSize) !important;
 }
 
 .InboxPage-SubContainer {
