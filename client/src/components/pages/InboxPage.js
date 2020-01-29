@@ -225,7 +225,7 @@ class InboxPage extends Component {
           ) : (
           <div className="Chat-ChatInfoContainer">
             chatting with&nbsp;
-            <Link to={"/profile/" + this.GetActiveChatUID()}>
+            <Link to={"/profile/" + this.GetActiveChatUID()} className = "Chat-ChatInfoContainerName">
             {this.GetActiveChatName()}
             </Link>
           </div>
