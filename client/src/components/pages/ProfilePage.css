@@ -5,6 +5,12 @@
   margin: 0.3rem 25% 0.3rem 25%;
   min-width: 25rem;
 }
+
+.Profile-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Everything about the photo */
 .UserSettings-photoContainer {
   border-radius: 50%;
