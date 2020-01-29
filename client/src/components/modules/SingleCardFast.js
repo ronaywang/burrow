@@ -67,12 +67,14 @@ class SingleCardFast extends Component {
         <div className="Card-top">
           <div className="Card-profilePicContainer">
             <Link to={"/profile/"+this.props.listing.creator_ID._id}>
-              <img src={this.state.profilePicURL || "/account.png"} className="Card-profilePic"/>
+              <img src={this.state.profilePicURL || "/account.png"} title={`Click to view ${this.props.listing.creator_ID.firstName}'s profile`}
+                className="Card-profilePic"/>
             </Link>
           </div>
           <div className="Card-topMiddle">
             <div className="Card-nameAgeGender">
-              <Link to={"/profile/"+this.props.listing.creator_ID._id} style={{textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', paddingBottom: '0.3rem', marginRight: "1rem"}}>
+              <Link to={"/profile/"+this.props.listing.creator_ID._id} title={`Click to view ${this.props.listing.creator_ID.firstName}'s profile`}
+                style={{textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', paddingBottom: '0.3rem', marginRight: "1rem"}}>
                 {`${name}, ${age}`}
               </Link>
             </div>
@@ -87,19 +89,20 @@ class SingleCardFast extends Component {
                 (<Popup
                   contentStyle={{backgroundColor: 'rgba(255,255,255,0)', border: 'none'}}
                   modal trigger={
-                    <img src = "/edit.svg" width = "15px" />
+                    <img src = "/edit.svg" width = "15px" title="Edit this listing"/>
                  }>
                    {close => (<NewListing 
                     key={this.props.listing._id} userId="" currentId={this.props.listing._id} close={close} 
                     delete={() => this.setState({doRender: false})}/>) }
                  </Popup>) : 
                 (
-                this.state.loggedIn && <Link to={"/inbox/"+this.props.listing.creator_ID._id} style={{alignSelf: 'center'}}><img src = "/envelope-mod.svg" width = "25px"></img></Link>
+                this.state.loggedIn && <Link to={"/inbox/"+this.props.listing.creator_ID._id}>
+                  <img src = "/envelope-mod.svg" style={{alignSelf: 'center'}} title={`Message ${this.props.listing.creator_ID.firstName}`} width = "25px"></img></Link>
                 )
               }
             </div>
             <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>
-              {expanded ?  <img src = "/up.svg" width = "20px" /> : <img src = "/download.svg" width = "20px"/>}
+              {expanded ?  <img src = "/up.svg" title="Collapse" width = "15px" /> : <img src = "/download.svg" title="Expand" width = "15px"/>}
             </div>
           </div>
         </div>

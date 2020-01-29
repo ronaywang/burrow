@@ -23,7 +23,7 @@
   padding: 0;
   width: auto;
   background-color: white;
-
+  box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
   border-radius: var(--borderradius);
 }
 
@@ -36,7 +36,7 @@
   justify-content: stretch;
   flex: 2 1 auto;
   background-color: white;
-
+  box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
   border-radius: var(--borderradius);
 }
 
@@ -81,6 +81,7 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: var(--m);
+  box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
 }
 
 .ChatBubble-textContainer-fromme {
