@@ -63,13 +63,7 @@ class SingleCardFast extends Component {
 
     let durationOptions = ["for 1-3 months", "for 3-6 months", "for 6-12 months", "for over a year"]
     return (
-      <div className="Card-container" key={this.props.listingId}  
-        onClick={() => {
-          this.setState((prev) => ({expanded: !prev.expanded}), () => {
-            if (this.state.expanded)
-              this.props.setCenter(this.props.listing.coordinates);
-          })
-        }}>
+      <div className="Card-container" key={this.props.listingId}>
         <div className="Card-top">
           <div className="Card-profilePicContainer">
             <Link to={"/profile/"+this.props.listing.creator_ID._id}>
@@ -78,15 +72,17 @@ class SingleCardFast extends Component {
             </Link>
           </div>
           <div className="Card-topMiddle">
-            <div className="Card-nameAgeGender">
+            <div className="Card-nameAgeGender" onClick={() => {this.props.setCenter(this.props.listing.coordinates);}}>
               <Link to={"/profile/"+this.props.listing.creator_ID._id} title={`Click to view ${this.props.listing.creator_ID.firstName}'s profile`}
                 style={{textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', paddingBottom: '0.3rem', marginRight: "1rem"}}>
                 {`${name}, ${age}`}
               </Link>
             </div>
-            <div className="Card-date" title={`Move-in date: ${formatDate(startDate)}`}>{formatDate(startDate)}</div>
-            <div className="Card-duration" title={`Duration: ${durationOptions[this.state.durationIndex]}`}>{durationOptions[this.state.durationIndex]}</div>
-            <div className="Card-location" title={`Location: ${location}`}>
+            <div className="Card-date" title={`Move-in date: ${formatDate(startDate)}`} 
+              onClick={() => {this.props.setCenter(this.props.listing.coordinates);}}>{formatDate(startDate)}</div>
+            <div className="Card-duration" title={`Duration: ${durationOptions[this.state.durationIndex]}`}
+              onClick={() => {this.props.setCenter(this.props.listing.coordinates);}}>{durationOptions[this.state.durationIndex]}</div>
+            <div className="Card-location" title={`Location: ${location}`} onClick={() => {this.props.setCenter(this.props.listing.coordinates);}}>
               {location}
             </div>
               
@@ -107,7 +103,9 @@ class SingleCardFast extends Component {
                 )
               }
             </div>
-            <div className="Card-expand">
+            <div className="Card-expand" onClick={() => {
+              this.setState((prev) => ({expanded: !prev.expanded}));
+            }}>
               {expanded ?  <img src = "/up.svg" title="Collapse" width = "15px" /> : <img src = "/download.svg" title="Expand" width = "15px"/>}
             </div>
           </div>

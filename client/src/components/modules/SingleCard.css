@@ -13,6 +13,10 @@
   margin: 0.3rem;
 }
 
+.Card-date, .Card-duration, .Card-location, .Card-nameAgeGender{
+  cursor: pointer;
+}
+
 .Card-container:hover{
   background-color: var(--neutral7);
 }
