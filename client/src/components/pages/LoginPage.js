@@ -87,7 +87,7 @@ handleSubmit = (event) => {
               />
             </label>
             <button
-              type="submit" onClick={this.handleSubmit}>
+              type="submit"  onClick={this.handleSubmit}>
                 {this.state.buttontext}</button>
           </form>
         </div>
