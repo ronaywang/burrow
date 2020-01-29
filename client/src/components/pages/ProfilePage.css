@@ -44,8 +44,9 @@
 .UserSettings-uploading{
   position: absolute;
   font-size: 80%;
-  color:white;
-  background-color: var(--primary1);
+  font-weight: 500;
+  color: var(--primary3);
+  background-color: white;
   opacity: 0.5;
 }
 
