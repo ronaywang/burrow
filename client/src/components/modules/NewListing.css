@@ -43,8 +43,9 @@
 }
 .NewListing-description{
   margin: 1rem 0 0.5rem 0;
+  padding-bottom: 0.3rem;
   font-weight: 400;
-  letter-spacing: 0.03rem;
+  font-family: skolar-sans-latin-extended;
 }
 
 .NewListing-center{
@@ -123,6 +124,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    width: 100%;
 }
 
 .NewListing-submit {
@@ -130,4 +132,24 @@
   align-self: stretch;
   margin-left: 0;
   margin-right: 0;
+}
+
+
+.NewListing-textBoxContainer {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.NewListing-textBox {
+  min-height: 6rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: var(--borders);
+  border-radius: var(--borderradius);
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 300;
+  font-size: 90%;
 }

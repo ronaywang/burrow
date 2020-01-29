@@ -32,10 +32,11 @@ class SingleCardFast extends Component {
       profilePicURL: "",
       doRender: false,
       durationIndex: 0,
+      loggedIn: false,
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.setState({
       location: this.props.listing.location,
       startDate: this.props.listing.startDate,
@@ -47,6 +48,10 @@ class SingleCardFast extends Component {
       profilePicURL: this.props.listing.creator_ID.profilePictureURL,
       durationIndex: this.props.listing.durationIndex,
       doRender: true,
+    });
+    get("/api/myuid").then((response)=>{
+      this.setState({loggedIn: true});
+    }).catch((err)=>{
     });
   }
 
@@ -88,7 +93,9 @@ class SingleCardFast extends Component {
                     key={this.props.listing._id} userId="" currentId={this.props.listing._id} close={close} 
                     delete={() => this.setState({doRender: false})}/>) }
                  </Popup>) : 
-                (<Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>)
+                (
+                this.state.loggedIn && <Link to={"/inbox/"+this.props.listing.creator_ID._id}><img src = "/envelope.svg" width = "20px"></img></Link>
+                )
               }
             </div>
             <div className="Card-expand" onClick={() => this.setState((prev) => ({expanded: !prev.expanded}))}>

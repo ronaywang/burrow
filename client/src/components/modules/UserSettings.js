@@ -120,23 +120,23 @@ class UserSettings extends Component {
           </div>
           <div className = "UserSettings-personalInfoBlock-container">
           <div className="UserSettings-personalInfoBlock UserSettings-personalInfoName">
-            <div className="UserSettings-description">Name</div>
-            <div className="UserSettings-value">{`${this.state.firstName} ${this.state.lastName}`}</div>
+            <div className="UserSettings-description wName">Name</div>
+            <div className="UserSettings-value dispName">{`${this.state.firstName}\n${this.state.lastName}`}</div>
           </div>
 
           <div className="UserSettings-personalInfoBlock UserSettings-personalInfoGender">
-            <div className="UserSettings-description">Gender</div>
+            <div className="UserSettings-description wGender">Gender</div>
             <div className="UserSettings-value">{this.state.gender}</div>
           </div>
 
           <div className="UserSettings-personalInfoBlock UserSettings-personalInfoAge">
-            <div className="UserSettings-description">{isYou ? "Date Of Birth" : "Age"}</div>
+            <div className={isYou ? "UserSettings-description wDate" : "UserSettings-description wAge"}>{isYou ? "Date Of Birth" : "Age"}</div>
             <div className="UserSettings-value">{isYou ? new Date(this.state.birthdate).toLocaleDateString() : this.state.age}</div>
           </div>
 
           {isYou ? <div className="UserSettings-personalInfoBlock UserSettings-personalInfoEmail">
-            <div className="UserSettings-description">E-mail</div>
-            <div className="UserSettings-value">{`${this.state.email}`}</div>
+            <div className="UserSettings-description wEmail">E-mail</div>
+            <div className="UserSettings-value dispEmail">{`${this.state.email}`}</div>
           </div> : null}
           
           

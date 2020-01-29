@@ -98,7 +98,7 @@ class NavBar extends Component {
           login
         </div>
         }
-        contentStyle={{ borderRadius: 'var(--borderradius)'}}
+        contentStyle={{borderRadius: 'var(--borderradius)', width: '90%', maxWidth: '30rem'}}
         >
           <LoginPage />
         </Popup>

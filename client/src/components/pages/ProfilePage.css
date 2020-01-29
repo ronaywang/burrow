@@ -56,7 +56,11 @@
   width: auto;
   padding: 0.2rem 0.8rem 0.8rem 0.8rem;
   word-break: break-all;
-  
+}
+
+.UserSettings-personalInfoAbout {
+  width: auto;
+  min-width: 60%;
 }
 
 .UserSettings-personalInfoBlock-container {
@@ -112,15 +116,23 @@
 
 .UserSettings-textboxvalue {
   white-space: pre-line;
+  word-wrap: break-word;
 }
 
 .UserSettings-textbox{
-  background-color: var(--neutral6);
-  padding: 0.3rem;
-  border-radius: 0.1rem;
+  width: 100%;
+  min-height: 6rem;
+  border: var(--borders);
+  margin: var(--xs);
+  border-radius: var(--borderradius);
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   font-weight: 300;
-  color: var(--neutral1);
-  line-height: 110%;
+  font-size: 90%;
+  background-color: var(--neutral6);
+  word-wrap: break-word;
 }
 
 .ProfileBar-tabContainer{
@@ -325,6 +337,7 @@
   justify-items: center;
   justify-content: space-evenly;
   width: 100%;
+  margin-bottom: var(--l);
 }
 
 
@@ -346,4 +359,30 @@
 /* Handle on hover */
  .UserSettings-textbox::-webkit-scrollbar-thumb:hover {
   background: var(--accent4); 
+}
+
+.wGender {
+  min-width: 2.5rem;
+}
+
+.wDate {
+  min-width: 4.2rem;
+}
+
+.wEmail {
+  min-width: 2.5rem;
+}
+
+.wName {
+  min-width: 2.3rem;
+}
+
+.dispName {
+  white-space: pre;
+}
+
+.dispEmail {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  min-width: 5rem;
 }
