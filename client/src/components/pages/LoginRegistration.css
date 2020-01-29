@@ -133,6 +133,7 @@ select:focus {
   display: grid;
   grid-template-rows: 4rem 4rem 4rem 4rem 4rem;
   grid-template-columns: 50% 50%;
+  max-width: 25rem;
 }
 
 .reg-dropbtn {
