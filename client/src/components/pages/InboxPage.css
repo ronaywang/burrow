@@ -56,10 +56,10 @@
 
 .ChatBox {
   width: auto;
-  margin-top: auto;
+  margin-top: 0.3rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
@@ -80,8 +80,7 @@
   padding: 0.6rem 0.8rem 0.8rem 0.8rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  border-radius: var(--m);
-  box-shadow: 2px 1px 4px rgba(0,0,0,0.05);
+  border-radius: var(--borderradius);
 }
 
 .ChatBubble-textContainer-fromme {
